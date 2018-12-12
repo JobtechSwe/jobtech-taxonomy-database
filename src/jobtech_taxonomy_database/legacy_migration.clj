@@ -8,7 +8,6 @@
   )
 
 
-
 (defdb db (mssql {:db "TaxonomyDB"
                   :user "SA"
                   :password "Taxonomy123!"}))

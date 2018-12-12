@@ -13,8 +13,7 @@
                                               javax.jms/jms
                                               com.sun.jdmk/jmxtools
                                               com.sun.jmx/jmxri]]
-    	
-
+    	         [com.datomic/client-pro "0.8.28"]
 ]
   :main ^:skip-aot jobtech-taxonomy-database.core
   :target-path "target/%s"
