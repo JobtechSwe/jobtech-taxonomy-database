@@ -166,39 +166,6 @@
 (defn fake-id "" [id] (format "%010d" id))
 
 
-(defn legacy-converter
-  ""
-  []
-  (map (fn [skill-main-headline]
-         (let [term-mainhl (get skill-main-headline :term)]
-           (d/transact conn {:tx-data [{:term/base-form term-mainhl}]})
-           (let [skill-main-headline-id (get skill-main-headline :skillMainHeadlineID)
-                concept-mainhl [ {:concept/id (fake-id skill-main-headline-id)
-                                  :concept/description "hrpf"
-                                  :concept/preferred-term [:term/base-form term-mainhl ]
-                                  :concept/alternative-terms #{[:term/base-form term-mainhl]}
-                                  }]]
-            (d/transact conn {:tx-data [{:term/base-form term-mainhl}]})
-            (d/transact conn {:tx-data concept-mainhl})
-
-            (list :term-mainhl term-mainhl :term-hl
-                  (map (fn [skill-headline]
-                         (let [term-hl (get skill-headline :term)]
-                           (d/transact conn {:tx-data [{:term/base-form term-hl}]})
-                           (let [skill-headline-id (get skill-headline :skillHeadlineID)
-                                 concept-hl [ {:concept/id (fake-id skill-headline-id)
-                                               :concept/description "zkrpkt"
-                                               :concept/preferred-term [:term/base-form term-hl ]
-                                               :concept/alternative-terms #{[:term/base-form term-hl]}
-                                               }]]
-                             (d/transact conn {:tx-data [{:term/base-form term-hl}]})
-                             (d/transact conn {:tx-data concept-hl}))
-                           term-hl))
-                       (get-skillheadlines skill-main-headline-id))))))
-       (get-skillmainheadlines)))
-
-
-
 
 (defn legacy-converter
   ""
@@ -239,6 +206,6 @@
 
 
 
-(legacy-converter)
+;; (legacy-converter)
 
 (d/q '[:find ?x :where [_ :term/base-form ?x]] (get-db))
