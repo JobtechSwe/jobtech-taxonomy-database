@@ -21,7 +21,7 @@
 (def client (d/client cfg))
 
 ;; TODO change name of the database to jobtech-taxonomy
-(def conn (d/connect client {:db-name "taxonomy_v12"}))
+(def conn (d/connect client {:db-name "taxonomy_v13"}))
 
 
 
@@ -128,6 +128,7 @@
 
 ;;  (d/transact conn {:tx-data term-schema})
 ;;  (d/transact conn {:tx-data concept-schema})
+;;  (d/transact conn {:tx-data concept-schema-extras})
 ;; (d/transact conn {:tx-data concept-relation-schema})
 
 
@@ -166,7 +167,6 @@
 (defn fake-id "" [id] (format "%010d" id))
 
 
-
 (defn legacy-converter
   ""
   []
@@ -179,9 +179,6 @@
                                   :concept/preferred-term [:term/base-form term-mainhl ]
                                   :concept/alternative-terms #{[:term/base-form term-mainhl]}
                                   }]]
-            (d/transact conn {:tx-data [{:term/base-form term-mainhl}]})
-            (d/transact conn {:tx-data concept-mainhl})
-
             (list :term-mainhl term-mainhl :term-hl
                   (map (fn [skill-headline]
                          (let [term-hl (get skill-headline :term)]
@@ -191,15 +188,22 @@
                                                :concept/description "zkrpkt"
                                                :concept/preferred-term [:term/base-form term-hl ]
                                                :concept/alternative-terms #{[:term/base-form term-hl]}
-                                               }]
-                                 relation [ {:relation/concept-1 (fake-id skill-main-headline-id)
-                                             :relation/concept-2 (fake-id skill-headline-id)
-                                             :relation/typeFixme "hyponym"
-                                           }]]
-                             (d/transact conn {:tx-data [{:term/base-form term-hl}]})
-                             (d/transact conn {:tx-data concept-hl})
-                             (d/transact conn {:tx-data relation}))
-                           term-hl))
+                                               }]]
+
+                             (let [relation [ {:relation/concept-1 [:concept/id (fake-id skill-main-headline-id) ]
+                                               :relation/concept-2 [:concept/id (fake-id skill-headline-id) ]
+                                               :relation/type :hyponym
+                                               }]]
+
+                               (d/transact conn {:tx-data [
+                                                           [ {:term/base-form term-mainhl} ]
+                                                           concept-mainhl
+                                                           [{:term/base-form term-hl}]
+                                                           relation
+                                                           concept-hl
+                                                           ]})
+
+                             term-hl)))
                        (get-skillheadlines skill-main-headline-id))))))
        (get-skillmainheadlines)))
 
@@ -207,5 +211,6 @@
 
 
 ;; (legacy-converter)
-
-(d/q '[:find ?x :where [_ :term/base-form ?x]] (get-db))
+;; (d/q '[:find ?x :where [_ :term/base-form ?x]] (get-db))
+;; (d/q '[:find ?x :where [_ :concept/id ?x]] (get-db))
+;; (d/q '[:find ?x :where [_ :relation/concept-1 ?x]] (get-db))
