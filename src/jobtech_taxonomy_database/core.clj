@@ -1,9 +1,8 @@
 (ns jobtech-taxonomy-database.core
   (:gen-class)
   (:require [datomic.client.api :as d]
-            [jobtech-taxonomy-database.legacy-migration])
+            [jobtech-taxonomy-database.legacy-migration :refer :all])
   )
-(use 'jobtech-taxonomy-database.legacy-migration)
 
 
 
@@ -17,6 +16,18 @@
           :access-key "myaccesskey"
           :secret "mysecret"
           :endpoint "localhost:8998"})
+
+
+(def msdb
+  {
+   :subprotocol "mssql"
+   :subname "//localhost:1433"
+   :user "SA"
+   :password "Taxonomy123!"
+   :sslmode "require"
+   })
+
+
 
 (def client (d/client cfg))
 
@@ -167,48 +178,41 @@
 (defn fake-id "" [id] (format "%010d" id))
 
 
+
+
 (defn legacy-converter
   ""
   []
-  (map (fn [skill-main-headline]
-         (let [term-mainhl (get skill-main-headline :term)]
-           (d/transact conn {:tx-data [{:term/base-form term-mainhl}]})
-           (let [skill-main-headline-id (get skill-main-headline :skillMainHeadlineID)
-                concept-mainhl [ {:concept/id (fake-id skill-main-headline-id)
-                                  :concept/description "hrpf"
-                                  :concept/preferred-term [:term/base-form term-mainhl ]
-                                  :concept/alternative-terms #{[:term/base-form term-mainhl]}
-                                  }]]
-            (list :term-mainhl term-mainhl :term-hl
-                  (map (fn [skill-headline]
-                         (let [term-hl (get skill-headline :term)]
-                           (d/transact conn {:tx-data [{:term/base-form term-hl}]})
-                           (let [skill-headline-id (get skill-headline :skillHeadlineID)
-                                 concept-hl [ {:concept/id (fake-id skill-headline-id)
-                                               :concept/description "zkrpkt"
-                                               :concept/preferred-term [:term/base-form term-hl ]
-                                               :concept/alternative-terms #{[:term/base-form term-hl]}
-                                               }]]
-
-                             (let [relation [ {:relation/concept-1 [:concept/id (fake-id skill-main-headline-id) ]
-                                               :relation/concept-2 [:concept/id (fake-id skill-headline-id) ]
-                                               :relation/type :hyponym
-                                               }]]
-
-                               (d/transact conn {:tx-data [
-                                                           [ {:term/base-form term-mainhl} ]
-                                                           concept-mainhl
-                                                           [{:term/base-form term-hl}]
-                                                           relation
-                                                           concept-hl
-                                                           ]})
-
-                             term-hl)))
-                       (get-skillheadlines skill-main-headline-id))))))
-       (get-skillmainheadlines)))
+  (run! (fn [skill-main-headline]
+         (let [term-mainhl (get skill-main-headline :term)
+               skill-main-headline-id (get skill-main-headline :skillMainHeadlineID)
+               concept-mainhl [ {:concept/id (fake-id skill-main-headline-id)
+                                 :concept/description "hrpf"
+                                 :concept/preferred-term [:term/base-form term-mainhl ]
+                                 :concept/alternative-terms #{[:term/base-form term-mainhl]}
+                                 }]]
+           (run! (fn [skill-headline]
+                    (let [term-hl (get skill-headline :term)
+                          skill-headline-id (get skill-headline :skillHeadlineID)
+                          concept-hl [ {:concept/id (fake-id skill-headline-id)
+                                        :concept/description "zkrpkt"
+                                        :concept/preferred-term [:term/base-form term-hl ]
+                                        :concept/alternative-terms #{[:term/base-form term-hl]}
+                                        }]
+                          relation [ {:relation/concept-1 [:concept/id (fake-id skill-main-headline-id) ]
+                                      :relation/concept-2 [:concept/id (fake-id skill-headline-id) ]
+                                      :relation/type :hyponym
+                                      }]]
+                      (d/transact conn {:tx-data [[ {:term/base-form term-mainhl} ]
+                                                  concept-mainhl
+                                                  [{:term/base-form term-hl}]
+                                                  relation
+                                                  concept-hl]})))
+                  (get-skillheadlines msdb {:id skill-main-headline-id }))))
+       (get-skillmainheadlines msdb)))
 
 
-
+;(get-skillheadlines msdb {:id 2 })
 
 ;; (legacy-converter)
 ;; (d/q '[:find ?x :where [_ :term/base-form ?x]] (get-db))

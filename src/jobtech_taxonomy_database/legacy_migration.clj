@@ -17,3 +17,6 @@
 (hugsql/def-db-fns "jobtech_taxonomy_database/sql/legacy-taxonomy.sql")
 
 (hugsql/def-sqlvec-fns "jobtech_taxonomy_database/sql/legacy-taxonomy.sql")
+
+;(get-skillmainheadlines db)
+;(get-skillheadlines db {:id 2})
