@@ -17,12 +17,12 @@
           :secret "mysecret"
           :endpoint "localhost:8998"})
 
-
-(def client (d/client cfg))
-
+;; TODO Use commented lines below instead of empty ()
+(def client ())
+;(def client (d/client cfg))
 ;; TODO change name of the database to jobtech-taxonomy
-(def conn (d/connect client {:db-name "taxonomy_v13"}))
-
+(def conn ())
+;(def conn (d/connect client {:db-name "taxonomy_v13"}))
 
 
 (defn get-db [] (d/db conn))
