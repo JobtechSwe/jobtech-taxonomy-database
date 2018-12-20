@@ -18,17 +18,6 @@
           :endpoint "localhost:8998"})
 
 
-(def msdb
-  {
-   :subprotocol "mssql"
-   :subname "//localhost:1433"
-   :user "SA"
-   :password "Taxonomy123!"
-   :sslmode "require"
-   })
-
-
-
 (def client (d/client cfg))
 
 ;; TODO change name of the database to jobtech-taxonomy
@@ -208,11 +197,11 @@
                                                   [{:term/base-form term-hl}]
                                                   relation
                                                   concept-hl]})))
-                  (get-skillheadlines msdb {:id skill-main-headline-id }))))
-       (get-skillmainheadlines msdb)))
+                  (get-skillheadlines {:id skill-main-headline-id }))))
+       (get-skillmainheadlines)))
 
 
-;(get-skillheadlines msdb {:id 2 })
+;(get-skillheadlines {:id 2 })
 
 ;; (legacy-converter)
 ;; (d/q '[:find ?x :where [_ :term/base-form ?x]] (get-db))
