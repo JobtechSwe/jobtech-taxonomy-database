@@ -4,13 +4,10 @@
             [jobtech-taxonomy-database.legacy-migration :refer :all])
   )
 
-
-
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
   (println "Hello, World!"))
-
 
 (def cfg {:server-type :peer-server
           :access-key "myaccesskey"
@@ -24,10 +21,7 @@
 (def conn ())
 ;(def conn (d/connect client {:db-name "taxonomy_v13"}))
 
-
 (defn get-db [] (d/db conn))
-
-
 
 (def concept-schema
   [
@@ -70,7 +64,6 @@
 
    ])
 
-
 (def concept-schema-extras
   [
    {
@@ -81,7 +74,6 @@
     :db/doc             "SSYK-2012 type"
    }
 ])
-
 
 ;; TODO add Transaction Function that checks that the term is connected to a concept
 
@@ -95,9 +87,6 @@
     :db/doc             "Term value, the actual text string that is refering to concepts"
     }]
   )
-
-
-
 
 (def concept-relation-schema
   [
@@ -124,13 +113,10 @@
    ]
   )
 
-
-
 ;;  (d/transact conn {:tx-data term-schema})
 ;;  (d/transact conn {:tx-data concept-schema})
 ;;  (d/transact conn {:tx-data concept-schema-extras})
 ;; (d/transact conn {:tx-data concept-relation-schema})
-
 
 (def some-terms
   [{:term/base-form "Kontaktmannaskap"}])
@@ -166,9 +152,6 @@
 
 (defn fake-id "" [id] (format "%010d" id))
 
-
-
-
 (defn legacy-converter
   ""
   []
@@ -199,7 +182,6 @@
                                                   concept-hl]})))
                   (get-skillheadlines {:id skill-main-headline-id }))))
        (get-skillmainheadlines)))
-
 
 ;(get-skillheadlines {:id 2 })
 

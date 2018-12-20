@@ -4,7 +4,6 @@
    [hugsql.core :as hugsql]
    ))
 
-
 (def db
   {
    :subprotocol "mssql"
@@ -17,7 +16,6 @@
 (hugsql/def-db-fns "jobtech_taxonomy_database/sql/legacy-taxonomy.sql")
 
 (hugsql/def-sqlvec-fns "jobtech_taxonomy_database/sql/legacy-taxonomy.sql")
-
 
 (defn get-skillheadlines
   "Get all skill headlines for `main-headline-id`. Wrap the db specification."

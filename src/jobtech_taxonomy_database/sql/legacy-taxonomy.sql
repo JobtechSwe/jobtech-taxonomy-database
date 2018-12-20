@@ -7,8 +7,6 @@ FROM TaxonomyDB.dbo.Skill Skill, TaxonomyDB.dbo.SkillTerm SkillTerm
 WHERE SkillTerm.skillID = Skill.skillID AND SkillTerm.countryID = Skill.countryID
 AND languageID = 502
 
-
-
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-skillheadlines-backend :? :1
@@ -29,7 +27,6 @@ AND SkillMainHeadlineTerm.skillMainHeadlineID = SkillMainHeadline.skillMainHeadl
 AND SkillMainHeadlineTerm.languageID = 502
 AND SkillHeadlineTerm.languageID = 502
 
-
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-skillmainheadlines-backend :*
@@ -37,7 +34,6 @@ AND SkillHeadlineTerm.languageID = 502
 SELECT SkillMainHeadlineTerm.*
 FROM TaxonomyDB.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
 WHERE SkillMainHeadlineTerm.languageID = 502
-
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -47,4 +43,3 @@ SELECT Language.*, LanguageTerm.*
 FROM TaxonomyDB.dbo.[Language] Language, TaxonomyDB.dbo.LanguageTerm LanguageTerm
 WHERE LanguageTerm.translationLanguageID = 502 AND Language.languageID = 502
 -- Todo continue with language after getting input from Rita
-
