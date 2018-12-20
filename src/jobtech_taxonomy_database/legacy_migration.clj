@@ -18,5 +18,13 @@
 
 (hugsql/def-sqlvec-fns "jobtech_taxonomy_database/sql/legacy-taxonomy.sql")
 
-;(get-skillmainheadlines db)
-;(get-skillheadlines db {:id 2})
+
+(defn get-skillheadlines
+  "Get all skill headlines for `main-headline-id`. Wrap the db specification."
+  [main-headline-id]
+  (get-skillheadlines-backend db main-headline-id))
+
+(defn get-skillmainheadlines
+  "Get all skill main headlines. Wrap the db specification."
+  []
+  (get-skillmainheadlines-backend db))
