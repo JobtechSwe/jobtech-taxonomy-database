@@ -7,7 +7,9 @@
 
 [org.clojure/clojure "1.9.0"]
 [org.clojure/java.jdbc "0.7.8"]
-                 [com.microsoft.sqlserver/mssql-jdbc "7.0.0.jre10"]
+                 ;; TODO Change back
+                 ;; https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
+                 [com.microsoft.sqlserver/mssql-jdbc "7.1.3.jre11-preview"]
                  [com.layerware/hugsql "0.4.9"]
                  [com.datomic/client-pro "0.8.28"]
 ]
