@@ -52,3 +52,10 @@ SELECT LanguageLevel.*, LanguageLevelTerm.*
 FROM TaxonomyDB.dbo.LanguageLevel LanguageLevel, TaxonomyDB.dbo.LanguageLevelTerm LanguageLevelTerm
 WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID AND LanguageID = 502
 
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-working-hours :*
+-- :doc Get all working hours
+SELECT Arbetstid.*, ArbetstidTerm.*
+FROM TaxonomiDBSvensk.dbo.Arbetstid Arbetstid, TaxonomiDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
+WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
