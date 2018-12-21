@@ -55,6 +55,12 @@
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
     :db/unique      :db.unique/identity
+    :db/doc         "SSYK-2012 type"}
+
+   {:db/ident       :concept.external-standard/ams-taxonomy-id
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/unique      :db.unique/identity
     :db/doc         "SSYK-2012 type"}])
 
 ;; TODO add Transaction Function that checks that the term is connected to a concept
@@ -123,20 +129,20 @@
   (run! (fn [skill-main-headline]
           (let [term-mainhl (get skill-main-headline :term)
                 skill-main-headline-id (get skill-main-headline :skillMainHeadlineID)
-                concept-mainhl [#:concept{:id                (fake-id skill-main-headline-id)
-                                          :description       "hrpf"
-                                          :preferred-term    [:term/base-form term-mainhl]
-                                          :alternative-terms #{[:term/base-form term-mainhl]}}]]
+                concept-mainhl [{:concept/id                (fake-id skill-main-headline-id)
+                                 :concept/description       "hrpf"
+                                 :concept/preferred-term    [:term/base-form term-mainhl]
+                                 :concept/alternative-terms #{[:term/base-form term-mainhl]}}]]
             (run! (fn [skill-headline]
                     (let [term-hl (get skill-headline :term)
                           skill-headline-id (get skill-headline :skillHeadlineID)
-                          concept-hl [#:concept{:id                (fake-id skill-headline-id)
-                                                :description       "zkrpkt"
-                                                :preferred-term    [:term/base-form term-hl]
-                                                :alternative-terms #{[:term/base-form term-hl]}}]
-                          relation [#:relation{concept-1 [:concept/id (fake-id skill-main-headline-id)]
-                                               :concept-2 [:concept/id (fake-id skill-headline-id)]
-                                               :type      :hyponym}]]
+                          concept-hl [{:concept/id                (fake-id skill-headline-id)
+                                       :concept/description       "zkrpkt"
+                                       :concept/preferred-term    [:term/base-form term-hl]
+                                       :concept/alternative-terms #{[:term/base-form term-hl]}}]
+                          relation [{:relation/concept-1 [:concept/id (fake-id skill-main-headline-id)]
+                                     :relation/concept-2 [:concept/id (fake-id skill-headline-id)]
+                                     :relation/type      :hyponym}]]
                       (d/transact conn {:tx-data [[{:term/base-form term-mainhl}]
                                                   concept-mainhl
                                                   [{:term/base-form term-hl}]
@@ -153,14 +159,17 @@
 ;; (d/q '[:find ?x :where [_ :relation/concept-1 ?x]] (get-db))
 
 
-(defn convert-working-hours-from-database-row [db-working-hours]
+(defn convert-worktime-extent-from-database-row [db-worktime-extent]
   "Converts a row from the legacy database to a map that is going to be inserted into Datomic"
 
-  ;; I'm using the new Map namespace syntax https://clojure.org/reference/reader#_maps
-  #:concept{:description (:beteckning db-working-hours)
-            :preferred-term  [:term/base-form (:beteckning db-working-hours)]
-            :type :working-hours})
+  {:concept/description (:beteckning db-worktime-extent)
+   :concept/preferred-term  [:term/base-form (:beteckning db-worktime-extent)]
+   :concept/type :worktime-extent
+   :concept.external-standard/ams-taxonomy-id (:arbetstidsid db-worktime-extent)
+   })
 
-(defn convert-working-hours []
+(defn convert-worktime-extent []
   (map
-   convert-working-hours-from-database-row (fetch-data get-working-hours)))
+   convert-worktime-extent-from-database-row (fetch-data get-worktime-extent)))
+
+;; (first (fetch-data get-worktime-extent))

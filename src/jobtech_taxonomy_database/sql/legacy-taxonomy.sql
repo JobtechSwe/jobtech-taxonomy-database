@@ -54,8 +54,8 @@ WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID AND Lang
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-working-hours :*
--- :doc Get all working hours
+-- :name get-worktime-extent :*
+-- :doc Get all arbetstid
 SELECT Arbetstid.*, ArbetstidTerm.*
 FROM TaxonomiDBSvensk.dbo.Arbetstid Arbetstid, TaxonomiDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
