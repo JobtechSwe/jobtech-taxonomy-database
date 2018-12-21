@@ -43,3 +43,12 @@ SELECT Language.*, LanguageTerm.*
 FROM TaxonomyDB.dbo.[Language] Language, TaxonomyDB.dbo.LanguageTerm LanguageTerm
 WHERE LanguageTerm.translationLanguageID = 502 AND Language.languageID = 502
 -- Todo continue with language after getting input from Rita
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-language-level :*
+-- :doc Get all langage-levels
+SELECT LanguageLevel.*, LanguageLevelTerm.*
+FROM TaxonomyDB.dbo.LanguageLevel LanguageLevel, TaxonomyDB.dbo.LanguageLevelTerm LanguageLevelTerm
+WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID AND LanguageID = 502
+
