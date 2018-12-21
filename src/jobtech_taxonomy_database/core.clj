@@ -123,20 +123,20 @@
   (run! (fn [skill-main-headline]
           (let [term-mainhl (get skill-main-headline :term)
                 skill-main-headline-id (get skill-main-headline :skillMainHeadlineID)
-                concept-mainhl [{:concept/id                (fake-id skill-main-headline-id)
-                                 :concept/description       "hrpf"
-                                 :concept/preferred-term    [:term/base-form term-mainhl]
-                                 :concept/alternative-terms #{[:term/base-form term-mainhl]}}]]
+                concept-mainhl [#:concept{:id                (fake-id skill-main-headline-id)
+                                          :description       "hrpf"
+                                          :preferred-term    [:term/base-form term-mainhl]
+                                          :alternative-terms #{[:term/base-form term-mainhl]}}]]
             (run! (fn [skill-headline]
                     (let [term-hl (get skill-headline :term)
                           skill-headline-id (get skill-headline :skillHeadlineID)
-                          concept-hl [{:concept/id                (fake-id skill-headline-id)
-                                       :concept/description       "zkrpkt"
-                                       :concept/preferred-term    [:term/base-form term-hl]
-                                       :concept/alternative-terms #{[:term/base-form term-hl]}}]
-                          relation [{:relation/concept-1 [:concept/id (fake-id skill-main-headline-id)]
-                                     :relation/concept-2 [:concept/id (fake-id skill-headline-id)]
-                                     :relation/type      :hyponym}]]
+                          concept-hl [#:concept{:id                (fake-id skill-headline-id)
+                                                :description       "zkrpkt"
+                                                :preferred-term    [:term/base-form term-hl]
+                                                :alternative-terms #{[:term/base-form term-hl]}}]
+                          relation [#:relation{concept-1 [:concept/id (fake-id skill-main-headline-id)]
+                                               :concept-2 [:concept/id (fake-id skill-headline-id)]
+                                               :type      :hyponym}]]
                       (d/transact conn {:tx-data [[{:term/base-form term-mainhl}]
                                                   concept-mainhl
                                                   [{:term/base-form term-hl}]
