@@ -151,3 +151,16 @@
 ;; (d/q '[:find ?x :where [_ :term/base-form ?x]] (get-db))
 ;; (d/q '[:find ?x :where [_ :concept/id ?x]] (get-db))
 ;; (d/q '[:find ?x :where [_ :relation/concept-1 ?x]] (get-db))
+
+
+(defn convert-working-hours-from-database-row [db-working-hours]
+  "Converts a row from the legacy database to a map that is going to be inserted into Datomic"
+
+  ;; I'm using the new Map namespace syntax https://clojure.org/reference/reader#_maps
+  #:concept{:description (:beteckning db-working-hours)
+            :preferred-term  [:term/base-form (:beteckning db-working-hours)]
+            :type :working-hours})
+
+(defn convert-working-hours []
+  (map
+   convert-working-hours-from-database-row (fetch-data get-working-hours)))

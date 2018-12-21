@@ -23,3 +23,7 @@
   "Get all skill main headlines. Wrap the db specification."
   []
   (get-skillmainheadlines-backend db))
+
+(defn fetch-data [hugsql-function]
+  "Call database with a hugsql function"
+  (hugsql-function db))
