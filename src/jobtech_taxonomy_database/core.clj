@@ -165,8 +165,7 @@
   {:concept/description (:beteckning db-worktime-extent)
    :concept/preferred-term  [:term/base-form (:beteckning db-worktime-extent)]
    :concept/type :worktime-extent
-   :concept.external-standard/ams-taxonomy-id (:arbetstidsid db-worktime-extent)
-   })
+   :concept.external-standard/ams-taxonomy-id (:arbetstidsid db-worktime-extent)})
 
 (defn convert-worktime-extent []
   (map
