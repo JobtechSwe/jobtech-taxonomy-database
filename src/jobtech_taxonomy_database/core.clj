@@ -139,7 +139,6 @@
    ]
   )
 
-
 ;; (d/transact conn {:tx-data some-terms})
 ;; (d/transact conn {:tx-data some-concepts})
 
