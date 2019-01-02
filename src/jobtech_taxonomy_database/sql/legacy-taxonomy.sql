@@ -4,7 +4,8 @@
 -- :doc Get all skills in Swedish
 SELECT Skill.*, SkillTerm.*
 FROM TaxonomyDB.dbo.Skill Skill, TaxonomyDB.dbo.SkillTerm SkillTerm
-WHERE SkillTerm.skillID = Skill.skillID AND SkillTerm.countryID = Skill.countryID
+WHERE SkillTerm.skillID = Skill.skillID
+AND SkillTerm.countryID = Skill.countryID
 AND languageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
@@ -67,7 +68,8 @@ WHERE SkillMainHeadlineTerm.languageID = 502
 -- :doc Get all langages
 SELECT Language.*, LanguageTerm.*
 FROM TaxonomyDB.dbo.[Language] Language, TaxonomyDB.dbo.LanguageTerm LanguageTerm
-WHERE LanguageTerm.translationLanguageID = 502 AND Language.languageID = 502
+WHERE LanguageTerm.translationLanguageID = 502
+AND Language.languageID = 502
 -- Todo continue with language after getting input from Rita
 
 -- A ":result" value of ":*" specifies a vector of records
@@ -76,7 +78,8 @@ WHERE LanguageTerm.translationLanguageID = 502 AND Language.languageID = 502
 -- :doc Get all langage-levels
 SELECT LanguageLevel.*, LanguageLevelTerm.*
 FROM TaxonomyDB.dbo.LanguageLevel LanguageLevel, TaxonomyDB.dbo.LanguageLevelTerm LanguageLevelTerm
-WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID AND LanguageID = 502
+WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID
+AND LanguageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -85,3 +88,33 @@ WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID AND Lang
 SELECT Arbetstid.*, ArbetstidTerm.*
 FROM TaxonomiDBSvensk.dbo.Arbetstid Arbetstid, TaxonomiDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-country :*
+-- :doc Get all countries
+SELECT Country.*, CountryTerm.*
+FROM TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm
+WHERE CountryTerm.countryID = Country.countryID
+AND LanguageID = 502
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-continents :*
+-- :doc Get all continents
+SELECT Continent.*, ContinentTerm.*
+FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
+WHERE ContinentTerm.continentID = Continent.continentID
+AND LanguageID = 502
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-drivers-licenses :*
+-- :doc Get all driver's license categories
+SELECT DrivingLicence.*, DrivingLicenceTerm.*
+FROM TaxonomyDB.dbo.DrivingLicence DrivingLicence, TaxonomyDB.dbo.DrivingLicenceTerm DrivingLicenceTerm
+WHERE DrivingLicenceTerm.drivingLicenceID = DrivingLicence.drivingLicenceID
+AND LanguageID = 502
+
+
+
