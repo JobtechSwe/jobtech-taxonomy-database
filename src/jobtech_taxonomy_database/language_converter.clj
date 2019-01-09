@@ -12,17 +12,6 @@
   [id]
   (format "%010d" id))
 
-;todo remove below
-(def bafar2
-  [#:term{:base-form "BAfar"}])
-
-(def bafar1
-  [#:concept{:id (str 241),
-             :description "BAfar",
-             :preferred-term [:term/base-form "BAfar"],
-             :alternative-terms #{[:term/base-form "BAfar"]}}
-   ])
-
 (defn language-retriever
   "Get all languages from the old database."
   []
@@ -32,17 +21,20 @@
 (defn language-converter
   "Immutable language converter."
   [language]
-  [{:concept/id               (:languageid_2 language)
-   :concept/description       (:term language)
-   :concept/preferred-term    [:term/base-form (:term language)]
-   :concept/alternative-terms #{[:term/base-form (:term language)]}}
-  {:term/base-form (:term language)}]
+  [
+   {:concept/id (str  (:languageid_2 language))
+    :concept/description       (:term language)
+    :concept/preferred-term     (str  (:languageid_2 language))
+    :concept/alternative-terms #{ (str  (:languageid_2 language))}}
+   {:db/id  (str  (:languageid_2 language))
+    :term/base-form (:term language)
+    }]
   )
 
-(defn convert [] (map language-converter (language-retriever)))
+(defn convert [] (mapcat language-converter  (language-retriever)))
 
 (defn language-writer
   [data]
-  (run! (fn [t]
-          (d/transact (get-conn) {:tx-data (vec (list t))}))
-        data))
+
+  (d/transact (get-conn) {:tx-data data})
+  )
