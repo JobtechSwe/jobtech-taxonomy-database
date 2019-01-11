@@ -207,4 +207,8 @@ start_taxonomydb | log start_taxonomydb &
 sleep 5
 
 
+echo "**** start_console" >&2
+start_console &
+
+
 wait
