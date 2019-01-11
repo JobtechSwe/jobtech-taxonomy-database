@@ -1,4 +1,4 @@
-(ns jobtech-taxonomy-database.language-converter
+(ns jobtech-taxonomy-database.converters.language-converter
   (:gen-class)
   (:require [datomic.client.api :as d]
             [jobtech-taxonomy-database.schema :refer :all :as schema]
