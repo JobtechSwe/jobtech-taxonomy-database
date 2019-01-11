@@ -6,19 +6,18 @@
 
 (def find-concept-by-preferred-term-query
   '[:find (pull ?c
-                [
-                 :concept/id
+                [:concept/id
                  :concept/description
                  {:concept/preferred-term [:term/base-form]}
                  {:concept/referring-terms [:term/base-form]}])
     :in $ ?term
     :where [?t :term/base-form ?term]
-    [?c :concept/preferred-term ?t]
-
-    ])
+    [?c :concept/preferred-term ?t]])
 ;; (d/q find-concept-by-preferred-term-query (get-db) "Kontaktmannaskap")
 
 ;;;; Private ;;;;
+
+
 (declare db-conn)
 (declare db-handler)
 
@@ -41,7 +40,7 @@
   (d/transact conn {:tx-data (vec (concat schema/term-schema
                                           schema/concept-schema
                                           schema/concept-schema-extras
-                                          schema/concept-relation-schema ))}))
+                                          schema/concept-relation-schema))}))
 
 ;;;; Public ;;;;
 

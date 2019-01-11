@@ -1,5 +1,5 @@
 (ns jobtech-taxonomy-database.config
-    (:gen-class))
+  (:gen-class))
 
 ;; TODO: load from separate, profile specific, properties files (dev/prod)
 ;;  ... (delay (load-file (.getFile (resource "config.clj"))))

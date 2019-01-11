@@ -19,7 +19,8 @@
 ;;  (let 
 ;;  (if head
 ;;    
-  
+
+
 (defn skill-converter
   "Immutable skill converter."
   [skills]
@@ -39,25 +40,23 @@
                                                                          :concept/id                (fake-id skill-headline-id)
                                                                          :concept/description       "zkrpkt"
                                                                          :concept/preferred-term    term-hl
-                                                                         :concept/alternative-terms term-hl
-                                                                         }
+                                                                         :concept/alternative-terms term-hl}
                                                              relation {:relation/concept-1 (fake-id skill-main-headline-id)
                                                                        :relation/concept-2 (fake-id skill-headline-id)
-                                                                       :relation/type      :hyponym
-                                                                       }]
-                                                        (list {:db/id  term-mainhl
-                                                               :term/base-form term-mainhl}
-                                                              {:db/id  term-hl
-                                                               :term/base-form term-hl}
-                                                              concept-hl
-                                                              relation)))
+                                                                       :relation/type      :hyponym}]
+                                                            (list {:db/id  term-mainhl
+                                                                   :term/base-form term-mainhl}
+                                                                  {:db/id  term-hl
+                                                                   :term/base-form term-hl}
+                                                                  concept-hl
+                                                                  relation)))
                                                     headlines)
                                output (list (list {:db/id                     (fake-id skill-main-headline-id)
                                                    :concept/id                (fake-id skill-main-headline-id)
                                                    :concept/description       "hrpf"
                                                    :concept/preferred-term    term-mainhl
-                                                   :concept/alternative-terms term-mainhl }))]
-                          (concat output headline-output )))
+                                                   :concept/alternative-terms term-mainhl}))]
+                              (concat output headline-output)))
                       skills)))))
 
 (defn skill-retriever
