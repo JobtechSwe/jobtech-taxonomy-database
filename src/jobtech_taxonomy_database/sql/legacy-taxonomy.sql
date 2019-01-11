@@ -116,5 +116,12 @@ FROM TaxonomyDB.dbo.DrivingLicence DrivingLicence, TaxonomyDB.dbo.DrivingLicence
 WHERE DrivingLicenceTerm.drivingLicenceID = DrivingLicence.drivingLicenceID
 AND LanguageID = 502
 
-
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-employment-duration :*
+-- :doc Get all employment durations
+SELECT Anställningsvaraktighet.*, AnställningsvaraktighetTerm.*
+FROM TaxonomyDBSvensk.dbo.Anställningsvaraktighet Anställningsvaraktighet,
+     TaxonomyDBSvensk.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
+WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsvaraktighet.anställningsvaraktighetsID
 
