@@ -18,13 +18,13 @@
 
 (defn language-converter
   "Immutable language converter."
-  [language]
-  [{:concept/id (str  (:languageid_2 language))
-    :concept/description       (:term language)
-    :concept/preferred-term     (str  (:languageid_2 language))
-    :concept/alternative-terms #{(str  (:languageid_2 language))}}
-   {:db/id  (str  (:languageid_2 language))
-    :term/base-form (:term language)}])
+  [data]
+  [{:concept/id (str  (:languageid_2 data))
+    :concept/description       (:term data)
+    :concept/preferred-term     (str  (:languageid_2 data))
+    :concept/alternative-terms #{(str  (:languageid_2 data))}}
+   {:db/id  (str  (:languageid_2 data))
+    :term/base-form (:term data)}])
 
 (defn convert
   ""
