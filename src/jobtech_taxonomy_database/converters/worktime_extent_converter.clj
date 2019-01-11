@@ -6,8 +6,6 @@
             [jobtech-taxonomy-database.config :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]))
 
-;;FIXME Henrik, fortsätt på denna!
-
 (defn ^:private fake-id
   "Temporary function until new id function with nano-ids is imported into this project."
   [id]
