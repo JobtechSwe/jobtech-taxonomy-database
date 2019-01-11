@@ -15,13 +15,13 @@
 
 (defn converter
   "Immutable language converter."
-  [language-level]
-  [{:concept/id (str  (:languagelevelid  language-level))
-    :concept/description       (:term language-level)
-    :concept/preferred-term     (str  (:languagelevelid  language-level))
-    :concept/alternative-terms #{(str  (:languagelevelid  language-level))}}
-   {:db/id  (str  (:languagelevelid  language-level))
-    :term/base-form (:term language-level)}])
+  [data]
+  [{:concept/id (str  (:languagelevelid  data))
+    :concept/description       (:term data)
+    :concept/preferred-term     (str  (:languagelevelid  data))
+    :concept/alternative-terms #{(str  (:languagelevelid  data))}}
+   {:db/id  (str  (:languagelevelid  data))
+    :term/base-form (:term data)}])
 
 (defn convert [] (mapcat converter  (fetch-data get-language-level)  ))
 
