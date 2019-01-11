@@ -8,7 +8,8 @@
                  ;; TODO Change back
                  ;; https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
                  ;;[com.microsoft.sqlserver/mssql-jdbc "7.1.3.jre11-preview"] ;; requires jre11
-                 [com.microsoft.sqlserver/mssql-jdbc "7.0.0.jre10"] ;; Ubuntu's openjdk-11-jdk only provides jre10
+                 ;;[com.microsoft.sqlserver/mssql-jdbc "7.0.0.jre10"] ;; Ubuntu's openjdk-11-jdk only provides jre10
+                 [com.microsoft.sqlserver/mssql-jdbc "7.0.0.jre8"]
                  [com.layerware/hugsql "0.4.9"]
                  [com.datomic/client-pro "0.8.28"]
                  ]
