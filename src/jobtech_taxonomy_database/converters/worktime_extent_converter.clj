@@ -15,13 +15,13 @@
 
 (defn converter
   "Immutable language converter."
-  [worktime-extent]
-  [{:concept/id (str  (:languagelevelid  worktime-extent))
-    :concept/description       (:term worktime-extent)
-    :concept/preferred-term     (str  (:languagelevelid  worktime-extent))
-    :concept/alternative-terms #{(str  (:languagelevelid  worktime-extent))}}
-   {:db/id  (str  (:languagelevelid  worktime-extent))
-    :term/base-form (:term worktime-extent)}])
+  [data]
+  [{:concept/id (str (:arbetstidsid  data))
+    :concept/description       (:beteckning data)
+    :concept/preferred-term     (str  (:arbetstidsid  data))
+    :concept/alternative-terms #{(str  (:arbetstidsid  data))}}
+   {:db/id  (str  (:arbetstidsid  data))
+    :term/base-form (:beteckning data)}])
 
 (defn convert
   ""
