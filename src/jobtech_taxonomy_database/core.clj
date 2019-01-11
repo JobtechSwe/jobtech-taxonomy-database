@@ -5,7 +5,7 @@
             [jobtech-taxonomy-database.schema :refer :all :as schema]
             [jobtech-taxonomy-database.legacy-migration :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
-            [jobtech-taxonomy-database.skills-converter :refer :all]))
+            [jobtech-taxonomy-database.converters.skills-converter :refer :all]))
 
 (def converters
   "Each logic section of the old taxonomy can be handled by a converter
