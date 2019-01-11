@@ -130,6 +130,7 @@ function start_transactor() {
     #sed -i "s/host=localhost/host=$TXIP/" transactor.properties
     #sed -i '/^host=/a ping-host=localhost' transactor.properties
     #sed -i '/^host=/a ping-port=9999' transactor.properties
+    rm -rf "$DATOMICDIR"/data/db/datomic*
     stdbuf -i0 -o0 -e0 bin/transactor transactor.properties 2>&1 &
     echo -n "$! " >> $PIDFILE
     popd
