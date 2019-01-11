@@ -26,9 +26,12 @@
    {:db/id  (str  (:languageid_2 language))
     :term/base-form (:term language)}])
 
-(defn convert [] (mapcat language-converter  (language-retriever)))
+(defn convert
+  ""
+  []
+  (mapcat language-converter  (language-retriever)))
 
 (defn language-writer
+  ""
   [data]
-
   (d/transact (get-conn) {:tx-data data}))

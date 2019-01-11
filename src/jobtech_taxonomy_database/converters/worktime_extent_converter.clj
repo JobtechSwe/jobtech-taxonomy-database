@@ -23,9 +23,12 @@
    {:db/id  (str  (:languagelevelid  worktime-extent))
     :term/base-form (:term worktime-extent)}])
 
-(defn convert [] (mapcat converter  (fetch-data get-worktime-extent)))
+(defn convert
+  ""
+  []
+  (mapcat converter  (fetch-data get-worktime-extent)))
 
 (defn writer
+  ""
   [data]
-
   (d/transact (get-conn) {:tx-data data}))

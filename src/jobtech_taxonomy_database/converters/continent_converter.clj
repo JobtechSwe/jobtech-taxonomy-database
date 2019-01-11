@@ -21,9 +21,12 @@
    {:db/id  (str  (:continentid  data))
     :term/base-form (:term data)}])
 
-(defn convert [] (mapcat converter  (fetch-data get-continents)))
+(defn convert
+  ""
+  []
+  (mapcat converter  (fetch-data get-continents)))
 
 (defn writer
+  ""
   [data]
-
   (d/transact (get-conn) {:tx-data data}))
