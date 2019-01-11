@@ -8,6 +8,7 @@
 #  5. startar peer-servern
 #  6. startar docker-mssql-servern
 #  7. gör en restore av legacytaxonomin i mssql-servern
+#  8. starta Datomic-konsolen på http://localhost:8080/browse
 #
 #
 # Engångsförberedelser:

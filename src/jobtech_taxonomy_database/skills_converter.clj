@@ -11,6 +11,15 @@
   [id]
   (format "%010d" id))
 
+
+;;(defn keep-unique-db-id
+;;  "Remove duplicate concepts"
+;;  [[head & tail] list
+;;   mem]
+;;  (let 
+;;  (if head
+;;    
+  
 (defn skill-converter
   "Immutable skill converter."
   [skills]
@@ -26,24 +35,28 @@
                                headline-output (map (fn [skill-headline]
                                                       (let* [term-hl (get skill-headline :term)
                                                              skill-headline-id (get skill-headline :skillheadlineid)
-                                                             concept-hl {:concept/id                (fake-id skill-headline-id)
+                                                             concept-hl {:db/id                     (fake-id skill-headline-id)
+                                                                         :concept/id                (fake-id skill-headline-id)
                                                                          :concept/description       "zkrpkt"
-                                                                         :concept/preferred-term    [:term/base-form term-hl]
-                                                                         :concept/alternative-terms #{[:term/base-form term-hl]}
+                                                                         :concept/preferred-term    term-hl
+                                                                         :concept/alternative-terms term-hl
                                                                          }
-                                                             relation {:relation/concept-1 [:concept/id (fake-id skill-main-headline-id)]
-                                                                       :relation/concept-2 [:concept/id (fake-id skill-headline-id)]
+                                                             relation {:relation/concept-1 (fake-id skill-main-headline-id)
+                                                                       :relation/concept-2 (fake-id skill-headline-id)
                                                                        :relation/type      :hyponym
                                                                        }]
-                                                        (list {:term/base-form term-mainhl}
-                                                              {:term/base-form term-hl}
+                                                        (list {:db/id  term-mainhl
+                                                               :term/base-form term-mainhl}
+                                                              {:db/id  term-hl
+                                                               :term/base-form term-hl}
                                                               concept-hl
                                                               relation)))
                                                     headlines)
-                               output (list (list {:concept/id (fake-id skill-main-headline-id)
+                               output (list (list {:db/id                     (fake-id skill-main-headline-id)
+                                                   :concept/id                (fake-id skill-main-headline-id)
                                                    :concept/description       "hrpf"
-                                                   :concept/preferred-term    [:term/base-form term-mainhl]
-                                                   :concept/alternative-terms #{[:term/base-form term-mainhl]}}))]
+                                                   :concept/preferred-term    term-mainhl
+                                                   :concept/alternative-terms term-mainhl }))]
                           (concat output headline-output )))
                       skills)))))
 
@@ -58,6 +71,4 @@
 
 (defn skill-writer
   [data]
-  (run! (fn [t]
-          (d/transact (get-conn) {:tx-data (vec (list t))}))
-        data))
+  (d/transact (get-conn) {:tx-data data}))

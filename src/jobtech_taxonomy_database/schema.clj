@@ -15,7 +15,6 @@
     :db/ident       :concept/description
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/unique      :db.unique/identity
     :db/doc         "Text describing the concept, is used for disambiguation."
     }
 
