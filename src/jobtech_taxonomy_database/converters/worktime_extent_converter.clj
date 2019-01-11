@@ -13,8 +13,6 @@
   [id]
   (format "%010d" id))
 
-
-
 (defn converter
   "Immutable language converter."
   [worktime-extent]
@@ -25,7 +23,7 @@
    {:db/id  (str  (:languagelevelid  worktime-extent))
     :term/base-form (:term worktime-extent)}])
 
-(defn convert [] (mapcat converter  (fetch-data get-worktime-extent)  ))
+(defn convert [] (mapcat converter  (fetch-data get-worktime-extent)))
 
 (defn writer
   [data]

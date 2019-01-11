@@ -6,12 +6,10 @@
             [jobtech-taxonomy-database.config :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]))
 
-
 (defn ^:private fake-id
   "Temporary function until new id function with nano-ids is imported into this project."
   [id]
   (format "%010d" id))
-
 
 (defn converter
   "Immutable language converter."
@@ -23,9 +21,7 @@
    {:db/id  (str  (:countryid  data))
     :term/base-form (:term data)}])
 
-
 (defn convert [] (mapcat converter  (fetch-data get-country)))
-
 
 (defn writer
   [data]

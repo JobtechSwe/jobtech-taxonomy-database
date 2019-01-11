@@ -11,8 +11,6 @@
   [id]
   (format "%010d" id))
 
-
-
 (defn converter
   "Immutable language converter."
   [data]
@@ -23,7 +21,7 @@
    {:db/id  (str  (:languagelevelid  data))
     :term/base-form (:term data)}])
 
-(defn convert [] (mapcat converter  (fetch-data get-language-level)  ))
+(defn convert [] (mapcat converter  (fetch-data get-language-level)))
 
 (defn writer
   [data]
