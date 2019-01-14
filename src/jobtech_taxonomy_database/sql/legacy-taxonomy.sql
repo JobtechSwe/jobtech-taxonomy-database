@@ -93,8 +93,8 @@ WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsva
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-job-group :*
--- :doc Get all job groups ;
+-- :name get-employment-type :*
+-- :doc Get all employment types ;
 SELECT AnstallningTypJobb.*, AnstallningTypJobbTerm.*
 FROM TaxonomyDBSvensk.dbo.AnstallningTypJobb AnstallningTypJobb, TaxonomyDBSvensk.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
 WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.AnstallningTypJobbID
