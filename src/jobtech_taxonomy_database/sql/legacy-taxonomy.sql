@@ -94,7 +94,7 @@ WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsva
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-job-group :*
--- :doc Get all job groups ; TODO check if this is correct, is it really "job groups"?
-SELECT LocaleGroup.*, LocaleGroupTerm.*
-FROM TaxonomyDB.dbo.LocaleGroup LocaleGroup, TaxonomyDB.dbo.LocaleGroupTerm LocaleGroupTerm
-WHERE LocaleGroupTerm.localeGroupID = LocaleGroup.localeGroupID
+-- :doc Get all job groups ;
+SELECT AnstallningTypJobb.*, AnstallningTypJobbTerm.*
+FROM TaxonomyDBSvensk.dbo.AnstallningTypJobb AnstallningTypJobb, TaxonomyDBSvensk.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
+WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.AnstallningTypJobbID
