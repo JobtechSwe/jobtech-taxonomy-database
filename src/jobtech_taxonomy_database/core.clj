@@ -12,7 +12,7 @@
   set consisting of a reader, converter, writer and their
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
-  '({:reader skill-retriever :converter skill-converter :writer skill-writer :namespace jobtech-taxonomy-database.skills-converter}))
+  '({:reader skill-retriever :converter skill-converter :writer skill-writer :namespace jobtech-taxonomy-database.converters.skills-converter}))
 
 (defn -main
   []
