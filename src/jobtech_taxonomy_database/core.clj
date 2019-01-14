@@ -39,6 +39,7 @@
 
   (println "**** read from old taxonomy db, convert, and write to datomic...")
   (run! (fn [x]
+          (println "**** Calling " (get x :namespace))
           (let [converted-data ((ns-resolve (get x :namespace) 'convert))]
             (d/transact (get-conn) {:tx-data converted-data})))
         converters)

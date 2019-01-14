@@ -7,11 +7,17 @@
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]))
 
 (defn ^:private fake-id
-  "Temporary function until new id function with nano-ids is imported into this project."
+  "Temporary function until new id function with nano-ids is imported into this project.
+  Accepts an integer and returns a string."
   [id]
   (format "%010d" id))
 
 
+(defn ^:private make-tempid
+  "Turn a string into a temporary ID that will not be used by other converters.
+  Accepts a string and returns a string."
+  [str]
+  (format "skills-converter.%s" str))
 
 
 (defn converter
@@ -27,24 +33,24 @@
                                        skill-headline-id (get skill-headline :skillheadlineid)
                                        concept-hl {:db/id                     (fake-id skill-headline-id)
                                                    :concept/id                (fake-id skill-headline-id)
-                                                   :concept/description       "zkrpkt"
-                                                   :concept/preferred-term    term-hl
-                                                   :concept/alternative-terms term-hl}
+                                                   :concept/description       term-hl
+                                                   :concept/preferred-term    (make-tempid term-hl)
+                                                   :concept/alternative-terms (make-tempid term-hl)}
                                        relation {:relation/concept-1 (fake-id skill-main-headline-id)
                                                  :relation/concept-2 (fake-id skill-headline-id)
-                                                 :relation/type      :hyponym}]
-                                  (list {:db/id  term-mainhl
+                                                 :relation/type      :main-headline-to-headline}]
+                                  (list {:db/id  (make-tempid term-mainhl)
                                          :term/base-form term-mainhl}
-                                        {:db/id  term-hl
+                                        {:db/id  (make-tempid term-hl)
                                          :term/base-form term-hl}
                                         concept-hl
                                         relation)))
                               headlines)
          output (list (list {:db/id                     (fake-id skill-main-headline-id)
                              :concept/id                (fake-id skill-main-headline-id)
-                             :concept/description       "hrpf"
-                             :concept/preferred-term    term-mainhl
-                             :concept/alternative-terms term-mainhl}))]
+                             :concept/description       term-mainhl
+                             :concept/preferred-term    (make-tempid term-mainhl)
+                             :concept/alternative-terms (make-tempid term-mainhl)}))]
     (concat output headline-output)))
 
 
