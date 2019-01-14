@@ -24,4 +24,4 @@
 (defn convert
   ""
   []
-  (mapcat converter  (fetch-data get-drivers-licenses)))
+  (mapcat converter  (fetch-data get-drivers-license)))

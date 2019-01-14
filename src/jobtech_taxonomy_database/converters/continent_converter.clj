@@ -24,4 +24,4 @@
 (defn convert
   ""
   []
-  (mapcat converter  (fetch-data get-continents)))
+  (mapcat converter  (fetch-data get-continent)))
