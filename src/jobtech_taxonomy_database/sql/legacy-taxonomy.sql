@@ -1,44 +1,10 @@
 -- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
--- :name all-skills :*
--- :doc Get all skills in Swedish
-SELECT Skill.*, SkillTerm.*
-FROM TaxonomyDB.dbo.Skill Skill, TaxonomyDB.dbo.SkillTerm SkillTerm
-WHERE SkillTerm.skillID = Skill.skillID
-AND SkillTerm.countryID = Skill.countryID
-AND languageID = 502
-
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned.
--- TODO: check if this is still used. In the latest incarnation of the skill
--- converter, this is not used.0
--- :name get-skillheadlines-backend :? :1
--- :doc Get all skills in Swedish wut headlines
-SELECT SkillMainHeadlineTerm.term AS mainheadline,
-  SkillHeadlineTerm.term AS headline,
-  SkillTerm.term AS term
-FROM TaxonomyDB.dbo.Skill Skill,
-  TaxonomyDB.dbo.SkillHeadline SkillHeadline,
-  TaxonomyDB.dbo.SkillHeadlineTerm SkillHeadlineTerm,
-  TaxonomyDB.dbo.SkillMainHeadline SkillMainHeadline,
-  TaxonomyDB.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm,
-  TaxonomyDB.dbo.SkillTerm SkillTerm
-WHERE SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
-AND SkillHeadLine.skillMainHeadlineID = SkillMainHeadLine.skillMainHeadlineID
-AND SkillMainHeadline.skillMainHeadlineID = :id
-AND SkillMainHeadlineTerm.skillMainHeadlineID = SkillMainHeadline.skillMainHeadlineID
-AND SkillMainHeadlineTerm.languageID = 502
-AND SkillHeadlineTerm.languageID = 502
-
-
-
--- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned.
 -- TODO: check if this is still used. In the latest incarnation of the skill
 -- converter, this is not used.0
 -- Right now it uses a limit of 10 (in the weird Microsoft SQL syntax), as
 -- it takes ages to retrieve all headlines from the database.
--- :name get-skillheadlines-converter-backend :? :1
+-- :name get-skillheadlines :? :1
 -- :doc Get headline skills connected to a main headline. Used by the skill converter.
 SELECT SkillHeadline.*, SkillHeadlineTerm.*, SkillMainHeadline.*, SkillMainHeadlineTerm.*
 FROM TaxonomyDB.dbo.SkillHeadline SkillHeadline, TaxonomyDB.dbo.SkillHeadlineTerm SkillHeadlineTerm, TaxonomyDB.dbo.SkillMainHeadline SkillMainHeadline, TaxonomyDB.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
@@ -56,7 +22,7 @@ FETCH NEXT 10 ROWS ONLY
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-skillmainheadlines-backend :*
+-- :name get-skillmainheadlines :*
 -- :doc Get all skills in Swedish wut headlines
 SELECT SkillMainHeadlineTerm.*
 FROM TaxonomyDB.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
@@ -124,4 +90,3 @@ SELECT Anställningsvaraktighet.*, AnställningsvaraktighetTerm.*
 FROM TaxonomyDBSvensk.dbo.Anställningsvaraktighet Anställningsvaraktighet,
      TaxonomyDBSvensk.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
 WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsvaraktighet.anställningsvaraktighetsID
-
