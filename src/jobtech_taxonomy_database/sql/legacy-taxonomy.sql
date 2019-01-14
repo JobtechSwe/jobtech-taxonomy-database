@@ -66,7 +66,7 @@ AND LanguageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-continents :*
+-- :name get-continent :*
 -- :doc Get all continents
 SELECT Continent.*, ContinentTerm.*
 FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
@@ -75,7 +75,7 @@ AND LanguageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-drivers-licenses :*
+-- :name get-drivers-license :*
 -- :doc Get all driver's license categories
 SELECT DrivingLicence.*, DrivingLicenceTerm.*
 FROM TaxonomyDB.dbo.DrivingLicence DrivingLicence, TaxonomyDB.dbo.DrivingLicenceTerm DrivingLicenceTerm
@@ -90,3 +90,11 @@ SELECT Anställningsvaraktighet.*, AnställningsvaraktighetTerm.*
 FROM TaxonomyDBSvensk.dbo.Anställningsvaraktighet Anställningsvaraktighet,
      TaxonomyDBSvensk.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
 WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsvaraktighet.anställningsvaraktighetsID
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-job-group :*
+-- :doc Get all job groups ; TODO check if this is correct, is it really "job groups"?
+SELECT LocaleGroup.*, LocaleGroupTerm.*
+FROM TaxonomyDB.dbo.LocaleGroup LocaleGroup, TaxonomyDB.dbo.LocaleGroupTerm LocaleGroupTerm
+WHERE LocaleGroupTerm.localeGroupID = LocaleGroup.localeGroupID
