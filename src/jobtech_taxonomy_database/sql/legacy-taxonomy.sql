@@ -98,3 +98,12 @@ WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsva
 SELECT AnstallningTypJobb.*, AnstallningTypJobbTerm.*
 FROM TaxonomyDBSvensk.dbo.AnstallningTypJobb AnstallningTypJobb, TaxonomyDBSvensk.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
 WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.AnstallningTypJobbID
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-wage-type :*
+-- :doc Get all wage types ;
+SELECT Löneform.*, LöneformTerm.*
+FROM TaxonomyDBSvensk.dbo.Löneform Löneform, TaxonomyDBSvensk.dbo.LöneformTerm LöneformTerm
+WHERE
+	LöneformTerm.löneformsID = Löneform.löneformsID
