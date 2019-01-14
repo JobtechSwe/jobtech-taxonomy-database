@@ -25,8 +25,3 @@
   ""
   []
   (mapcat converter  (fetch-data get-employment-duration)))
-
-(defn writer
-  ""
-  [data]
-  (d/transact (get-conn) {:tx-data data}))

@@ -25,8 +25,3 @@
   ""
   []
   (mapcat converter  (fetch-data get-drivers-licenses)))
-
-(defn writer
-  ""
-  [data]
-  (d/transact (get-conn) {:tx-data data}))

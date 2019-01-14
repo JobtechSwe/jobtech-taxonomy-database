@@ -58,7 +58,3 @@
                           (hash-map :main-headline skill-main-headline
                                     :headlines (list (get-skillheadlines {:id skill-main-headline-id})))))
                       (get-skillmainheadlines)))))
-
-(defn writer
-  [data]
-  (d/transact (get-conn) {:tx-data data}))

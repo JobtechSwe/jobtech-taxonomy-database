@@ -30,8 +30,3 @@
   ""
   []
   (mapcat language-converter  (language-retriever)))
-
-(defn language-writer
-  ""
-  [data]
-  (d/transact (get-conn) {:tx-data data}))
