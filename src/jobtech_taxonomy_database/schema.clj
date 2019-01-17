@@ -57,7 +57,19 @@
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
     :db/unique      :db.unique/identity
-    :db/doc         "Term value, the actual text string that is referring to concepts"}])
+    :db/doc         "Term value, the actual text string that is referring to concepts"}
+
+   {:db/ident       :term/special-usage
+    :db/valueType   :db.type/keyword
+    :db/cardinality :db.cardinality/one
+    :db/doc         "A restricted term has term/special-usage :restricted, a historic term has term/special-usage :historic"}
+
+   {:db/ident       :term/term-to-use-instead
+    :db/valueType   :db.type/ref
+    :db/cardinality :db.cardinality/one
+    :db/doc         "A historic term refers to a term to use instead."}
+
+   ])
 
 ;; Example:
 ;;  (def some-terms
