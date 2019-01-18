@@ -5,8 +5,8 @@
             [jobtech-taxonomy-database.legacy-migration :refer :all]
             [jobtech-taxonomy-database.config :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
-            [cheshire.core :refer :all] ;TODO add library to other files
-            [nano-id.custom :refer [generate]])) ;TODO add library to other files
+            [cheshire.core :refer :all]
+            [nano-id.custom :refer [generate]]))
 
 (def base-59-nano-id (generate "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ_"))
 
@@ -23,13 +23,13 @@
 (defn find-id
   "Open json, lookup NANO-ID in {'country':{<id>:{'conceptID': NANO-ID}}}"
   [id]
-  (let [nano (get-in (open-json) [:country (keyword (str id)) :conceptId])] ;TODO in other files: change "country" to relevant keyword
+  (let [nano (get-in (open-json) [:country (keyword (str id)) :conceptId])]
     (if nano nano (generate-new-id))))
 
 (defn converter
   "Immutable language converter."
   [data]
-  (let [nano-id (find-id  (:countryid  data))] ;TODO in other files: change "countryid" to relevant keyword
+  (let [nano-id (find-id  (:countryid  data))]
   [{:concept/id nano-id
     :concept/description       (:term data)
     :concept/preferred-term     nano-id
