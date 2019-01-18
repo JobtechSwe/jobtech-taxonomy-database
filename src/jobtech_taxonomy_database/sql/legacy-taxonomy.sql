@@ -1,24 +1,13 @@
 -- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
--- :name get-skill-mainheadlines :*
--- :doc Get all main headline skills in Swedish
-SELECT SkillMainHeadlineTerm.skillMainHeadlineID AS main_id,
-       SkillMainHeadlineTerm.term AS main_term,
-       SkillMainHeadlineTerm.languageID AS lang,
-       SkillMainHeadlineTerm.modificationDate AS main_date
-FROM   TaxonomyDB.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
-WHERE  SkillMainHeadlineTerm.languageID = 502
-
-
-
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
--- :name get-skill-headlines :?
--- :doc Get all headline skills in Swedish, that belong to the given mainheadline
-SELECT SkillHeadlineTerm.skillHeadlineID AS head_id,
-       SkillHeadlineTerm.term AS head_term,
-       SkillHeadlineTerm.languageID AS lang
-FROM TaxonomyDB.dbo.SkillHeadline SkillHeadline, TaxonomyDB.dbo.SkillHeadlineTerm SkillHeadlineTerm
+-- (as hashmaps) will be returned.
+-- TODO: check if this is still used. In the latest incarnation of the skill
+-- converter, this is not used.0
+-- Right now it uses a limit of 10 (in the weird Microsoft SQL syntax), as
+-- it takes ages to retrieve all headlines from the database.
+-- :name get-skillheadlines :? :1
+-- :doc Get headline skills connected to a main headline. Used by the skill converter.
+SELECT SkillHeadline.*, SkillHeadlineTerm.*, SkillMainHeadline.*, SkillMainHeadlineTerm.*
+FROM TaxonomyDB.dbo.SkillHeadline SkillHeadline, TaxonomyDB.dbo.SkillHeadlineTerm SkillHeadlineTerm, TaxonomyDB.dbo.SkillMainHeadline SkillMainHeadline, TaxonomyDB.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
 WHERE
 	SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
 	AND SkillHeadline.skillMainHeadlineID = :id
@@ -64,10 +53,11 @@ AND LanguageID = 502
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-worktime-extent :*
--- :doc Get all arbetstid
+-- :doc Get all worktime extents
 SELECT Arbetstid.*, ArbetstidTerm.*
-FROM TaxonomiDBSvensk.dbo.Arbetstid Arbetstid, TaxonomiDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
+FROM TaxonomyDBSvensk.dbo.Arbetstid Arbetstid, TaxonomyDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
+--TODO add "sort" to worktime-extent
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -77,6 +67,7 @@ SELECT Country.*, CountryTerm.*
 FROM TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm
 WHERE CountryTerm.countryID = Country.countryID
 AND LanguageID = 502
+--TODO dont add "sort", (i NUTSCode är NULL samma som inget)
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -95,6 +86,8 @@ SELECT DrivingLicence.*, DrivingLicenceTerm.*
 FROM TaxonomyDB.dbo.DrivingLicence DrivingLicence, TaxonomyDB.dbo.DrivingLicenceTerm DrivingLicenceTerm
 WHERE DrivingLicenceTerm.drivingLicenceID = DrivingLicence.drivingLicenceID
 AND LanguageID = 502
+--TODO Add "sortering", in drivers license, "DrivingslicenseCode" OCH term,
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -104,6 +97,7 @@ SELECT Anställningsvaraktighet.*, AnställningsvaraktighetTerm.*
 FROM TaxonomyDBSvensk.dbo.Anställningsvaraktighet Anställningsvaraktighet,
      TaxonomyDBSvensk.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
 WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsvaraktighet.anställningsvaraktighetsID
+--TODO Add "sortering", "EURESKod" in employment duration
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -112,6 +106,7 @@ WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsva
 SELECT AnstallningTypJobb.*, AnstallningTypJobbTerm.*
 FROM TaxonomyDBSvensk.dbo.AnstallningTypJobb AnstallningTypJobb, TaxonomyDBSvensk.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
 WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.AnstallningTypJobbID
+--TODO Add "sorteringsordning" in employment type
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -119,5 +114,4 @@ WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.Anstallni
 -- :doc Get all wage types ;
 SELECT Löneform.*, LöneformTerm.*
 FROM TaxonomyDBSvensk.dbo.Löneform Löneform, TaxonomyDBSvensk.dbo.LöneformTerm LöneformTerm
-WHERE
-	LöneformTerm.löneformsID = Löneform.löneformsID
+WHERE LöneformTerm.löneformsID = Löneform.löneformsID
