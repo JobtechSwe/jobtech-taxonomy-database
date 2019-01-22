@@ -19,7 +19,6 @@
 
 
 (declare db-conn)
-(declare db-handler)
 
 (defn ^:private get-conn-with-config
   [config]
@@ -31,10 +30,7 @@
 
 (defn ^:private get-db-with-config
   [config]
-  ;; create connection unless already created
-  (if (not (bound? #'db-handler))
-    (def db-handler (d/db (get-conn-with-config config))))
-  db-handler)
+  (d/db (get-conn-with-config config)))
 
 (defn ^:private init-new-db-with-conn [conn]
   (d/transact conn {:tx-data (vec (concat schema/term-schema
