@@ -16,28 +16,75 @@
   (base-59-nano-id 10))
 
 (defn open-json
-  "Open json file, return as map with json keyword formatted as clojure keywords."
+  "Open json, return map with json keyword formatted as clojure keywords."
   []
   (parse-string (slurp "resources/taxonomy_to_concept.json") true))
 
+(defn get-json-category
+  "Return all data in the specific category "
+  [category]
+  (get-in (open-json) [category]))
+
 (defn find-id
-  "Open json, lookup NANO-ID in {'country':{<id>:{'conceptID': NANO-ID}}}"
-  [id]
-  (let [nano (get-in (open-json) [:driving-license (keyword (str id)) :conceptId])]
-    (if nano nano (generate-new-id))))
+  "Open json, lookup NANO-ID in {<category>:{<id>:{'conceptID': NANO-ID}}}"
+  [category id]
+  (get-in (get-json-category category) [id :conceptId]))
+
+(defn find-description
+  "Open json, lookup DESCRIPTION in {<category>:{<id>:{'preferredTerm': DESCRIPTION}}}"
+  [category id]
+  (get-in (get-json-category category) [id :preferredTerm]))
+
+(defn compare-ids
+  "Compare taxonomy-ID from sql and taxonomy-ID from json"
+  [category-67 id-67]
+  (let [id (find-id category-67 id-67)]
+    (if id id "no nano-id")))
+
+(defn compare-descriptions
+  "Compare concept description from sql and concept description from json"
+  [category-67 id-67 description-67]
+  (let [description (find-description category-67 id-67)]
+    (if (= description-67 description) "same description" "different description")))
+
+(defn get-nano
+  "Compare ID + description from sql with json.
+  If same, take nanoID from json. Else, generate new nanoID"
+  [category-67 id-67 description-67]
+  (let [eval-description (compare-descriptions category-67 id-67 description-67)
+        nano-id (compare-ids category-67 id-67)]
+    (if (and (= "same description" eval-description)
+             (not= nano-id "no nano-id")
+             ) nano-id (generate-new-id))))
 
 (defn converter
   "Immutable language converter."
   [data]
-  (let [nano-id (find-id  (:drivinglicenceid  data))]
-  [{:concept/id nano-id
-    :concept/description       (:term data)
-    :concept/preferred-term     nano-id
-    :concept/alternative-terms #{nano-id}}
-   {:db/id  nano-id
-    :term/base-form (:term data)}]))
+  (let [category-67 :driving-license ;json-nyckeln
+        id-67 (keyword (str (:drivinglicenceid  data))) ;ska matcha legacyAmsTaxonomyId i json
+        description-67 (:term data)] ;ska matcha preferredTerm i json
+    (let [nano-id (get-nano category-67 id-67 description-67)]
+      [{:concept/id               nano-id
+        :concept/description      description-67
+        :concept/preferred-term   nano-id
+        :concept/alternative-terms #{nano-id}}
+       {:db/id                    nano-id
+        :term/base-form           description-67}])))
 
 (defn convert
   ""
   []
   (mapcat converter  (fetch-data get-drivers-license)))
+
+(def example {:description "Bil som omfattas av behörighet C1 eller B och ett eller flera släpfordon som \r
+                är kopplade till sådan bil, om bilens och släpfordonens sammanlagda totalvikt inte överstiger 12 000 kg.\r
+                \r
+                Körkortsålder: 18 år",
+              :drivinglicenceid 14,
+              :drivinglicencecode "C1E",
+              :term "C1E",
+              :drivinglicenceid_2 14,
+              :modificationdate_2 #inst"2013-10-10T07:46:32.803000000-00:00",
+              :modificationdate #inst"2013-10-10T07:46:32.803000000-00:00",
+              :displaysortorder 10,
+              :languageid 502})
