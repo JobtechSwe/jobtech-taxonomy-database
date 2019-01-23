@@ -4,7 +4,7 @@
 -- converter, this is not used.0
 -- Right now it uses a limit of 10 (in the weird Microsoft SQL syntax), as
 -- it takes ages to retrieve all headlines from the database.
--- :name get-skillheadlines :? :1
+-- :name get-skill-headlines :? :1
 -- :doc Get headline skills connected to a main headline. Used by the skill converter.
 SELECT SkillHeadline.*, SkillHeadlineTerm.*, SkillMainHeadline.*, SkillMainHeadlineTerm.*
 FROM TaxonomyDB.dbo.SkillHeadline SkillHeadline, TaxonomyDB.dbo.SkillHeadlineTerm SkillHeadlineTerm, TaxonomyDB.dbo.SkillMainHeadline SkillMainHeadline, TaxonomyDB.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
