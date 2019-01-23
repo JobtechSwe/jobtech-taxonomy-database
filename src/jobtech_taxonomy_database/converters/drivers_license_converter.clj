@@ -75,16 +75,3 @@
   ""
   []
   (mapcat converter  (fetch-data get-drivers-license)))
-
-(def example {:description "Bil som omfattas av behörighet C1 eller B och ett eller flera släpfordon som \r
-                är kopplade till sådan bil, om bilens och släpfordonens sammanlagda totalvikt inte överstiger 12 000 kg.\r
-                \r
-                Körkortsålder: 18 år",
-              :drivinglicenceid 14,
-              :drivinglicencecode "C1E",
-              :term "C1E",
-              :drivinglicenceid_2 14,
-              :modificationdate_2 #inst"2013-10-10T07:46:32.803000000-00:00",
-              :modificationdate #inst"2013-10-10T07:46:32.803000000-00:00",
-              :displaysortorder 10,
-              :languageid 502})
