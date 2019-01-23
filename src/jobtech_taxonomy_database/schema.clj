@@ -22,10 +22,10 @@
     :db/valueType   :db.type/ref
     :db/doc         "All terms referring to this concept"}
 
-   {:db/ident       :concept/type
+   {:db/ident       :concept/category
     :db/valueType   :db.type/keyword
     :db/cardinality :db.cardinality/one
-    :db/doc         "JobTech types" ;TODO Explain more. What is this? /Sara
+    :db/doc         "JobTech categories" ;
     }])
 
 ;; Example:
@@ -48,6 +48,7 @@
     :db/cardinality :db.cardinality/one
     :db/unique      :db.unique/identity
     :db/doc         "SSYK-2012 type"}])
+; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
 ;; TODO add Transaction Function that checks that the term is connected to a concept
 
@@ -56,7 +57,7 @@
   [{:db/ident       :term/base-form
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/unique      :db.unique/identity
+    :db/unique      :db.unique/identity ; Should this really be unique/identity? Same term can be different concepts. /Sara
     :db/doc         "Term value, the actual text string that is referring to concepts"}
 
    {:db/ident       :term/special-usage
