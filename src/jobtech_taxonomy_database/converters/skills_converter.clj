@@ -38,14 +38,14 @@
 (defn convert-head "" [main-headline headline]
   (let [terms-conv (map (fn [term]
                           (convert-term term))
-                        (fetch-data get-skill-terms { :id (get headline :head_id) }))]
+                        (fetch-data get-skill-terms {:id (get headline :head_id)}))]
     (into (list {:relation/concept-1     (make-tempid-concept "main-headline" (get main-headline :main_id))
                  :relation/concept-2     (make-tempid-concept "headline" (get headline :head_id))
                  :relation/type          :main-headline-to-headline}
                 {:db/id                  (make-tempid-concept "headline" (get headline :head_id))
                  :concept/id             (fake-id "headline" (get headline :head_id))
                  :concept/description    (get headline :head_term)
-                 :concept/preferred-term (make-tempid-term (get headline :head_term) (get headline :lang) )}
+                 :concept/preferred-term (make-tempid-term (get headline :head_term) (get headline :lang))}
                 {:db/id  (make-tempid-term (get headline :head_term) (get headline :lang))
                  :term/base-form (get headline :head_term)})
           terms-conv))) ;; FIXME: visst saknar headlines alternativa termer?
@@ -53,8 +53,8 @@
 
 (defn convert-mainhead "" [main-headline]
   (let [headlines-conv (mapcat (fn [headline]
-                              (convert-head main-headline headline))
-                            (fetch-data get-skill-headlines { :id (get main-headline :main_id) }))]
+                                 (convert-head main-headline headline))
+                               (fetch-data get-skill-headlines {:id (get main-headline :main_id)}))]
     (into headlines-conv
           (list {:db/id                     (make-tempid-concept "main-headline" (get main-headline :main_id))
                  :concept/id                (fake-id "main-headline" (get main-headline :main_id))
@@ -63,11 +63,10 @@
                 {:db/id  (make-tempid-term (get main-headline :main_term) (get main-headline :lang))
                  :term/base-form (get main-headline :main_term)}))))
 
-
 (defn convert "" []
   (mapcat (fn [main-headline]
-         (convert-mainhead main-headline))
-       (fetch-data get-skill-mainheadlines)))
+            (convert-mainhead main-headline))
+          (fetch-data get-skill-mainheadlines)))
 
 ;; (fetch-data get-skill-mainheadlines)
 ;; (fetch-data get-skill-headlines { :id 2 })

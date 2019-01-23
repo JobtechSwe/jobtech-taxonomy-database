@@ -68,9 +68,7 @@
    {:db/ident       :term/term-to-use-instead
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/one
-    :db/doc         "A historic term refers to a term to use instead."}
-
-   ])
+    :db/doc         "A historic term refers to a term to use instead."}])
 
 ;; Example:
 ;;  (def some-terms
