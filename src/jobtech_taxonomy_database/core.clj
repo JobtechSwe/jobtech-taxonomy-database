@@ -48,3 +48,4 @@
   (clojure.pprint/pprint (d/q '[:find ?x :where [_ :term/base-form ?x]] (get-db)))
   (clojure.pprint/pprint (d/q '[:find ?x :where [_ :concept/id ?x]] (get-db)))
   (clojure.pprint/pprint (d/q '[:find ?x :where [_ :relation/concept-1 ?x]] (get-db))))
+;Should we add a source attribute to the transaction? See https://docs.datomic.com/on-prem/best-practices.html#add-facts-about-transaction-entity
