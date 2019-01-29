@@ -4,7 +4,9 @@
             [jobtech-taxonomy-database.schema :refer :all :as schema]
             [jobtech-taxonomy-database.legacy-migration :refer :all]
             [jobtech-taxonomy-database.config :refer :all]
-            [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]))
+            [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
+            [jobtech-taxonomy-database.converters.nano-id-assigner :refer :all]
+            ))
 
 (defn ^:private fake-id
   "Temporary function until new id function with nano-ids is imported into this project.
@@ -42,24 +44,25 @@
                           (convert-term term))
                         (fetch-data get-skill-terms { :id skill-id }))]
 
-    (into (list {:relation/concept-1     (make-tempid-concept "headline" (get headline :head_id))
-                 :relation/concept-2     (make-tempid-concept "skill" skill-id)
-                 :relation/type          :headline-to-skill}
-                {:db/id                  (make-tempid-concept "skill" skill-id)
-                 :concept/id             (fake-id "skill" skill-id)
-                 :concept/description    (format "skill %s" (fake-id "skill" skill-id))
-                 :concept/preferred-term (get (first terms-conv) :db/id) ;;FIXME
-                 :concept/alternative-terms (get (first terms-conv) :db/id) ;;FIXME
-                 })
-          terms-conv)))
+    (concat terms-conv
+            (list {:relation/concept-1     (make-tempid-concept "headline" (get headline :head_id))
+             :relation/concept-2     (make-tempid-concept "skill" skill-id)
+             :relation/type          :headline-to-skill}
+            {:db/id                  (make-tempid-concept "skill" skill-id)
+             :concept/id             (fake-id "skill" skill-id)
+             :concept/description    (format "skill %s" (fake-id "skill" skill-id))
+             :concept/preferred-term (get (first terms-conv) :db/id) ;;FIXME
+             :concept/alternative-terms (get (first terms-conv) :db/id) ;;FIXME
+             })
+          )))
 
 
 (defn convert-head "" [main-headline headline]
   (let [terms-conv (mapcat (fn [id]
                              (convert-skill headline (get id :skill_id)))
                            (fetch-data get-skills-for-headline { :id (get headline :head_id) }))]
-    (conj terms-conv
-                {:relation/concept-1     (make-tempid-concept "main-headline" (get main-headline :main_id))
+    (concat terms-conv
+            (list {:relation/concept-1     (make-tempid-concept "main-headline" (get main-headline :main_id))
                  :relation/concept-2     (make-tempid-concept "headline" (get headline :head_id))
                  :relation/type          :main-headline-to-headline}
                 {:db/id                  (make-tempid-concept "headline" (get headline :head_id))
@@ -68,21 +71,25 @@
                  :concept/preferred-term (make-tempid-term (get headline :head_term) (get headline :lang))}
                 {:db/id  (make-tempid-term (get headline :head_term) (get headline :lang))
                  :term/base-form (get headline :head_term)})
-          )) ;; FIXME: visst saknar headlines alternativa termer?
+          ))) ;; FIXME: visst saknar headlines alternativa termer?
 
 
 (defn convert-mainhead "" [main-headline]
   (let [headlines-conv (mapcat (fn [headline]
                                  (convert-head main-headline headline))
-                               (fetch-data get-skill-headlines {:id (get main-headline :main_id)}))]
-    (conj headlines-conv
-           {:db/id                     (make-tempid-concept "main-headline" (get main-headline :main_id))
-                 :concept/id                (fake-id "main-headline" (get main-headline :main_id))
-                 :concept/description       (get main-headline :main_term)
-                 :concept/preferred-term    (make-tempid-term (get main-headline :main_term) (get main-headline :lang))}
-                {:db/id  (make-tempid-term (get main-headline :main_term) (get main-headline :lang))
-                 :term/base-form (get main-headline :main_term)})))
-
+                                      (fetch-data get-skill-headlines {:id (get main-headline :main_id)})
+                               )]
+    (concat headlines-conv
+           (let* [category-67 :skill
+                 id-67 (keyword (str (get main-headline :main_id)))           ;ska matcha legacyAmsTaxonomyId i json
+                 description-67 (get main-headline :main_term)                ;ska matcha preferredTerm i json
+                 nano-id (get-nano category-67 id-67 description-67)]
+             (list {:db/id                     (make-tempid-concept "main-headline" (get main-headline :main_id))
+                   :concept/id                nano-id
+                   :concept/description     (get main-headline :main_term)
+                   :concept/preferred-term    (make-tempid-term (get main-headline :main_term) (get main-headline :lang))}
+                  {:db/id                  (make-tempid-term (get main-headline :main_term) (get main-headline :lang))
+                   :term/base-form            (get main-headline :main_term)})))))
 
 (defn convert "" []
   (distinct
