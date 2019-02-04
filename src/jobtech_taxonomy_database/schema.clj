@@ -63,7 +63,12 @@
    {:db/ident       :concept.external-standard/drivers-licence-code
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "Driver's licence code"}])
+    :db/doc         "Driver's licence code"}
+
+   {:db/ident       :concept.external-standard/nuts-code
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "NUTS code"}])
 
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
