@@ -47,7 +47,24 @@
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
     :db/unique      :db.unique/identity
-    :db/doc         "SSYK-2012 type"}])
+    :db/doc         "SSYK-2012 type"}
+
+   ;TODO check if below attribute works! I don't know what I'm doing. /Sara
+   {:db/ident       :concept.category/sort-order
+    :db/valueType   :db.type/int
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Value for display sort order in category"}
+
+   {:db/ident       :concept.external-standard/eures-code
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "EURES code"}
+
+   {:db/ident       :concept.external-standard/drivers-licence-code
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Driver's licence code"}])
+
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
 ;; TODO add Transaction Function that checks that the term is connected to a concept
