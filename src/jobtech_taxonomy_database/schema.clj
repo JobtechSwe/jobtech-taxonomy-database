@@ -51,7 +51,7 @@
 
    ;TODO check if below attribute works! I don't know what I'm doing. /Sara
    {:db/ident       :concept.category/sort-order
-    :db/valueType   :db.type/int
+    :db/valueType   :db.type/long
     :db/cardinality :db.cardinality/one
     :db/doc         "Value for display sort order in category"}
 
