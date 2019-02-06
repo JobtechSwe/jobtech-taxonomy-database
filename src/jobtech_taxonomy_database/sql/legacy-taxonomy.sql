@@ -63,7 +63,6 @@ SELECT Language.*, LanguageTerm.*
 FROM TaxonomyDB.dbo.[Language] Language, TaxonomyDB.dbo.LanguageTerm LanguageTerm
 WHERE LanguageTerm.translationLanguageID = 502
 AND Language.languageID = 502
--- Todo continue with language after getting input from Rita
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -82,6 +81,31 @@ SELECT Arbetstid.*, ArbetstidTerm.*
 FROM TaxonomyDBSvensk.dbo.Arbetstid Arbetstid, TaxonomyDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
 
+
+
+-- START Continents, Countries, Regions, other geographic places --
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-continent :*
+-- :doc Get all continents
+SELECT Continent.continentID AS continent_id,
+		ContinentTerm.term AS continent_term
+FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
+WHERE ContinentTerm.continentID = Continent.continentID
+AND LanguageID = 502
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-country-for-continent :*
+-- :doc Get all countries that belong to the given continent ID
+SELECT Country.countryID AS country_id, CountryTerm.term as country_term
+FROM TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm, TaxonomyDB.dbo.Continent Continent
+WHERE Country.CountryID = CountryTerm.CountryID
+AND Country.ContinentID = :id
+AND Continent.ContinentID = :id
+AND LanguageID = 502
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-country :*
@@ -94,12 +118,16 @@ AND LanguageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-continent :*
--- :doc Get all continents
-SELECT Continent.*, ContinentTerm.*
-FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
-WHERE ContinentTerm.continentID = Continent.continentID
+-- :name get-nut-code :*
+-- :doc Get all NUT level 3 codes for EU regions
+SELECT EURegion.*, EURegionTerm.*
+FROM TaxonomyDB.dbo.EURegion EURegion, TaxonomyDB.dbo.EURegionTerm EURegionTerm
+WHERE EURegionTerm.EURegionID = EURegion.EURegionID
 AND LanguageID = 502
+
+-- END Continents, Countries, Regions, other geographic places --
+
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
