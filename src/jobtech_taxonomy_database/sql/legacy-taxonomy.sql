@@ -49,7 +49,7 @@ SELECT SkillTerm.term AS term,
        SkillTerm.skillID AS skill_id
 FROM TaxonomyDB.dbo.SkillTerm SkillTerm, TaxonomyDB.dbo.Skill
 WHERE
-	SkillTerm.skillID = 1
+	SkillTerm.skillID = :id
         AND SkillTerm.skillID = Skill.skillID
 	AND SkillTerm.countryID = Skill.countryID
 	AND SkillTerm.languageID = 502
