@@ -42,8 +42,8 @@ WHERE
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-skill-terms :?
--- :doc Get all skill terms in Swedish, that belong to the given skill
+-- :name get-prefered-skill-term :?
+-- :doc Get the prefered skill term that belong to the given skill (in Swedish, FIXME)
 SELECT SkillTerm.term AS term,
        SkillTerm.languageID AS lang,
        SkillTerm.skillID AS skill_id
@@ -54,6 +54,17 @@ WHERE
 	AND SkillTerm.countryID = Skill.countryID
 	AND SkillTerm.languageID = 502
 
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-referenced-skill-terms :?
+-- :doc Get the referenced skill terms that belong to the given skill
+SELECT SkillReference.term AS ref_term
+FROM TaxonomyDB.dbo.SkillReference SkillReference, TaxonomyDB.dbo.Skill Skill
+WHERE
+	SKillReference.countryIDRef = SKill.countryID
+	AND SKillReference.skillIDRef = SKill.skillID
+	AND Skill.skillID = :id
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned

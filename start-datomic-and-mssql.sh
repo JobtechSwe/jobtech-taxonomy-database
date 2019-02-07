@@ -80,6 +80,10 @@ if [ ! -d "$DATOMICINSTALLDIR/datomic-pro-$VERSION" ]; then
     fi
     pushd "$DATOMICINSTALLDIR"
     unzip "datomic-pro-$VERSION.zip"
+
+    ## Fix stupid bug in console script:
+    sed 's|^/usr/bin/env java|exec /usr/bin/env java|' datomic-pro-$VERSION/bin/console
+
     popd
 fi
 
@@ -136,6 +140,10 @@ function start_transactor() {
     #sed -i '/^host=/a ping-host=localhost' transactor.properties
     #sed -i '/^host=/a ping-port=9999' transactor.properties
     if [ "$DELETE_OLD_DB" == 1 ]; then
+        echo >&2
+        echo >&2
+        echo "**** Deleting old datomic contents...." >&2
+        echo >&2
         rm -rf "$DATOMICDIR"/data/db/datomic*
     fi
     stdbuf -i0 -o0 -e0 bin/transactor transactor.properties 2>&1 &
