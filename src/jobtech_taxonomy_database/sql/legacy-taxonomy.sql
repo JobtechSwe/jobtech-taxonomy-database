@@ -59,7 +59,7 @@ WHERE
 -- (as hashmaps) will be returned
 -- :name get-referenced-skill-terms :?
 -- :doc Get the referenced skill terms that belong to the given skill
-SELECT SkillReference.term AS ref_term
+SELECT SkillReference.term AS term
 FROM TaxonomyDB.dbo.SkillReference SkillReference, TaxonomyDB.dbo.Skill Skill
 WHERE
 	SKillReference.countryIDRef = SKill.countryID

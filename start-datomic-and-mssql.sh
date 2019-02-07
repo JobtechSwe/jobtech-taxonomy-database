@@ -82,7 +82,7 @@ if [ ! -d "$DATOMICINSTALLDIR/datomic-pro-$VERSION" ]; then
     unzip "datomic-pro-$VERSION.zip"
 
     ## Fix stupid bug in console script:
-    sed 's|^/usr/bin/env java|exec /usr/bin/env java|' datomic-pro-$VERSION/bin/console
+    sed -i 's|^/usr/bin/env java|exec /usr/bin/env java|' datomic-pro-$VERSION/bin/console
 
     popd
 fi

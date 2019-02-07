@@ -35,15 +35,19 @@
   "Convert a single skill"
   [headline skill-id]
   (let* [pref-term (convert-term (first (fetch-data get-prefered-skill-term { :id skill-id })))
+         lang      (get headline :lang)
          alt-terms (map #(convert-term %)
-                        (fetch-data get-referenced-skill-terms { :id skill-id }))
+                        (map #(assoc % :lang lang) (fetch-data get-referenced-skill-terms { :id skill-id })))
          description-67 (get pref-term :term/base-form)
          nano-id (get-nano :skill skill-id description-67)]
     (concat alt-terms
-            pref-term
+            (list pref-term)
             (list {:relation/concept-1     (make-tempid-concept "headline" (get headline :head_id))
                    :relation/concept-2     (make-tempid-concept "skill" skill-id)
                    :relation/type          :headline-to-skill}
+                  {:relation/concept-1     (make-tempid-concept "headline" (get headline :head_id))
+                   :relation/concept-2     (make-tempid-concept "skill" skill-id)
+                   :relation/type          :hyperonym}
                   {:db/id                  (make-tempid-concept "skill" skill-id)
                    :concept/id             nano-id
                    :concept/description    (get pref-term :db/id)
@@ -54,16 +58,19 @@
 
 
 (defn convert-head "" [main-headline headline]
-  (let [terms-conv (mapcat (fn [id]
-                             (convert-skill headline (get id :skill_id)))
-                           (fetch-data get-skills-for-headline { :id (get headline :head_id) }))
+  (let [skills-conv (mapcat (fn [id]
+                              (convert-skill headline (get id :skill_id)))
+                            (fetch-data get-skills-for-headline { :id (get headline :head_id) }))
         id-67 (keyword (str (get headline :head_id)))           ;ska matcha legacyAmsTaxonomyId i json
         description-67 (get headline :head_term)                ;ska matcha preferredTerm i json
         nano-id (get-nano :skill id-67 description-67)]
-    (concat terms-conv
+    (concat skills-conv
             (list {:relation/concept-1     (make-tempid-concept "main-headline" (get main-headline :main_id))
                    :relation/concept-2     (make-tempid-concept "headline" (get headline :head_id))
                    :relation/type          :main-headline-to-headline}
+                  {:relation/concept-1     (make-tempid-concept "main-headline" (get main-headline :main_id))
+                   :relation/concept-2     (make-tempid-concept "headline" (get headline :head_id))
+                   :relation/type          :hyperonym}
                   {:db/id                  (make-tempid-concept "headline" (get headline :head_id))
                    :concept/id             nano-id
                    :concept/description    (get headline :head_term)
