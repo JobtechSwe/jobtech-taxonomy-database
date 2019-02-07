@@ -42,18 +42,29 @@ WHERE
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-skill-terms :?
--- :doc Get all skill terms in Swedish, that belong to the given skill
+-- :name get-prefered-skill-term :?
+-- :doc Get the prefered skill term that belong to the given skill (in Swedish, FIXME)
 SELECT SkillTerm.term AS term,
        SkillTerm.languageID AS lang,
        SkillTerm.skillID AS skill_id
 FROM TaxonomyDB.dbo.SkillTerm SkillTerm, TaxonomyDB.dbo.Skill
 WHERE
-	SkillTerm.skillID = 1
+	SkillTerm.skillID = :id
         AND SkillTerm.skillID = Skill.skillID
 	AND SkillTerm.countryID = Skill.countryID
 	AND SkillTerm.languageID = 502
 
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-referenced-skill-terms :?
+-- :doc Get the referenced skill terms that belong to the given skill
+SELECT SkillReference.term AS term
+FROM TaxonomyDB.dbo.SkillReference SkillReference, TaxonomyDB.dbo.Skill Skill
+WHERE
+	SKillReference.countryIDRef = SKill.countryID
+	AND SKillReference.skillIDRef = SKill.skillID
+	AND Skill.skillID = :id
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -63,7 +74,6 @@ SELECT Language.*, LanguageTerm.*
 FROM TaxonomyDB.dbo.[Language] Language, TaxonomyDB.dbo.LanguageTerm LanguageTerm
 WHERE LanguageTerm.translationLanguageID = 502
 AND Language.languageID = 502
--- Todo continue with language after getting input from Rita
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -81,7 +91,31 @@ AND LanguageID = 502
 SELECT Arbetstid.*, ArbetstidTerm.*
 FROM TaxonomyDBSvensk.dbo.Arbetstid Arbetstid, TaxonomyDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
---TODO add "sort" to worktime-extent
+
+
+
+-- START Continents, Countries, Regions, other geographic places --
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-continent :*
+-- :doc Get all continents
+SELECT Continent.continentID AS continent_id,
+		ContinentTerm.term AS continent_term
+FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
+WHERE ContinentTerm.continentID = Continent.continentID
+AND LanguageID = 502
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-country-for-continent :*
+-- :doc Get all countries that belong to the given continent ID
+SELECT Country.countryID AS country_id, CountryTerm.term as country_term
+FROM TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm, TaxonomyDB.dbo.Continent Continent
+WHERE Country.CountryID = CountryTerm.CountryID
+AND Country.ContinentID = :id
+AND Continent.ContinentID = :id
+AND LanguageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -95,12 +129,16 @@ AND LanguageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-continent :*
--- :doc Get all continents
-SELECT Continent.*, ContinentTerm.*
-FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
-WHERE ContinentTerm.continentID = Continent.continentID
+-- :name get-nut-code :*
+-- :doc Get all NUT level 3 codes for EU regions
+SELECT EURegion.*, EURegionTerm.*
+FROM TaxonomyDB.dbo.EURegion EURegion, TaxonomyDB.dbo.EURegionTerm EURegionTerm
+WHERE EURegionTerm.EURegionID = EURegion.EURegionID
 AND LanguageID = 502
+
+-- END Continents, Countries, Regions, other geographic places --
+
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -110,8 +148,6 @@ SELECT DrivingLicence.*, DrivingLicenceTerm.*
 FROM TaxonomyDB.dbo.DrivingLicence DrivingLicence, TaxonomyDB.dbo.DrivingLicenceTerm DrivingLicenceTerm
 WHERE DrivingLicenceTerm.drivingLicenceID = DrivingLicence.drivingLicenceID
 AND LanguageID = 502
---TODO Add "sortering", in drivers license, "DrivingslicenseCode" OCH term,
-
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -121,7 +157,6 @@ SELECT Anställningsvaraktighet.*, AnställningsvaraktighetTerm.*
 FROM TaxonomyDBSvensk.dbo.Anställningsvaraktighet Anställningsvaraktighet,
      TaxonomyDBSvensk.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
 WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsvaraktighet.anställningsvaraktighetsID
---TODO Add "sortering", "EURESKod" in employment duration
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -130,7 +165,6 @@ WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsva
 SELECT AnstallningTypJobb.*, AnstallningTypJobbTerm.*
 FROM TaxonomyDBSvensk.dbo.AnstallningTypJobb AnstallningTypJobb, TaxonomyDBSvensk.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
 WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.AnstallningTypJobbID
---TODO Add "sorteringsordning" in employment type
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned

@@ -29,7 +29,8 @@
 #
 #
 # Att köra skriptet:
-#  1. Kör igång det bara, och hoppas på det bästa.
+#  1. Kör igång det bara, och hoppas på det bästa. Ge flaggan -d för att
+#     ta bort eventuellt redan existerande databasinnehåll.
 #
 #
 #
@@ -38,6 +39,10 @@
 #   detta finnas i profiles.clj (förutsätter att openjdk-11-jdk är
 #   installerat):  {:user { :java-cmd "/usr/bin/java" } }
 
+
+if [ "$1" == "-d" ]; then
+    DELETE_OLD_DB=1
+fi
 
 
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -75,6 +80,10 @@ if [ ! -d "$DATOMICINSTALLDIR/datomic-pro-$VERSION" ]; then
     fi
     pushd "$DATOMICINSTALLDIR"
     unzip "datomic-pro-$VERSION.zip"
+
+    ## Fix stupid bug in console script:
+    sed -i 's|^/usr/bin/env java|exec /usr/bin/env java|' datomic-pro-$VERSION/bin/console
+
     popd
 fi
 
@@ -130,7 +139,13 @@ function start_transactor() {
     #sed -i "s/host=localhost/host=$TXIP/" transactor.properties
     #sed -i '/^host=/a ping-host=localhost' transactor.properties
     #sed -i '/^host=/a ping-port=9999' transactor.properties
-    rm -rf "$DATOMICDIR"/data/db/datomic*
+    if [ "$DELETE_OLD_DB" == 1 ]; then
+        echo >&2
+        echo >&2
+        echo "**** Deleting old datomic contents...." >&2
+        echo >&2
+        rm -rf "$DATOMICDIR"/data/db/datomic*
+    fi
     stdbuf -i0 -o0 -e0 bin/transactor transactor.properties 2>&1 &
     echo -n "$! " >> $PIDFILE
     popd

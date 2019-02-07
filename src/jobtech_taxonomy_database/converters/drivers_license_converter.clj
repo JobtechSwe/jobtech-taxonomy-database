@@ -17,9 +17,12 @@
         description-67 (:term data)]                        ;ska matcha preferredTerm i json
     (let [nano-id (get-nano category-67 id-67 description-67)]
       [{:concept/id                nano-id
-        :concept/description       description-67
+        :concept/description       (:description data)
         :concept/preferred-term    nano-id
-        :concept/alternative-terms #{nano-id}}
+        :concept/alternative-terms #{nano-id}
+        :concept.category/sort-order (:displaysortorder data)
+        :concept.external-standard/drivers-licence-code (:drivinglicencecode data)
+        }
        {:db/id          nano-id
         :term/base-form description-67}])))
 
