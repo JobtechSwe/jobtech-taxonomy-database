@@ -95,6 +95,29 @@ FROM TaxonomyDBSvensk.dbo.Arbetstid Arbetstid, TaxonomyDBSvensk.dbo.ArbetstidTer
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
 
 
+------------------START NEW geogarphic taxonomy--------------------
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-geographic-places :*
+-- :doc Get all continents. countries and EU regions, aka NUTS Code level 3
+SELECT Continent.continentID AS [continent-id],
+		ContinentTerm.term AS [continent-term],
+		Country.countryID AS [country-id],
+		CountryTerm.term AS [country-term],
+		EURegion.EURegionID AS [region-eu-id],
+		EURegion.NUTSCodeLevel3 AS [region-nuts-code-level-3],
+		EURegionTerm.term AS [region-eu-term]
+FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm, TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm, TaxonomyDB.dbo.EURegion EURegion, TaxonomyDB.dbo.EURegionTerm EURegionTerm
+WHERE
+	ContinentTerm.continentID = Continent.continentID
+	AND Country.continentID = Continent.continentID
+	AND CountryTerm.countryID = Country.countryID
+	AND EURegion.countryID = Country.countryID
+	AND EURegionTerm.EURegionID = EURegion.EURegionID
+	AND ContinentTerm.languageID = 502
+    AND CountryTerm.languageID = 502
+    AND EURegionTerm.languageID = 502
 
 -- START Continents, Countries, Regions, other geographic places --
 
@@ -151,10 +174,6 @@ SELECT EURegion.*, EURegionTerm.*
 FROM TaxonomyDB.dbo.EURegion EURegion, TaxonomyDB.dbo.EURegionTerm EURegionTerm
 WHERE EURegionTerm.EURegionID = EURegion.EURegionID
 AND LanguageID = 502
-
--- END Continents, Countries, Regions, other geographic places --
-
-
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
