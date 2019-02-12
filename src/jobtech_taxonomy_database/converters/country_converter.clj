@@ -19,7 +19,8 @@
       [{:concept/id                nano-id
         :concept/description       description-67
         :concept/preferred-term    nano-id
-        :concept/alternative-terms #{nano-id}}
+        :concept/alternative-terms #{nano-id}
+        :concept/category          category-67}
        {:db/id          nano-id
         :term/base-form description-67}])))
 
