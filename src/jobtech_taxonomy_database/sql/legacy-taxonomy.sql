@@ -103,12 +103,49 @@ WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
 -- :doc Get all continents. countries and EU regions, aka NUTS Code level 3
 SELECT Continent.continentID AS [continent-id],
 		ContinentTerm.term AS [continent-term],
+		NULL AS [country-id],
+		NULL AS [country-term],
+		NULL AS [region-eu-id],
+		NULL AS [region-nuts-code-level-3],
+		NULL AS [region-eu-term]
+FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
+WHERE
+	ContinentTerm.continentID = Continent.continentID
+	AND Continent.continentID NOT IN (SELECT ContinentID FROM TaxonomyDB.dbo.Country)
+	AND ContinentTerm.languageID = 502
+UNION
+SELECT Continent.continentID AS [continent-id],
+		ContinentTerm.term AS [continent-term],
+		Country.countryID AS [country-id],
+		CountryTerm.term AS [country-term],
+		NULL AS [region-eu-id],
+		NULL AS [region-nuts-code-level-3],
+		NULL AS [region-eu-term]
+FROM TaxonomyDB.dbo.Continent Continent,
+    TaxonomyDB.dbo.ContinentTerm ContinentTerm,
+    TaxonomyDB.dbo.Country Country,
+    TaxonomyDB.dbo.CountryTerm CountryTerm
+WHERE
+	ContinentTerm.continentID = Continent.continentID
+	AND Country.continentID = Continent.continentID
+	AND CountryTerm.countryID = Country.countryID
+	AND CountryTerm.countryID NOT IN (SELECT countryID FROM TaxonomyDB.dbo.EURegion)
+	AND ContinentTerm.languageID = 502
+    AND CountryTerm.languageID = 502
+UNION
+SELECT Continent.continentID AS [continent-id],
+		ContinentTerm.term AS [continent-term],
 		Country.countryID AS [country-id],
 		CountryTerm.term AS [country-term],
 		EURegion.EURegionID AS [region-eu-id],
 		EURegion.NUTSCodeLevel3 AS [region-nuts-code-level-3],
 		EURegionTerm.term AS [region-eu-term]
-FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm, TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm, TaxonomyDB.dbo.EURegion EURegion, TaxonomyDB.dbo.EURegionTerm EURegionTerm
+FROM TaxonomyDB.dbo.Continent Continent,
+	TaxonomyDB.dbo.ContinentTerm ContinentTerm,
+	TaxonomyDB.dbo.Country Country,
+	TaxonomyDB.dbo.CountryTerm CountryTerm,
+	TaxonomyDB.dbo.EURegion EURegion,
+	TaxonomyDB.dbo.EURegionTerm EURegionTerm
 WHERE
 	ContinentTerm.continentID = Continent.continentID
 	AND Country.continentID = Continent.continentID
