@@ -9,55 +9,85 @@
             [cheshire.core :refer :all]
             [nano-id.custom :refer [generate]]))
 
+(defn continent-converter
+  ""
+  [nano-id-continent term-67-continent category-67-continent]
+    [
+    {:concept/id                nano-id-continent
+     :concept/description       term-67-continent
+     :concept/preferred-term    nano-id-continent
+     :concept/category         category-67-continent}
+    {:db/id          nano-id-continent
+     :term/base-form term-67-continent}
+     ]
+  )
+
+(defn Lcountry-converter
+  ""
+  [nano-id-country term-67-country category-67-country]
+    [
+    {:concept/id                nano-id-country
+     :concept/description       term-67-country
+     :concept/preferred-term    nano-id-country
+     :concept/category          category-67-country}
+    {:db/id                     nano-id-country
+     :term/base-form             term-67-country}
+     ]
+  )
+
+(defn region-converter
+  ""
+  [nano-id-region term-67-region category-67-region nuts]
+    [
+    {:concept/id                nano-id-region
+     :concept/description       term-67-region
+     :concept/preferred-term    nano-id-region
+     :concept/category          category-67-region
+     :concept.external-standard/nuts-code nuts}
+    {:db/id                     nano-id-region
+     :term/base-form            term-67-region}
+     ]
+  )
 
 (defn converter
   "Immutable language converter."
   [data]
-  (let [category-67-continent :continent                    ;json-nyckeln
+  (let [category-67-continent :continent                        ;json-nyckeln
         category-67-country :country
         category-67-region :eu-region
-        id-67-continent (keyword (str (:continent-id data)))   ;ska matcha legacyAmsTaxonomyId i json
+        id-67-continent (keyword (str (:continent-id data)))    ;ska matcha legacyAmsTaxonomyId i json
         id-67-country (keyword (str (:country-id data)))
         id-67-region (keyword (str (:region-eu-id data)))
         term-67-continent (:continent-term data)
         term-67-country (:country-term data)
-        term-67-region (:region-eu-term data)                        ;ska matcha preferredTerm i json
+        term-67-region (:region-eu-term data)                   ;ska matcha preferredTerm i json
         nano-id-continent (get-nano category-67-continent id-67-continent term-67-continent)
         nano-id-country (get-nano category-67-country id-67-country term-67-country)
         nano-id-region (get-nano category-67-region id-67-region term-67-region)]
-    (conj
-      (when (not= (:continent-id data) nil)
-        (list
-        {:concept/id                nano-id-continent
-        :concept/description       term-67-continent
-        :concept/preferred-term    nano-id-continent
-         :concept/category         category-67-continent}
-       {:db/id          nano-id-continent
-        :term/base-form term-67-continent}))
-        (when (not= (:country-id data) nil)
-          (list
-        {:relation/concept-1     nano-id-continent
-        :relation/concept-2     nano-id-country
-        :relation/type          :continent-to-country}
-       {:concept/id                nano-id-country
-        :concept/description       term-67-country
-        :concept/preferred-term    nano-id-country
-        :concept/category           category-67-country}
-       {:db/id          nano-id-country
-        :term/base-form term-67-country}))
-       (when (not= (:region-eu-id data) nil)
-         (list
-       {:relation/concept-1     nano-id-country
-        :relation/concept-2     nano-id-region
-        :relation/type          :country-to-region-eu}
-       {:concept/id                nano-id-region
-        :concept/description       term-67-region
-        :concept/preferred-term    nano-id-region
-        :concept/category           category-67-region
-        :concept.external-standard/nuts-code (:region-nuts-code-level-3 data)}
-       {:db/id          nano-id-region
-        :term/base-form term-67-region}
-          )))))
+    (concat
+      (if
+        (not= (:region-eu-id data) nil)
+        (concat
+          (region-converter nano-id-region term-67-region category-67-region (:region-nuts-code-level-3 data))
+          (country-converter nano-id-country term-67-country category-67-country)
+          (continent-converter nano-id-continent term-67-continent category-67-continent))
+
+        (if
+          (not= (:country-id data) nil)
+          (concat
+            (country-converter nano-id-country term-67-country category-67-country)
+            (continent-converter nano-id-continent term-67-continent category-67-continent)
+            )
+          (if
+            (not= (:continent-id data) nil)
+            (continent-converter nano-id-continent term-67-continent category-67-continent)
+            )
+          )
+        )
+      )
+    )
+  )
+
 
 (def sql-answer-with-nuts
   {:continent-id 2,
