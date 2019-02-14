@@ -22,7 +22,7 @@
      ]
   )
 
-(defn Lcountry-converter
+(defn country-converter
   ""
   [nano-id-country term-67-country category-67-country]
     [
@@ -38,15 +38,25 @@
 (defn region-converter
   ""
   [nano-id-region term-67-region category-67-region nuts]
-    [
-    {:concept/id                nano-id-region
-     :concept/description       term-67-region
-     :concept/preferred-term    nano-id-region
-     :concept/category          category-67-region
-     :concept.external-standard/nuts-code nuts}
-    {:db/id                     nano-id-region
-     :term/base-form            term-67-region}
-     ]
+  [
+   {:concept/id                          nano-id-region
+    :concept/description                 term-67-region
+    :concept/preferred-term              nano-id-region
+    :concept/category                    category-67-region
+    :concept.external-standard/nuts-code nuts}
+   {:db/id          nano-id-region
+    :term/base-form term-67-region}
+   ]
+  )
+
+(defn relation-converter
+  ""
+  [concept-1 concept-2 relationship-type]
+  [
+   {:relation/concept-1     concept-1
+   :relation/concept-2     concept-2
+   :relation/type          relationship-type}
+   ]
   )
 
 (defn converter
@@ -64,24 +74,24 @@
         nano-id-continent (get-nano category-67-continent id-67-continent term-67-continent)
         nano-id-country (get-nano category-67-country id-67-country term-67-country)
         nano-id-region (get-nano category-67-region id-67-region term-67-region)]
-    (concat
       (if
         (not= (:region-eu-id data) nil)
         (concat
           (region-converter nano-id-region term-67-region category-67-region (:region-nuts-code-level-3 data))
+          (relation-converter nano-id-country nano-id-region :country-to-region)
           (country-converter nano-id-country term-67-country category-67-country)
+          (relation-converter nano-id-continent nano-id-country :continent-to-country)
           (continent-converter nano-id-continent term-67-continent category-67-continent))
-
         (if
           (not= (:country-id data) nil)
           (concat
             (country-converter nano-id-country term-67-country category-67-country)
             (continent-converter nano-id-continent term-67-continent category-67-continent)
+            (relation-converter nano-id-continent nano-id-country :continent-to-country)
             )
           (if
             (not= (:continent-id data) nil)
             (continent-converter nano-id-continent term-67-continent category-67-continent)
-            )
           )
         )
       )
