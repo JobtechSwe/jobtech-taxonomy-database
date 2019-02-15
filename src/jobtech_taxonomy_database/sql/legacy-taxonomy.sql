@@ -105,6 +105,7 @@ SELECT Continent.continentID AS [continent-id],
 		ContinentTerm.term AS [continent-term],
 		NULL AS [country-id],
 		NULL AS [country-term],
+		NULL AS [country-code],
 		NULL AS [region-eu-id],
 		NULL AS [region-nuts-code-level-3],
 		NULL AS [region-eu-term]
@@ -118,6 +119,7 @@ SELECT Continent.continentID AS [continent-id],
 		ContinentTerm.term AS [continent-term],
 		Country.countryID AS [country-id],
 		CountryTerm.term AS [country-term],
+		Country.countryCode AS [country-code],
 		NULL AS [region-eu-id],
 		NULL AS [region-nuts-code-level-3],
 		NULL AS [region-eu-term]
@@ -137,6 +139,7 @@ SELECT Continent.continentID AS [continent-id],
 		ContinentTerm.term AS [continent-term],
 		Country.countryID AS [country-id],
 		CountryTerm.term AS [country-term],
+		Country.countryCode AS [country-code],
 		EURegion.EURegionID AS [region-eu-id],
 		EURegion.NUTSCodeLevel3 AS [region-nuts-code-level-3],
 		EURegionTerm.term AS [region-eu-term]
@@ -182,7 +185,7 @@ AND LanguageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-all-countries :* ;TODO change this back to "get-country"
+-- :name get-country :*
 -- :doc Get all countries
 SELECT Country.*, CountryTerm.*
 FROM TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm
