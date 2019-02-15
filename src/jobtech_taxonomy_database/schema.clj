@@ -64,10 +64,15 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "Driver's licence code"}
 
-   {:db/ident       :concept.external-standard/nuts-code
+   {:db/ident       :concept.external-standard/nuts-level-3-code
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "NUTS code"}
+    :db/doc         "NUTS level 3 code"}
+
+   {:db/ident       :concept.external-standard/country-code
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Country code"}
 
    {:db/ident       :concept.taxonomy-67-id
     :db/valueType   :db.type/string
