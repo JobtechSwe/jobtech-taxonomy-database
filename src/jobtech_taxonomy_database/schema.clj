@@ -50,7 +50,6 @@
     :db/unique      :db.unique/identity
     :db/doc         "SSYK-2012 type"}
 
-   ;TODO check if below attribute works! I don't know what I'm doing. /Sara
    {:db/ident       :concept.category/sort-order
     :db/valueType   :db.type/long
     :db/cardinality :db.cardinality/one
@@ -66,10 +65,20 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "Driver's licence code"}
 
-   {:db/ident       :concept.external-standard/nuts-code
+   {:db/ident       :concept.external-standard/nuts-level-3-code
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "NUTS code"}])
+    :db/doc         "NUTS level 3 code"}
+
+   {:db/ident       :concept.external-standard/country-code
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Country code"}
+
+   {:db/ident       :concept.taxonomy-67-id
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "ID from Taxonomy version 67"}])
 
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
