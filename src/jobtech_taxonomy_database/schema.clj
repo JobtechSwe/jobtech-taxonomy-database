@@ -10,6 +10,7 @@
    {:db/ident       :concept/description
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
+    :db/unique      :db.unique/value
     :db/doc         "Text describing the concept, is used for disambiguation."}
 
    {:db/ident       :concept/preferred-term
