@@ -248,3 +248,42 @@ WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.Anstallni
 SELECT Löneform.*, LöneformTerm.*
 FROM TaxonomyDBSvensk.dbo.Löneform Löneform, TaxonomyDBSvensk.dbo.LöneformTerm LöneformTerm
 WHERE LöneformTerm.löneformsID = Löneform.löneformsID
+
+
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-occupation-name :*
+-- :doc Get all occupation names ;
+SELECT OccupationName.*, OccupationNameTerm.*
+FROM TaxonomyDBVersion.dbo.OccupationName OccupationName, TaxonomyDBVersion.dbo.OccupationNameTerm OccupationNameTerm
+WHERE   OccupationName.versionID = OccupationNameTerm.versionID
+AND	OccupationName.occupationNameID = OccupationNameTerm.occupationNameID
+AND	OccupationName.countryID = OccupationNameTerm.countryID
+AND     OccupationName.versionID = 67
+AND     OccupationNameTerm.languageID = 502
+
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-occupation-group-ssyk :*
+-- :doc Get all ssyk, dont confuse this one with ISCO ;
+SELECT LocaleGroup.*, LocaleGroupTerm.*
+FROM TaxonomyDBVersion.dbo.LocaleGroup LocaleGroup, TaxonomyDBVersion.dbo.LocaleGroupTerm LocaleGroupTerm
+WHERE
+LocaleGroup.versionID = LocaleGroupTerm.versionID
+AND LocaleGroup.localeGroupID = LocaleGroupTerm.localeGroupID
+AND LocaleGroup.versionID = 67
+AND LocaleGroupTerm.languageID = 502
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-occupation-field :*
+-- :doc Get yrkesomraden occupation-field ;
+SELECT LocaleField.*, LocaleFieldTerm.*
+FROM TaxonomyDBVersion.dbo.LocaleField LocaleField, TaxonomyDBVersion.dbo.LocaleFieldTerm LocaleFieldTerm
+WHERE
+LocaleField.versionID = LocaleFieldTerm.versionID
+AND LocaleField.localeFieldID = LocaleFieldTerm.localeFieldID
+AND LocaleField.versionID = 67
+AND LocaleFieldTerm.languageID = 502

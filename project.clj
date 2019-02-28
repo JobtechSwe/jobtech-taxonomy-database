@@ -12,6 +12,7 @@
                  [com.microsoft.sqlserver/mssql-jdbc "7.0.0.jre8"]
                  [com.layerware/hugsql "0.4.9"]
                  [com.datomic/client-pro "0.8.28"]
+                 [com.datomic/client-cloud "0.8.71"]
                  [cheshire "5.8.1"]
                  [nano-id "0.9.3"]
                  ]
