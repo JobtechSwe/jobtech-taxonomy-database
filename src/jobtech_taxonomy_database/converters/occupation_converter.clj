@@ -58,9 +58,11 @@
   (let [nano-id (get-nano "occupation-group" (str localecode))
         temp-id  (str "occupation-group-" localegroupid)
         temp-id-field (str "occupation-field-" localefieldid)
+        concept (assoc (create-concept nano-id temp-id term description :occupation-group) :concept.external-standard/ssyk-2012 localecode)
+
         ]
     [
-     (create-concept nano-id temp-id term description :occupation-group)
+     concept
      (create-term nano-id term)
      (create-relation temp-id temp-id-field :hyperonym)
      ]
