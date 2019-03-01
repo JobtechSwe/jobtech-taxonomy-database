@@ -194,9 +194,13 @@ function start_taxonomydb() {
 
         sleep 10
 
-        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE [TaxonomyDB] FROM DISK = N'/data/taxonomydb.bak' WITH FILE = 1, NOUNLOAD, REPLACE, NORECOVERY, STATS = 5"
+        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE [TaxonomyDB] FROM DISK = N'/data/taxonomydb-version.bak' WITH FILE = 1, NOUNLOAD, REPLACE, NORECOVERY, STATS = 5"
 
         docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE TaxonomyDB WITH RECOVERY"
+
+        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE [TaxonomyDBSvensk] FROM DISK = N'/data/taxonomydb-svensk-version.bak' WITH FILE = 1, NOUNLOAD, REPLACE, NORECOVERY, STATS = 5"
+
+        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE TaxonomyDBSvensk WITH RECOVERY"
 
         popd
     fi
