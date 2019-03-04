@@ -8,7 +8,7 @@ SELECT SkillMainHeadlineTerm.skillMainHeadlineID AS main_id,
        SkillMainHeadlineTerm.modificationDate AS main_date
 FROM   TaxonomyDB.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
 WHERE  SkillMainHeadlineTerm.languageID = 502
-
+       AND SkillMainHeadlineTerm.versionID = 67
 
 
 -- A ":result" value of ":*" specifies a vector of records
@@ -27,6 +27,9 @@ WHERE
 	SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
 	AND SkillHeadline.skillMainHeadlineID = :id
 	AND SkillHeadlineTerm.languageID = 502
+        AND SkillHeadlineTerm.versionID = 67
+        AND SkillHeadline.versionID = 67
+        AND SkillMainHeadline.versionID = 67
 
 
 -- A ":result" value of ":*" specifies a vector of records
@@ -40,6 +43,9 @@ WHERE
 	AND SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
 	AND SkillHeadline.SkillHeadlineID = :id
 	AND SkillHeadlineTerm.languageID = 502
+        AND SkillHeadlineTerm.versionID = 67
+        AND SkillHeadline.versionID = 67
+        AND Skill.versionID = 67
 
 
 -- A ":result" value of ":*" specifies a vector of records
@@ -55,6 +61,8 @@ WHERE
         AND SkillTerm.skillID = Skill.skillID
 	AND SkillTerm.countryID = Skill.countryID
 	AND SkillTerm.languageID = 502
+        AND Skill.versionID = 67
+        AND SkillTerm.versionID = 67
 
 
 -- A ":result" value of ":*" specifies a vector of records
@@ -67,6 +75,8 @@ WHERE
 	SKillReference.countryIDRef = SKill.countryID
 	AND SKillReference.skillIDRef = SKill.skillID
 	AND Skill.skillID = :id
+        AND Skill.versionID = 67
+        AND SkillReference.versionID = 67
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
