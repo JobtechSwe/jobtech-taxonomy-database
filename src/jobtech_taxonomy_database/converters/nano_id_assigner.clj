@@ -22,7 +22,7 @@
 (defn open-json
   "Open json, return map with json keyword formatted as clojure keywords."
   []
-  (parse-string (slurp "resources/taxonomy_to_concept.json") true)
+  (parse-string (slurp "resources/taxonomy_to_concept_v67.json") true)
   )
 
 (def taxonomy-67 (open-json))
