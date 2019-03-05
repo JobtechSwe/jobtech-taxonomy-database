@@ -1,8 +1,8 @@
 (ns jobtech-taxonomy-database.converters.nano-id-assigner
   (:gen-class)
   (:require [cheshire.core :refer :all]
+            [clojure.string :as str]
             [nano-id.custom :refer [generate]]))
-
 
 (def base-58-nano-id (generate "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"))
 
@@ -54,16 +54,19 @@
   (let [description (find-description category-67 id-67)]
     (if (= description-67 description) "same description" "different description")))
 
-#_(defn get-nano
-  "Compare ID + description from sql with json.
-  If same, take nanoID from json. Else, generate new nanoID"
-  [category-67 id-67 description-67]
-  (let [eval-description (compare-descriptions category-67 id-67 description-67)
-        nano-id (compare-ids category-67 id-67)]
-    (if (and (= "same description" eval-description)
-             (not= nano-id "no nano-id")) nano-id (generate-new-id-with-underscore))))
-
 (defn get-nano
   [category id]
-  (get-in taxonomy-67 [(keyword category) (keyword id) :conceptId] (generate-new-id-with-underscore))
-  )
+  (get-in taxonomy-67 [(keyword category) (keyword id) :conceptId] (generate-new-id-with-underscore)))
+
+(defn append-line "" [file line]
+  (with-open [w (clojure.java.io/writer file :append true)]
+    (.write w line)))
+
+(defn get-nano-log-updates "writes to hardcoded filename atm"
+  [category id term]
+  (let* [lookup-id (get-in taxonomy-67 [(keyword category) (keyword id) :conceptId])]
+    (if lookup-id
+       lookup-id
+       (let [new-id (generate-new-id-with-underscore)]
+         (append-line "/tmp/ids.json" (format "{ %s { %s { :preferredTerm \"%s\" :conceptId \"%s\" :type \"%s\" } } }\n" category id term new-id (str/replace category #"^:(.*)$" "$1")))
+         new-id))))
