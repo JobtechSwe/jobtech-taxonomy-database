@@ -103,12 +103,15 @@ AND LanguageLevelTerm.versionID = 67
 
 
 -- A ":result" value of ":*" specifies a vector of records
+-- NOTE BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
 -- :name get-worktime-extent :*
 -- :doc Get all worktime extents
 SELECT Arbetstid.*, ArbetstidTerm.*
 FROM TaxonomyDBSvensk.dbo.Arbetstid Arbetstid, TaxonomyDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
+AND Arbetstid.versionID = 1
+AND ArbetstidTerm.versionID = 1
 
 
 ------------------START NEW geogarphic taxonomy--------------------
