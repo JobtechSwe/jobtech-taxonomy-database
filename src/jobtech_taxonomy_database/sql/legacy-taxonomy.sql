@@ -201,6 +201,8 @@ SELECT Country.*, CountryTerm.*
 FROM TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm
 WHERE CountryTerm.countryID = Country.countryID
 AND LanguageID = 502
+AND Country.versionID = 67
+AND CountryTerm.versionID = 67
 --TODO dont add "sort", (i NUTSCode är NULL samma som inget)
 
 
