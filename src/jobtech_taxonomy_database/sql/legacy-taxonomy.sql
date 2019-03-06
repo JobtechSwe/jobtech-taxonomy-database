@@ -86,6 +86,9 @@ SELECT Language.*, LanguageTerm.*
 FROM TaxonomyDB.dbo.[Language] Language, TaxonomyDB.dbo.LanguageTerm LanguageTerm
 WHERE LanguageTerm.translationLanguageID = 502
 AND Language.languageID = 502
+AND Language.versionID = 67
+AND LanguageTerm.versionID = 67
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
