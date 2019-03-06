@@ -12,14 +12,15 @@
 (defn converter
   "Immutable language converter."
   [data]
-  (let [category-67 :employment-type                        ;json-nyckeln
-        id-67 (keyword (str (:anstallningtypjobbid data)))  ;ska matcha legacyAmsTaxonomyId i json
-        description-67 (:beteckning data)]                  ;ska matcha preferredTerm i json
-    (let [nano-id (get-nano category-67 id-67 description-67)]
+  (let [category-67 :employment-type              ;json-nyckeln
+        id-67 (str (:anstallningtypjobbid data))  ;ska matcha legacyAmsTaxonomyId i json
+        description-67 (:beteckning data)]        ;ska matcha preferredTerm i json
+    (let [nano-id (get-nano category-67 (keyword id-67))]
       [{:concept/id                nano-id
         :concept/description       description-67
         :concept/preferred-term    nano-id
-        :concept/alternative-terms #{nano-id}
+        :concept.taxonomy-67-id    id-67
+        :concept/category          category-67
         :concept.category/sort-order (:isortering data)
         }
        {:db/id          nano-id

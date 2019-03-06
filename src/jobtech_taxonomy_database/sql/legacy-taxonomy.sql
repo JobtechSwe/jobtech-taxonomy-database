@@ -103,7 +103,7 @@ AND LanguageLevelTerm.versionID = 67
 
 
 -- A ":result" value of ":*" specifies a vector of records
--- NOTE BENE: the database contains versionID 1, not 67.
+-- NOTA BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
 -- :name get-worktime-extent :*
 -- :doc Get all worktime extents
@@ -252,7 +252,7 @@ AND DrivingLicenceTerm.versionID = 67
 
 
 -- A ":result" value of ":*" specifies a vector of records
--- NOTE BENE: the database contains versionID 1, not 67.
+-- NOTA BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
 -- :name get-employment-duration :*
 -- :doc Get all employment durations
@@ -265,12 +265,16 @@ AND AnställningsvaraktighetTerm.versionID = 1
 
 
 -- A ":result" value of ":*" specifies a vector of records
+-- NOTA BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
 -- :name get-employment-type :*
 -- :doc Get all employment types ;
 SELECT AnstallningTypJobb.*, AnstallningTypJobbTerm.*
 FROM TaxonomyDBSvensk.dbo.AnstallningTypJobb AnstallningTypJobb, TaxonomyDBSvensk.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
 WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.AnstallningTypJobbID
+AND AnstallningTypJobb.versionID = 1
+AND AnstallningTypJobbTerm.versionID = 1
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
