@@ -18,7 +18,10 @@
                  ]
   :main ^:skip-aot jobtech-taxonomy-database.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}}
+  :profiles {:uberjar {:aot :all}
+             :merge-ids {:main jobtech-taxonomy-database.utils.merge-new-nano-ids}}
+  :aliases  {"main"   ["with-profile" "uberjar" "run"]
+             "merge"  ["with-profile" "merge-ids" "run"]}
   :java-cmd "/usr/bin/java"
   :plugins [[lein-cljfmt "0.6.3"]]
 

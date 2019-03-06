@@ -22,7 +22,7 @@
 (defn open-json
   "Open json, return map with json keyword formatted as clojure keywords."
   []
-  (parse-string (slurp "resources/taxonomy_to_concept_v67.json") true)
+  (parse-string (slurp "resources/taxonomy_to_concept_with_headlines_and_mainheadlines_v67.json") true)
   )
 
 (def taxonomy-67 (open-json))
@@ -68,5 +68,5 @@
     (if lookup-id
        lookup-id
        (let [new-id (generate-new-id-with-underscore)]
-         (append-line "/tmp/ids.json" (format "{ %s { %s { :preferredTerm \"%s\" :conceptId \"%s\" :type \"%s\" } } }\n" category id term new-id (str/replace category #"^:(.*)$" "$1")))
+         (append-line "resources/new-ids.json" (format "{ %s { %s { :preferredTerm \"%s\" :conceptId \"%s\" :type \"%s\" } } }\n" category id term new-id (str/replace category #"^:(.*)$" "$1")))
          new-id))))
