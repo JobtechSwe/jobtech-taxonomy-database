@@ -51,8 +51,8 @@
                    :relation/type          :hyperonym}
                   {:db/id                  (make-tempid-concept "skill" skill-id)
                    :concept/id             nano-id
-                   :concept.taxonomy-67-id/id   skill-id
-                   :concept/description    (get pref-term :db/id)
+                   :concept.taxonomy-67-id (str skill-id)
+                   :concept/description    (get pref-term :term/base-form)
                    :concept/preferred-term (get pref-term :db/id)
                    :concept/alternative-terms (map #(get % :db/id) alt-terms)}))))
 
@@ -60,8 +60,8 @@
   (let [skills-conv (mapcat (fn [id]
                               (convert-skill headline (get id :skill_id)))
                             (fetch-data get-skills-for-headline { :id (get headline :head_id) }))
-        id-67 (keyword (str (get headline :head_id)))
-        nano-id (get-nano-log-updates :skill id-67 (get headline :head_term))]
+        id-67 (str (get headline :head_id))
+        nano-id (get-nano-log-updates :skill-head (keyword id-67) (get headline :head_term))]
     (concat skills-conv
             (list {:relation/concept-1     (make-tempid-concept "main-headline" (get main-headline :main_id))
                    :relation/concept-2     (make-tempid-concept "headline" (get headline :head_id))
@@ -73,23 +73,22 @@
                    :concept/id             nano-id
                    :concept/description    (get headline :head_term)
                    :concept/preferred-term (make-tempid-term (get headline :head_term) (get headline :lang))
-                   :concept.taxonomy-67-id id-67}
+                   :concept.taxonomy-67-id (str id-67)}
                   {:db/id  (make-tempid-term (get headline :head_term) (get headline :lang))
                    :term/base-form (get headline :head_term)}))))
-
 
 (defn convert-mainhead "" [main-headline]
   (let [headlines-conv (mapcat (fn [headline]
                                  (convert-head main-headline headline))
                                (fetch-data get-skill-headlines {:id (get main-headline :main_id)}))]
     (concat headlines-conv
-            (let* [id-67 (keyword (str (get main-headline :main_id)))
-                   nano-id (get-nano-log-updates :skill id-67 (get main-headline :main_term))]
+            (let* [id-67 (str (get main-headline :main_id))
+                   nano-id (get-nano-log-updates :skill-mainhead (keyword id-67) (get main-headline :main_term))]
               (list {:db/id                     (make-tempid-concept "main-headline" (get main-headline :main_id))
                      :concept/id                nano-id
                      :concept/description       (get main-headline :main_term)
                      :concept/preferred-term    (make-tempid-term (get main-headline :main_term) (get main-headline :lang))
-                     :concept.taxonomy-67-id    id-67}
+                     :concept.taxonomy-67-id    (str (get main-headline :main_id))}
                     {:db/id                     (make-tempid-term (get main-headline :main_term) (get main-headline :lang))
                      :term/base-form            (get main-headline :main_term)})))))
 
