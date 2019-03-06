@@ -238,6 +238,9 @@ SELECT DrivingLicence.*, DrivingLicenceTerm.*
 FROM TaxonomyDB.dbo.DrivingLicence DrivingLicence, TaxonomyDB.dbo.DrivingLicenceTerm DrivingLicenceTerm
 WHERE DrivingLicenceTerm.drivingLicenceID = DrivingLicence.drivingLicenceID
 AND LanguageID = 502
+AND DrivingLicence.versionID = 67
+AND DrivingLicenceTerm.versionID = 67
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
