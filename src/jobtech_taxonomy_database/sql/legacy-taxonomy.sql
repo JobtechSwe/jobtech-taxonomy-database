@@ -243,6 +243,7 @@ AND DrivingLicenceTerm.versionID = 67
 
 
 -- A ":result" value of ":*" specifies a vector of records
+-- NOTE BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
 -- :name get-employment-duration :*
 -- :doc Get all employment durations
@@ -250,6 +251,9 @@ SELECT Anställningsvaraktighet.*, AnställningsvaraktighetTerm.*
 FROM TaxonomyDBSvensk.dbo.Anställningsvaraktighet Anställningsvaraktighet,
      TaxonomyDBSvensk.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
 WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsvaraktighet.anställningsvaraktighetsID
+AND Anställningsvaraktighet.versionID = 1
+AND AnställningsvaraktighetTerm.versionID = 1
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
