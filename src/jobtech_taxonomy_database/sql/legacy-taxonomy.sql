@@ -277,13 +277,15 @@ AND AnstallningTypJobbTerm.versionID = 1
 
 
 -- A ":result" value of ":*" specifies a vector of records
+-- NOTA BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
 -- :name get-wage-type :*
 -- :doc Get all wage types ;
 SELECT Löneform.*, LöneformTerm.*
 FROM TaxonomyDBSvensk.dbo.Löneform Löneform, TaxonomyDBSvensk.dbo.LöneformTerm LöneformTerm
 WHERE LöneformTerm.löneformsID = Löneform.löneformsID
-
+AND Löneform.versionID = 1
+AND LöneformTerm.versionID = 1
 
 
 -- A ":result" value of ":*" specifies a vector of records
