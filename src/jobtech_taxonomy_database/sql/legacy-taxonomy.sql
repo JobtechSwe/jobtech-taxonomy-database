@@ -179,7 +179,10 @@ SELECT Continent.continentID AS continent_id,
 		ContinentTerm.term AS continent_term
 FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
 WHERE ContinentTerm.continentID = Continent.continentID
-AND LanguageID = 502
+AND ContinentTerm.languageID = 502
+AND Continent.versionID = 67
+AND ContinentTerm.versionID = 67
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
