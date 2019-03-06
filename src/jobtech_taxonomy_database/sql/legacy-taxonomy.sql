@@ -98,6 +98,9 @@ SELECT LanguageLevel.*, LanguageLevelTerm.*
 FROM TaxonomyDB.dbo.LanguageLevel LanguageLevel, TaxonomyDB.dbo.LanguageLevelTerm LanguageLevelTerm
 WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID
 AND LanguageID = 502
+AND LanguageLevel.versionID = 67
+AND LanguageLevelTerm.versionID = 67
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
