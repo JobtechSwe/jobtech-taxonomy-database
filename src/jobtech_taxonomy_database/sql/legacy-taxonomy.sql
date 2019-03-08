@@ -6,7 +6,7 @@ SELECT SkillMainHeadlineTerm.skillMainHeadlineID AS main_id,
        SkillMainHeadlineTerm.term AS main_term,
        SkillMainHeadlineTerm.languageID AS lang,
        SkillMainHeadlineTerm.modificationDate AS main_date
-FROM   TaxonomyDB.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
+FROM   TaxonomyDBVersion.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
 WHERE  SkillMainHeadlineTerm.languageID = 502
        AND SkillMainHeadlineTerm.versionID = 67
 
@@ -22,7 +22,7 @@ WHERE  SkillMainHeadlineTerm.languageID = 502
 SELECT SkillHeadlineTerm.skillHeadlineID as head_id,
        SkillHeadlineTerm.term AS head_term,
        SkillHeadlineTerm.languageID AS lang
-FROM TaxonomyDB.dbo.SkillHeadline SkillHeadline, TaxonomyDB.dbo.SkillHeadlineTerm SkillHeadlineTerm, TaxonomyDB.dbo.SkillMainHeadline SkillMainHeadline
+FROM TaxonomyDBVersion.dbo.SkillHeadline SkillHeadline, TaxonomyDBVersion.dbo.SkillHeadlineTerm SkillHeadlineTerm, TaxonomyDBVersion.dbo.SkillMainHeadline SkillMainHeadline
 WHERE
 	SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
 	AND SkillHeadline.skillMainHeadlineID = :id
@@ -37,7 +37,7 @@ WHERE
 -- :name get-skills-for-headline :?
 -- :doc Get all skills that belong to the given headline
 SELECT Skill.skillID AS skill_id
-FROM   TaxonomyDB.dbo.Skill Skill, TaxonomyDB.dbo.SkillHeadline SkillHeadline, TaxonomyDB.dbo.SkillHeadlineTerm SkillHeadlineTerm
+FROM   TaxonomyDBVersion.dbo.Skill Skill, TaxonomyDBVersion.dbo.SkillHeadline SkillHeadline, TaxonomyDBVersion.dbo.SkillHeadlineTerm SkillHeadlineTerm
 WHERE
 	Skill.skillHeadlineID = SkillHeadline.skillHeadlineID
 	AND SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
@@ -55,7 +55,7 @@ WHERE
 SELECT SkillTerm.term AS term,
        SkillTerm.languageID AS lang,
        SkillTerm.skillID AS skill_id
-FROM TaxonomyDB.dbo.SkillTerm SkillTerm, TaxonomyDB.dbo.Skill
+FROM TaxonomyDBVersion.dbo.SkillTerm SkillTerm, TaxonomyDBVersion.dbo.Skill
 WHERE
 	SkillTerm.skillID = :id
         AND SkillTerm.skillID = Skill.skillID
@@ -70,7 +70,7 @@ WHERE
 -- :name get-referenced-skill-terms :?
 -- :doc Get the referenced skill terms that belong to the given skill
 SELECT SkillReference.term AS term
-FROM TaxonomyDB.dbo.SkillReference SkillReference, TaxonomyDB.dbo.Skill Skill
+FROM TaxonomyDBVersion.dbo.SkillReference SkillReference, TaxonomyDBVersion.dbo.Skill Skill
 WHERE
 	SKillReference.countryIDRef = SKill.countryID
 	AND SKillReference.skillIDRef = SKill.skillID
@@ -83,7 +83,7 @@ WHERE
 -- :name get-language :*
 -- :doc Get all langages
 SELECT Language.*, LanguageTerm.*
-FROM TaxonomyDB.dbo.[Language] Language, TaxonomyDB.dbo.LanguageTerm LanguageTerm
+FROM TaxonomyDBVersion.dbo.[Language] Language, TaxonomyDBVersion.dbo.LanguageTerm LanguageTerm
 WHERE LanguageTerm.translationLanguageID = 502
 AND Language.languageID = 502
 AND Language.versionID = 67
@@ -95,7 +95,7 @@ AND LanguageTerm.versionID = 67
 -- :name get-language-level :*
 -- :doc Get all langage-levels
 SELECT LanguageLevel.*, LanguageLevelTerm.*
-FROM TaxonomyDB.dbo.LanguageLevel LanguageLevel, TaxonomyDB.dbo.LanguageLevelTerm LanguageLevelTerm
+FROM TaxonomyDBVersion.dbo.LanguageLevel LanguageLevel, TaxonomyDBVersion.dbo.LanguageLevelTerm LanguageLevelTerm
 WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID
 AND LanguageID = 502
 AND LanguageLevel.versionID = 67
@@ -108,7 +108,7 @@ AND LanguageLevelTerm.versionID = 67
 -- :name get-worktime-extent :*
 -- :doc Get all worktime extents
 SELECT Arbetstid.*, ArbetstidTerm.*
-FROM TaxonomyDBSvensk.dbo.Arbetstid Arbetstid, TaxonomyDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
+FROM TaxonomyDBSvenskVersion.dbo.Arbetstid Arbetstid, TaxonomyDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
 AND Arbetstid.versionID = 1
 AND ArbetstidTerm.versionID = 1
@@ -128,10 +128,10 @@ SELECT Continent.continentID AS [continent-id],
 		NULL AS [region-eu-id],
 		NULL AS [region-nuts-code-level-3],
 		NULL AS [region-eu-term]
-FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
+FROM TaxonomyDBVersion.dbo.Continent Continent, TaxonomyDBVersion.dbo.ContinentTerm ContinentTerm
 WHERE
 	ContinentTerm.continentID = Continent.continentID
-	AND Continent.continentID NOT IN (SELECT ContinentID FROM TaxonomyDB.dbo.Country)
+	AND Continent.continentID NOT IN (SELECT ContinentID FROM TaxonomyDBVersion.dbo.Country)
 	AND ContinentTerm.languageID = 502
 UNION
 SELECT Continent.continentID AS [continent-id],
@@ -142,15 +142,15 @@ SELECT Continent.continentID AS [continent-id],
 		NULL AS [region-eu-id],
 		NULL AS [region-nuts-code-level-3],
 		NULL AS [region-eu-term]
-FROM TaxonomyDB.dbo.Continent Continent,
-    TaxonomyDB.dbo.ContinentTerm ContinentTerm,
-    TaxonomyDB.dbo.Country Country,
-    TaxonomyDB.dbo.CountryTerm CountryTerm
+FROM TaxonomyDBVersion.dbo.Continent Continent,
+    TaxonomyDBVersion.dbo.ContinentTerm ContinentTerm,
+    TaxonomyDBVersion.dbo.Country Country,
+    TaxonomyDBVersion.dbo.CountryTerm CountryTerm
 WHERE
 	ContinentTerm.continentID = Continent.continentID
 	AND Country.continentID = Continent.continentID
 	AND CountryTerm.countryID = Country.countryID
-	AND CountryTerm.countryID NOT IN (SELECT countryID FROM TaxonomyDB.dbo.EURegion)
+	AND CountryTerm.countryID NOT IN (SELECT countryID FROM TaxonomyDBVersion.dbo.EURegion)
 	AND ContinentTerm.languageID = 502
     AND CountryTerm.languageID = 502
 UNION
@@ -162,12 +162,12 @@ SELECT Continent.continentID AS [continent-id],
 		EURegion.EURegionID AS [region-eu-id],
 		EURegion.NUTSCodeLevel3 AS [region-nuts-code-level-3],
 		EURegionTerm.term AS [region-eu-term]
-FROM TaxonomyDB.dbo.Continent Continent,
-	TaxonomyDB.dbo.ContinentTerm ContinentTerm,
-	TaxonomyDB.dbo.Country Country,
-	TaxonomyDB.dbo.CountryTerm CountryTerm,
-	TaxonomyDB.dbo.EURegion EURegion,
-	TaxonomyDB.dbo.EURegionTerm EURegionTerm
+FROM TaxonomyDBVersion.dbo.Continent Continent,
+	TaxonomyDBVersion.dbo.ContinentTerm ContinentTerm,
+	TaxonomyDBVersion.dbo.Country Country,
+	TaxonomyDBVersion.dbo.CountryTerm CountryTerm,
+	TaxonomyDBVersion.dbo.EURegion EURegion,
+	TaxonomyDBVersion.dbo.EURegionTerm EURegionTerm
 WHERE
 	ContinentTerm.continentID = Continent.continentID
 	AND Country.continentID = Continent.continentID
@@ -186,7 +186,7 @@ WHERE
 -- :doc Get all continents
 SELECT Continent.continentID AS continent_id,
 		ContinentTerm.term AS continent_term
-FROM TaxonomyDB.dbo.Continent Continent, TaxonomyDB.dbo.ContinentTerm ContinentTerm
+FROM TaxonomyDBVersion.dbo.Continent Continent, TaxonomyDBVersion.dbo.ContinentTerm ContinentTerm
 WHERE ContinentTerm.continentID = Continent.continentID
 AND ContinentTerm.languageID = 502
 AND Continent.versionID = 67
@@ -199,7 +199,7 @@ AND ContinentTerm.versionID = 67
 -- :doc Get all countries that belong to the given continent ID
 SELECT Country.countryID AS country_id,
        CountryTerm.term as country_term
-FROM TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm, TaxonomyDB.dbo.Continent Continent
+FROM TaxonomyDBVersion.dbo.Country Country, TaxonomyDBVersion.dbo.CountryTerm CountryTerm, TaxonomyDBVersion.dbo.Continent Continent
 WHERE Country.CountryID = CountryTerm.CountryID
 AND Country.ContinentID = :id
 AND Continent.ContinentID = :id
@@ -210,7 +210,7 @@ AND LanguageID = 502
 -- :name get-country :*
 -- :doc Get all countries
 SELECT Country.*, CountryTerm.*
-FROM TaxonomyDB.dbo.Country Country, TaxonomyDB.dbo.CountryTerm CountryTerm
+FROM TaxonomyDBVersion.dbo.Country Country, TaxonomyDBVersion.dbo.CountryTerm CountryTerm
 WHERE CountryTerm.countryID = Country.countryID
 AND LanguageID = 502
 AND Country.versionID = 67
@@ -224,7 +224,7 @@ AND CountryTerm.versionID = 67
 -- :doc Get all NUT level 3 codes for EU regions
 SELECT EURegion.NUTSCodeLevel3 as region-id,
 	   EURegionTerm.term as region-term
-FROM TaxonomyDB.dbo.EURegion EURegion, TaxonomyDB.dbo.EURegionTerm EURegionTerm
+FROM TaxonomyDBVersion.dbo.EURegion EURegion, TaxonomyDBVersion.dbo.EURegionTerm EURegionTerm
 WHERE EURegion.countryID = :id
 AND EURegionTerm.EURegionID = EURegion.EURegionID
 AND LanguageID = 502
@@ -235,7 +235,7 @@ AND LanguageID = 502
 -- :name get-nuts-code :*
 -- :doc Get all NUTS level 3 codes for EU regions
 SELECT EURegion.*, EURegionTerm.*
-FROM TaxonomyDB.dbo.EURegion EURegion, TaxonomyDB.dbo.EURegionTerm EURegionTerm
+FROM TaxonomyDBVersion.dbo.EURegion EURegion, TaxonomyDBVersion.dbo.EURegionTerm EURegionTerm
 WHERE EURegionTerm.EURegionID = EURegion.EURegionID
 AND LanguageID = 502
 
@@ -244,7 +244,7 @@ AND LanguageID = 502
 -- :name get-drivers-license :*
 -- :doc Get all driver's license categories
 SELECT DrivingLicence.*, DrivingLicenceTerm.*
-FROM TaxonomyDB.dbo.DrivingLicence DrivingLicence, TaxonomyDB.dbo.DrivingLicenceTerm DrivingLicenceTerm
+FROM TaxonomyDBVersion.dbo.DrivingLicence DrivingLicence, TaxonomyDBVersion.dbo.DrivingLicenceTerm DrivingLicenceTerm
 WHERE DrivingLicenceTerm.drivingLicenceID = DrivingLicence.drivingLicenceID
 AND LanguageID = 502
 AND DrivingLicence.versionID = 67
@@ -324,3 +324,46 @@ LocaleField.versionID = LocaleFieldTerm.versionID
 AND LocaleField.localeFieldID = LocaleFieldTerm.localeFieldID
 AND LocaleField.versionID = 67
 AND LocaleFieldTerm.languageID = 502
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-isco-level-4 :*
+-- :doc Get isco level 4 ;
+SELECT OccupationGroup.*, OccupationGroupTerm.*
+FROM TaxonomyDBVersion.dbo.OccupationGroup OccupationGroup, TaxonomyDBVersion.dbo.OccupationGroupTerm OccupationGroupTerm
+WHERE
+OccupationGroup.versionID = OccupationGroupTerm.versionID
+AND OccupationGroup.occupationGroupID = OccupationGroupTerm.occupationGroupID
+AND OccupationGroupTerm.languageID = 502
+AND OccupationGroup.versionID = 67
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-ssyk-skill-relation:*
+-- :doc get ssyk skill relation ;
+SELECT versionID, skillID, countryID, localeGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill
+WHERE TaxonomyDBVersion.dbo.LocaleGroup_Skill.versionID = 67
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-occupation-name-affinity:*
+-- :doc get affinity relations between occupations ;
+SELECT AffinityRate.*, OccupationNameAffinity.*
+FROM TaxonomyDBVersion.dbo.AffinityRate AffinityRate, TaxonomyDBVersion.dbo.OccupationNameAffinity OccupationNameAffinity
+WHERE
+AffinityRate.versionID = OccupationNameAffinity.versionID
+AND AffinityRate.affinityRateID = OccupationNameAffinity.affinityRateID
+
+
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-occupation-collection:*
+-- :doc get occupation collection ;
+SELECT CollectionOccupation.*, OccupationCollection.*
+FROM TaxonomyDBVersion.dbo.CollectionOccupation CollectionOccupation, TaxonomyDBVersion.dbo.OccupationCollection OccupationCollection
+WHERE
+OccupationCollection.versionID = CollectionOccupation.versionID
+AND
+OccupationCollection.collectionID = CollectionOccupation.collectionID

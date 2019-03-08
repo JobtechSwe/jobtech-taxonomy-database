@@ -59,7 +59,6 @@
         temp-id  (str "occupation-group-" localegroupid)
         temp-id-field (str "occupation-field-" localefieldid)
         concept (assoc (create-concept nano-id temp-id term description :occupation-group) :concept.external-standard/ssyk-2012 localecode)
-
         ]
     [
      concept
@@ -72,7 +71,6 @@
 (defn convert-occupation-name
   [{:keys [term occupationgroupid occupationnameid localegroupid]}]
   {:pre [term occupationgroupid occupationnameid localegroupid]}
-
   (let [nano-id (get-nano "occupation-name" (str occupationnameid))
         temp-id (str "occupation-name-" occupationnameid)
         temp-id-ssyk (str "occupation-group-" (str localegroupid) )
@@ -88,7 +86,6 @@
      {:db/id          nano-id
       :term/base-form term}
      {
-
       :relation/concept-1 temp-id
       :relation/concept-2 temp-id-ssyk
       :relation/type :hyperonym    ;; TODO decide how to model this properly
@@ -96,6 +93,20 @@
      ]
     )
   )
+
+(defn convert-isco
+  [{:keys [isco ilo occupationfieldid term occupationgroupid description]}]
+  {:pre [isco ilo occupationfieldid term occupationgroupid description]}
+
+  (let [nano-id (get-nano "isco-" (str occupationgroupid)) ;; I've named it isco-
+        temp-id (str "isco-" occupationgroupid)
+        ]
+    [
+     (create-concept nano-id temp-id term description :isco)
+     (create-term nano-id term)
+     ]
+    )
+)
 
 (defn convert
   ""
