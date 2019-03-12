@@ -114,6 +114,63 @@ AND Arbetstid.versionID = 1
 AND ArbetstidTerm.versionID = 1
 
 
+------------------START EVEN NEWER geographic taxonomy--------------------
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-continents :*
+-- :doc Get all continents
+SELECT Continent.continentID AS [id],
+	ContinentTerm.term AS [term]
+FROM TaxonomyDBVersion.dbo.Continent Continent, TaxonomyDBVersion.dbo.ContinentTerm ContinentTerm
+WHERE ContinentTerm.versionID = 67
+AND Continent.versionID = 67
+AND Continent.continentID = ContinentTerm.continentID
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-countries :*
+-- :doc Get all countries
+SELECT Country.continentID AS [parent-id],
+	Country.countryID AS [id],
+	CountryTerm.term AS [term],
+	Country.countryCode AS [code]
+FROM TaxonomyDBVersion.dbo.Country Country, TaxonomyDBVersion.dbo.CountryTerm CountryTerm
+WHERE Country.versionID = 67
+AND	CountryTerm.versionID = 67
+AND Country.countryID = CountryTerm.countryID
+AND languageID = 502
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-EU-regions :*
+-- :doc Get all EU regions
+SELECT EURegion.countryID AS [parent-id],
+	EURegion.EURegionID AS [id],
+	EURegionTerm.term AS [term],
+	EURegion.NUTSCodeLevel3 AS [code]
+FROM TaxonomyDBVersion.dbo.EURegion EURegion, TaxonomyDBVersion.dbo.EURegionTerm EURegionTerm
+WHERE EURegion.versionID = EURegionTerm.versionID
+AND EURegion.EURegionID = EURegionTerm.EURegionID
+AND EURegionTerm.languageID = 502
+AND	EURegionTerm.versionID = 67
+AND EURegion.versionID = 67
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-municipalities :*
+-- :doc Get all municipalities
+SELECT Municipality.EURegionID AS [parent-id],
+    Municipality.municipalityID AS [id],
+	MunicipalityTerm.term AS [term]
+FROM TaxonomyDBVersion.dbo.Municipality Municipality, TaxonomyDBVersion.dbo.MunicipalityTerm MunicipalityTerm
+WHERE Municipality.versionID = MunicipalityTerm.versionID
+AND Municipality.municipalityID = MunicipalityTerm.municipalityID
+AND	MunicipalityTerm.versionID = 67
+AND Municipality.versionID = 67
+
+
+
 ------------------START NEW geogarphic taxonomy--------------------
 
 -- A ":result" value of ":*" specifies a vector of records

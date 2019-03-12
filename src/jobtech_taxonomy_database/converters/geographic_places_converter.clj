@@ -9,9 +9,14 @@
             [cheshire.core :refer :all]
             [nano-id.custom :refer [generate]]))
 
+(defn ^:private make-tempid-concept
+  ""
+  [category id]
+  (str "temp-id-" category "-" id))
 
-;TODO Continue with relation-converter.
-(defn relation-converter
+
+;(TODO Continue with relation-converter.)
+(defn convert-relation
   ""
   [concept-1 concept-2 relationship-type]
   [
@@ -22,91 +27,156 @@
   )
 
 
-(defn region-converter
+(defn convert-concept
   ""
-  [nano-id-region term-67-region category-67-region id-67-region nuts]
+  [temp-id nano-id term category legacy-id code]
   [
    (merge
-     {:concept/description      term-67-region
-      :concept/preferred-term   nano-id-region
-      :concept/category         category-67-region
-      :concept.taxonomy-67-id   id-67-region
-      :concept/id               nano-id-region}
+     {:concept/id               nano-id
+      :concept/description      term
+      :concept/preferred-term   temp-id
+      :concept/category         category
+      :concept.taxonomy-67-id   legacy-id}
      (when
-       (not= nuts nil)
-       {:region-nuts-code-level-3 nuts})
-     )
-   {:db/id                     nano-id-region
-    :term/base-form             term-67-region}
+       (and (not= code nil) (= category "region"))
+       {:concept.external-standard/nuts-level-3-code code})
+     (when
+       (and (not= code nil) (= category "country"))
+          {:concept.external-standard/country-code code}
+     ))
+   {:db/id                     temp-id
+    :term/base-form             term}
    ]
   )
 
-(defn country-converter
-  ""
-  [nano-id-country term-67-country category-67-country id-67-country country-code]
-  [
-   {:concept/id                nano-id-country
-    :concept/description       term-67-country
-    :concept/preferred-term    nano-id-country
-    :concept/category          category-67-country
-    :concept.taxonomy-67-id    id-67-country
-    :concept.external-standard/country-code country-code}
-   {:db/id                     nano-id-country
-    :term/base-form            term-67-country}
-   ]
-  )
-
-(defn continent-converter
-  ""
-  [nano-id-continent term-67-continent category-67-continent id-67-continent]
-  [
-   {:concept/id                nano-id-continent
-    :concept/description       term-67-continent
-    :concept/preferred-term    nano-id-continent
-    :concept/category          category-67-continent
-    :concept.taxonomy-67-id    id-67-continent}
-   {:db/id                     nano-id-continent
-    :term/base-form            term-67-continent}
-   ]
-  )
 
 (defn converter
-  "Immutable language converter."
-  [data]
-  (let [
-        category-67-continent :continent                        ;json-nyckeln
-        category-67-country :country
-        category-67-region :eu-region
-        id-67-continent (keyword (str (:continent-id data)))    ;ska matcha legacyAmsTaxonomyId i json
-        id-67-country (if
-                        (not= (:country-id data) nil)
-                        (keyword (str (:country-id data))))
-        id-67-region (if
-                       (not= (:region-eu-id data) nil)
-                        (keyword (str (:region-eu-id data))))
-        term-67-continent (:continent-term data)
-        term-67-country (:country-term data)
-        term-67-region (:region-eu-term data)                   ;ska matcha preferredTerm i json
-        nano-id-continent (if
-                            (not= id-67-continent nil)
-                            (get-nano category-67-continent id-67-continent term-67-continent))
-        nano-id-country (if
-                          (not= id-67-country nil)
-                          (get-nano category-67-country id-67-country term-67-country))
-        nano-id-region (if
-                         (not= id-67-region nil)
-                         (get-nano category-67-region id-67-region term-67-region))
-        nuts-code (if
-                    (not= (:region-nuts-code-level-3 data) nil)
-                    (keyword (str (:region-nuts-code-level-3 data))))
-        country-code (keyword (:country-code data))
-        ]
-    (concat
-      (if id-67-continent (continent-converter nano-id-continent term-67-continent category-67-continent id-67-continent))
-      (if id-67-country (country-converter nano-id-country term-67-country category-67-country id-67-country country-code))
-      (if id-67-region (region-converter nano-id-region term-67-region category-67-region id-67-region nuts-code))
-      )
-    )
+  "(Immutable language converter.)"
+  [data category parent-category]
+  (let [legacy-id (str (:id data))
+        term (str (:term data))
+        code (if (:code data)
+               (str (:code data))
+               nil)
+        nano-id (if (not= legacy-id nil)
+                  (get-nano category legacy-id))
+        temp-id (make-tempid-concept category legacy-id)
+        temp-id-parent (if (not= (:parent-id data) nil)
+                         (make-tempid-concept parent-category (:parent-id data)))]
+    (list
+      (convert-concept
+      temp-id
+      nano-id
+      term
+      category
+      legacy-id
+      code)
+    (convert-relation
+      temp-id-parent
+      temp-id
+      (str parent-category " to " category)))))
+
+
+
+(def sql-continents
+  "continent"
+  '({:id 0, :term "Hela världen"}
+    {:id 2, :term "Europa/EU/EES/EURES"}
+    {:id 3, :term "Sydamerika"}
+    {:id 6, :term "Nordamerika"}
+    {:id 8, :term "Antarktis"}))
+
+(defn convert-continent
+  ""
+  []
+  (mapcat (fn [x] (converter x "continent" nil)) sql-continents))
+
+(def sql-countries
+  "country"
+  '({:parent-id 20, :id 1, :term "Afghanistan", :code "AF"}
+     {:parent-id 9, :id 2, :term "Albanien", :code "AL"}
+     {:parent-id 12, :id 3, :term "Algeriet", :code "DZ"}
+     {:parent-id 26, :id 4, :term "Amerikanska Samoa", :code "AS"}
+     {:parent-id 3, :id 5, :term "Amerikanska, mindre uteliggande öar", :code "UM"}))
+
+(defn convert-country
+  ""
+  []
+  (mapcat (fn [x] (converter x "country" "continent")) sql-countries))
+
+(def sql-eu-regions
+  "region"
+  '({:parent-id 59, :id 1, :term "Pirkanmaa", :code "FI197"}
+    {:parent-id 59, :id 3, :term "Etela-Savo", :code "FI1D1"}
+    {:parent-id 59, :id 4, :term "Pohjois-Savo", :code "FI1D2"}
+    {:parent-id 59, :id 5, :term "Pohjois-Karjala", :code "FI1D3"}
+    {:parent-id 59, :id 6, :term "Keski-Suomi", :code "FI193"}))
+
+(defn convert-region
+  ""
+  []
+  (mapcat (fn [x] (converter x "region" "country")) sql-eu-regions))
+
+(def sql-municipalities
+  "municipality"
+  '({:parent-id 197, :id 1, :term "Upplands Väsby"}
+    {:parent-id 197, :id 2, :term "Vallentuna"}
+    {:parent-id 197, :id 3, :term "Österåker"}
+    {:parent-id 197, :id 4, :term "Värmdö"}
+    {:parent-id 197, :id 5, :term "Järfälla"}))
+
+(defn convert-municipality
+  ""
+  []
+  (mapcat (fn [x] (converter x "municipality" "region")) sql-municipalities))
+
+
+#_
+(defn convert
+  ""
+  []
+  (mapcat converter sql-answers-four-answers))
+
+#_(defn convert
+    ""
+    []
+    (mapcat converter (fetch-data get-geographic-places)))
+
+
+
+(def sql-answers-four-answers
+  '({:continent-id 2,
+   :continent-term "Europa/EU/EES/EURES",
+   :country-id 195,
+   :country-term "Förenade konungariket, Storbritannien och Nordirland",
+   :country-code "GB",
+   :region-eu-id 1634,
+   :region-nuts-code-level-3 "UKN05",
+   :region-eu-term "West and South of Northern Ireland"}
+  {:continent-id 2,
+   :continent-term "Europa/EU/EES/EURES",
+   :country-id 155,
+   :country-term "Norge",
+   :country-code "NO",
+   :region-eu-id 158,
+   :region-nuts-code-level-3 nil,
+   :region-eu-term "Akershus"}
+  {:continent-id 14,
+   :continent-term "Västafrika",
+   :country-id 134,
+   :country-term "Mauretanien",
+   :country-code "MR",
+   :region-eu-id nil,
+   :region-nuts-code-level-3 nil,
+   :region-eu-term nil}
+  {:continent-id 0,
+   :continent-term "Hela världen",
+   :country-id nil,
+   :country-term nil,
+   :country-code nil,
+   :region-eu-id nil,
+   :region-nuts-code-level-3 nil,
+   :region-eu-term nil})
   )
 
 
@@ -149,9 +219,3 @@
    :region-eu-id nil,
    :region-nuts-code-level-3 nil,
    :region-eu-term nil})
-
-;TODO Continue with "fetch-all ..."
-(defn convert
-  ""
-  []
-  (converter sql-answer-with-nuts))
