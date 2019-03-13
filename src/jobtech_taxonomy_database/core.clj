@@ -24,12 +24,10 @@
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
   '(
-     {:namespace jobtech-taxonomy-database.converters.continent-converter}
-     {:namespace jobtech-taxonomy-database.converters.country-converter}
      {:namespace jobtech-taxonomy-database.converters.drivers-license-converter}
      {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
      {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
+     {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
      {:namespace jobtech-taxonomy-database.converters.language-converter}
      {:namespace jobtech-taxonomy-database.converters.language-level-converter}
      {:namespace jobtech-taxonomy-database.converters.skills-converter}
