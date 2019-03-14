@@ -53,12 +53,13 @@
   )
 
 (defn  convert-ssyk
-  [{:keys [localecode term description localegroupid localefieldid]}]
-  {:pre [localecode term description localegroupid localefieldid]}
+  [{:keys [localecode term description localegroupid localefieldid localelevel3id]}]
+  {:pre [localecode term description localegroupid localefieldid localelevel3id]}
 
   (let [nano-id (get-nano "occupation-group" (str localecode))
         temp-id  (str "occupation-group-" localegroupid)
         temp-id-field (str "occupation-field-" localefieldid)
+        temp-id-ssyk-level-3 (str "ssyk-level-3-" localelevel3id)
         concept (create-concept nano-id temp-id term description :occupation-group localegroupid)
         concept-with-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecode)
         ]
@@ -66,9 +67,30 @@
      concept-with-ssyk
      (create-term nano-id term)
      (create-relation temp-id temp-id-field :hyperonym)
+     (create-relation temp-id temp-id-ssyk-level-3 :hyperonym)
      ]
     )
   )
+
+(defn convert-ssyk-level-3
+  [{:keys [localelevel3id localecodelevel3 term localelevel2id]}]
+  {:pre [localelevel3id localecodelevel3 term localelevel2id]}
+  (let [
+        nano-id (get-nano)
+        temp-id (str "ssyk-level-3-" localelevel3id)
+        temp-id-level-2 (str "ssyk-level-2-" localelevel2id)
+        concept (create-concept nano-id temp-id term term :ssyk-level-3 localelevel3id)
+        concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel3)
+        ]
+    [concept-ssyk
+     (create-term nano-id term)
+     (create-relation temp-id temp-id-level-2 :hyperonym)
+     ]
+    )
+  )
+
+
+
 
 (defn convert-occupation-name
   [{:keys [term occupationgroupid occupationnameid localegroupid]}]
@@ -81,22 +103,11 @@
     [
      (create-concept nano-id temp-id term term :occupation-name occupationnameid)
      (create-term nano-id term)
-
-     {:db/id          nano-id
-      :term/base-form term}
-     {
-      :relation/concept-1 temp-id
-      :relation/concept-2 temp-id-ssyk
-      :relation/type :hyperonym    ;; TODO decide how to model this properly
-      }
-     {:relation/concept-1 temp-id
-      :relation/concept-2 temp-id-isco
-      :relation/type :hyperonym
-      }
-
+     (create-relation temp-id temp-id-ssyk :hyperonym) ;; TODO decide how to model this properly
+     (create-relation temp-id temp-id-isco :hyperonym)
      ]
     )
-  )
+ )
 
 
 (defn convert-isco
@@ -220,6 +231,7 @@
   (concat
    (mapcat convert-occupation-name (fetch-data get-occupation-name))
    (mapcat convert-ssyk (fetch-data get-occupation-group-ssyk))
+   (mapcat convert-ssyk-level-3 (fetch-data get-ssyk-level-3))
    (mapcat convert-occupation-field (fetch-data  get-occupation-field))
    (mapcat convert-isco (fetch-data get-isco-level-4))
    (mapcat convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
