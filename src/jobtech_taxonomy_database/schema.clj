@@ -25,8 +25,22 @@
    {:db/ident       :concept/category
     :db/valueType   :db.type/keyword
     :db/cardinality :db.cardinality/one
-    :db/doc         "JobTech categories" ;
-    }])
+    :db/doc         "JobTech categories"
+    }
+
+   {:db/ident       :concept/deprecated
+    :db/valueType   :db.type/boolean
+    :db/cardinality :db.cardinality/one
+    :db/doc         "If a concept is deprecated"
+    }
+
+   {:db/ident       :concept/replaced-by
+    :db/valueType   :db.type/ref
+    :db/cardinality :db.cardinality/many
+    :db/doc         "Refers to other concepts that is replacing this one"
+    }
+
+   ])
 
 ;; Example:
 ;;  (def some-concepts

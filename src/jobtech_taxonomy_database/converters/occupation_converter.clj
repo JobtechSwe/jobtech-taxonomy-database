@@ -16,13 +16,14 @@
   )
 
 
-(defn create-concept [nano-id temp-id term description category]
+(defn create-concept [nano-id temp-id term description category legacy-ams-db-id]
   {:db/id                     temp-id
    :concept/id                nano-id
    :concept/description       description
    :concept/preferred-term    nano-id
    :concept/alternative-terms #{nano-id}
    :concept/category category
+   :concept.taxonomy-67-id    (str legacy-ams-db-id);; todo rename attribute
    }
   )
 
@@ -45,7 +46,7 @@
         temp-id  (str "occupation-field-" localefieldid)
         ]
     [
-     (create-concept nano-id temp-id term description :occupation-field)
+     (create-concept nano-id temp-id term description :occupation-field localefieldid)
      (create-term nano-id term)
      ]
     )
@@ -58,12 +59,11 @@
   (let [nano-id (get-nano "occupation-group" (str localecode))
         temp-id  (str "occupation-group-" localegroupid)
         temp-id-field (str "occupation-field-" localefieldid)
-        concept (create-concept nano-id temp-id term description :occupation-group)
+        concept (create-concept nano-id temp-id term description :occupation-group localegroupid)
         concept-with-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecode)
-        concept-with-legacy-id (assoc concept-with-ssyk :concept.taxonomy-67-id localegroupid)
         ]
     [
-     concept
+     concept-with-ssyk
      (create-term nano-id term)
      (create-relation temp-id temp-id-field :hyperonym)
      ]
@@ -78,14 +78,10 @@
         temp-id-ssyk (str "occupation-group-" localegroupid )
         temp-id-isco (str "isco-"  occupationgroupid)
         ]
-    [{
-      :db/id                     temp-id
-      :concept/id                nano-id
-      :concept/description       term
-      :concept/preferred-term    nano-id
-      :concept/alternative-terms #{nano-id}
+    [
+     (create-concept nano-id temp-id term term :occupation-name occupationnameid)
+     (create-term nano-id term)
 
-      :concept/category          :occupation-name}
      {:db/id          nano-id
       :term/base-form term}
      {
@@ -101,9 +97,6 @@
      ]
     )
   )
-
-
-
 
 
 (defn convert-isco
@@ -122,8 +115,6 @@
     )
   )
 
-
-
 (defn convert-occupation-name-affinity
   [{:keys [affinityid occupationnameid percentage]}]
   {:pre [affinityid occupationnameid percentage]}
@@ -131,7 +122,6 @@
   (let [temp-id-affinity-from-concept (str "occupation-name-"  affinityid )
         temp-id-affinity-to-concept (str "occupation-name-" occupationnameid)
         ]
-
     {:relation/concept-1 temp-id-affinity-from-concept
      :relation/concept-2 temp-id-affinity-to-concept
      :relation/type      :occupation-name-affinity
@@ -182,6 +172,23 @@
    :relation/type    :meronym ; TODO find a better name for this relationship HAS-A ??
    }
 
+  )
+
+(defn convert-occupation-name-replacement
+  [{:keys [occupationnameidref occupationnameid term]}]
+  {:pre [occupationnameidref occupationnameid term]}
+  (let [
+        nano-id (get-nano :occupation-name occupationnameid)
+        temp-id (str "occupation-name-id-" occupationnameid)
+        temp-replaced-by-id (str "occupation-name-id-" occupationnameidref)
+        concept (create-concept nano-id temp-id term term :occupation-name occupationnameidref)
+        deprecated-concept (assoc concept :concept/deprecated true)
+        replaced-by-concept (assoc deprecated-concept :concept/replaced-by temp-replaced-by-id)  ;; Utred hur vi hanterar replaced by many different??
+        ]
+    [replaced-by-concept
+     (create-term nano-id term)
+     ]
+    )
   )
 
 (defn convert
