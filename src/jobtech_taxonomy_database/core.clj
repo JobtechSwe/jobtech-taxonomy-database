@@ -14,6 +14,7 @@
             [jobtech-taxonomy-database.converters.skills-converter]
             [jobtech-taxonomy-database.converters.wage-type-converter]
             [jobtech-taxonomy-database.converters.worktime-extent-converter]
+            [jobtech-taxonomy-database.converters.SUN-education-field-converter]
             ))
 
 (def converters
@@ -31,6 +32,7 @@
      {:namespace jobtech-taxonomy-database.converters.skills-converter}
      {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
      {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
+     {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
     ))
 
 

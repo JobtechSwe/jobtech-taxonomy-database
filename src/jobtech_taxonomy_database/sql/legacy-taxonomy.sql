@@ -122,7 +122,8 @@ AND ArbetstidTerm.versionID = 1
 -- :doc Get all continents
 SELECT Continent.continentID AS [id],
 	ContinentTerm.term AS [term]
-FROM TaxonomyDBVersion.dbo.Continent Continent, TaxonomyDBVersion.dbo.ContinentTerm ContinentTerm
+FROM TaxonomyDBVersion.dbo.Continent Continent,
+    TaxonomyDBVersion.dbo.ContinentTerm ContinentTerm
 WHERE ContinentTerm.versionID = 67
 AND Continent.versionID = 67
 AND Continent.continentID = ContinentTerm.continentID
@@ -135,7 +136,8 @@ SELECT Country.continentID AS [parent-id],
 	Country.countryID AS [id],
 	CountryTerm.term AS [term],
 	Country.countryCode AS [code]
-FROM TaxonomyDBVersion.dbo.Country Country, TaxonomyDBVersion.dbo.CountryTerm CountryTerm
+FROM TaxonomyDBVersion.dbo.Country Country,
+    TaxonomyDBVersion.dbo.CountryTerm CountryTerm
 WHERE Country.versionID = 67
 AND	CountryTerm.versionID = 67
 AND Country.countryID = CountryTerm.countryID
@@ -149,7 +151,8 @@ SELECT EURegion.countryID AS [parent-id],
 	EURegion.EURegionID AS [id],
 	EURegionTerm.term AS [term],
 	EURegion.NUTSCodeLevel3 AS [code]
-FROM TaxonomyDBVersion.dbo.EURegion EURegion, TaxonomyDBVersion.dbo.EURegionTerm EURegionTerm
+FROM TaxonomyDBVersion.dbo.EURegion EURegion,
+    TaxonomyDBVersion.dbo.EURegionTerm EURegionTerm
 WHERE EURegion.versionID = EURegionTerm.versionID
 AND EURegion.EURegionID = EURegionTerm.EURegionID
 AND EURegionTerm.languageID = 502
@@ -163,7 +166,8 @@ AND EURegion.versionID = 67
 SELECT Municipality.EURegionID AS [parent-id],
     Municipality.municipalityID AS [id],
 	MunicipalityTerm.term AS [term]
-FROM TaxonomyDBVersion.dbo.Municipality Municipality, TaxonomyDBVersion.dbo.MunicipalityTerm MunicipalityTerm
+FROM TaxonomyDBVersion.dbo.Municipality Municipality,
+    TaxonomyDBVersion.dbo.MunicipalityTerm MunicipalityTerm
 WHERE Municipality.versionID = MunicipalityTerm.versionID
 AND Municipality.municipalityID = MunicipalityTerm.municipalityID
 AND	MunicipalityTerm.versionID = 67
@@ -299,3 +303,51 @@ WHERE
 OccupationCollection.versionID = CollectionOccupation.versionID
 AND
 OccupationCollection.collectionID = CollectionOccupation.collectionID
+
+
+
+------------------START SUN education field--------------------
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-sun-education-1 :*
+-- :doc get SUN education field 1 ;
+SELECT SUNInriktning1.SUNInriktning1ID AS [id],
+    SUNInriktning1.SUNKodInriktning1 AS [code],
+    SUNInriktning1.versionID AS [version-id],
+    SUNInriktning1Term.beteckning AS [term]
+FROM TaxonomyDBSvenskVersion.dbo.SUNInriktning1 SUNInriktning1,
+    TaxonomyDBSvenskVersion.dbo.SUNInriktning1Term SUNInriktning1Term
+WHERE SUNInriktning1.versionID = SUNInriktning1Term.versionID
+AND SUNInriktning1.SUNInriktning1ID = SUNInriktning1Term.SUNInriktning1ID
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-sun-education-2 :*
+-- :doc get SUN education field 2 ;
+SELECT SUNInriktning2.SUNInriktning1ID AS [parent-id],
+    SUNInriktning2.SUNInriktning2ID AS [id],
+    SUNInriktning2.SUNKodInriktning2 AS [code],
+    SUNInriktning2.versionID AS [version-id],
+    SUNInriktning2Term.beteckning AS [term]
+FROM TaxonomyDBSvenskVersion.dbo.SUNInriktning2 SUNInriktning2,
+    TaxonomyDBSvenskVersion.dbo.SUNInriktning2Term SUNInriktning2Term
+WHERE SUNInriktning2.versionID = SUNInriktning2Term.versionID
+AND SUNInriktning2.SUNInriktning2ID = SUNInriktning2Term.SUNInriktning2ID
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-sun-education-3 :*
+-- :doc get SUN education field 3 ;
+SELECT SUNInriktning3.SUNInriktning2ID AS [parent-id],
+    SUNInriktning3.SUNInriktning3ID AS [id],
+    SUNInriktning3.SUNKodInriktning3 AS [code],
+    SUNInriktning3.versionID AS [version-id],
+    SUNInriktning3Term.beteckning AS [term]
+FROM TaxonomyDBSvenskVersion.dbo.SUNInriktning3 SUNInriktning3,
+    TaxonomyDBSvenskVersion.dbo.SUNInriktning3Term SUNInriktning3Term
+WHERE SUNInriktning3.versionID = SUNInriktning3Term.versionID
+AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
+
+------------------END SUN education field--------------------
+

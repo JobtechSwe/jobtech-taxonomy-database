@@ -82,11 +82,12 @@
    {:db/ident       :concept.external-standard/isco-08
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "ISCO-08 level 4"
+    :db/doc         "ISCO-08 level 4"}
 
-    }
-
-   ])
+    {:db/ident       :concept.external-standard/SUN-code
+     :db/valueType   :db.type/string
+     :db/cardinality :db.cardinality/one
+     :db/doc         "SUN code, either 1, 2 or 3 digits"}])
 
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
