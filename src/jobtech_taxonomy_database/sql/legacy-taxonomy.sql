@@ -261,6 +261,36 @@ AND LocaleField.localeFieldID = LocaleFieldTerm.localeFieldID
 AND LocaleField.versionID = 67
 AND LocaleFieldTerm.languageID = 502
 
+
+-- :name get-ssyk-level-1 :*
+-- :doc Get ssyk level 1 ;
+SELECT LocaleLevel1.*, LocaleLevel1Term.*
+FROM TaxonomyDBVersion.dbo.LocaleLevel1 LocaleLevel1, TaxonomyDBVersion.dbo.LocaleLevel1Term LocaleLevel1Term
+WHERE LocaleLevel1.versionID = LocaleLevel1Term.versionID
+AND LocaleLevel1.localeLevel1ID = LocaleLevel1Term.localeLevel1ID
+AND LocaleLevel1Term.languageID = 502
+AND LocaleLevel1Term.versionID = 67
+
+
+-- :name get-ssyk-level-2 :*
+-- :doc Get ssyk level 2 ;
+SELECT LocaleLevel2.*, LocaleLevel2Term.*
+FROM TaxonomyDBVersion.dbo.LocaleLevel2 LocaleLevel2, TaxonomyDBVersion.dbo.LocaleLevel2Term LocaleLevel2Term
+WHERE LocaleLevel2.versionID = LocaleLevel2Term.versionID
+AND LocaleLevel2.localeLevel2ID = LocaleLevel2Term.localeLevel2ID
+AND LocaleLevel2Term.languageID = 502
+AND LocaleLevel2Term.versionID = 67
+
+-- :name get-ssyk-level-3 :*
+-- :doc Get ssyk level 3 ;
+SELECT LocaleLevel3.*, LocaleLevel3Term.*
+FROM TaxonomyDBVersion.dbo.LocaleLevel3 LocaleLevel3, TaxonomyDBVersion.dbo.LocaleLevel3Term LocaleLevel3Term
+WHERE LocaleLevel3.versionID = LocaleLevel3Term.versionID
+AND LocaleLevel3.localeLevel3ID = LocaleLevel3Term.localeLevel3ID
+AND LocaleLevel3Term.languageID = 502
+AND LocaleLevel3Term.versionID = 67
+
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-isco-level-4 :*
@@ -319,12 +349,16 @@ SELECT versionID, occupationNameID, countryID, term, standard, locale, occupatio
 FROM TaxonomyDBVersion.dbo.OccupationNameReference
 WHERE versionID = 67;
 
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
 -- :name get-popular-synonym :*
--- :doc ge popular synonyms related to SSYK;
+-- :doc ge popular synonyms ;
 SELECT versionID, popularSynonymID, term, modificationDate
 FROM TaxonomyDBVersion.dbo.PopularSynonym
+WHERE versionID = 67;
+
+-- :name get-occupation-name-synonym :*
+-- :doc get occupation name synonyms ;
+SELECT versionID, occupationNameID, countryID, popularSynonymID, modificationDate
+FROM TaxonomyDBVersion.dbo.OccupationNameSynonym
 WHERE versionID = 67;
 
 
