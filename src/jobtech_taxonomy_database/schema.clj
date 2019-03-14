@@ -77,7 +77,7 @@
    {:db/ident       :concept.taxonomy-67-id
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "ID from Taxonomy version 67"}
+    :db/doc         "ID from legacy Taxonomy version 67"}
 
    {:db/ident       :concept.external-standard/isco-08
     :db/valueType   :db.type/string
@@ -87,7 +87,9 @@
     {:db/ident       :concept.external-standard/SUN-field-code
      :db/valueType   :db.type/string
      :db/cardinality :db.cardinality/one
-     :db/doc         "SUN code, either 1, 2 or 3 digits"}])
+     :db/doc         "SUN code, either 1, 2 or 3 digits"}
+
+   ])
 
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
@@ -136,4 +138,12 @@
    {:db/ident       :relation/description
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "Text describing the relation."}])
+    :db/doc         "Text describing the relation."}
+
+   {:db/ident        :relation/affinity-percentage
+    :db/valueType    :db.type/long
+    :db/cardinality  :db.cardinality/one
+    :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a simillar occupation"
+    }
+
+   ])

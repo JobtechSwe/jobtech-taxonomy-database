@@ -58,7 +58,9 @@
   (let [nano-id (get-nano "occupation-group" (str localecode))
         temp-id  (str "occupation-group-" localegroupid)
         temp-id-field (str "occupation-field-" localefieldid)
-        concept (assoc (create-concept nano-id temp-id term description :occupation-group) :concept.external-standard/ssyk-2012 localecode)
+        concept (create-concept nano-id temp-id term description :occupation-group)
+        concept-with-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecode)
+        concept-with-legacy-id (assoc concept-with-ssyk :concept.taxonomy-67-id localegroupid)
         ]
     [
      concept
@@ -100,6 +102,10 @@
     )
   )
 
+
+
+
+
 (defn convert-isco
   [{:keys [isco ilo occupationfieldid term occupationgroupid description]}]
   {:pre [isco ilo occupationfieldid term occupationgroupid description]}
@@ -116,13 +122,52 @@
     )
   )
 
+
+
+(defn convert-occupation-name-affinity
+  [{:keys [affinityid occupationnameid percentage]}]
+  {:pre [affinityid occupationnameid percentage]}
+
+  (let [temp-id-affinity-from-concept (str "occupation-name-"  affinityid )
+        temp-id-affinity-to-concept (str "occupation-name-" occupationnameid)
+        ]
+
+    {:relation/concept-1 temp-id-affinity-from-concept
+     :relation/concept-2 temp-id-affinity-to-concept
+     :relation/type      :occupation-name-affinity
+     :relation/affinity-percentage percentage
+     })
+  )
+
+(def get-concept-by-legacy-id-query '[:find ?s
+                   :in $ ?legacy-id ?category ;; TODO rename category
+                   :where
+                   [?s :concept.taxonomy-67-id ?legacy-skill-id]
+                   [?s :concept/category ?category]  ;;TODO Add category/taxonomy-rank to the skill concepts
+                   ])
+
+(defn get-concept-by-legacy-id [legacy-id category]
+  (ffirst (d/q skill-query (get-db) legacy-id category))
+  )
+
+(defn convert-ssyk-skill
+  "This one has to be transacted to the database after skill and occupation-group has been added to the database"
+  [{:keys [skillid localegroupid]}]
+  {:pre [skillid localegroupid]}
+  {:relation/concept-1 (get-concept-by-legacy-id localegroupid :occupation-group)
+   :relation/concept-2 (get-concept-by-legacy-id skillid :skill)
+   :relation/type :occupation-group-to-skill ;; TODO make up a better name? yrkesmall
+   }
+  )
+
 (defn convert
   ""
   []
   (concat
-   (mapcat  convert-occupation-name (fetch-data get-occupation-name))
+   (mapcat convert-occupation-name (fetch-data get-occupation-name))
    (mapcat convert-ssyk (fetch-data get-occupation-group-ssyk))
    (mapcat convert-occupation-field (fetch-data  get-occupation-field))
    (mapcat convert-isco (fetch-data get-isco-level-4))
+   (mapcat convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
    )
   )
