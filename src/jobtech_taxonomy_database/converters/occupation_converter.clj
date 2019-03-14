@@ -90,7 +90,39 @@
   )
 
 
+(defn convert-ssyk-level-2
+  [{:keys [localelevel2id localelevel1id localecodelevel2 term]}]
+  {:pre [localelevel2id localelevel1id localecodelevel2 term]}
+  (let [
+        nano-id (get-nano)
+        temp-id (str "ssyk-level-2-" localelevel2id)
+        temp-id-level-1 (str "ssyk-level-1-" localelevel1id)
+        concept (create-concept nano-id temp-id term term :ssyk-level-2 localelevel2id)
+        concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel2)
+        ]
+    [
+     concept-ssyk
+     (create-term nano-id term)
+     (create-relation temp-id temp-id-level-1 :hyperonym)
+     ]
+    )
+  )
 
+(defn convert-ssyk-level-1
+  [{:keys [localelevel1id localecodelevel1 term]}]
+  {:pre [localelevel1id localecodelevel1 term]}
+  (let [
+        nano-id (get-nano)
+        temp-id (str "ssyk-level-1-" localelevel1id)
+        concept (create-concept nano-id temp-id term term :ssyk-level-1 localelevel1id)
+        concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel1)
+        ]
+    [
+     concept-ssyk
+     (create-term nano-id term)
+     ]
+    )
+  )
 
 (defn convert-occupation-name
   [{:keys [term occupationgroupid occupationnameid localegroupid]}]
@@ -232,6 +264,8 @@
    (mapcat convert-occupation-name (fetch-data get-occupation-name))
    (mapcat convert-ssyk (fetch-data get-occupation-group-ssyk))
    (mapcat convert-ssyk-level-3 (fetch-data get-ssyk-level-3))
+   (mapcat convert-ssyk-level-2 (fetch-data get-ssyk-level-2))
+   (mapcat convert-ssyk-level-1 (fetch-data get-ssyk-level-1))
    (mapcat convert-occupation-field (fetch-data  get-occupation-field))
    (mapcat convert-isco (fetch-data get-isco-level-4))
    (mapcat convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
