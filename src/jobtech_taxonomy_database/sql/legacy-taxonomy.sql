@@ -275,7 +275,7 @@ AND OccupationGroup.versionID = 67
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-ssyk-skill-relation:*
+-- :name get-ssyk-skill-relation :*
 -- :doc get ssyk skill relation ;
 SELECT versionID, skillID, countryID, localeGroupID, modificationDate
 FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill
@@ -283,26 +283,41 @@ WHERE TaxonomyDBVersion.dbo.LocaleGroup_Skill.versionID = 67
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-occupation-name-affinity:*
+-- :name get-occupation-name-affinity :*
 -- :doc get affinity relations between occupations ;
 SELECT AffinityRate.*, OccupationNameAffinity.*
 FROM TaxonomyDBVersion.dbo.AffinityRate AffinityRate, TaxonomyDBVersion.dbo.OccupationNameAffinity OccupationNameAffinity
-WHERE
-AffinityRate.versionID = OccupationNameAffinity.versionID
+WHERE AffinityRate.versionID = OccupationNameAffinity.versionID
 AND AffinityRate.affinityRateID = OccupationNameAffinity.affinityRateID
+AND OccupationNameAffinity.versionID = 67
+
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-occupation-collection :*
+-- :doc get occupation collection ;
+SELECT versionID, collectionID, collectionsetID, name, modificationDate
+FROM TaxonomyDBVersion.dbo.OccupationCollection
+WHERE versionID = 67;
+
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-occupation-collection-relations :*
+-- :doc get occupation collection relations ;
+SELECT versionID, collectionID, occupationNameID, countryID, modificationDate
+FROM TaxonomyDBVersion.dbo.CollectionOccupation
+WHERE versionID = 67;
 
 
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-occupation-collection:*
--- :doc get occupation collection ;
-SELECT CollectionOccupation.*, OccupationCollection.*
-FROM TaxonomyDBVersion.dbo.CollectionOccupation CollectionOccupation, TaxonomyDBVersion.dbo.OccupationCollection OccupationCollection
-WHERE
-OccupationCollection.versionID = CollectionOccupation.versionID
-AND
-OccupationCollection.collectionID = CollectionOccupation.collectionID
+-- :name get-occupation-names-reference :*
+-- :doc get occupation names that have been replaced by a newer occupation  ;
+SELECT versionID, occupationNameID, countryID, term, standard, locale, occupationNameIDRef, countryIDRef, modificationDate
+FROM TaxonomyDBVersion.dbo.OccupationNameReference
+WHERE versionID = 67;
 
 
 
