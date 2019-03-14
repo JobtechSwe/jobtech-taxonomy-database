@@ -105,7 +105,7 @@
 
   (let [nano-id (get-nano)
         temp-id (str "isco-" occupationgroupid)
-        concept (create-concept nano-id temp-id term description :isco)
+        concept (create-concept nano-id temp-id term description :isco occupationgroupid)
         concept-with-isco (assoc concept :concept.external-standard/isco-08 isco)
         ]
     [
@@ -158,7 +158,7 @@
   (let [nano-id (get-nano)]
     [
      (create-term nano-id name)
-     (create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection)
+     (create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection collectionid)
      ])
   )
 
@@ -191,6 +191,29 @@
     )
   )
 
+(defn convert-popular-synonym
+  [{:keys [popularsynonymid term]}]
+  {:pre [popularsynonymid term]}
+
+  (let [nano-id (get-nano)
+        temp-id (str "popular-synonym-" popularsynonymid)
+        concept (create-concept nano-id temp-id term term :keyword popularsynonymid)
+        ]
+    [concept
+     (create-term nano-id term)
+     ]
+    )
+  )
+
+(defn convert-popular-synonym-occupation-name-relation
+  [{:keys [occupationnameid popularsynonymid]}]
+  {:pre [occupationnameid popularsynonymid]}
+  {:relation/concept-1 (str "popular-synonym-" popularsynonymid)
+   :relation/concept-2 (str "occupation-name-" occupationnameid)
+   :relation/type :related-to ;; TODO Find better name than related to
+   }
+  )
+
 (defn convert
   ""
   []
@@ -202,5 +225,7 @@
    (mapcat convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
    (mapcat convert-occupation-collection (fetch-data get-occupation-collection))
    (mapcat convert-occupation-collection-relation (fetch-data get-occupation-collection-relations))
+   (mapcat convert-popular-synonym (fetch-data get-popular-synonym))
+   (mapcat convert-popular-synonym-occupation-name-relation (fetch-data get-occupation-name-synonym))
    )
   )

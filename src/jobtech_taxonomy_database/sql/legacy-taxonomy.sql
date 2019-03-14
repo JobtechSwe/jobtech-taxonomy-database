@@ -319,6 +319,14 @@ SELECT versionID, occupationNameID, countryID, term, standard, locale, occupatio
 FROM TaxonomyDBVersion.dbo.OccupationNameReference
 WHERE versionID = 67;
 
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-popular-synonym :*
+-- :doc ge popular synonyms related to SSYK;
+SELECT versionID, popularSynonymID, term, modificationDate
+FROM TaxonomyDBVersion.dbo.PopularSynonym
+WHERE versionID = 67;
+
 
 
 ------------------START SUN education field--------------------
