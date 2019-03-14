@@ -122,5 +122,7 @@
   (concat
    (mapcat  convert-occupation-name (fetch-data get-occupation-name))
    (mapcat convert-ssyk (fetch-data get-occupation-group-ssyk))
-   (mapcat convert-occupation-field (fetch-data  get-occupation-field)))
+   (mapcat convert-occupation-field (fetch-data  get-occupation-field))
+   (mapcat convert-isco (fetch-data get-isco-level-4))
+   )
   )
