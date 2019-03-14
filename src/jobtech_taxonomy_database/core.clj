@@ -15,7 +15,7 @@
             [jobtech-taxonomy-database.converters.wage-type-converter]
             [jobtech-taxonomy-database.converters.worktime-extent-converter]
             [jobtech-taxonomy-database.converters.SUN-education-field-converter]
-            ))
+            [jobtech-taxonomy-database.converters.SUN-education-level-converter]))
 
 (def converters
   "Each logic section of the old taxonomy can be handled by a converter
@@ -33,6 +33,7 @@
      {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
      {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
      {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
+     {:namespace jobtech-taxonomy-database.converters.SUN-education-level-converter}
     ))
 
 

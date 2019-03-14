@@ -351,3 +351,46 @@ AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
 
 ------------------END SUN education field--------------------
 
+------------------START SUN education level--------------------
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-sun-level-1 :*
+-- :doc get SUN education level 1 ;
+SELECT SUNNivå1.SUNNivå1ID AS [id],
+    SUNNivå1.SUNKodNivå1 AS [code],
+    SUNNivå1.versionID AS [version-id],
+    SUNNivå1Term.beteckning AS [term]
+FROM TaxonomyDBSvenskVersion.dbo.SUNNivå1 SUNNivå1,
+	TaxonomyDBSvenskVersion.dbo.SUNNivå1Term SUNNivå1Term
+WHERE SUNNivå1.versionID = SUNNivå1Term.versionID
+	AND SUNNivå1.SUNNivå1ID = SUNNivå1Term.SUNNivå1ID
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-sun-level-2 :*
+-- :doc get SUN education level 2 ;
+SELECT SUNNivå2.SUNNivå1ID AS [parent-id],
+    SUNNivå2.SUNNivå2ID AS [id],
+    SUNNivå2.SUNKodNivå2 AS [code],
+    SUNNivå2.versionID AS [version-id],
+    SUNNivå2Term.beteckning AS [term]
+FROM TaxonomyDBSvenskVersion.dbo.SUNNivå2 SUNNivå2,
+	TaxonomyDBSvenskVersion.dbo.SUNNivå2Term SUNNivå2Term
+WHERE SUNNivå2.versionID = SUNNivå2Term.versionID
+AND SUNNivå2.SUNNivå2ID = SUNNivå2Term.SUNNivå2ID
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-sun-level-3 :*
+-- :doc get SUN education level 3 ;
+SELECT SUNNivå3.SUNNivå2ID AS [parent-id],
+    SUNNivå3.SUNNivå3ID AS [id],
+    SUNNivå3.SUNKodNivå3 AS [code],
+    SUNNivå3.versionID AS [version-id],
+    SUNNivå3Term.beteckning AS [term]
+FROM TaxonomyDBSvenskVersion.dbo.SUNNivå3 SUNNivå3,
+	TaxonomyDBSvenskVersion.dbo.SUNNivå3Term SUNNivå3Term
+WHERE SUNNivå3.versionID = SUNNivå3Term.versionID
+AND SUNNivå3.SUNNivå3ID = SUNNivå3Term.SUNNivå3ID
+
+------------------END SUN education level--------------------
