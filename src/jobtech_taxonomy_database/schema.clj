@@ -77,7 +77,16 @@
    {:db/ident       :concept.taxonomy-67-id
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "ID from Taxonomy version 67"}])
+    :db/doc         "ID from legacy Taxonomy version 67"}
+
+   {:db/ident       :concept.external-standard/isco-08
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "ISCO-08 level 4"
+
+    }
+
+   ])
 
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
