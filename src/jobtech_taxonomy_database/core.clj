@@ -5,8 +5,6 @@
             [jobtech-taxonomy-database.schema :refer :all :as schema]
             [jobtech-taxonomy-database.legacy-migration :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all]
-            [jobtech-taxonomy-database.converters.continent-converter]
-            [jobtech-taxonomy-database.converters.country-converter]
             [jobtech-taxonomy-database.converters.drivers-license-converter]
             [jobtech-taxonomy-database.converters.employment-duration-converter]
             [jobtech-taxonomy-database.converters.employment-type-converter]
