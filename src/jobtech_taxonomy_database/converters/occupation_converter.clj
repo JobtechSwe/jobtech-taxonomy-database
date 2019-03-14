@@ -160,6 +160,30 @@
    }
   )
 
+
+(defn convert-occupation-collection
+  [{:keys [collectionid name]}]
+  {:pre [collectionid name]}
+
+  (let [nano-id (get-nano)]
+    [
+     (create-term nano-id name)
+     (create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection)
+     ])
+  )
+
+
+(defn convert-occupation-collection-relation
+  [{:keys [collectionid occupationnameid]}]
+  {:pre [collectionid occupationnameid]}
+
+  {:relation/concept-1 (str "occupation-collection-" collectionid)
+   :relation/concept-2 (str "occupation-name-" occupationnameid)
+   :relation/type    :meronym ; TODO find a better name for this relationship HAS-A ??
+   }
+
+  )
+
 (defn convert
   ""
   []
@@ -169,5 +193,7 @@
    (mapcat convert-occupation-field (fetch-data  get-occupation-field))
    (mapcat convert-isco (fetch-data get-isco-level-4))
    (mapcat convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
+   (mapcat convert-occupation-collection (fetch-data get-occupation-collection))
+   (mapcat convert-occupation-collection-relation (fetch-data get-occupation-collection-relations))
    )
   )
