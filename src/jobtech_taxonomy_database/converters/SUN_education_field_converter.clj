@@ -36,7 +36,7 @@
      :concept/preferred-term   temp-id
      :concept/category         (keyword category)
      :concept.taxonomy-67-id   legacy-id
-     :concept.external-standard/SUN-code code})
+     :concept.external-standard/SUN-field-code code})
 
 
 (defn converter
