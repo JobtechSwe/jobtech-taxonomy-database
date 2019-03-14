@@ -69,23 +69,23 @@
     (if converted-relation [converted-concept converted-term converted-relation]
                            [converted-concept converted-term])))
 
-(defn convert-level-1
+(defn convert-field-1
   "Query db for SUN education field 1, convert each entity"
   []
-  (mapcat (fn [x] (converter x "sun-education-field-1" nil)) (fetch-data get-sun-education-1)))
+  (mapcat (fn [x] (converter x "sun-education-field-1" nil)) (fetch-data get-sun-field-1)))
 
-(defn convert-level-2
+(defn convert-field-2
   "Query db for SUN education field 2, convert each entity"
   []
-  (mapcat (fn [x] (converter x "sun-education-field-2" "sun-education-field-1")) (fetch-data get-sun-education-2)))
+  (mapcat (fn [x] (converter x "sun-education-field-2" "sun-education-field-1")) (fetch-data get-sun-field-2)))
 
-(defn convert-level-3
+(defn convert-field-3
   "Query db for SUN education field 3, convert each entity"
   []
-  (mapcat (fn [x] (converter x "sun-education-field-3" "sun-education-field-2")) (fetch-data get-sun-education-3)))
+  (mapcat (fn [x] (converter x "sun-education-field-3" "sun-education-field-2")) (fetch-data get-sun-field-3)))
 
 (defn convert
   "Compile converted SUN education fields 1, 2 & 3"
   []
-  (concat (convert-level-1) (convert-level-2) (convert-level-3)))
+  (concat (convert-field-1) (convert-field-2) (convert-field-3)))
 

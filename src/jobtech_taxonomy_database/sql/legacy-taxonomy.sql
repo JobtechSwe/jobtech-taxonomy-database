@@ -310,7 +310,7 @@ OccupationCollection.collectionID = CollectionOccupation.collectionID
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-sun-education-1 :*
+-- :name get-sun-field-1 :*
 -- :doc get SUN education field 1 ;
 SELECT SUNInriktning1.SUNInriktning1ID AS [id],
     SUNInriktning1.SUNKodInriktning1 AS [code],
@@ -323,7 +323,7 @@ AND SUNInriktning1.SUNInriktning1ID = SUNInriktning1Term.SUNInriktning1ID
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-sun-education-2 :*
+-- :name get-sun-field-2 :*
 -- :doc get SUN education field 2 ;
 SELECT SUNInriktning2.SUNInriktning1ID AS [parent-id],
     SUNInriktning2.SUNInriktning2ID AS [id],
@@ -337,7 +337,7 @@ AND SUNInriktning2.SUNInriktning2ID = SUNInriktning2Term.SUNInriktning2ID
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-sun-education-3 :*
+-- :name get-sun-field-3 :*
 -- :doc get SUN education field 3 ;
 SELECT SUNInriktning3.SUNInriktning2ID AS [parent-id],
     SUNInriktning3.SUNInriktning3ID AS [id],
