@@ -290,18 +290,15 @@ AND LocaleLevel3.localeLevel3ID = LocaleLevel3Term.localeLevel3ID
 AND LocaleLevel3Term.languageID = 502
 AND LocaleLevel3Term.versionID = 67
 
-
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
 -- :name get-isco-level-4 :*
 -- :doc Get isco level 4 ;
 SELECT OccupationGroup.*, OccupationGroupTerm.*
 FROM TaxonomyDBVersion.dbo.OccupationGroup OccupationGroup, TaxonomyDBVersion.dbo.OccupationGroupTerm OccupationGroupTerm
-WHERE
-OccupationGroup.versionID = OccupationGroupTerm.versionID
+WHERE OccupationGroup.versionID = OccupationGroupTerm.versionID
 AND OccupationGroup.occupationGroupID = OccupationGroupTerm.occupationGroupID
 AND OccupationGroupTerm.languageID = 502
 AND OccupationGroup.versionID = 67
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
