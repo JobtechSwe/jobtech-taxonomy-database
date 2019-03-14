@@ -72,7 +72,7 @@
                              (convert-relation
                              temp-id-parent
                              temp-id
-                             (str parent-category " to " category)))]
+                             (str parent-category "-to-" category)))]
       (if converted-relation [converted-concept converted-term converted-relation]
                              [converted-concept converted-term])))
 
