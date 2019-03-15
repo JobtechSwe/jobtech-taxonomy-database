@@ -54,3 +54,7 @@
 (defn init-new-db
   ([]       (init-new-db-with-conn (get-conn)))
   ([conn]   (init-new-db-with-conn conn)))
+
+;; (def client (d/client (get  (get-datomic-config) :datomic-cfg)))
+;; (d/delete-database client {:db-name "jobtech-taxonomy-henrik-dev"}  )
+;; (d/create-database client {:db-name "jobtech-taxonomy-henrik-dev"}  )
