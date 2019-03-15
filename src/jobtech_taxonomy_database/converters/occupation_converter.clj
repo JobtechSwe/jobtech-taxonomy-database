@@ -180,7 +180,7 @@
                    ])
 
 (defn get-concept-by-legacy-id [legacy-id category]
-  (ffirst (d/q skill-query (get-db) legacy-id category))
+  (ffirst (d/q get-concept-by-legacy-id-query (get-db) legacy-id category))
   )
 
 (defn convert-ssyk-skill
@@ -268,10 +268,10 @@
    (mapcat convert-ssyk-level-1 (fetch-data get-ssyk-level-1))
    (mapcat convert-occupation-field (fetch-data  get-occupation-field))
    (mapcat convert-isco (fetch-data get-isco-level-4))
-   (mapcat convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
+   (map convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
    (mapcat convert-occupation-collection (fetch-data get-occupation-collection))
-   (mapcat convert-occupation-collection-relation (fetch-data get-occupation-collection-relations))
+   (map convert-occupation-collection-relation (fetch-data get-occupation-collection-relations))
    (mapcat convert-popular-synonym (fetch-data get-popular-synonym))
-   (mapcat convert-popular-synonym-occupation-name-relation (fetch-data get-occupation-name-synonym))
+   (map convert-popular-synonym-occupation-name-relation (fetch-data get-occupation-name-synonym))
    )
   )
