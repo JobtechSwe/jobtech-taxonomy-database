@@ -17,13 +17,13 @@
 
 
 (defn create-concept [nano-id temp-id term description category legacy-ams-db-id]
-  {:db/id                     temp-id
-   :concept/id                nano-id
-   :concept/description       description
-   :concept/preferred-term    nano-id
-   :concept/alternative-terms #{nano-id}
-   :concept/category category
-   :concept.taxonomy-67-id    (str legacy-ams-db-id);; todo rename attribute
+  {:db/id                                        temp-id
+   :concept/id                                   nano-id
+   :concept/description                          description
+   :concept/preferred-term                       nano-id
+   :concept/alternative-terms                    #{nano-id}
+   :concept/category                             category
+   :concept.external-database.ams-taxonomy-67/id (str legacy-ams-db-id);; todo rename attribute
    }
   )
 
@@ -175,7 +175,7 @@
 (def get-concept-by-legacy-id-query '[:find ?s
                    :in $ ?legacy-id ?category ;; TODO rename category
                    :where
-                   [?s :concept.taxonomy-67-id ?legacy-skill-id]
+                   [?s :concept.external-database.ams-taxonomy-67/id ?legacy-skill-id]
                    [?s :concept/category ?category]  ;;TODO Add category/taxonomy-rank to the skill concepts
                    ])
 

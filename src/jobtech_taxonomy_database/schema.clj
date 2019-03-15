@@ -88,7 +88,7 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "Country code"}
 
-   {:db/ident       :concept.taxonomy-67-id
+   {:db/ident       :concept.external-database.ams-taxonomy-67/id
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
     :db/doc         "ID from legacy Taxonomy version 67"}

@@ -49,12 +49,12 @@
                   {:relation/concept-1     (make-tempid-concept "headline" (get headline :head_id))
                    :relation/concept-2     (make-tempid-concept "skill" skill-id)
                    :relation/type          :hyperonym}
-                  {:db/id                  (make-tempid-concept "skill" skill-id)
-                   :concept/id             nano-id
-                   :concept.taxonomy-67-id (str skill-id)
-                   :concept/description    (get pref-term :term/base-form)
-                   :concept/preferred-term (get pref-term :db/id)
-                   :concept/alternative-terms (map #(get % :db/id) alt-terms)}))))
+                  {:db/id                                        (make-tempid-concept "skill" skill-id)
+                   :concept/id                                   nano-id
+                   :concept.external-database.ams-taxonomy-67/id (str skill-id)
+                   :concept/description                          (get pref-term :term/base-form)
+                   :concept/preferred-term                       (get pref-term :db/id)
+                   :concept/alternative-terms                    (map #(get % :db/id) alt-terms)}))))
 
 (defn convert-head "" [main-headline headline]
   (let [skills-conv (mapcat (fn [id]
@@ -69,11 +69,11 @@
                   {:relation/concept-1     (make-tempid-concept "main-headline" (get main-headline :main_id))
                    :relation/concept-2     (make-tempid-concept "headline" (get headline :head_id))
                    :relation/type          :hyperonym}
-                  {:db/id                  (make-tempid-concept "headline" (get headline :head_id))
-                   :concept/id             nano-id
-                   :concept/description    (get headline :head_term)
-                   :concept/preferred-term (make-tempid-term (get headline :head_term) (get headline :lang))
-                   :concept.taxonomy-67-id (str id-67)}
+                  {:db/id                                        (make-tempid-concept "headline" (get headline :head_id))
+                   :concept/id                                   nano-id
+                   :concept/description                          (get headline :head_term)
+                   :concept/preferred-term                       (make-tempid-term (get headline :head_term) (get headline :lang))
+                   :concept.external-database.ams-taxonomy-67/id (str id-67)}
                   {:db/id  (make-tempid-term (get headline :head_term) (get headline :lang))
                    :term/base-form (get headline :head_term)}))))
 
@@ -84,11 +84,11 @@
     (concat headlines-conv
             (let* [id-67 (str (get main-headline :main_id))
                    nano-id (get-nano-log-updates :skill-mainhead (keyword id-67) (get main-headline :main_term))]
-              (list {:db/id                     (make-tempid-concept "main-headline" (get main-headline :main_id))
-                     :concept/id                nano-id
-                     :concept/description       (get main-headline :main_term)
-                     :concept/preferred-term    (make-tempid-term (get main-headline :main_term) (get main-headline :lang))
-                     :concept.taxonomy-67-id    (str (get main-headline :main_id))}
+              (list {:db/id                                        (make-tempid-concept "main-headline" (get main-headline :main_id))
+                     :concept/id                                   nano-id
+                     :concept/description                          (get main-headline :main_term)
+                     :concept/preferred-term                       (make-tempid-term (get main-headline :main_term) (get main-headline :lang))
+                     :concept.external-database.ams-taxonomy-67/id (str (get main-headline :main_id))}
                     {:db/id                     (make-tempid-term (get main-headline :main_term) (get main-headline :lang))
                      :term/base-form            (get main-headline :main_term)})))))
 

@@ -31,11 +31,11 @@
   "Create Datomic schema concept structure"
   [temp-id nano-id term category legacy-id code]
    (merge
-     {:concept/id               nano-id
-      :concept/description      term
-      :concept/preferred-term   temp-id
-      :concept/category         (keyword category)
-      :concept.taxonomy-67-id   legacy-id}
+     {:concept/id                                   nano-id
+      :concept/description                          term
+      :concept/preferred-term                       temp-id
+      :concept/category                             (keyword category)
+      :concept.external-database.ams-taxonomy-67/id legacy-id}
      (when
        (and (not= code nil) (= category "region"))
        {:concept.external-standard/nuts-level-3-code code})

@@ -31,12 +31,12 @@
 (defn convert-concept
   "Create Datomic schema concept structure"
   [temp-id nano-id term category legacy-id code]
-    {:concept/id               nano-id
-     :concept/description      term
-     :concept/preferred-term   temp-id
-     :concept/category         (keyword category)
-     :concept.taxonomy-67-id   legacy-id
-     :concept.external-standard/SUN-field-code code})
+    {:concept/id                                   nano-id
+     :concept/description                          term
+     :concept/preferred-term                       temp-id
+     :concept/category                             (keyword category)
+     :concept.external-database.ams-taxonomy-67/id legacy-id
+     :concept.external-standard/SUN-field-code     code})
 
 
 (defn converter
