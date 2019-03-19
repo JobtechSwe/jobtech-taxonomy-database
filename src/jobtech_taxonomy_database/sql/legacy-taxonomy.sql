@@ -108,7 +108,8 @@ AND LanguageLevelTerm.versionID = 67
 -- :name get-worktime-extent :*
 -- :doc Get all worktime extents
 SELECT Arbetstid.*, ArbetstidTerm.*
-FROM TaxonomyDBSvenskVersion.dbo.Arbetstid Arbetstid, TaxonomyDBSvensk.dbo.ArbetstidTerm ArbetstidTerm
+FROM TaxonomyDBSvenskVersion.dbo.Arbetstid Arbetstid,
+     TaxonomyDBSvenskVersion.dbo.ArbetstidTerm ArbetstidTerm
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
 AND Arbetstid.versionID = 1
 AND ArbetstidTerm.versionID = 1
@@ -193,8 +194,8 @@ AND DrivingLicenceTerm.versionID = 67
 -- :name get-employment-duration :*
 -- :doc Get all employment durations
 SELECT Anställningsvaraktighet.*, AnställningsvaraktighetTerm.*
-FROM TaxonomyDBSvensk.dbo.Anställningsvaraktighet Anställningsvaraktighet,
-     TaxonomyDBSvensk.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
+FROM TaxonomyDBSvenskVersion.dbo.Anställningsvaraktighet Anställningsvaraktighet,
+     TaxonomyDBSvenskVersion.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
 WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsvaraktighet.anställningsvaraktighetsID
 AND Anställningsvaraktighet.versionID = 1
 AND AnställningsvaraktighetTerm.versionID = 1
@@ -206,7 +207,8 @@ AND AnställningsvaraktighetTerm.versionID = 1
 -- :name get-employment-type :*
 -- :doc Get all employment types ;
 SELECT AnstallningTypJobb.*, AnstallningTypJobbTerm.*
-FROM TaxonomyDBSvensk.dbo.AnstallningTypJobb AnstallningTypJobb, TaxonomyDBSvensk.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
+FROM TaxonomyDBSvenskVersion.dbo.AnstallningTypJobb AnstallningTypJobb,
+     TaxonomyDBSvenskVersion.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
 WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.AnstallningTypJobbID
 AND AnstallningTypJobb.versionID = 1
 AND AnstallningTypJobbTerm.versionID = 1
