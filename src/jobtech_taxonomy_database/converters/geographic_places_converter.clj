@@ -1,13 +1,7 @@
 (ns jobtech-taxonomy-database.converters.geographic-places-converter
   (:gen-class)
-  (:require [datomic.client.api :as d]
-            [jobtech-taxonomy-database.schema :refer :all :as schema]
-            [jobtech-taxonomy-database.legacy-migration :refer :all]
-            [jobtech-taxonomy-database.config :refer :all]
-            [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
-            [jobtech-taxonomy-database.converters.nano-id-assigner :refer :all]
-            [cheshire.core :refer :all]
-            [nano-id.custom :refer [generate]]))
+  (:require [jobtech-taxonomy-database.legacy-migration :as legacy-migration]
+            [jobtech-taxonomy-database.converters.nano-id-assigner :as nano-id-assigner]))
 
 (defn ^:private make-tempid-concept
   "Create temporary ID for transaction purpose"
@@ -54,7 +48,7 @@
                (str (:code data))
                nil)
         nano-id (if (not= legacy-id nil)
-                  (get-nano category legacy-id))
+                  (nano-id-assigner/get-nano category legacy-id))
         temp-id (make-tempid-concept category legacy-id)
         temp-id-parent (if (not= (:parent-id data) nil)
                          (make-tempid-concept parent-category (:parent-id data)))
@@ -79,22 +73,26 @@
 (defn convert-continent
   "Query db for continents, convert each entity"
   []
-  (mapcat (fn [x] (converter x "continent" nil)) (fetch-data get-continents)))
+  (mapcat (fn [x] (converter x "continent" nil))
+          (legacy-migration/fetch-data legacy-migration/get-continents)))
 
 (defn convert-country
   "Query db for countries, convert each entity"
   []
-  (mapcat (fn [x] (converter x "country" "continent")) (fetch-data get-countries)))
+  (mapcat (fn [x] (converter x "country" "continent"))
+          (legacy-migration/fetch-data legacy-migration/get-countries)))
 
 (defn convert-region
   "Query db for EU regions, convert each entity"
   []
-  (mapcat (fn [x] (converter x "region" "country")) (fetch-data get-EU-regions)))
+  (mapcat (fn [x] (converter x "region" "country"))
+          (legacy-migration/fetch-data legacy-migration/get-EU-regions)))
 
 (defn convert-municipality
   "Query db for municipalities, convert each entity"
   []
-  (mapcat (fn [x] (converter x "municipality" "region")) (fetch-data get-municipalities)))
+  (mapcat (fn [x] (converter x "municipality" "region"))
+          (legacy-migration/fetch-data legacy-migration/get-municipalities)))
 
 (defn convert
   "Compile converted continents, countries, EU regions and municipalities"

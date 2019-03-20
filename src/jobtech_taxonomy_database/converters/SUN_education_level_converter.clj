@@ -66,19 +66,19 @@
   "Query db for SUN education level 1, convert each entity"
   []
   (mapcat (fn [x] (converter x "sun-education-level-1" nil))
-          (legacy-migration/fetch-data get-sun-level-1)))
+          (legacy-migration/fetch-data legacy-migration/get-sun-level-1)))
 
 (defn convert-level-2
   "Query db for SUN education level 2, convert each entity"
   []
   (mapcat (fn [x] (converter x "sun-education-level-2" "sun-education-level-1"))
-          (legacy-migration/fetch-data get-sun-level-2)))
+          (legacy-migration/fetch-data legacy-migration/get-sun-level-2)))
 
 (defn convert-level-3
   "Query db for SUN education level 3, convert each entity"
   []
   (mapcat (fn [x] (converter x "sun-education-level-3" "sun-education-level-2"))
-          (legacy-migration/fetch-data get-sun-level-3)))
+          (legacy-migration/fetch-data legacy-migration/get-sun-level-3)))
 
 (defn convert
   "Compile converted SUN education levels 1, 2 & 3"
