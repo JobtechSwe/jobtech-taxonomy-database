@@ -108,8 +108,8 @@ AND LanguageLevelTerm.versionID = 67
 -- :name get-worktime-extent :*
 -- :doc Get all worktime extents
 SELECT Arbetstid.*, ArbetstidTerm.*
-FROM TaxonomyDBSvenskVersion.dbo.Arbetstid Arbetstid,
-     TaxonomyDBSvenskVersion.dbo.ArbetstidTerm ArbetstidTerm
+FROM TaxonomiDBSvenskVersion.dbo.Arbetstid Arbetstid,
+     TaxonomiDBSvenskVersion.dbo.ArbetstidTerm ArbetstidTerm
 WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
 AND Arbetstid.versionID = 1
 AND ArbetstidTerm.versionID = 1
@@ -194,8 +194,8 @@ AND DrivingLicenceTerm.versionID = 67
 -- :name get-employment-duration :*
 -- :doc Get all employment durations
 SELECT Anställningsvaraktighet.*, AnställningsvaraktighetTerm.*
-FROM TaxonomyDBSvenskVersion.dbo.Anställningsvaraktighet Anställningsvaraktighet,
-     TaxonomyDBSvenskVersion.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
+FROM TaxonomiDBSvenskVersion.dbo.Anställningsvaraktighet Anställningsvaraktighet,
+     TaxonomiDBSvenskVersion.dbo.AnställningsvaraktighetTerm AnställningsvaraktighetTerm
 WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsvaraktighet.anställningsvaraktighetsID
 AND Anställningsvaraktighet.versionID = 1
 AND AnställningsvaraktighetTerm.versionID = 1
@@ -207,8 +207,8 @@ AND AnställningsvaraktighetTerm.versionID = 1
 -- :name get-employment-type :*
 -- :doc Get all employment types ;
 SELECT AnstallningTypJobb.*, AnstallningTypJobbTerm.*
-FROM TaxonomyDBSvenskVersion.dbo.AnstallningTypJobb AnstallningTypJobb,
-     TaxonomyDBSvenskVersion.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
+FROM TaxonomiDBSvenskVersion.dbo.AnstallningTypJobb AnstallningTypJobb,
+     TaxonomiDBSvenskVersion.dbo.AnstallningTypJobbTerm AnstallningTypJobbTerm
 WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.AnstallningTypJobbID
 AND AnstallningTypJobb.versionID = 1
 AND AnstallningTypJobbTerm.versionID = 1
@@ -372,8 +372,8 @@ SELECT SUNInriktning1.SUNInriktning1ID AS [id],
     SUNInriktning1.SUNKodInriktning1 AS [code],
     SUNInriktning1.versionID AS [version-id],
     SUNInriktning1Term.beteckning AS [term]
-FROM TaxonomyDBSvenskVersion.dbo.SUNInriktning1 SUNInriktning1,
-    TaxonomyDBSvenskVersion.dbo.SUNInriktning1Term SUNInriktning1Term
+FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning1 SUNInriktning1,
+    TaxonomiDBSvenskVersion.dbo.SUNInriktning1Term SUNInriktning1Term
 WHERE SUNInriktning1.versionID = SUNInriktning1Term.versionID
 AND SUNInriktning1.SUNInriktning1ID = SUNInriktning1Term.SUNInriktning1ID
 
@@ -386,8 +386,8 @@ SELECT SUNInriktning2.SUNInriktning1ID AS [parent-id],
     SUNInriktning2.SUNKodInriktning2 AS [code],
     SUNInriktning2.versionID AS [version-id],
     SUNInriktning2Term.beteckning AS [term]
-FROM TaxonomyDBSvenskVersion.dbo.SUNInriktning2 SUNInriktning2,
-    TaxonomyDBSvenskVersion.dbo.SUNInriktning2Term SUNInriktning2Term
+FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning2 SUNInriktning2,
+    TaxonomiDBSvenskVersion.dbo.SUNInriktning2Term SUNInriktning2Term
 WHERE SUNInriktning2.versionID = SUNInriktning2Term.versionID
 AND SUNInriktning2.SUNInriktning2ID = SUNInriktning2Term.SUNInriktning2ID
 
@@ -400,8 +400,8 @@ SELECT SUNInriktning3.SUNInriktning2ID AS [parent-id],
     SUNInriktning3.SUNKodInriktning3 AS [code],
     SUNInriktning3.versionID AS [version-id],
     SUNInriktning3Term.beteckning AS [term]
-FROM TaxonomyDBSvenskVersion.dbo.SUNInriktning3 SUNInriktning3,
-    TaxonomyDBSvenskVersion.dbo.SUNInriktning3Term SUNInriktning3Term
+FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning3 SUNInriktning3,
+    TaxonomiDBSvenskVersion.dbo.SUNInriktning3Term SUNInriktning3Term
 WHERE SUNInriktning3.versionID = SUNInriktning3Term.versionID
 AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
 
@@ -416,8 +416,8 @@ SELECT SUNNivå1.SUNNivå1ID AS [id],
     SUNNivå1.SUNKodNivå1 AS [code],
     SUNNivå1.versionID AS [version-id],
     SUNNivå1Term.beteckning AS [term]
-FROM TaxonomyDBSvenskVersion.dbo.SUNNivå1 SUNNivå1,
-	TaxonomyDBSvenskVersion.dbo.SUNNivå1Term SUNNivå1Term
+FROM TaxonomiDBSvenskVersion.dbo.SUNNivå1 SUNNivå1,
+	TaxonomiDBSvenskVersion.dbo.SUNNivå1Term SUNNivå1Term
 WHERE SUNNivå1.versionID = SUNNivå1Term.versionID
 	AND SUNNivå1.SUNNivå1ID = SUNNivå1Term.SUNNivå1ID
 
@@ -430,8 +430,8 @@ SELECT SUNNivå2.SUNNivå1ID AS [parent-id],
     SUNNivå2.SUNKodNivå2 AS [code],
     SUNNivå2.versionID AS [version-id],
     SUNNivå2Term.beteckning AS [term]
-FROM TaxonomyDBSvenskVersion.dbo.SUNNivå2 SUNNivå2,
-	TaxonomyDBSvenskVersion.dbo.SUNNivå2Term SUNNivå2Term
+FROM TaxonomiDBSvenskVersion.dbo.SUNNivå2 SUNNivå2,
+	TaxonomiDBSvenskVersion.dbo.SUNNivå2Term SUNNivå2Term
 WHERE SUNNivå2.versionID = SUNNivå2Term.versionID
 AND SUNNivå2.SUNNivå2ID = SUNNivå2Term.SUNNivå2ID
 
@@ -444,8 +444,8 @@ SELECT SUNNivå3.SUNNivå2ID AS [parent-id],
     SUNNivå3.SUNKodNivå3 AS [code],
     SUNNivå3.versionID AS [version-id],
     SUNNivå3Term.beteckning AS [term]
-FROM TaxonomyDBSvenskVersion.dbo.SUNNivå3 SUNNivå3,
-	TaxonomyDBSvenskVersion.dbo.SUNNivå3Term SUNNivå3Term
+FROM TaxonomiDBSvenskVersion.dbo.SUNNivå3 SUNNivå3,
+	TaxonomiDBSvenskVersion.dbo.SUNNivå3Term SUNNivå3Term
 WHERE SUNNivå3.versionID = SUNNivå3Term.versionID
 AND SUNNivå3.SUNNivå3ID = SUNNivå3Term.SUNNivå3ID
 

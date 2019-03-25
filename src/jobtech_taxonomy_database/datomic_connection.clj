@@ -55,6 +55,23 @@
   ([]       (init-new-db-with-conn (get-conn)))
   ([conn]   (init-new-db-with-conn conn)))
 
-;; (def client (d/client (get  (get-datomic-config) :datomic-cfg)))
-;; (d/delete-database client {:db-name "jobtech-taxonomy-henrik-dev"}  )
-;; (d/create-database client {:db-name "jobtech-taxonomy-henrik-dev"}  )
+
+(defn ^:private get-client [] (d/client (get  (get-datomic-config) :datomic-cfg)))
+
+(defn ^:private delete-database []
+  (d/delete-database (get-client) {:db-name "jobtech-taxonomy-development"}  )
+  )
+
+(defn ^:private create-database []
+  (d/create-database (get-client) {:db-name "jobtech-taxonomy-development"}  )
+  )
+
+
+;;
+;; (d/create-database client {:db-name "jobtech-taxonomy-development"}  )
+#_("demo"
+   "jobtech-taxonomy-development"
+   "jobtech-taxonomy-henrik-dev"
+   "jobtech-taxonomy-joakim-dev"
+   "jobtech-taxonomy-production"
+   "taxonomy_v13")
