@@ -220,7 +220,7 @@ AND AnstallningTypJobbTerm.versionID = 1
 -- :name get-wage-type :*
 -- :doc Get all wage types ;
 SELECT Löneform.*, LöneformTerm.*
-FROM TaxonomyDBSvensk.dbo.Löneform Löneform, TaxonomyDBSvensk.dbo.LöneformTerm LöneformTerm
+FROM TaxonomiDBSvensk.dbo.Löneform Löneform, TaxonomiDBSvensk.dbo.LöneformTerm LöneformTerm
 WHERE LöneformTerm.löneformsID = Löneform.löneformsID
 AND Löneform.versionID = 1
 AND LöneformTerm.versionID = 1
