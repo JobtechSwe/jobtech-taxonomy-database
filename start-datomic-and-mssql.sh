@@ -101,6 +101,16 @@ if ! which docker; then
     sudo apt-get update && sudo apt-get install docker.io
 fi
 
+## Is user added to the docker group?
+if ! groups | grep -q docker; then
+    sudo adduser "$USER" docker
+    newgrp docker
+    newgrp "$USER"
+    echo
+    echo "**** You were added to the group 'docker'. I tried to force this change in this session. If docker fails, please logout and login again to execute the change properly. This is only necessary once."
+    echo
+fi
+
 
 function kill_servers() {
     local PIDS_TO_KILL="$(cat $PIDFILE)"
@@ -198,9 +208,9 @@ function start_taxonomydb() {
 
         docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE TaxonomyDBVersion WITH RECOVERY"
 
-        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE [TaxonomyDBSvenskVersion] FROM DISK = N'/data/taxonomydb-svensk-version.bak' WITH FILE = 1, NOUNLOAD, REPLACE, NORECOVERY, STATS = 5"
+        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE [TaxonomiDBSvenskVersion] FROM DISK = N'/data/taxonomydb-svensk-version.bak' WITH FILE = 1, NOUNLOAD, REPLACE, NORECOVERY, STATS = 5"
 
-        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE TaxonomyDBSvenskVersion WITH RECOVERY"
+        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE TaxonomiDBSvenskVersion WITH RECOVERY"
 
         popd
     fi
