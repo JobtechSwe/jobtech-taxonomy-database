@@ -67,11 +67,11 @@
   )
 
 
-;;
 ;; (d/create-database client {:db-name "jobtech-taxonomy-development"}  )
 #_("demo"
    "jobtech-taxonomy-development"
    "jobtech-taxonomy-henrik-dev"
    "jobtech-taxonomy-joakim-dev"
    "jobtech-taxonomy-production"
+   "jobtech-taxonomy-simon-dev"
    "taxonomy_v13")

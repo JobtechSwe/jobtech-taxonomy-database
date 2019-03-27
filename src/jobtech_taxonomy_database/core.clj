@@ -15,7 +15,9 @@
             [jobtech-taxonomy-database.converters.wage-type-converter]
             [jobtech-taxonomy-database.converters.worktime-extent-converter]
             [jobtech-taxonomy-database.converters.SUN-education-field-converter]
-            [jobtech-taxonomy-database.converters.SUN-education-level-converter]))
+            [jobtech-taxonomy-database.converters.SUN-education-level-converter]
+            [jobtech-taxonomy-database.converters.SNI-level-converter]
+            ))
 
 (def converters
   "Each logic section of the old taxonomy can be handled by a converter
@@ -23,17 +25,17 @@
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
   '(
-     {:namespace jobtech-taxonomy-database.converters.drivers-license-converter}
-     {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
-     {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
-     {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
-     {:namespace jobtech-taxonomy-database.converters.language-converter}
-     {:namespace jobtech-taxonomy-database.converters.language-level-converter}
-     {:namespace jobtech-taxonomy-database.converters.skills-converter}
-     {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
-     {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
-     {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
-     {:namespace jobtech-taxonomy-database.converters.SUN-education-level-converter}
+    {:namespace jobtech-taxonomy-database.converters.drivers-license-converter}
+    {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
+    {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
+    {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
+    {:namespace jobtech-taxonomy-database.converters.language-converter}
+    {:namespace jobtech-taxonomy-database.converters.language-level-converter}
+    {:namespace jobtech-taxonomy-database.converters.skills-converter}
+    {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
+    {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
+    {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
+    {:namespace jobtech-taxonomy-database.converters.SUN-education-level-converter}
     ))
 
 
@@ -53,4 +55,4 @@
                 (d/transact (get-conn) {:tx-data converted-data})))
             converters))))
 ;; (-main)
-;Should we add a source attribute to the transaction? See https://docs.datomic.com/on-prem/best-practices.html#add-facts-about-transaction-entity
+                                        ;Should we add a source attribute to the transaction? See https://docs.datomic.com/on-prem/best-practices.html#add-facts-about-transaction-entity

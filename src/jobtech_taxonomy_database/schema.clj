@@ -98,15 +98,22 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "ISCO-08 level 4"}
 
-    {:db/ident       :concept.external-standard/SUN-field-code
-     :db/valueType   :db.type/string
-     :db/cardinality :db.cardinality/one
-     :db/doc         "SUN education field code, either 1, 2 or 3 digits"}
+   {:db/ident       :concept.external-standard/SUN-field-code
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "SUN education field code, either 1, 2 or 3 digits"}
 
    {:db/ident       :concept.external-standard/SUN-level-code
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "SUN education level code, either 1, 2 or 3 digits"}])
+    :db/doc         "SUN education level code, either 1, 2 or 3 digits"}
+
+   {:db/ident       :concept.external-standard/sni-level-code
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "SNI level code"}
+
+   ])
 
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 

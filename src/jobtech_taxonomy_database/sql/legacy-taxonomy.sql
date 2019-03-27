@@ -188,6 +188,16 @@ AND DrivingLicence.versionID = 67
 AND DrivingLicenceTerm.versionID = 67
 
 
+
+-- :name get-drivers-license-combination :*
+-- :doc Get all driver's license combinations
+SELECT Körkortskombination.*, Körkortskoppling.*
+FROM TaxonomiDBSvensk.dbo.Körkortskombination Körkortskombination, TaxonomiDBSvensk.dbo.Körkortskoppling Körkortskoppling
+WHERE Körkortskoppling.kombinationsID = Körkortskombination.kombinationsID
+
+
+
+
 -- A ":result" value of ":*" specifies a vector of records
 -- NOTA BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
@@ -220,7 +230,7 @@ AND AnstallningTypJobbTerm.versionID = 1
 -- :name get-wage-type :*
 -- :doc Get all wage types ;
 SELECT Löneform.*, LöneformTerm.*
-FROM TaxonomiDBSvensk.dbo.Löneform Löneform, TaxonomiDBSvensk.dbo.LöneformTerm LöneformTerm
+FROM TaxonomiDBSvenskVersion.dbo.Löneform Löneform, TaxonomiDBSvenskVersion.dbo.LöneformTerm LöneformTerm
 WHERE LöneformTerm.löneformsID = Löneform.löneformsID
 AND Löneform.versionID = 1
 AND LöneformTerm.versionID = 1
@@ -450,3 +460,21 @@ WHERE SUNNivå3.versionID = SUNNivå3Term.versionID
 AND SUNNivå3.SUNNivå3ID = SUNNivå3Term.SUNNivå3ID
 
 ------------------END SUN education level--------------------
+---- START NACE LEVEL
+
+-- :name get-sni-level-1 :*
+-- :doc get SNI koder level 1 ;
+SELECT NaceLevel1.*, NaceLevel1Term.*
+FROM TaxonomyDBVersion.dbo.NaceLevel1 NaceLevel1, TaxonomyDBVersion.dbo.NaceLevel1Term NaceLevel1Term
+WHERE NaceLevel1.versionID = NaceLevel1Term.versionID
+AND NaceLevel1.naceLevel1ID = NaceLevel1Term.naceLevel1ID
+AND NaceLevel1.versionID = 67
+
+
+-- :name get-sni-level-2 :*
+-- :doc get SNI koder level 2 ;
+SELECT NaceLevel2.*, NaceLevel2Term.*
+FROM TaxonomyDBVersion.dbo.NaceLevel2 NaceLevel2, TaxonomyDBVersion.dbo.NaceLevel2Term NaceLevel2Term
+WHERE NaceLevel2.versionID = NaceLevel2Term.versionID
+AND NaceLevel2.naceLevel2ID = NaceLevel2Term.naceLevel2ID
+AND NaceLevel2.versionID = 67
