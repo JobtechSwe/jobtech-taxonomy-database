@@ -16,7 +16,7 @@
   )
 
 (defn convert-driving-lincense-combination-grouped [grouped-combinations]
-  (let [nano-id (n/get-nano)
+  (let [nano-id (nano/get-nano)
         driving-license-id (first grouped-combinations)
         temp-id (str "driving-licence-combination-" driving-license-id)
         relations (map combination-to-relation (second grouped-combinations))
