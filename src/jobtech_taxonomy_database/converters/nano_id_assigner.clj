@@ -2,28 +2,12 @@
   (:gen-class)
   (:require [cheshire.core :refer :all]
             [clojure.string :as str]
-            [nano-id.custom :refer [generate]]))
-
-(def base-58-nano-id (generate "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"))
-
-(defn generate-new-id []
-  "Specify format and length of nano ID"
-  (base-58-nano-id 10)
-  )
-
-(defn add-underscore [id]
-  (str (subs id 0 4) "_" (subs id 4 7)  "_" (subs id 7 10)  )
-  )
-
-(defn generate-new-id-with-underscore []
-  (add-underscore (generate-new-id))
-  )
+            [jobtech-taxonomy-database.nano-id :as nano]))
 
 (defn open-json
   "Open json, return map with json keyword formatted as clojure keywords."
   []
-  (parse-string (slurp "resources/taxonomy_to_concept_with_headlines_and_mainheadlines_v67.json") true)
-  )
+  (parse-string (slurp "resources/taxonomy_to_concept_with_headlines_and_mainheadlines_v67.json") true))
 
 (def taxonomy-67 (open-json))
 
@@ -55,9 +39,9 @@
     (if (= description-67 description) "same description" "different description")))
 
 (defn get-nano
-  ([] (generate-new-id-with-underscore))
+  ([] (nano/generate-new-id-with-underscore))
   ([category id]
-   (get-in taxonomy-67 [(keyword category) (keyword id) :conceptId] (generate-new-id-with-underscore))))
+   (get-in taxonomy-67 [(keyword category) (keyword id) :conceptId] (nano/generate-new-id-with-underscore))))
 
 (defn append-line "" [file line]
   (with-open [w (clojure.java.io/writer file :append true)]
@@ -66,8 +50,8 @@
 (defn get-nano-log-updates "writes to hardcoded filename atm"
   [category id term]
   (let* [lookup-id (get-in taxonomy-67 [(keyword category) (keyword id) :conceptId])]
-    (if lookup-id
-       lookup-id
-       (let [new-id (generate-new-id-with-underscore)]
-         (append-line "resources/new-ids.json" (format "{ %s { %s { :preferredTerm \"%s\" :conceptId \"%s\" :type \"%s\" } } }\n" category id term new-id (str/replace category #"^:(.*)$" "$1")))
-         new-id))))
+        (if lookup-id
+          lookup-id
+          (let [new-id (nano/generate-new-id-with-underscore)]
+            (append-line "resources/new-ids.json" (format "{ %s { %s { :preferredTerm \"%s\" :conceptId \"%s\" :type \"%s\" } } }\n" category id term new-id (str/replace category #"^:(.*)$" "$1")))
+            new-id))))
