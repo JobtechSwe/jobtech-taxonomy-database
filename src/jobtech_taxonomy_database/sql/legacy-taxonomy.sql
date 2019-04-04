@@ -192,7 +192,7 @@ AND DrivingLicenceTerm.versionID = 67
 -- :name get-drivers-license-combination :*
 -- :doc Get all driver's license combinations
 SELECT Körkortskombination.*, Körkortskoppling.*
-FROM TaxonomiDBSvensk.dbo.Körkortskombination Körkortskombination, TaxonomiDBSvensk.dbo.Körkortskoppling Körkortskoppling
+FROM TaxonomiDBSvenskVersion.dbo.Körkortskombination Körkortskombination, TaxonomiDBSvenskVersion.dbo.Körkortskoppling Körkortskoppling
 WHERE Körkortskoppling.kombinationsID = Körkortskombination.kombinationsID
 
 
