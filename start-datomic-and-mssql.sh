@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Script som:
-#  1. installerar datomic-pro i /tmp
+#  1. installerar datomic-pro i /var/tmp
 #  2. installerar apt-paketen openjdk-11-jre och docker.io om de saknas
 #  3. startar transaktorn
 #  4. skapar datomicdatabasen
@@ -65,7 +65,7 @@ TXIP=localhost
 
 ## Datomic params
 VERSION='0.9.5786'
-DATOMICINSTALLDIR='/tmp'
+DATOMICINSTALLDIR='/var/tmp'
 DATOMICDIR="$DATOMICINSTALLDIR/datomic-pro-$VERSION"
 
 
@@ -75,8 +75,8 @@ PIDFILE=$(mktemp)
 
 ## Install Datomic if not already done
 if [ ! -d "$DATOMICINSTALLDIR/datomic-pro-$VERSION" ]; then
-    if [ ! -f "/tmp/datomic-pro-$VERSION.zip" ]; then
-	wget --http-user="$DATOMICMAIL" --http-password="$DATOMICPASS" https://my.datomic.com/repo/com/datomic/datomic-pro/"$VERSION"/datomic-pro-"$VERSION".zip -O /tmp/datomic-pro-"$VERSION".zip
+    if [ ! -f "/var/tmp/datomic-pro-$VERSION.zip" ]; then
+	wget --http-user="$DATOMICMAIL" --http-password="$DATOMICPASS" https://my.datomic.com/repo/com/datomic/datomic-pro/"$VERSION"/datomic-pro-"$VERSION".zip -O /var/tmp/datomic-pro-"$VERSION".zip
     fi
     pushd "$DATOMICINSTALLDIR"
     unzip "datomic-pro-$VERSION.zip"
