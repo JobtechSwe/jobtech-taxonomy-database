@@ -16,6 +16,9 @@
                  [cheshire "5.8.1"]
                  [nano-id "0.9.3"]
                  ]
+  :repositories [["snapshots" {:url "https://repo.clojars.org"
+                               :username "batfish"
+                               :password :env}]]
   :main ^:skip-aot jobtech-taxonomy-database.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
