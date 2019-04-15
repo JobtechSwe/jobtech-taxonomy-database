@@ -173,15 +173,19 @@
   )
 
 (def get-concept-by-legacy-id-query '[:find ?s
-                   :in $ ?legacy-id ?category ;; TODO rename category
-                   :where
-                   [?s :concept.external-database.ams-taxonomy-67/id ?legacy-skill-id]
-                   [?s :concept/category ?category]  ;;TODO Add category/taxonomy-rank to the skill concepts
+                                      :in $ ?legacy-id ?category
+                                      :where
+                                      [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
+                                      [?s :concept/category ?category]
                    ])
 
 (defn get-concept-by-legacy-id [legacy-id category]
   (ffirst (d/q get-concept-by-legacy-id-query (get-db) legacy-id category))
   )
+
+
+;; FEL!! får alla concept typ??
+#_(d/q get-concept-by-legacy-id-query (get-db) "7577" :occupation-name)
 
 (defn convert-ssyk-skill
   "This one has to be transacted to the database after skill and occupation-group has been added to the database"

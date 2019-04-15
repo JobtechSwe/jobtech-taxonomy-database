@@ -478,3 +478,58 @@ FROM TaxonomyDBVersion.dbo.NaceLevel2 NaceLevel2, TaxonomyDBVersion.dbo.NaceLeve
 WHERE NaceLevel2.versionID = NaceLevel2Term.versionID
 AND NaceLevel2.naceLevel2ID = NaceLevel2Term.naceLevel2ID
 AND NaceLevel2.versionID = 67
+
+
+
+------------------- Version 68
+------------------------------------------------------------------
+
+
+-- :name get-deprecated-occupation-name :*
+-- :doc get occupation names that have been deprecated after version 67  ;
+SELECT OccupationNameTerm1.occupationNameID, OccupationNameTerm2.occupationNameID as deprecatedOccupation
+FROM TaxonomyDB.dbo.OccupationNameTerm as OccupationNameTerm1 RIGHT JOIN TaxonomyDBVersion.dbo.OccupationNameTerm as OccupationNameTerm2
+ON OccupationNameTerm1.occupationNameID = OccupationNameTerm2.occupationNameID
+WHERE OccupationNameTerm1.occupationNameID is NULL
+AND OccupationNameTerm2.versionID = 67
+
+
+-- :name get-new-occupation-name :*
+-- :doc get occupation names that has been added after version 67 ;
+SELECT OccupationName.*, OccupationNameTerm.*
+FROM TaxonomyDB.dbo.OccupationName OccupationName, TaxonomyDB.dbo.OccupationNameTerm OccupationNameTerm
+WHERE OccupationName.occupationNameID = OccupationNameTerm.occupationNameID
+AND OccupationNameTerm.languageID = 502
+AND OccupationName.countryID = OccupationNameTerm.countryID
+AND OccupationName.modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+
+
+-- :name get-referred-occupation-name :*
+-- :doc get renamed occupation names after version 67; omkoppling
+SELECT occupationNameID, countryID, term, standard, locale, occupationNameIDRef, countryIDRef, modificationDate
+FROM TaxonomyDB.dbo.OccupationNameReference
+WHERE
+modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+
+
+-- :name get-renamed-occupation-name :*
+-- :doc get renamed occupation names after version 67
+SELECT DISTINCT OccupationNameTerm.term, OccupationNameTerm.occupationNameID
+FROM TaxonomyDB.dbo.OccupationNameTerm OccupationNameTerm, TaxonomyDB.dbo.OccupationNameTermHistory OccupationNameTermHistory
+WHERE
+OccupationNameTermHistory.occupationNameID = OccupationNameTerm.occupationNameID
+AND OccupationNameTermHistory.countryID = OccupationNameTerm.countryID
+AND OccupationNameTerm.languageID = 502
+AND OccupationNameTermHistory.modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)

@@ -17,6 +17,7 @@
             [jobtech-taxonomy-database.converters.SUN-education-field-converter]
             [jobtech-taxonomy-database.converters.SUN-education-level-converter]
             [jobtech-taxonomy-database.converters.SNI-level-converter]
+            [jobtech-taxonomy-database.converters.occupation-converter]
             ))
 
 (def converters
@@ -25,17 +26,18 @@
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
   '(
-    {:namespace jobtech-taxonomy-database.converters.drivers-license-converter}
-    {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
-    {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
-    {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
-    {:namespace jobtech-taxonomy-database.converters.language-converter}
-    {:namespace jobtech-taxonomy-database.converters.language-level-converter}
-    {:namespace jobtech-taxonomy-database.converters.skills-converter}
-    {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
-    {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
-    {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
-    {:namespace jobtech-taxonomy-database.converters.SUN-education-level-converter}
+;    {:namespace jobtech-taxonomy-database.converters.drivers-license-converter}
+;    {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
+;    {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
+;    {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
+;    {:namespace jobtech-taxonomy-database.converters.language-converter}
+;    {:namespace jobtech-taxonomy-database.converters.language-level-converter}
+;    {:namespace jobtech-taxonomy-database.converters.skills-converter}
+;    {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
+;    {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
+;    {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
+                                        ;    {:namespace jobtech-taxonomy-database.converters.SUN-education-level-converter}
+     {:namespace jobtech-taxonomy-database.converters.occupation-converter }
     ))
 
 
