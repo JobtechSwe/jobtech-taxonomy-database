@@ -38,7 +38,7 @@
                                       ])
 
 (defn get-concept-by-legacy-id [legacy-id category]
-  (ffirst (d/q get-concept-by-legacy-id-query (conn/get-db) legacy-id category))
+  (ffirst (d/q get-concept-by-legacy-id-query (conn/get-db) (str legacy-id) category))
   )
 
 

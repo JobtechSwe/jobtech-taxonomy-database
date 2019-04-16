@@ -509,8 +509,8 @@ WHERE versionID = 67
 )
 
 
--- :name get-referred-occupation-name :*
--- :doc get renamed occupation names after version 67; omkoppling
+-- :name get-replaced--occupation-name :*
+-- :doc get replaced occupation names after version 67; omkoppling
 SELECT occupationNameID, countryID, term, standard, locale, occupationNameIDRef, countryIDRef, modificationDate
 FROM TaxonomyDB.dbo.OccupationNameReference
 WHERE

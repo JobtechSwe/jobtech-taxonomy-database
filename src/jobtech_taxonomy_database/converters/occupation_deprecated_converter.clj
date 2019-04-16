@@ -25,7 +25,7 @@
   [{:keys [term occupationgroupid occupationnameid localegroupid]}]
   {:pre   [term occupationgroupid occupationnameid localegroupid]}
 
-  (let    [nano-id (get-nano "occupation-name" (str occupationnameid))
+  (let    [nano-id (get-nano "occupation-name-" (str occupationnameid))
            temp-id (str "occupation-name-" occupationnameid)
            ssyk-concept-id (util/get-concept-by-legacy-id (str localegroupid) :occupation-group)
            isco-concept-id (util/get-concept-by-legacy-id (str occupationgroupid) :isco)
@@ -64,11 +64,31 @@
 #_(defn convert-renamed-occupation-name []
     )
 
+(defn get-entity-if-exists-or-temp-id [legacy-id]
+
+  (if-let [entity-id (util/get-concept-by-legacy-id legacy-id :occupation-name)]
+    entity-id
+    (str "occupation-name-" legacy-id)
+    )
+  )
+
+(defn convert-replaced-by-occuaption-name [ {:keys [occupationnameid occupationnameidref]}]
+  (let [old-concept  (util/get-concept-by-legacy-id (str occupationnameid) :occupation-name)
+        replaced-by-concept-id (get-entity-if-exists-or-temp-id occupationnameidref)
+        ]
+    {:db/id old-concept
+     :concept/replaced-by replaced-by-concept-id
+     }
+    )
+  )
+
 (defn convert []
   "Run this function after the database has been loaded"
   (concat
    (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
-   (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name)))
+   (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name))
+   (map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
+   )
   )
 
 #_(def get-concept '[:find ?s ?legacy-id
