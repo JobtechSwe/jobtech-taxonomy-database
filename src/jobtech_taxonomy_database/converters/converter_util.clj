@@ -66,3 +66,31 @@
 (defn get-preferred-term-by-legacy-id [legacy-id category]
   (first (d/q get-preferred-term-and-enity-id-by-legacy-id-query (conn/get-db) legacy-id category))
   )
+
+
+(defn get-entity-if-exists-or-temp-id [legacy-id category]
+  (if-let [entity-id (get-concept-by-legacy-id legacy-id category)]
+    entity-id
+    (str  (name category) "-" legacy-id)
+    )
+  )
+
+(defn deprecate-concept [category legacy-id]
+  "use with partial to be able to use it with map. Like this: (partial (deprecate-concept :occupation-name))"
+  {:pre [legacy-id category]}
+  (if-let [legacy-id (get-concept-by-legacy-id (str legacy-id) category)]
+    {:db/id legacy-id  :concept/deprecated true  }
+    []
+    )
+  )
+
+
+(defn update-preferred-term [new-preferred-term entity-id]
+  (let [temp-id (str (gensym))]
+    [
+     (create-term temp-id new-preferred-term)
+     {:db/id entity-id
+      :concept/preferred-term temp-id
+      }
+     ])
+  )

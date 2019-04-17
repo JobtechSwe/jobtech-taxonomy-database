@@ -945,3 +945,58 @@ WHERE [db-68].arbetstidsID = [db-67].arbetstidsID
 AND [db-68].språkID = 502
 AND [db-67].språkID = 502
 AND [db-67].beteckning != [db-68].beteckning
+
+
+
+---- SKILLS
+
+-- :name get-new-skill :*
+-- :doc get new skills, id's existing in version 68 but not in version 67
+SELECT [db-68].skillID AS [id-68], [db-68].term AS [term-68], skill.skillHeadlineID as [skill-headline]
+FROM TaxonomyDB.dbo.SkillTerm AS [db-68], TaxonomyDB.dbo.Skill as skill
+WHERE [db-68].languageID = 502
+AND [db-68].skillID = skill.skillID
+AND [db-68].skillID NOT IN
+(SELECT [db-67].skillID
+FROM TaxonomyDBVersion.dbo.SkillTerm AS [db-67]
+WHERE [db-67].versionID = 67
+AND [db-67].languageID = 502)
+
+
+-- :name get-deprecated-skill :*
+-- :doc get deprecated skills, id's existing in version 67 but not version 68
+SELECT [db-67].skillID AS [id-67], [db-67].term AS [67-term]
+FROM TaxonomyDBVersion.dbo.SkillTerm AS [db-67]
+WHERE [db-67].versionID = 67
+AND [db-67].languageID = 502
+AND [db-67].skillID NOT IN
+(SELECT [db-68].SkillID
+FROM TaxonomyDB.dbo.SkillTerm AS [db-68]
+WHERE [db-68].languageID = 502)
+
+-- :name get-updated-skill :*
+-- :doc get updated skills where term/label differs between version 68 and version 67
+SELECT Skill.skillID, SkillTerm.term, Skill.skillHeadlineID, Skill67.skillID as id67, SkillTerm67.term as term67, Skill67.skillHeadlineID as headline67
+FROM TaxonomyDBVersion.dbo.Skill as Skill67, TaxonomyDBVersion.dbo.SkillTerm as SkillTerm67, TaxonomyDB.dbo.Skill as Skill, TaxonomyDB.dbo.SkillTerm as SkillTerm
+WHERE Skill67.versionID = SkillTerm67.versionID
+AND   Skill67.versionID = 67
+AND   SkillTerm67.versionID = 67
+AND   Skill67.skillID = SkillTerm67.skillID
+AND   Skill.skillID = SkillTerm.skillID
+AND   Skill.skillID = Skill67.skillID
+AND   SkillTerm.languageID = 502
+AND   SkillTerm67.languageID = 502
+AND   SkillTerm.modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+AND   Skill.modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+
+
+------ SKILL-HEADLINE
+-- Har inga förändringar
