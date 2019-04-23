@@ -25,9 +25,12 @@
                                        term-68
                                        :skill
                                        id-68
-                                       )]
+                                       )
+
+          ]
       [
        concept
+       (util/create-term nano-id term-68 )
        (util/create-relation temp-id
                              (util/get-entity-if-exists-or-temp-id skill-headline :skill-headline)
                              :hyperonym
@@ -40,16 +43,44 @@
 
 
 (defn convert-deprecated-skill [{:keys [id-67]}]
-  {:pre [id-67]}
-  (util/deprecate-concept-with-legacy-id-and-category :skill id-67))
+  {:pre [id-67]}()
+  (util/deprecate-concept :skill id-67))
 
+
+;; TODO utred alternative-terms, behöver man lägga till den gamla termen i alternative-terms, finns i datomic historien så det går att slå upp tidigare preferred-term
 (defn convert-updated-skill [{:keys [skillid term]}]
-  (if-let [entity-id (util/get-concept-by-legacy-id skillid :skill)]
-    (util/update-preferred-term term entity-id)
-    []
-    )
+  (let [entity-id (util/get-concept-by-legacy-id skillid :skill)
+        concept (util/get-concept  entity-id)
+        old-preferred-term-id (get-in concept [:concept/preferred-term :db/id])
 
+        ]
+    (util/update-preferred-term term entity-id old-preferred-term-id)
+    )
   )
 
-
 ;; TODO kolla skill-collection, skill-reference
+
+(defn convert []
+  (concat
+   (mapcat convert-new-skill (fetch-data get-new-skill))
+   (map convert-deprecated-skill (fetch-data get-deprecated-skill))
+   (mapcat convert-updated-skill (fetch-data get-updated-skill))
+   )
+  )
+
+(comment
+  {:db/id 16110044370254510,
+   :concept/preferred-term "G__22687",
+   :concept/alternative-terms
+   [45097568924940977]}
+
+  {:concept/id "ikTr_8Sw_jNn",
+   :concept/description "Webbdesign-Worldpress",
+   :concept/preferred-term {:db/id 63916809945936970,
+                            :term/base-form "Webbdesign-Worldpress"},
+   :concept/category :skill,
+   :concept.external-database.ams-taxonomy-67/id "609196"}
+
+  {:db/id "G__22689", :term/base-form "Webbdesign-Wordpress"}
+
+  )
