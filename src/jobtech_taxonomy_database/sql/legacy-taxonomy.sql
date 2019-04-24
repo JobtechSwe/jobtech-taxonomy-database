@@ -484,6 +484,8 @@ AND NaceLevel2.versionID = 67
 ------------------- Version 68
 ------------------------------------------------------------------
 
+----------- OCCUPATION TERM
+
 
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
@@ -534,6 +536,22 @@ SELECT created
 FROM TaxonomyDBVersion.dbo.Version
 WHERE versionID = 67
 )
+
+
+-- :name get-new-occupation-collection :*
+-- :doc get new yrkessamlingar
+SELECT collectionID, collectionsetID, name, modificationDate
+FROM TaxonomyDB.dbo.OccupationCollection
+wHERE   modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+
+
+
+
+
 
 
 --DRIVER'S LICENCE-- (No differences between versions!!!)

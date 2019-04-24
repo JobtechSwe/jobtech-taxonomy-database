@@ -88,8 +88,8 @@
 
 (defn deprecate-concept [category legacy-id]
   {:pre [legacy-id category]}
-  (if-let [legacy-id (get-concept-by-legacy-id (str legacy-id) category)]
-    {:db/id legacy-id  :concept/deprecated true  }
+  (if-let [entity-id (get-concept-by-legacy-id (str legacy-id) category)]
+    {:db/id entity-id  :concept/deprecated true  }
     []
     )
   )

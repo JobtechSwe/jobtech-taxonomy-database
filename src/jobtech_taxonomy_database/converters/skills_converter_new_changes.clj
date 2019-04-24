@@ -26,7 +26,6 @@
                                        :skill
                                        id-68
                                        )
-
           ]
       [
        concept
@@ -49,16 +48,14 @@
 
 ;; TODO utred alternative-terms, behöver man lägga till den gamla termen i alternative-terms, finns i datomic historien så det går att slå upp tidigare preferred-term
 (defn convert-updated-skill [{:keys [skillid term]}]
-  (let [entity-id (util/get-concept-by-legacy-id skillid :skill)
-        concept (util/get-concept  entity-id)
+  (let [entity-id (util/get-concept-by-legacy-id skillid :skill) ;; borde heta get-entity-id-by-legacy-id
+         concept (util/get-concept  entity-id)
         old-preferred-term-id (get-in concept [:concept/preferred-term :db/id])
 
         ]
     (util/update-preferred-term term entity-id old-preferred-term-id)
     )
   )
-
-;; TODO kolla skill-collection, skill-reference
 
 
 
@@ -76,6 +73,9 @@
       )
     )
   )
+
+
+
 
 
 
