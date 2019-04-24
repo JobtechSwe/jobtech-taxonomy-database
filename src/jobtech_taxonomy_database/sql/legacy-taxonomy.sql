@@ -998,5 +998,16 @@ WHERE versionID = 67
 )
 
 
+
+-- :name get-replaced-skill :*
+-- :doc get skills that has been replaced by another skill
+SELECT skillID, countryID, term, standard, locale, skillIDRef, countryIDRef, modificationDate
+FROM TaxonomyDB.dbo.SkillReference
+WHERE modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+
 ------ SKILL-HEADLINE
 -- Har inga förändringar
