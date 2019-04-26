@@ -549,6 +549,22 @@ WHERE versionID = 67
 )
 
 
+-- :name get-new-occupation-collection-relations :*
+-- :doc get new occupation collection relations
+SELECT collectionID, occupationNameID, countryID, modificationDate
+FROM TaxonomyDB.dbo.CollectionOccupation
+WHERE   modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+
+
+
+
+--  DET verkar inte ha tagits bort några yrken från yrkessamlingarna mellan version 67 - 68
+
+
 
 
 

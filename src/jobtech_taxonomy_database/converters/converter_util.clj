@@ -11,6 +11,7 @@
   {:db/id                                        temp-id
    :concept/id                                   nano-id
    :concept/description                          description
+   :concept/preferred-label                      term
    :concept/preferred-term                       nano-id
    :concept/alternative-terms                    #{nano-id}
    :concept/category                             category

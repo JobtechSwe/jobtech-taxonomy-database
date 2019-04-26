@@ -82,12 +82,40 @@
     )
   )
 
+
+
+(defn convert-new-occupation-collection
+  [{:keys [collectionid name]}]
+  {:pre [collectionid name]}
+
+  (let [nano-id (get-nano)]
+    [
+     (util/create-term nano-id name)
+     (util/create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection collectionid)
+     ])
+  )
+
+
+(defn convert-new-occupation-collection-relation
+  [{:keys [collectionid occupationnameid]}]
+  {:pre [collectionid occupationnameid]}
+
+  {:relation/concept-1 (str "occupation-collection-" collectionid)
+   :relation/concept-2 (str "occupation-name-" occupationnameid)
+   :relation/type    :meronym ; TODO find a better name for this relationship HAS-A ??
+   }
+  )
+
+
+
 (defn convert []
   "Run this function after the database has been loaded"
   (concat
    (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
    (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name))
    (map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
+   (map convert-new-occupation-collection (fetch-data get-new-occupation-collection))
+   (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
    )
   )
 
