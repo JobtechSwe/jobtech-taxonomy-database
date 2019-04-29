@@ -114,7 +114,7 @@
    (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
    (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name))
    (map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
-   (map convert-new-occupation-collection (fetch-data get-new-occupation-collection))
+   (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
    (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
    )
   )
