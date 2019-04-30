@@ -53,7 +53,7 @@
   [{:keys [term occupationgroupid occupationnameid localegroupid] :as data}  ]
   {:pre   [term occupationgroupid occupationnameid localegroupid]}
 
-  (let [[preferred-term entity-id]  (util/get-preferred-term-by-legacy-id (str occupationgroupid) :occupation-name)]
+  (let [[preferred-term entity-id]  (util/get-preferred-term-by-legacy-id (str occupationnameid) :occupation-name)]
   (cond
       (nil? preferred-term) (create-new-occupation-name data)
       (= term preferred-term) []
@@ -107,7 +107,6 @@
   )
 
 
-
 (defn convert []
   "Run this function after the database has been loaded"
   (concat
@@ -117,6 +116,16 @@
    (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
    (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
    )
+  )
+
+
+
+(comment
+
+  problem med "occupation-name-7774"
+  "occupation-name-7706"
+  "occupation-name-7739"
+
   )
 
 #_(def get-concept '[:find ?s ?legacy-id
