@@ -30,12 +30,12 @@
            ssyk-concept-id (util/get-concept-by-legacy-id (str localegroupid) :occupation-group)
            isco-concept-id (util/get-concept-by-legacy-id (str occupationgroupid) :isco)
            ]
-    [
-     (util/create-concept nano-id temp-id term term :occupation-name occupationnameid)
-     (util/create-term nano-id term)
-     (util/create-relation temp-id ssyk-concept-id :hyperonym)
-     (util/create-relation temp-id isco-concept-id :hyperonym)
-     ]
+    (remove nil? [
+                  (util/create-concept nano-id temp-id term term :occupation-name occupationnameid)
+                  (util/create-term nano-id term)
+                  (when ssyk-concept-id (util/create-relation temp-id ssyk-concept-id :hyperonym)) ;; sometimes ssyk is -1 and becomes nil
+                  (util/create-relation temp-id isco-concept-id :hyperonym)
+                  ])
     )
   )
 
@@ -98,8 +98,9 @@
 
 (defn convert-new-occupation-collection-relation
   [{:keys [collectionid occupationnameid]}]
-  {:pre [collectionid occupationnameid]}
-
+  {:pre [collectionid occupationnameid]
+   :post [ (:relation/concept-1 %)  (:relation/concept-2 %)   (:relation/type %)]
+   }
   {:relation/concept-1 (util/get-entity-if-exists-or-temp-id collectionid :occupation-collection )
    :relation/concept-2 (util/get-entity-if-exists-or-temp-id occupationnameid :occupation-name)
    :relation/type    :meronym ; TODO find a better name for this relationship HAS-A ??
@@ -109,13 +110,13 @@
 
 (defn convert []
   "Run this function after the database has been loaded"
-  (concat
-   (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
-   (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name))
-   (map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
-   (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
-   (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
-   )
+  (remove empty? (concat
+                  (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
+                  (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name))
+                  (map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
+                  (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
+                  (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
+                  ))
   )
 
 
@@ -125,6 +126,26 @@
   problem med "occupation-name-7774"
   "occupation-name-7706"
   "occupation-name-7739"
+
+  )
+
+(comment
+
+  Nil is not a legal value
+  {:cognitect.anomalies/category :cognitect.anomalies/incorrect,
+   :cognitect.anomalies/message "Nil is not a legal value",
+   :data [:db/add -9223301668108103499 87 nil],
+   :db/error :db.error/nil-value,
+   :dbs
+   [{:database-id "e2f03673-5ce8-4938-ad80-fd1f9a5d1b65",
+     :t 15,
+     :next-t 16,
+     :history false}]}
+
+occupation-name som saknar ssyk
+  6160
+  7782
+
 
   )
 

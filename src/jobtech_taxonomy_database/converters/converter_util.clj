@@ -91,7 +91,6 @@
   {:pre [legacy-id category]}
   (if-let [entity-id (get-concept-by-legacy-id (str legacy-id) category)]
     {:db/id entity-id  :concept/deprecated true  }
-    []
     )
   )
 

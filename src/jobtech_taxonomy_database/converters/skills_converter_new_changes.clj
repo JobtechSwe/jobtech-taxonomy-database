@@ -36,7 +36,6 @@
                              )
        ]
       )
-    []
     )
   )
 
@@ -65,27 +64,22 @@
         entity-id-new-skill (util/get-concept-by-legacy-id skillidref :skill)
         ]
 
-    (if (and entity-id-old-skill entity-id-new-skill)
+    (when (and entity-id-old-skill entity-id-new-skill)
       {:db/id entity-id-old-skill
        :concept/replaced-by entity-id-new-skill
        }
-      []
       )
     )
   )
 
 
-
-
-
-
 (defn convert []
-  (concat
-   (mapcat convert-new-skill (fetch-data get-new-skill))
-   (map convert-deprecated-skill (fetch-data get-deprecated-skill))
-   (mapcat convert-updated-skill (fetch-data get-updated-skill))
-   (map convert-replaced-skill (fetch-data get-replaced-skill) )
-   )
+  (remove nil? (concat
+                (mapcat convert-new-skill (fetch-data get-new-skill))
+                (map convert-deprecated-skill (fetch-data get-deprecated-skill))
+                (mapcat convert-updated-skill (fetch-data get-updated-skill))
+                (map convert-replaced-skill (fetch-data get-replaced-skill) )
+                ))
   )
 
 (comment
