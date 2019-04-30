@@ -100,8 +100,8 @@
   [{:keys [collectionid occupationnameid]}]
   {:pre [collectionid occupationnameid]}
 
-  {:relation/concept-1 (str "occupation-collection-" collectionid)
-   :relation/concept-2 (str "occupation-name-" occupationnameid)
+  {:relation/concept-1 (util/get-entity-if-exists-or-temp-id collectionid :occupation-collection )
+   :relation/concept-2 (util/get-entity-if-exists-or-temp-id occupationnameid :occupation-name)
    :relation/type    :meronym ; TODO find a better name for this relationship HAS-A ??
    }
   )

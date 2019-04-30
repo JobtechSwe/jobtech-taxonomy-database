@@ -58,12 +58,16 @@
 
 (defn ^:private get-client [] (d/client (get  (get-datomic-config) :datomic-cfg)))
 
+(defn transact-data [data]
+  (d/transact (get-conn) {:tx-data data} ))
+
+
 (defn ^:private delete-database []
-  (d/delete-database (get-client) {:db-name "jobtech-taxonomy-development"}  )
+  (d/delete-database (get-client) {:db-name "jobtech-taxonomy-production"}  )
   )
 
 (defn ^:private create-database []
-  (d/create-database (get-client) {:db-name "jobtech-taxonomy-development"}  )
+  (d/create-database (get-client) {:db-name "jobtech-taxonomy-production"}  )
   )
 
 
