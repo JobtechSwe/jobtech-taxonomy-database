@@ -15,6 +15,7 @@
                  [com.datomic/client-cloud "0.8.71"]
                  [cheshire "5.8.1"]
                  [nano-id "0.9.3"]
+                 [camel-snake-kebab "0.4.0"]
                  ]
   :repositories [["snapshots" {:url "https://repo.clojars.org"
                                :username "batfish"
