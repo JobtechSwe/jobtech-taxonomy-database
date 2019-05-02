@@ -8,6 +8,11 @@
   [category id]
   (str "temp-id-" category "-" id))
 
+(defn ^:private termid-to-conceptid
+  "Create a concept id from a term id"
+  [id]
+  (str "concept-" id))
+
 (defn convert-relation
   "Create Datomic schema relationship structure"
   [concept-1 concept-2 relationship-type]
@@ -25,7 +30,8 @@
   "Create Datomic schema concept structure"
   [temp-id nano-id term category legacy-id code]
    (merge
-     {:concept/id                                   nano-id
+     {:db/id                                         (termid-to-conceptid temp-id)
+      :concept/id                                    nano-id
       :concept/description                          term
       :concept/preferred-term                       temp-id
       :concept/category                             (keyword category)
@@ -64,8 +70,8 @@
                          term)
         converted-relation (when (not= category "continent")
                              (convert-relation
-                             temp-id-parent
-                             temp-id
+                              (termid-to-conceptid temp-id-parent)
+                              (termid-to-conceptid temp-id)
                              (str parent-category "-to-" category)))]
       (if converted-relation [converted-concept converted-term converted-relation]
                              [converted-concept converted-term])))
