@@ -55,15 +55,15 @@
   [{:keys [localelevel3id localecodelevel3 term localelevel2id]}]
   {:pre [localelevel3id localecodelevel3 term localelevel2id]}
   (let [
-        nano-id (get-nano)
-        temp-id (str "ssyk-level-3-" localelevel3id)
-        temp-id-level-2 (str "ssyk-level-2-" localelevel2id)
-        concept (create-concept nano-id temp-id term term :ssyk-level-3 localelevel3id)
+        temp-id-level-2 (u/get-temp-id t/ssyk-level-2 localelevel2id)
+        concept (u/create-concept t/ssyk-level-3 term term localelevel3id)
         concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel3)
+        {concept-id :concept/id
+         temp-id    :db/id  } concept
         ]
     [concept-ssyk
-     (create-term nano-id term)
-     (create-relation temp-id temp-id-level-2 :hyperonym)
+     (create-term concept-id term)
+     (create-relation temp-id temp-id-level-2 t/broader)
      ]
     )
   )
