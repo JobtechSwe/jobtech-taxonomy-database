@@ -13,7 +13,7 @@
 (def employment-duration "employment_duration")
 (def employment-type "employment_type")
 (def isco "isco")
-(def keyword "keyword")
+(def keyword-type "keyword")
 (def language "language")
 (def language-level "language_level")
 (def municipality "municipality")
@@ -38,12 +38,15 @@
 (def worktime-extent "worktime_extent")
 
 
+(def broader "broader")
+(def narrower "narrower")
+
 
 
 
 
 (comment
-
+ "YOu have to manually change keyword to keyword-type"
 
   (def dump [
              [

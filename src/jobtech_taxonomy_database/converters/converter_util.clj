@@ -2,21 +2,46 @@
   (:gen-class)
   (:require [datomic.client.api :as d]
             [jobtech-taxonomy-database.legacy-migration :as legacy-migration]
-            [jobtech-taxonomy-database.converters.nano-id-assigner :as nano-id-assigner]
+            [jobtech-taxonomy-database.converters.nano-id-assigner :as nano]
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
+            [camel-snake-kebab.core :as csk]
             ))
 
 
-(defn create-concept [nano-id temp-id term description category legacy-ams-db-id]
-  {:db/id                                        temp-id
-   :concept/id                                   nano-id
-   :concept/description                          description
-   :concept/preferred-label                      term
-   :concept/preferred-term                       nano-id
-   :concept/alternative-terms                    #{nano-id}
-   :concept/category                             category
-   :concept.external-database.ams-taxonomy-67/id (str legacy-ams-db-id);; todo rename attribute
-   }
+
+
+(defn get-concept-id [instance-type legacy-id]
+  (nano/get-nano (csk/->kebab-case-string instance-type) (str legacy-id))
+  )
+
+(defn get-temp-id [instance-type legacy-id]
+  (str (csk/->kebab-case-string instance-type)  "-" legacy-id)
+  )
+
+(defn get-concept-id-and-temp-id [instance-type legacy-id]
+  [ (get-concept-id instance-type legacy-id)
+    (get-temp-id instance-type legacy-id)
+   ]
+  )
+
+(defn create-concept
+  ([instance-type label description legacy-id]
+   (let [[concept-id temp-id] (get-concept-id-and-temp-id instance-type legacy-id)
+         ]
+     (create-concept concept-id temp-id label description instance-type legacy-id)
+     )
+   )
+  ([concept-id temp-id label description instance-type legacy-ams-db-id]
+   {:db/id                                        temp-id
+    :concept/id                                   concept-id
+    :concept/description                          description
+    :concept/preferred-label                      label
+    :concept/preferred-term                       concept-id
+    :concept/alternative-terms                    #{concept-id}
+    :concept/instance-type                         instance-type
+    :concept/category                             (csk/->kebab-case-keyword instance-type)
+    :concept.external-database.ams-taxonomy-67/id (str legacy-ams-db-id);; todo rename attribute
+    })
   )
 
 (defn create-term [nano-id term]

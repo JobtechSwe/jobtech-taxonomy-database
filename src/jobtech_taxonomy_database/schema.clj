@@ -34,6 +34,14 @@
     :db/doc         "JobTech categories"
     }
 
+
+   {:db/ident       :concept/instance-type
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "The concepts main type"
+    }
+
+
    {:db/ident       :concept/deprecated
     :db/valueType   :db.type/boolean
     :db/cardinality :db.cardinality/one
@@ -161,7 +169,7 @@
     :db/doc         "the second concept in a relation"}
 
    {:db/ident       :relation/type
-    :db/valueType   :db.type/keyword
+    :db/valueType   :db.type/string      ;; BREAKING CHANGE!!
     :db/cardinality :db.cardinality/one
     :db/doc         "the type of relationship"}
 
