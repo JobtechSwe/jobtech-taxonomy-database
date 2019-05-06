@@ -2,10 +2,11 @@
   (:gen-class)
   (:require
    [camel-snake-kebab.core :as csk]
+   [clojure.spec.alpha :as s]
    )
   )
 
-
+;;concept-types
 
 (def continent "continent")
 (def country "country")
@@ -38,10 +39,14 @@
 (def worktime-extent "worktime_extent")
 
 
+(s/def ::concept-types #{ continent country driving-license employment-duration employment-type isco keyword-type language language-level municipality occupation-collection occupation-field occupation-group occupation-name region skill skill-headline skill-main-headline ssyk-level-1 ssyk-level-2 ssyk-level-3 sun-education-field-1 sun-education-field-2 sun-education-field-3 sun-education-level-1 sun-education-level-2 sun-education-level-3 wage-type worktime-extent})
+
+;; relation-types
 (def broader "broader")
 (def narrower "narrower")
 
 
+(s/def ::relation-types #{broader narrower})
 
 
 

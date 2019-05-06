@@ -5,9 +5,9 @@
             [jobtech-taxonomy-database.converters.nano-id-assigner :as nano]
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
             [camel-snake-kebab.core :as csk]
+            [clojure.spec.alpha :as s]
+            [jobtech-taxonomy-database.types :as t]
             ))
-
-
 
 
 (defn get-concept-id [instance-type legacy-id]
@@ -32,15 +32,16 @@
      )
    )
   ([concept-id temp-id label description instance-type legacy-ams-db-id]
+   {:pre [(s/valid? ::t/concept-types instance-type)]}
    {:db/id                                        temp-id
     :concept/id                                   concept-id
     :concept/description                          description
     :concept/preferred-label                      label
-    :concept/preferred-term                       concept-id
+    :concept/preferred-term                       concept-id  ; deprecated this one
     :concept/alternative-terms                    #{concept-id}
     :concept/instance-type                         instance-type
-    :concept/category                             (csk/->kebab-case-keyword instance-type)
-    :concept.external-database.ams-taxonomy-67/id (str legacy-ams-db-id);; todo rename attribute
+    :concept/category                             (csk/->kebab-case-keyword instance-type) ; deprecated this one
+    :concept.external-database.ams-taxonomy-67/id (str legacy-ams-db-id);; TODO rename attribute
     })
   )
 
@@ -50,6 +51,7 @@
   )
 
 (defn create-relation [concept1 concept2 type]
+  {:pre [(s/valid? ::t/relation-types type)]}
   {:relation/concept-1 concept1
    :relation/concept-2 concept2
    :relation/type type

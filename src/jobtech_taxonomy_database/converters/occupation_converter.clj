@@ -11,7 +11,6 @@
             [jobtech-taxonomy-database.converters.converter-util :as u]
             ))
 
-
 (comment
   (fetch-data get-occupation-group-ssyk)
   (fetch-data get-occupation-field)
@@ -44,9 +43,9 @@
         ]
     [
      concept-with-ssyk
-     (create-term concept-id term)
-     (create-relation temp-id temp-id-field t/broader)
-     (create-relation temp-id temp-id-ssyk-level-3 t/broader)
+     (u/create-term concept-id term)
+     (u/create-relation temp-id temp-id-field t/broader)
+     (u/create-relation temp-id temp-id-ssyk-level-3 t/broader)
      ]
     )
   )
@@ -62,12 +61,11 @@
          temp-id    :db/id  } concept
         ]
     [concept-ssyk
-     (create-term concept-id term)
-     (create-relation temp-id temp-id-level-2 t/broader)
+     (u/create-term concept-id term)
+     (u/create-relation temp-id temp-id-level-2 t/broader)
      ]
     )
   )
-
 
 (defn convert-ssyk-level-2
   [{:keys [localelevel2id localelevel1id localecodelevel2 term]}]
@@ -76,13 +74,13 @@
         nano-id (get-nano)
         temp-id (str "ssyk-level-2-" localelevel2id)
         temp-id-level-1 (str "ssyk-level-1-" localelevel1id)
-        concept (create-concept nano-id temp-id term term :ssyk-level-2 localelevel2id)
+        concept (u/create-concept nano-id temp-id term term :ssyk-level-2 localelevel2id)
         concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel2)
         ]
     [
      concept-ssyk
-     (create-term nano-id term)
-     (create-relation temp-id temp-id-level-1 :hyperonym)
+     (u/create-term nano-id term)
+     (u/create-relation temp-id temp-id-level-1 :hyperonym)
      ]
     )
   )
@@ -93,12 +91,12 @@
   (let [
         nano-id (get-nano)
         temp-id (str "ssyk-level-1-" localelevel1id)
-        concept (create-concept nano-id temp-id term term :ssyk-level-1 localelevel1id)
+        concept (u/create-concept nano-id temp-id term term :ssyk-level-1 localelevel1id)
         concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel1)
         ]
     [
      concept-ssyk
-     (create-term nano-id term)
+     (u/create-term nano-id term)
      ]
     )
   )
@@ -112,10 +110,10 @@
         temp-id-isco (str "isco-"  occupationgroupid)
         ]
     [
-     (create-concept nano-id temp-id term term :occupation-name occupationnameid)
-     (create-term nano-id term)
-     (create-relation temp-id temp-id-ssyk :hyperonym) ;; TODO decide how to model this properly
-     (create-relation temp-id temp-id-isco :hyperonym)
+     (u/create-concept nano-id temp-id term term :occupation-name occupationnameid)
+     (u/create-term nano-id term)
+     (u/create-relation temp-id temp-id-ssyk :hyperonym) ;; TODO decide how to model this properly
+     (u/create-relation temp-id temp-id-isco :hyperonym)
      ]
     )
  )
@@ -127,16 +125,18 @@
 
   (let [nano-id (get-nano)
         temp-id (str "isco-" occupationgroupid)
-        concept (create-concept nano-id temp-id term description :isco occupationgroupid)
+        concept (u/create-concept nano-id temp-id term description :isco occupationgroupid)
         concept-with-isco (assoc concept :concept.external-standard/isco-08 isco)
         ]
     [
      concept-with-isco
-     (create-term nano-id term)
+     (u/create-term nano-id term)
      ]
     )
   )
 
+
+;; Get tomt svar
 (defn convert-occupation-name-affinity
   [{:keys [affinityid occupationnameid percentage]}]
   {:pre [affinityid occupationnameid percentage]}
@@ -169,13 +169,12 @@
 (defn convert-ssyk-skill
   "This one has to be transacted to the database after skill and occupation-group has been added to the database"
   [{:keys [skillid localegroupid]}]
-  {:pre [skillid localegroupid]}
+   {:pre [skillid localegroupid]}
   {:relation/concept-1 (get-concept-by-legacy-id localegroupid :occupation-group)
    :relation/concept-2 (get-concept-by-legacy-id skillid :skill)
    :relation/type :occupation-group-to-skill ;; TODO make up a better name? yrkesmall
    }
   )
-
 
 (defn convert-occupation-collection
   [{:keys [collectionid name]}]
@@ -183,11 +182,10 @@
 
   (let [nano-id (get-nano)]
     [
-     (create-term nano-id name)
-     (create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection collectionid)
+     (u/create-term nano-id name)
+     (u/create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection collectionid)
      ])
   )
-
 
 (defn convert-occupation-collection-relation
   [{:keys [collectionid occupationnameid]}]
@@ -207,12 +205,12 @@
         nano-id (get-nano :occupation-name occupationnameid)
         temp-id (str "occupation-name-id-" occupationnameid)
         temp-replaced-by-id (str "occupation-name-id-" occupationnameidref)
-        concept (create-concept nano-id temp-id term term :occupation-name occupationnameidref)
+        concept (u/create-concept nano-id temp-id term term :occupation-name occupationnameidref)
         deprecated-concept (assoc concept :concept/deprecated true)
         replaced-by-concept (assoc deprecated-concept :concept/replaced-by temp-replaced-by-id)  ;; Utred hur vi hanterar replaced by many different??
         ]
     [replaced-by-concept
-     (create-term nano-id term)
+     (u/create-term nano-id term)
      ]
     )
   )
@@ -223,10 +221,10 @@
 
   (let [nano-id (get-nano)
         temp-id (str "popular-synonym-" popularsynonymid)
-        concept (create-concept nano-id temp-id term term :keyword popularsynonymid)
+        concept (u/create-concept nano-id temp-id term term :keyword popularsynonymid)
         ]
     [concept
-     (create-term nano-id term)
+     (u/create-term nano-id term)
      ]
     )
   )
