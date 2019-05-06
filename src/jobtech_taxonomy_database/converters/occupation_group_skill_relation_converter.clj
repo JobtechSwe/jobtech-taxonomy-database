@@ -12,6 +12,20 @@
 
 
 
+;; (fetch-data get-isco-level-4-skill-relation)
+
+(defn convert-isco-level-4-skill-relation [{:keys [skillid occupationgroupid]}]
+  {:pre [skillid occupationgroupid]}
+  (let  [skill-entity-id (util/get-concept-by-legacy-id skillid :skill)
+         isco-entity-id (util/get-concept-by-legacy-id  occupationgroupid :isco)
+         ]
+    (util/create-relation isco-entity-id skill-entity-id :related )
+    )
+  )
+
+
+
+
 (defn convert-occupation-group-skill-relation [{:keys [skillid localegroupid]}]
   {:pre [skillid localegroupid]}
   (let  [skill-entity-id (util/get-concept-by-legacy-id skillid :skill)

@@ -377,7 +377,10 @@ WHERE versionID = 67;
 SELECT versionID, skillID, countryID, localeGroupID, modificationDate
 FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill  where versionID = 67;
 
-
+-- :name get-isco-level-4-skill-relation :*
+-- :doc ge isco level 4 to skill relation ;
+SELECT versionID, skillID, countryID, occupationGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill  where versionID = 67;
 
 ------------------START SUN education field--------------------
 
@@ -566,6 +569,19 @@ FROM TaxonomyDBVersion.dbo.Version
 WHERE versionID = 67
 )
 
+
+
+
+-- ALLA FÖRÄNDRINGAR VERKAR VARA KOPPLADE TILL ISCO
+-- :name get-occupation-group-skill-relation :*
+-- :doc get occupation group skill relation ;
+-- SELECT versionID, skillID, countryID, localeGroupID, modificationDate
+-- FROM TaxonomyDB.dbo.LocaleGroup_Skill  where versionID = 67;
+-- WHERE   modificationDate > (
+-- SELECT created
+-- FROM TaxonomyDBVersion.dbo.Version
+-- WHERE versionID = 67
+-- )
 
 
 
