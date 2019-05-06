@@ -374,8 +374,8 @@ WHERE versionID = 67;
 
 -- :name get-occupation-group-skill-relation :*
 -- :doc get occupation group skill relation ;
-SELECT versionID, skillID, countryID, occupationGroupID, modificationDate
-FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill where versionID = 67
+SELECT versionID, skillID, countryID, localeGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill  where versionID = 67;
 
 
 

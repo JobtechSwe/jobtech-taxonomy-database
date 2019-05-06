@@ -1,4 +1,4 @@
-(ns occupation-group-skill-relation-converter
+(ns  jobtech-taxonomy-database.converters.occupation-group-skill-relation-converter
   (:gen-class)
   (:require [jobtech-taxonomy-database.legacy-migration :as lm]
             [jobtech-taxonomy-database.converters.nano-id-assigner :as nano]
@@ -12,10 +12,10 @@
 
 
 
-(defn convert-occupation-group-skill-relation [{:keys [skillid occupationgroupid]}]
-  {:pre [skillid occupationgroupid]}
+(defn convert-occupation-group-skill-relation [{:keys [skillid localegroupid]}]
+  {:pre [skillid localegroupid]}
   (let  [skill-entity-id (util/get-concept-by-legacy-id skillid :skill)
-         occupation-group-entity-id (util/get-concept-by-legacy-id occupationgroupid :occupation-group)
+         occupation-group-entity-id (util/get-concept-by-legacy-id localegroupid :occupation-group)
         ]
     (util/create-relation occupation-group-entity-id skill-entity-id :related )
     )
