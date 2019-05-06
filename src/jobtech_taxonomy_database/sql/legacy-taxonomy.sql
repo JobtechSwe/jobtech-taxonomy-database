@@ -372,6 +372,13 @@ WHERE versionID = 67;
 
 
 
+-- :name get-occupation-group-skill-relation :*
+-- :doc get occupation group skill relation ;
+SELECT versionID, skillID, countryID, occupationGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill where versionID = 67
+
+
+
 ------------------START SUN education field--------------------
 
 -- A ":result" value of ":*" specifies a vector of records
