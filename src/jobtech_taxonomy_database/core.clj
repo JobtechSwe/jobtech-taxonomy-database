@@ -18,7 +18,7 @@
             [jobtech-taxonomy-database.converters.SUN-education-level-converter]
             [jobtech-taxonomy-database.converters.SNI-level-converter]
             [jobtech-taxonomy-database.converters.occupation-converter]
-            [jobtech-taxonomy-database.converters.occupation-group-skill-relation-converter :as banan]
+            [jobtech-taxonomy-database.converters.occupation-group-skill-relation-converter]
             [jobtech-taxonomy-database.converters.occupation-deprecated-converter]
             [jobtech-taxonomy-database.converters.skills-converter-new-changes]
             ))
