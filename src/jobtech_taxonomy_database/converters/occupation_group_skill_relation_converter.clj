@@ -19,7 +19,7 @@
   (let  [skill-entity-id (util/get-concept-by-legacy-id skillid :skill)
          isco-entity-id (util/get-concept-by-legacy-id  occupationgroupid :isco)
          ]
-    (util/create-relation isco-entity-id skill-entity-id :related )
+    (util/create-relation isco-entity-id skill-entity-id :related-to )
     )
   )
 
@@ -31,7 +31,7 @@
   (let  [skill-entity-id (util/get-concept-by-legacy-id skillid :skill)
          occupation-group-entity-id (util/get-concept-by-legacy-id localegroupid :occupation-group)
         ]
-    (util/create-relation occupation-group-entity-id skill-entity-id :related )
+    (util/create-relation occupation-group-entity-id skill-entity-id :related-to )
     )
   )
 

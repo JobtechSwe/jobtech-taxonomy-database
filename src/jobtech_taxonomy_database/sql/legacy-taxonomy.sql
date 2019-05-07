@@ -382,6 +382,13 @@ FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill  where versionID = 67;
 SELECT versionID, skillID, countryID, occupationGroupID, modificationDate
 FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill  where versionID = 67;
 
+
+-- :name get-occupation-group-isco-level-4-relation :*
+-- :doc get occupation group isco relation ;
+SELECT versionID, occupationGroupID, localeGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.ISCOLocale where versionID = 67;
+
+
 ------------------START SUN education field--------------------
 
 -- A ":result" value of ":*" specifies a vector of records
