@@ -267,11 +267,8 @@
    :relation/concept-2  (str "isco-" occupationgroupid)
    :relation/type :related-to ;; TODO Find better name than related to
    }
-
   )
-
 ;; (def a-occgr-isco-rel (first (fetch-data get-occupation-group-isco-level-4-relation)))
-
 
 (defn convert
   ""
