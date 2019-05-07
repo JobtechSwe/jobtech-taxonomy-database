@@ -286,6 +286,6 @@
    (map convert-occupation-collection-relation (fetch-data get-occupation-collection-relations))
    (mapcat convert-popular-synonym (fetch-data get-popular-synonym))
    (map convert-popular-synonym-occupation-name-relation (fetch-data get-occupation-name-synonym))
-   (map convert-occupation-group-isco-relation  (fetch-data get-occupation-group-isco-level-4-relation))
+   (map convert-occupation-group-isco-relation  (remove #(= -2 (:localegroupid %)  )  (fetch-data get-occupation-group-isco-level-4-relation)))
    )
   )
