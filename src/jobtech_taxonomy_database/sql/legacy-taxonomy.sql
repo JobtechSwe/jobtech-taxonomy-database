@@ -579,18 +579,6 @@ WHERE versionID = 67
 
 
 
--- ALLA FÖRÄNDRINGAR VERKAR VARA KOPPLADE TILL ISCO
--- :name get-occupation-group-skill-relation :*
--- :doc get occupation group skill relation ;
--- SELECT versionID, skillID, countryID, localeGroupID, modificationDate
--- FROM TaxonomyDB.dbo.LocaleGroup_Skill  where versionID = 67;
--- WHERE   modificationDate > (
--- SELECT created
--- FROM TaxonomyDBVersion.dbo.Version
--- WHERE versionID = 67
--- )
-
-
 
 --  DET verkar inte ha tagits bort några yrken från yrkessamlingarna mellan version 67 - 68
 
