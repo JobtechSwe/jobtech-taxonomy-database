@@ -14,8 +14,6 @@
             [jobtech-taxonomy-database.converters.skills-converter]
             [jobtech-taxonomy-database.converters.wage-type-converter]
             [jobtech-taxonomy-database.converters.worktime-extent-converter]
-            [jobtech-taxonomy-database.converters.SUN-education-field-converter]
-            [jobtech-taxonomy-database.converters.SUN-education-level-converter]
             [jobtech-taxonomy-database.converters.SNI-level-converter]
             [jobtech-taxonomy-database.converters.occupation-converter]
             [jobtech-taxonomy-database.converters.occupation-group-skill-relation-converter]
@@ -37,8 +35,6 @@
     ;;  {:namespace jobtech-taxonomy-database.converters.language-level-converter}
     ;; {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
     ;;  {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
-    ;; {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
-    ;;  {:namespace jobtech-taxonomy-database.converters.SUN-education-level-converter}
  ;;   {:namespace jobtech-taxonomy-database.converters.occupation-converter }
  ;;    {:namespace jobtech-taxonomy-database.converters.occupation-deprecated-converter}
  ;;    {:namespace jobtech-taxonomy-database.converters.skills-converter}
