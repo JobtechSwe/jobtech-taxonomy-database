@@ -1,3 +1,8 @@
+; THIS CODE SHOULDN'T BE USED! 
+; Editorial team has instructued us not to convert SUN at the moment (May 2019). 
+; A new version of SUN is released during spring 2019. 
+; The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
+
 (ns jobtech-taxonomy-database.converters.SUN-education-level-converter
   (:gen-class)
   (:require [jobtech-taxonomy-database.legacy-migration :as legacy-migration]
