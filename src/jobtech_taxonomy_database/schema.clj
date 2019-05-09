@@ -79,10 +79,10 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "EURES code"}
 
-   {:db/ident       :concept.external-standard/drivers-licence-code
+   {:db/ident       :concept.external-standard/driving-licence-code
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "Driver's licence code"}
+    :db/doc         "Driving licence code"}
 
    {:db/ident       :concept.external-standard/nuts-level-3-code
     :db/valueType   :db.type/string

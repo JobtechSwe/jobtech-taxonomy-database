@@ -178,8 +178,8 @@ AND Municipality.versionID = 67
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-drivers-license :*
--- :doc Get all driver's license categories
+-- :name get-driving-licence :*
+-- :doc Get all driving licence categories
 SELECT DrivingLicence.*, DrivingLicenceTerm.*
 FROM TaxonomyDBVersion.dbo.DrivingLicence DrivingLicence, TaxonomyDBVersion.dbo.DrivingLicenceTerm DrivingLicenceTerm
 WHERE DrivingLicenceTerm.drivingLicenceID = DrivingLicence.drivingLicenceID
@@ -189,8 +189,8 @@ AND DrivingLicenceTerm.versionID = 67
 
 
 
--- :name get-drivers-license-combination :*
--- :doc Get all driver's license combinations
+-- :name get-driving-licence-combination :*
+-- :doc Get all driving licence combinations
 SELECT Körkortskombination.*, Körkortskoppling.*
 FROM TaxonomiDBSvenskVersion.dbo.Körkortskombination Körkortskombination, TaxonomiDBSvenskVersion.dbo.Körkortskoppling Körkortskoppling
 WHERE Körkortskoppling.kombinationsID = Körkortskombination.kombinationsID
@@ -595,11 +595,11 @@ WHERE versionID = 67
 --  DET verkar inte ha tagits bort några yrken från yrkessamlingarna mellan version 67 - 68
 
 
---DRIVER'S LICENCE-- (No differences between versions!!!)
+--DRIVING LICENCE-- (No differences between versions!!!)
 
 
--- :name get-deprecated-drivers-licence :*
--- :doc get deprecated driver's licences, id's existing in version 67 but not version 68
+-- :name get-deprecated-driving-licence :*
+-- :doc get deprecated driving licences, id's existing in version 67 but not version 68
 SELECT [db-67-term].drivingLicenceID AS [id-67],
 	[db-67-term].term AS [term-67],
 	[db-67].displaySortOrder AS [sort-67],
@@ -612,8 +612,8 @@ AND [db-67-term].drivingLicenceID NOT IN
 	FROM TaxonomyDB.dbo.DrivingLicenceTerm AS [db-68-term]
 	WHERE [db-68-term].languageID = 502)
 
--- :name get-new-drivers-licence :*
--- :doc get new driver's licences, id's existing in version 68 but not in version 67
+-- :name get-new-driving-licence :*
+-- :doc get new driving licences, id's existing in version 68 but not in version 67
 SELECT [db-68-term].drivingLicenceID AS [id-68-term],
 	[db-68-term].term AS [term-68-term],
 	[db-68].displaySortOrder AS [sort-68],
@@ -626,8 +626,8 @@ AND [db-68-term].drivingLicenceID NOT IN
 	WHERE [db-67-term].versionID = 67
 	AND [db-67-term].languageID = 502)
 
--- :name get-updated-drivers-licence :*
--- :doc get updated driver's licences where some value differs between version 68 and version 67
+-- :name get-updated-driving-licence :*
+-- :doc get updated driving licences where some value differs between version 68 and version 67
 SELECT [db-68-term].drivingLicenceID AS [id-68],
 	[db-67-term].drivingLicenceID AS [id-67],
 	[db-68-term].term AS [term-68],
