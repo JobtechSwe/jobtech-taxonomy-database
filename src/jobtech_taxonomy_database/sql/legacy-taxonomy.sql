@@ -391,6 +391,11 @@ FROM TaxonomyDBVersion.dbo.ISCOLocale where versionID = 67;
 
 ------------------START SUN education field--------------------
 
+-- SUN SHOULDN'T BE CONVERTED!
+-- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
+-- A new version of SUN is released during spring 2019. 
+-- The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-sun-field-1 :*
@@ -435,6 +440,12 @@ AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
 ------------------END SUN education field--------------------
 
 ------------------START SUN education level--------------------
+
+-- SUN SHOULDN'T BE CONVERTED!
+-- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
+-- A new version of SUN is released during spring 2019. 
+-- The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-sun-level-1 :*
