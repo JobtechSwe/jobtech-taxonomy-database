@@ -12,6 +12,12 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "Text describing the concept, is used for disambiguation."}
 
+   {:db/ident       :concept/preferred-label
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "What we prefer to call the concept."}
+
+   ;deprecated
    {:db/ident       :concept/preferred-term
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/one

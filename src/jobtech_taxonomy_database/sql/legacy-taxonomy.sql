@@ -372,7 +372,29 @@ WHERE versionID = 67;
 
 
 
+-- :name get-occupation-group-skill-relation :*
+-- :doc get occupation group skill relation ;
+SELECT versionID, skillID, countryID, localeGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill  where versionID = 67;
+
+-- :name get-isco-level-4-skill-relation :*
+-- :doc ge isco level 4 to skill relation ;
+SELECT versionID, skillID, countryID, occupationGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill  where versionID = 67;
+
+
+-- :name get-occupation-group-isco-level-4-relation :*
+-- :doc get occupation group isco relation ;
+SELECT versionID, occupationGroupID, localeGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.ISCOLocale where versionID = 67;
+
+
 ------------------START SUN education field--------------------
+
+-- SUN SHOULDN'T BE CONVERTED!
+-- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
+-- A new version of SUN is released during spring 2019. 
+-- The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -418,6 +440,12 @@ AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
 ------------------END SUN education field--------------------
 
 ------------------START SUN education level--------------------
+
+-- SUN SHOULDN'T BE CONVERTED!
+-- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
+-- A new version of SUN is released during spring 2019. 
+-- The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-sun-level-1 :*
@@ -484,6 +512,8 @@ AND NaceLevel2.versionID = 67
 ------------------- Version 68
 ------------------------------------------------------------------
 
+----------- OCCUPATION TERM
+
 
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
@@ -536,7 +566,37 @@ WHERE versionID = 67
 )
 
 
---DRIVER'S LICENCE-- (No difference between versions!!!)
+
+-- :name get-new-occupation-collection :*
+-- :doc get new yrkessamlingar
+SELECT collectionID, collectionsetID, name, modificationDate
+FROM TaxonomyDB.dbo.OccupationCollection
+wHERE   modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+
+
+-- :name get-new-occupation-collection-relations :*
+-- :doc get new occupation collection relations
+SELECT collectionID, occupationNameID, countryID, modificationDate
+FROM TaxonomyDB.dbo.CollectionOccupation
+WHERE   modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+
+
+
+
+
+--  DET verkar inte ha tagits bort några yrken från yrkessamlingarna mellan version 67 - 68
+
+
+--DRIVER'S LICENCE-- (No differences between versions!!!)
+
 
 -- :name get-deprecated-drivers-licence :*
 -- :doc get deprecated driver's licences, id's existing in version 67 but not version 68
@@ -1077,6 +1137,17 @@ FROM TaxonomyDBVersion.dbo.Version
 WHERE versionID = 67
 )
 
+
+
+-- :name get-replaced-skill :*
+-- :doc get skills that has been replaced by another skill
+SELECT skillID, countryID, term, standard, locale, skillIDRef, countryIDRef, modificationDate
+FROM TaxonomyDB.dbo.SkillReference
+WHERE modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
 
 ------ SKILL-HEADLINE
 -- Har inga förändringar

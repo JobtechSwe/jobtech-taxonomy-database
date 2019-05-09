@@ -12,7 +12,7 @@
                  :endpoint    "localhost:8998"}})
 
 (def datomic-config
-  { :datomic-name "jobtech-taxonomy-development"  ;; "jobtech-taxonomy-production"
+  { :datomic-name  "jobtech-taxonomy-henrik-dev" ;; "jobtech-taxonomy-developement"  ;; "jobtech-taxonomy-production"
    :datomic-cfg {
                  :server-type :ion
                  :region "eu-west-1" ;; e.g. us-east-1
