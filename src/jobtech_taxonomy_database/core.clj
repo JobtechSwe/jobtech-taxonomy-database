@@ -5,7 +5,7 @@
             [jobtech-taxonomy-database.schema :refer :all :as schema]
             [jobtech-taxonomy-database.legacy-migration :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all]
-            [jobtech-taxonomy-database.converters.drivers-license-converter]
+            [jobtech-taxonomy-database.converters.driving-licence-converter]
             [jobtech-taxonomy-database.converters.employment-duration-converter]
             [jobtech-taxonomy-database.converters.employment-type-converter]
             [jobtech-taxonomy-database.converters.geographic-places-converter]
@@ -14,10 +14,9 @@
             [jobtech-taxonomy-database.converters.skills-converter]
             [jobtech-taxonomy-database.converters.wage-type-converter]
             [jobtech-taxonomy-database.converters.worktime-extent-converter]
-            [jobtech-taxonomy-database.converters.SUN-education-field-converter]
-            [jobtech-taxonomy-database.converters.SUN-education-level-converter]
             [jobtech-taxonomy-database.converters.SNI-level-converter]
             [jobtech-taxonomy-database.converters.occupation-converter]
+            [jobtech-taxonomy-database.converters.occupation-group-skill-relation-converter]
             [jobtech-taxonomy-database.converters.occupation-deprecated-converter]
             [jobtech-taxonomy-database.converters.skills-converter-new-changes]
             ))
@@ -28,20 +27,19 @@
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
   '(
-     {:namespace jobtech-taxonomy-database.converters.drivers-license-converter}
-      {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
-     {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
-     {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
-     {:namespace jobtech-taxonomy-database.converters.language-converter}
-     {:namespace jobtech-taxonomy-database.converters.language-level-converter}
-    {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
-     {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
-    {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
-     {:namespace jobtech-taxonomy-database.converters.SUN-education-level-converter}
-    {:namespace jobtech-taxonomy-database.converters.occupation-converter }
-     {:namespace jobtech-taxonomy-database.converters.occupation-deprecated-converter}
-     {:namespace jobtech-taxonomy-database.converters.skills-converter}
-    {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
+      {:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
+       {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
+    ;;  {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
+    ;;  {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
+    ;;  {:namespace jobtech-taxonomy-database.converters.language-converter}
+    ;;  {:namespace jobtech-taxonomy-database.converters.language-level-converter}
+    ;; {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
+    ;;  {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
+ ;;   {:namespace jobtech-taxonomy-database.converters.occupation-converter }
+ ;;    {:namespace jobtech-taxonomy-database.converters.occupation-deprecated-converter}
+ ;;    {:namespace jobtech-taxonomy-database.converters.skills-converter}
+ ;;   {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
+    {:namespace jobtech-taxonomy-database.converters.occupation-group-skill-relation-converter}
     ))
 
 

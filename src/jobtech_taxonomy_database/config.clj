@@ -11,8 +11,11 @@
                  :secret      "mysecret"
                  :endpoint    "localhost:8998"}})
 
+
+;; "jobtech-taxonomy-henrik-dev" ;; "jobtech-taxonomy-development"  ;; "jobtech-taxonomy-production"
+
 (def datomic-config
-  { :datomic-name  "jobtech-taxonomy-henrik-dev" ;; "jobtech-taxonomy-developement"  ;; "jobtech-taxonomy-production"
+  { :datomic-name "jobtech-taxonomy-henrik-dev"
    :datomic-cfg {
                  :server-type :ion
                  :region "eu-west-1" ;; e.g. us-east-1
