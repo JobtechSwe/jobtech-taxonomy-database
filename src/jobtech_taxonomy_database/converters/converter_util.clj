@@ -50,6 +50,11 @@
    :term/base-form term}
   )
 
+(defn create-term-from-concept [ {:keys  [:concept/id :concept/preferred-label ]}]
+  {:db/id id
+   :term/base-form preferred-label}
+  )
+
 (defn create-relation [concept1 concept2 type]
   {:pre [(s/valid? ::t/relation-types type)]}
   {:relation/concept-1 concept1

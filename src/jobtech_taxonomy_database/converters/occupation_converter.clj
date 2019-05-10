@@ -19,12 +19,10 @@
 (defn convert-occupation-field
   [{:keys [term description localefieldid]}]
   {:pre [term description  localefieldid]}
-  (let [nano-id (get-nano "occupation-field" (str localefieldid))
-        temp-id (str "occupation-field-" localefieldid)
-        ]
+  (let [concept (u/create-concept t/occupation-field term description localefieldid )]
     [
-     (u/create-concept nano-id temp-id term description t/occupation-field localefieldid)
-     (u/create-term nano-id term)
+     concept
+     (u/create-term (:concept/id concept) term)
      ]
     )
   )
@@ -71,16 +69,16 @@
   [{:keys [localelevel2id localelevel1id localecodelevel2 term]}]
   {:pre [localelevel2id localelevel1id localecodelevel2 term]}
   (let [
-        nano-id (get-nano)
-        temp-id (str "ssyk-level-2-" localelevel2id)
-        temp-id-level-1 (str "ssyk-level-1-" localelevel1id)
-        concept (u/create-concept nano-id temp-id term term :ssyk-level-2 localelevel2id)
+        concept (u/create-concept t/ssyk-level-2 term term localelevel2id)
+        temp-id-level-1 (u/get-temp-id t/ssyk-level-1 localelevel1id)
         concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel2)
+        {concept-id :concept/id
+         temp-id    :db/id  } concept
         ]
     [
      concept-ssyk
-     (u/create-term nano-id term)
-     (u/create-relation temp-id temp-id-level-1 :hyperonym)
+     (u/create-term concept-id term)
+     (u/create-relation temp-id temp-id-level-1 t/broader)
      ]
     )
   )
@@ -89,14 +87,12 @@
   [{:keys [localelevel1id localecodelevel1 term]}]
   {:pre [localelevel1id localecodelevel1 term]}
   (let [
-        nano-id (get-nano)
-        temp-id (str "ssyk-level-1-" localelevel1id)
-        concept (u/create-concept nano-id temp-id term term :ssyk-level-1 localelevel1id)
+        concept (u/create-concept t/ssyk-level-1 term term localelevel1id)
         concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel1)
         ]
     [
      concept-ssyk
-     (u/create-term nano-id term)
+     (u/create-term-from-concept concept)
      ]
     )
   )
