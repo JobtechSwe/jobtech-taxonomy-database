@@ -108,8 +108,8 @@
     [
      concept
      (u/create-term-from-concept concept)
-     (u/create-relation temp-id temp-id-ssyk t/broader)
-     (u/create-relation temp-id temp-id-isco t/broader)
+     (u/create-broader-relation-to-concept concept temp-id-ssyk)
+     (u/create-broader-relation-to-concept concept temp-id-isco)
      ]
     )
  )
