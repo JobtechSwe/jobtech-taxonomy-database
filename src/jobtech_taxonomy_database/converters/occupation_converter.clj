@@ -234,6 +234,15 @@
    }
   )
 
+(defn convert-occupation-group-isco-relation [{:keys [occupationgroupid localegroupid]}]
+  {:pre  [occupationgroupid localegroupid]}
+  {:relation/concept-1  (str "occupation-group-" localegroupid )
+   :relation/concept-2  (str "isco-" occupationgroupid)
+   :relation/type :related-to ;; TODO Find better name than related to
+   }
+  )
+;; (def a-occgr-isco-rel (first (fetch-data get-occupation-group-isco-level-4-relation)))
+
 (defn convert
   ""
   []
@@ -250,5 +259,6 @@
    (map convert-occupation-collection-relation (fetch-data get-occupation-collection-relations))
    (mapcat convert-popular-synonym (fetch-data get-popular-synonym))
    (map convert-popular-synonym-occupation-name-relation (fetch-data get-occupation-name-synonym))
+   (map convert-occupation-group-isco-relation  (remove #(= -2 (:localegroupid %)  )  (fetch-data get-occupation-group-isco-level-4-relation)))
    )
   )

@@ -372,7 +372,29 @@ WHERE versionID = 67;
 
 
 
+-- :name get-occupation-group-skill-relation :*
+-- :doc get occupation group skill relation ;
+SELECT versionID, skillID, countryID, localeGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill  where versionID = 67;
+
+-- :name get-isco-level-4-skill-relation :*
+-- :doc ge isco level 4 to skill relation ;
+SELECT versionID, skillID, countryID, occupationGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill  where versionID = 67;
+
+
+-- :name get-occupation-group-isco-level-4-relation :*
+-- :doc get occupation group isco relation ;
+SELECT versionID, occupationGroupID, localeGroupID, modificationDate
+FROM TaxonomyDBVersion.dbo.ISCOLocale where versionID = 67;
+
+
 ------------------START SUN education field--------------------
+
+-- SUN SHOULDN'T BE CONVERTED!
+-- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
+-- A new version of SUN is released during spring 2019. 
+-- The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -418,6 +440,12 @@ AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
 ------------------END SUN education field--------------------
 
 ------------------START SUN education level--------------------
+
+-- SUN SHOULDN'T BE CONVERTED!
+-- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
+-- A new version of SUN is released during spring 2019. 
+-- The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-sun-level-1 :*
@@ -538,6 +566,7 @@ WHERE versionID = 67
 )
 
 
+
 -- :name get-new-occupation-collection :*
 -- :doc get new yrkessamlingar
 SELECT collectionID, collectionsetID, name, modificationDate
@@ -562,131 +591,173 @@ WHERE versionID = 67
 
 
 
+
 --  DET verkar inte ha tagits bort några yrken från yrkessamlingarna mellan version 67 - 68
-
-
-
-
-
 
 
 --DRIVER'S LICENCE-- (No differences between versions!!!)
 
+
 -- :name get-deprecated-drivers-licence :*
 -- :doc get deprecated driver's licences, id's existing in version 67 but not version 68
-SELECT [db-67].drivingLicenceID AS [id-67], [db-67].term AS [term-67]
-FROM TaxonomyDBVersion.dbo.DrivingLicenceTerm AS [db-67]
-WHERE [db-67].versionID = 67
-AND [db-67].languageID = 502
-AND [db-67].drivingLicenceID NOT IN
-	(SELECT [db-68].drivingLicenceID
-	FROM TaxonomyDB.dbo.DrivingLicenceTerm AS [db-68]
-	WHERE [db-68].languageID = 502)
+SELECT [db-67-term].drivingLicenceID AS [id-67],
+	[db-67-term].term AS [term-67],
+	[db-67].displaySortOrder AS [sort-67],
+	[db-67].drivingLicenceCode AS [d-licence-code-67]
+FROM TaxonomyDBVersion.dbo.DrivingLicenceTerm AS [db-67-term], TaxonomyDBVersion.dbo.DrivingLicence AS [db-67]
+WHERE [db-67-term].versionID = 67
+AND [db-67-term].languageID = 502
+AND [db-67-term].drivingLicenceID NOT IN
+	(SELECT [db-68-term].drivingLicenceID
+	FROM TaxonomyDB.dbo.DrivingLicenceTerm AS [db-68-term]
+	WHERE [db-68-term].languageID = 502)
 
 -- :name get-new-drivers-licence :*
 -- :doc get new driver's licences, id's existing in version 68 but not in version 67
-SELECT [db-68].drivingLicenceID AS [id-68], [db-68].term AS [term-68]
-FROM TaxonomyDB.dbo.DrivingLicenceTerm AS [db-68]
-WHERE [db-68].languageID = 502
-AND [db-68].drivingLicenceID NOT IN
-	(SELECT [db-67].drivingLicenceID
-	FROM TaxonomyDBVersion.dbo.DrivingLicenceTerm AS [db-67]
-	WHERE [db-67].versionID = 67
-	AND [db-67].languageID = 502)
+SELECT [db-68-term].drivingLicenceID AS [id-68-term],
+	[db-68-term].term AS [term-68-term],
+	[db-68].displaySortOrder AS [sort-68],
+	[db-68].drivingLicenceCode AS [d-licence-code-68]
+FROM TaxonomyDB.dbo.DrivingLicenceTerm AS [db-68-term], TaxonomyDB.dbo.DrivingLicence AS [db-68]
+WHERE [db-68-term].languageID = 502
+AND [db-68-term].drivingLicenceID NOT IN
+	(SELECT [db-67-term].drivingLicenceID
+	FROM TaxonomyDBVersion.dbo.DrivingLicenceTerm AS [db-67-term]
+	WHERE [db-67-term].versionID = 67
+	AND [db-67-term].languageID = 502)
 
--- :name get-updated-drivers-licence-term :*
--- :doc get updated driver's licences where term/label differs between version 68 and version 67
-SELECT [db-68].drivingLicenceID  AS [id-68],
-	[db-68].term AS [term-68],
-	[db-67].drivingLicenceID AS [id-67],
-	[db-67].term [term-67]
-FROM TaxonomyDB.dbo.DrivingLicenceTerm AS [db-68], TaxonomyDBVersion.dbo.DrivingLicenceTerm AS [db-67]
-WHERE [db-68].drivingLicenceID = [db-67].drivingLicenceID
-AND [db-68].languageID = 502
-AND [db-67].languageID = 502
+-- :name get-updated-drivers-licence :*
+-- :doc get updated driver's licences where some value differs between version 68 and version 67
+SELECT [db-68-term].drivingLicenceID AS [id-68],
+	[db-67-term].drivingLicenceID AS [id-67],
+	[db-68-term].term AS [term-68],
+	[db-67-term].term AS [term-67],
+	[db-68].displaySortOrder AS [sort-68],
+	[db-67].displaySortOrder AS [sort-67],
+	[db-68].drivingLicenceCode AS [d-licence-code-68],
+	[db-67].drivingLicenceCode AS [d-licence-code-67],
+	[db-68-term].description AS [description-68],
+	[db-67-term].description AS [description-67]
+FROM TaxonomyDB.dbo.DrivingLicenceTerm AS [db-68-term],
+	TaxonomyDBVersion.dbo.DrivingLicenceTerm AS [db-67-term],
+	TaxonomyDB.dbo.DrivingLicence AS [db-68],
+	TaxonomyDBVersion.dbo.DrivingLicence AS [db-67]
+WHERE [db-68-term].drivingLicenceID = [db-67-term].drivingLicenceID
+AND [db-67-term].drivingLicenceID = [db-67].drivingLicenceID
+AND [db-67].drivingLicenceID = [db-68].drivingLicenceID
+AND [db-68-term].drivingLicenceID = [db-68].drivingLicenceID
+AND [db-68-term].languageID = 502
+AND [db-67-term].languageID = 502
+AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
-AND [db-67].term != [db-68].term
-
--- :name get-updated-drivers-licence-description :*
--- :doc get updated driver's licences where description differs between version 68 and version 67
-SELECT [db-68].drivingLicenceID  AS [id-68],
-	[db-68].description AS [description-68],
-	[db-67].drivingLicenceID AS [id-67],
-	[db-67].description AS [description-67]
-FROM TaxonomyDB.dbo.DrivingLicenceTerm AS [db-68], TaxonomyDBVersion.dbo.DrivingLicenceTerm AS [db-67]
-WHERE [db-68].drivingLicenceID = [db-67].drivingLicenceID
-AND [db-68].languageID = 502
-AND [db-67].languageID = 502
-AND [db-67].versionID = 67
-AND [db-67].description NOT LIKE [db-68].description
+AND ([db-67-term].term != [db-68-term].term
+OR [db-67].displaySortOrder != [db-68].displaySortOrder
+OR [db-67].drivingLicenceCode != [db-68].drivingLicenceCode
+OR [db-67-term].description NOT LIKE [db-68-term].description)
 
 --EMPLOYMENT DURATION-- (No deprecated, one new, five updated)
 
 -- :name get-deprecated-employment-duration :*
 -- :doc get deprecated employment durations, id's existing in version 67 but not in version 68
-SELECT [db-67].anställningsvaraktighetsID AS [id-67], [db-67].beteckning AS [term-67]
-FROM TaxonomiDBSvenskVersion.dbo.AnställningsvaraktighetTerm AS [db-67]
-WHERE [db-67].språkID = 502
-AND [db-67].anställningsvaraktighetsID NOT IN
-	(SELECT [db-68].anställningsvaraktighetsID
-	FROM TaxonomiDBSvensk.dbo.AnställningsvaraktighetTerm AS [db-68]
-	WHERE [db-68].språkID = 502)
+SELECT [db-67-term].anställningsvaraktighetsID AS [id-67-term],
+    [db-67-term].beteckning AS [term-67],
+    [db-67].sortering AS [sortering-67],
+    [db-67].EURESKod AS [eures-67]
+FROM TaxonomiDBSvenskVersion.dbo.AnställningsvaraktighetTerm AS [db-67-term], TaxonomiDBSvenskVersion.dbo.Anställningsvaraktighet AS [db-67]
+WHERE [db-67-term].språkID = 502
+AND [db-67-term].anställningsvaraktighetsID = [db-67].anställningsvaraktighetsID
+AND [db-67-term].anställningsvaraktighetsID NOT IN
+	(SELECT [db-68-term].anställningsvaraktighetsID
+	FROM TaxonomiDBSvensk.dbo.AnställningsvaraktighetTerm AS [db-68-term]
+	WHERE [db-68-term].språkID = 502)
 
 -- :name get-new-employment-duration :*
 -- :doc get new employment durations, id's existing in version 68 but not in version 67
-SELECT [db-68].anställningsvaraktighetsID AS [id-68], [db-68].beteckning AS [term-68]
-FROM TaxonomiDBSvensk.dbo.AnställningsvaraktighetTerm AS [db-68]
-WHERE [db-68].språkID = 502
-AND [db-68].anställningsvaraktighetsID NOT IN
-	(SELECT [db-67].anställningsvaraktighetsID
-	FROM TaxonomiDBSvenskVersion.dbo.AnställningsvaraktighetTerm AS [db-67]
-	WHERE [db-67].språkID = 502)
+SELECT [db-68-term].anställningsvaraktighetsID AS [id-68],
+	[db-68-term].beteckning AS [term-68],
+	[db-68].sortering AS [sortering-68],
+	[db-68].EURESKod AS [eures-68]
+FROM TaxonomiDBSvensk.dbo.AnställningsvaraktighetTerm AS [db-68-term], TaxonomiDBSvensk.dbo.Anställningsvaraktighet AS [db-68]
+WHERE [db-68-term].språkID = 502
+AND [db-68-term].anställningsvaraktighetsID = [db-68].anställningsvaraktighetsID
+AND [db-68-term].anställningsvaraktighetsID NOT IN
+	(SELECT [db-67-term].anställningsvaraktighetsID
+	FROM TaxonomiDBSvenskVersion.dbo.AnställningsvaraktighetTerm AS [db-67-term]
+	WHERE [db-67-term].språkID = 502)
 
--- :name get-updated-employment-duration-term :*
--- :doc get updated employment durations where term/label differs between version 68 and version 67
-SELECT [db-68].anställningsvaraktighetsID  AS [id-68],
-	[db-68].beteckning AS [term-68],
-	[db-67].anställningsvaraktighetsID AS [id-67],
-	[db-67].beteckning [term-67]
-FROM TaxonomiDBSvensk.dbo.AnställningsvaraktighetTerm AS [db-68], TaxonomiDBSvenskVersion.dbo.AnställningsvaraktighetTerm AS [db-67]
-WHERE [db-68].anställningsvaraktighetsID = [db-67].anställningsvaraktighetsID
-AND [db-68].språkID = 502
-AND [db-67].språkID = 502
-AND [db-67].beteckning != [db-68].beteckning
+-- :name get-updated-employment-duration :*
+-- :doc get updated employment durations where some value differs between version 68 and version 67
+SELECT [db-68-term].anställningsvaraktighetsID  AS [id-68],
+	[db-68-term].beteckning AS [term-68],
+	[db-68].sortering AS [sortering-68],
+	[db-68].EURESKod AS [eures-68],
+	[db-67-term].anställningsvaraktighetsID AS [id-67],
+	[db-67-term].beteckning [term-67],
+	[db-67].sortering AS [sortering-67],
+	[db-67].EURESKod AS [eures-67]
+FROM TaxonomiDBSvensk.dbo.AnställningsvaraktighetTerm AS [db-68-term],
+	TaxonomiDBSvenskVersion.dbo.AnställningsvaraktighetTerm AS [db-67-term],
+	TaxonomiDBSvensk.dbo.Anställningsvaraktighet AS [db-68],
+	TaxonomiDBSvenskVersion.dbo.Anställningsvaraktighet AS [db-67]
+WHERE [db-68-term].anställningsvaraktighetsID = [db-67-term].anställningsvaraktighetsID
+AND [db-67-term].anställningsvaraktighetsID = [db-67].anställningsvaraktighetsID
+AND [db-67].anställningsvaraktighetsID = [db-68].anställningsvaraktighetsID
+AND [db-68].anställningsvaraktighetsID = [db-68-term].anställningsvaraktighetsID
+AND [db-68-term].språkID = 502
+AND [db-67-term].språkID = 502
+AND ([db-67-term].beteckning != [db-68-term].beteckning
+OR [db-67].sortering != [db-68].sortering
+OR [db-67].EURESKod != [db-68].EURESKod)
 
---EMPLOYMENT TYPE-- (No differences between versions!!!)
-
+--EMPLOYMENT TYPE-- (No difference between versions!!!)
 -- :name get-deprecated-employment-type :*
 -- :doc get deprecated employment types, id's existing in version 67 but not in version 68
-SELECT [db-67].AnstallningTypJobbID AS [id-67], [db-67].beteckning AS [term-67]
-FROM TaxonomiDBSvenskVersion.dbo.AnstallningTypJobbTerm AS [db-67]
-WHERE [db-67].språkID = 502
-AND [db-67].AnstallningTypJobbID NOT IN
-	(SELECT [db-68].AnstallningTypJobbID
-	FROM TaxonomiDBSvensk.dbo.AnstallningTypJobbTerm AS [db-68]
-	WHERE [db-68].språkID = 502)
+SELECT [db-67-term].AnstallningTypJobbID AS [id-67],
+    [db-67-term].beteckning AS [term-67],
+    [db-67].iSortering AS [sortering-67]
+FROM TaxonomiDBSvenskVersion.dbo.AnstallningTypJobbTerm AS [db-67-term],
+	TaxonomiDBSvenskVersion.dbo.AnstallningTypJobb AS [db-67]
+WHERE [db-67-term].språkID = 502
+AND [db-67-term].AnstallningTypJobbID = [db-67].AnstallningTypJobbID
+AND [db-67-term].AnstallningTypJobbID NOT IN
+	(SELECT [db-68-term].AnstallningTypJobbID
+	FROM TaxonomiDBSvensk.dbo.AnstallningTypJobbTerm AS [db-68-term]
+	WHERE [db-68-term].språkID = 502)
 
 -- :name get-new-employment-type :*
 -- :doc get new employment types, id's existing in version 68 but not in version 67
-SELECT [db-68].AnstallningTypJobbID AS [id-68], [db-68].beteckning AS [term-68]
-FROM TaxonomiDBSvensk.dbo.AnstallningTypJobbTerm AS [db-68]
-WHERE [db-68].språkID = 502
-AND [db-68].AnstallningTypJobbID NOT IN
-	(SELECT [db-67].AnstallningTypJobbID
-	FROM TaxonomiDBSvenskVersion.dbo.AnstallningTypJobbTerm AS [db-67]
-	WHERE [db-67].språkID = 502)
+SELECT [db-68-term].AnstallningTypJobbID AS [id-68],
+    [db-68-term].beteckning AS [term-68],
+    [db-68].iSortering AS [sortering-68]
+FROM TaxonomiDBSvensk.dbo.AnstallningTypJobbTerm AS [db-68-term],
+	TaxonomiDBSvensk.dbo.AnstallningTypJobb AS [db-68]
+WHERE [db-68-term].språkID = 502
+AND [db-68-term].AnstallningTypJobbID = [db-68].AnstallningTypJobbID
+AND [db-68-term].AnstallningTypJobbID NOT IN
+	(SELECT [db-67-term].AnstallningTypJobbID
+	FROM TaxonomiDBSvenskVersion.dbo.AnstallningTypJobbTerm AS [db-67-term]
+	WHERE [db-67-term].språkID = 502)
 
 -- :name get-updated-employment-type-term :*
 -- :doc get updated employment types where term/label differs between version 68 and version 67
-SELECT [db-68].AnstallningTypJobbID  AS [id-68],
-	[db-68].beteckning AS [term-68],
-	[db-67].AnstallningTypJobbID AS [id-67],
-	[db-67].beteckning [term-67]
-FROM TaxonomiDBSvensk.dbo.AnstallningTypJobbTerm AS [db-68], TaxonomiDBSvenskVersion.dbo.AnstallningTypJobbTerm AS [db-67]
-WHERE [db-68].AnstallningTypJobbID = [db-67].AnstallningTypJobbID
-AND [db-68].språkID = 502
-AND [db-67].språkID = 502
-AND [db-67].beteckning != [db-68].beteckning
+SELECT [db-68-term].AnstallningTypJobbID  AS [id-68],
+	[db-68-term].beteckning AS [term-68],
+	[db-68].iSortering AS [sortering-68],
+	[db-67-term].AnstallningTypJobbID AS [id-67],
+	[db-67-term].beteckning [term-67],
+	[db-67].iSortering AS [sortering-67]
+FROM TaxonomiDBSvensk.dbo.AnstallningTypJobbTerm AS [db-68-term],
+	TaxonomiDBSvenskVersion.dbo.AnstallningTypJobbTerm AS [db-67-term],
+	TaxonomiDBSvensk.dbo.AnstallningTypJobb AS [db-68],
+	TaxonomiDBSvenskVersion.dbo.AnstallningTypJobb AS [db-67]
+WHERE [db-68-term].AnstallningTypJobbID = [db-67-term].AnstallningTypJobbID
+AND [db-67-term].AnstallningTypJobbID = [db-67].AnstallningTypJobbID
+AND [db-67].AnstallningTypJobbID = [db-68].AnstallningTypJobbID
+AND [db-68].AnstallningTypJobbID = [db-68-term].AnstallningTypJobbID
+AND [db-68-term].språkID = 502
+AND [db-67-term].språkID = 502
+AND ([db-67-term].beteckning != [db-68-term].beteckning
+OR [db-67].iSortering != [db-68].iSortering)
 
 --GEOGRAPHIC PLACES--
 
@@ -727,79 +798,99 @@ AND [db-68].languageID = 502
 AND [db-67].languageID = 502
 AND [db-67].term != [db-68].term
 
---COUNTRIES-- (No deprecated, no new, three updated)
+--COUNTRIES-- (There are differences between versions but the update sql isn't working yet so can't tell how many
+-- No New or Deprecated countries though)
 
 -- :name get-deprecated-country :*
 -- :doc get deprecated countries, id's existing in version 67 but not in version 68
-SELECT [db-67].countryID AS [id-67], [db-67].term AS [term-67]
-FROM TaxonomyDBVersion.dbo.CountryTerm AS [db-67]
-WHERE [db-67].languageID = 502
-AND [db-67].versionID = 67
-AND [db-67].countryID NOT IN
-	(SELECT [db-68].countryID
-	FROM TaxonomyDB.dbo.CountryTerm AS [db-68]
-	WHERE [db-68].languageID = 502)
+SELECT [db-67-term].countryID AS [id-67], [db-67-term].term AS [term-67], [db-67].countryCode AS [country-code-67]
+FROM TaxonomyDBVersion.dbo.CountryTerm AS [db-67-term], TaxonomyDBVersion.dbo.Country AS [db-67]
+WHERE [db-67-term].languageID = 502
+AND [db-67-term].versionID = 67
+AND [db-67-term].countryID NOT IN
+	(SELECT [db-68-term].countryID
+	FROM TaxonomyDB.dbo.CountryTerm AS [db-68-term]
+	WHERE [db-68-term].languageID = 502)
 
 -- :name get-new-country :*
 -- :doc get new countries, id's existing in version 68 but not in version 67
-SELECT [db-68].countryID AS [id-68], [db-68].term AS [term-68]
-FROM TaxonomyDB.dbo.CountryTerm AS [db-68]
-WHERE [db-68].languageID = 502
-AND [db-68].countryID NOT IN
-	(SELECT [db-67].countryID
-	FROM TaxonomyDBVersion.dbo.CountryTerm AS [db-67]
-	WHERE [db-67].languageID = 502
-	AND [db-67].versionID = 67)
+SELECT [db-68-term].countryID AS [id-68], [db-68-term].term AS [term-68], [db-68].countryCode AS [country-code-68]
+FROM TaxonomyDB.dbo.CountryTerm AS [db-68-term], TaxonomyDB.dbo.Country AS [db-68]
+WHERE [db-68-term].languageID = 502
+AND [db-68-term].countryID NOT IN
+	(SELECT [db-67-term].countryID
+	FROM TaxonomyDB.dbo.CountryTerm AS [db-67-term]
+	WHERE [db-67-term].languageID = 502)
 
+--TODO fix below - it's not working!
 -- :name get-updated-country-term :*
 -- :doc get updated countries where term/label differs between version 68 and version 67
-SELECT [db-68].countryID AS [id-68],
-	[db-68].term AS [term-68],
-	[db-67].countryID AS [id-67],
-	[db-67].term [term-67]
-FROM TaxonomyDB.dbo.CountryTerm AS [db-68], TaxonomyDBVersion.dbo.CountryTerm AS [db-67]
-WHERE [db-68].countryID = [db-67].countryID
-AND [db-67].versionID = 67
-AND [db-68].languageID = 502
-AND [db-67].languageID = 502
-AND [db-67].term != [db-68].term
+SELECT [db-68-term].countryID  AS [id-68],
+	[db-68-term].term AS [term-68],
+	[db-68].countryCode AS [country-code-68],
+	[db-67-term].countryID AS [id-67],
+	[db-67-term].term [term-67],
+	[db-67].countryCode AS [country-code-67]
+FROM TaxonomyDB.dbo.CountryTerm AS [db-68-term],
+	TaxonomyDBVersion.dbo.CountryTerm AS [db-67-term],
+	TaxonomyDB.dbo.Country AS [db-68],
+	TaxonomyDBVersion.dbo.Country AS [db-67]
+WHERE [db-68-term].countryID = [db-67-term].countryID
+AND [db-67-term].countryID = [db-67].countryID
+AND [db-67].countryID = [db-68].countryID
+AND [db-68].countryID = [db-68-term].countryID
+AND [db-67-term].versionID = 67
+AND [db-68-term].languageID = 502
+AND [db-67-term].languageID = 502
+AND ([db-67-term].term != [db-68-term].term
+OR [db-67].countryCode != [db-68].countryCode)
 
---REGIONS--(No difference between versions!!!)
+--REGIONS--(Don't know yet if there are any differences between versions yet, the Update function doesn't work)
 
 -- :name get-deprecated-region :*
 -- :doc get deprecated regions, id's existing in version 67 but not in version 68
-SELECT [db-67].EURegionID AS [id-67], [db-67].term AS [term-67]
-FROM TaxonomyDBVersion.dbo.EURegionTerm AS [db-67]
-WHERE [db-67].languageID = 502
-AND [db-67].versionID = 67
-AND [db-67].EURegionID NOT IN
-	(SELECT [db-68].EURegionID
-	FROM TaxonomyDB.dbo.EURegionTerm AS [db-68]
-	WHERE [db-68].languageID = 502)
+SELECT [db-67-term].EURegionID AS [id-67], [db-67-term].term AS [term-67], [db-67].NUTSCodeLevel3 AS [nuts-67]
+FROM TaxonomyDBVersion.dbo.EURegionTerm AS [db-67-term], TaxonomyDBVersion.dbo.EURegion AS [db-67]
+WHERE [db-67-term].languageID = 502
+AND [db-67-term].versionID = 67
+AND [db-67-term].EURegionID NOT IN
+	(SELECT [db-68-term].EURegionID
+	FROM TaxonomyDB.dbo.EURegionTerm AS [db-68-term]
+	WHERE [db-68-term].languageID = 502)
 
 -- :name get-new-region :*
 -- :doc get new regions, id's existing in version 68 but not in version 67
-SELECT [db-68].EURegionID AS [id-68], [db-68].term AS [term-68]
-FROM TaxonomyDB.dbo.EURegionTerm AS [db-68]
-WHERE [db-68].languageID = 502
-AND [db-68].EURegionID NOT IN
-	(SELECT [db-67].EURegionID
-	FROM TaxonomyDBVersion.dbo.EURegionTerm AS [db-67]
-	WHERE [db-67].languageID = 502
-	AND [db-67].versionID = 67)
+SELECT [db-68-term].EURegionID AS [id-68], [db-68-term].term AS [term-68], [db-68].NUTSCodeLevel3 AS [nuts-68]
+FROM TaxonomyDB.dbo.EURegionTerm AS [db-68-term], TaxonomyDB.dbo.EURegion AS [db-68]
+WHERE [db-68-term].EURegionID = 502
+AND [db-68-term].EURegionID NOT IN
+	(SELECT [db-67-term].EURegionID
+	FROM TaxonomyDB.dbo.EURegionTerm AS [db-67-term]
+	WHERE [db-67-term].languageID = 502)
 
+--TODO fix below - it's not working!
 -- :name get-updated-region-term :*
 -- :doc get updated regions where term/label differs between version 68 and version 67
-SELECT [db-68].EURegionID AS [id-68],
-	[db-68].term AS [term-68],
-	[db-67].EURegionID AS [id-67],
-	[db-67].term [term-67]
-FROM TaxonomyDB.dbo.EURegionTerm AS [db-68], TaxonomyDBVersion.dbo.EURegionTerm AS [db-67]
-WHERE [db-68].EURegionID = [db-67].EURegionID
-AND [db-67].versionID = 67
-AND [db-68].languageID = 502
-AND [db-67].languageID = 502
-AND [db-67].term != [db-68].term
+SELECT [db-68-term].EURegionID  AS [id-68],
+	[db-68-term].term AS [term-68],
+	[db-68].NUTSCodeLevel3 AS [nuts-68],
+	[db-67-term].EURegionID AS [id-67],
+	[db-67-term].term [term-67],
+	[db-67].NUTSCodeLevel3 AS [nuts-67]
+FROM TaxonomyDB.dbo.EURegionTerm AS [db-68-term],
+	TaxonomyDBVersion.dbo.EURegionTerm AS [db-67-term],
+	TaxonomyDB.dbo.EURegion AS [db-68],
+	TaxonomyDBVersion.dbo.EURegion AS [db-67]
+WHERE [db-68-term].EURegionID = [db-67-term].EURegionID
+AND [db-67-term].EURegionID = [db-67].EURegionID
+AND [db-67].EURegionID = [db-68].EURegionID
+AND [db-68].EURegionID = [db-68-term].EURegionID
+AND [db-67-term].versionID = 67
+AND [db-68-term].languageID = 502
+AND [db-67-term].languageID = 502
+AND ([db-67-term].term != [db-68-term].term
+OR [db-67].NUTSCodeLevel3 != [db-68].NUTSCodeLevel3)
+
 
 --MUNICIPALITIES--(No difference between versions!!!)
 
@@ -838,6 +929,7 @@ AND [db-68].languageID = 502
 AND [db-67].languageID = 502
 AND [db-67].term != [db-68].term
 
+
 --LANGUAGE--(No difference between versions!!!)
 
 -- :name get-deprecated-language :*
@@ -874,6 +966,7 @@ AND [db-67].versionID = 67
 AND [db-68].translationLanguageID = 502
 AND [db-67].translationLanguageID = 502
 AND [db-67].term != [db-68].term
+
 
 --LANGUAGE LEVEL-- (No differences between versions!!!)
 
@@ -912,6 +1005,7 @@ AND [db-68].languageID = 502
 AND [db-67].languageID = 502
 AND [db-67].term != [db-68].term
 
+
 --WAGE TYPE-- (No differences between versions!!!)
 
 -- :name get-deprecated-wage-type :*
@@ -946,39 +1040,51 @@ AND [db-68].språkID = 502
 AND [db-67].språkID = 502
 AND [db-67].beteckning != [db-68].beteckning
 
+
 --WORKTIME EXTENT-- (One deprecated, no new, no updated)
 
 -- :name get-deprecated-worktime-extent :*
 -- :doc get deprecated worktime extents, id's existing in version 67 but not in version 68
-SELECT [db-67].arbetstidsID AS [id-67], [db-67].beteckning AS [term-67]
-FROM TaxonomiDBSvenskVersion.dbo.ArbetstidTerm AS [db-67]
-WHERE [db-67].språkID = 502
-AND [db-67].arbetstidsID NOT IN
-	(SELECT [db-68].arbetstidsID
-	FROM TaxonomiDBSvensk.dbo.ArbetstidTerm AS [db-68]
-	WHERE [db-68].språkID = 502)
+SELECT [db-67-term].arbetstidsID AS [id-67], [db-67-term].beteckning AS [term-67], [db-67].sortering AS [sort-67]
+FROM TaxonomiDBSvenskVersion.dbo.ArbetstidTerm AS [db-67-term], TaxonomiDBSvenskVersion.dbo.Arbetstid AS [db-67]
+WHERE [db-67-term].språkID = 502
+AND [db-67-term].arbetstidsID = [db-67].arbetstidsID
+AND [db-67-term].arbetstidsID NOT IN
+	(SELECT [db-68-term].arbetstidsID
+	FROM TaxonomiDBSvensk.dbo.ArbetstidTerm AS [db-68-term]
+	WHERE [db-68-term].språkID = 502)
 
 -- :name get-new-worktime-extent :*
 -- :doc get new worktime extents, id's existing in version 68 but not in version 67
-SELECT [db-68].arbetstidsID AS [id-68], [db-68].beteckning AS [term-68]
-FROM TaxonomiDBSvensk.dbo.ArbetstidTerm AS [db-68]
-WHERE [db-68].språkID = 502
-AND [db-68].arbetstidsID NOT IN
-	(SELECT [db-67].arbetstidsID
-	FROM TaxonomiDBSvenskVersion.dbo.ArbetstidTerm AS [db-67]
-	WHERE [db-67].språkID = 502)
+SELECT [db-68-term].arbetstidsID AS [id-68], [db-68-term].beteckning AS [term-68], [db-68].sortering AS [sort-68]
+FROM TaxonomiDBSvensk.dbo.ArbetstidTerm AS [db-68-term], TaxonomiDBSvensk.dbo.Arbetstid AS [db-68]
+WHERE [db-68-term].språkID = 502
+AND [db-68-term].arbetstidsID = [db-68].arbetstidsID
+AND [db-68-term].arbetstidsID NOT IN
+	(SELECT [db-67-term].arbetstidsID
+	FROM TaxonomiDBSvenskVersion.dbo.ArbetstidTerm AS [db-67-term]
+	WHERE [db-67-term].språkID = 502)
 
 -- :name get-updated-worktime-extent-term :*
 -- :doc get updated worktime extents where term/label differs between version 68 and version 67
-SELECT [db-68].arbetstidsID  AS [id-68],
-	[db-68].beteckning AS [term-68],
-	[db-67].arbetstidsID AS [id-67],
-	[db-67].beteckning [term-67]
-FROM TaxonomiDBSvensk.dbo.ArbetstidTerm AS [db-68], TaxonomiDBSvenskVersion.dbo.ArbetstidTerm AS [db-67]
-WHERE [db-68].arbetstidsID = [db-67].arbetstidsID
-AND [db-68].språkID = 502
-AND [db-67].språkID = 502
-AND [db-67].beteckning != [db-68].beteckning
+SELECT [db-68-term].arbetstidsID  AS [id-68],
+	[db-68-term].beteckning AS [term-68],
+	[db-68].sortering AS [sort-68],
+	[db-67-term].arbetstidsID AS [id-67],
+	[db-67-term].beteckning [term-67],
+	[db-67].sortering AS [sort-67]
+FROM TaxonomiDBSvensk.dbo.ArbetstidTerm AS [db-68-term],
+	TaxonomiDBSvenskVersion.dbo.ArbetstidTerm AS [db-67-term],
+	TaxonomiDBSvensk.dbo.Arbetstid AS [db-68],
+	TaxonomiDBSvenskVersion.dbo.Arbetstid AS [db-67]
+WHERE [db-68-term].arbetstidsID = [db-67-term].arbetstidsID
+AND [db-67-term].arbetstidsID = [db-67].arbetstidsID
+AND [db-67].arbetstidsID = [db-68].arbetstidsID
+AND [db-68].arbetstidsID = [db-68-term].arbetstidsID
+AND [db-68-term].språkID = 502
+AND [db-67-term].språkID = 502
+AND ([db-67-term].beteckning != [db-68-term].beteckning
+OR [db-67].sortering != [db-68].sortering)
 
 
 

@@ -5,7 +5,7 @@
             [jobtech-taxonomy-database.schema :refer :all :as schema]
             [jobtech-taxonomy-database.legacy-migration :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all]
-            [jobtech-taxonomy-database.converters.driving-licence-converter]
+            [jobtech-taxonomy-database.converters.drivers-license-converter]
             [jobtech-taxonomy-database.converters.employment-duration-converter]
             [jobtech-taxonomy-database.converters.employment-type-converter]
             [jobtech-taxonomy-database.converters.geographic-places-converter]
@@ -27,8 +27,8 @@
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
   '(
-      {:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
-       {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
+     ;;  {:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
+     ;;   {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
     ;;  {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
     ;;  {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
     ;;  {:namespace jobtech-taxonomy-database.converters.language-converter}
