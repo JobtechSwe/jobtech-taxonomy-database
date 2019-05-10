@@ -63,6 +63,11 @@
    }
   )
 
+(defn create-broader-relation-to-concept [concept broader-temp-id]
+  (create-relation (:db/id concept) broader-temp-id t/broader )
+  )
+
+
 (def get-concept-by-legacy-id-query '[:find ?s
                                       :in $ ?legacy-id ?category
                                       :where

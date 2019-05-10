@@ -78,7 +78,7 @@
     [
      concept-ssyk
      (u/create-term concept-id term)
-     (u/create-relation temp-id temp-id-level-1 t/broader)
+     (u/create-broader-relation-to-concept concept-ssyk  temp-id-level-1)
      ]
     )
   )
@@ -100,16 +100,16 @@
 (defn convert-occupation-name
   [{:keys [term occupationgroupid occupationnameid localegroupid]}]
   {:pre [term occupationgroupid occupationnameid localegroupid]}
-  (let [nano-id (get-nano "occupation-name" (str occupationnameid))
-        temp-id (str "occupation-name-" occupationnameid)
-        temp-id-ssyk (str "occupation-group-" localegroupid )
-        temp-id-isco (str "isco-"  occupationgroupid)
+  (let [
+        temp-id-ssyk (u/get-temp-id  t/occupation-group localegroupid)
+        temp-id-isco (u/get-temp-id t/isco occupationgroupid)
+        concept (u/create-concept t/occupation-name term term localegroupid)
         ]
     [
-     (u/create-concept nano-id temp-id term term :occupation-name occupationnameid)
-     (u/create-term nano-id term)
-     (u/create-relation temp-id temp-id-ssyk :hyperonym) ;; TODO decide how to model this properly
-     (u/create-relation temp-id temp-id-isco :hyperonym)
+     concept
+     (u/create-term-from-concept concept)
+     (u/create-relation temp-id temp-id-ssyk t/broader)
+     (u/create-relation temp-id temp-id-isco t/broader)
      ]
     )
  )
