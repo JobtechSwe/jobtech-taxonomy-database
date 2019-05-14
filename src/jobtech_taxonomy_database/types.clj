@@ -66,9 +66,11 @@
 ;; relation-types
 (def broader "broader")
 (def narrower "narrower")
+(def related "related")
+(def occupation-name-affinity "occupation_name_affinity")
+(def occupation-group-to-skill "occupation_group_to_skill")
 
-
-(s/def ::relation-types #{broader narrower})
+(s/def ::relation-types #{broader narrower occupation-name-affinity occupation-group-to-skill related})
 
 
 
