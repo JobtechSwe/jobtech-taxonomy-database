@@ -89,10 +89,15 @@ fi
 
 
 ## Is java installed?
-if ! which java; then
-    echo "No java installed, installing openjdk-11-jre (prompting for sudo pass now)" >&2
-    sudo apt-get update && sudo apt-get install openjdk-11-jre
+if [ ! -d /usr/lib/jvm/java-8-openjdk-amd64/jre/bin ]; then
+    echo "Java 8 not installed in Ubuntu's default location, installing openjdk-8-jre (prompting for sudo pass now)" >&2
+    sudo apt-get update && sudo apt-get install openjdk-8-jre
 fi
+
+
+## Datomic Peer REQUIRES java 8 - it does NOT work with java 11
+## (you would see error message from MQ "cannot connect").
+export PATH=/usr/lib/jvm/java-8-openjdk-amd64/jre/bin:$PATH
 
 
 ## Is docker installed?
