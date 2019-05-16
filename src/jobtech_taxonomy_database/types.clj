@@ -26,6 +26,8 @@
 (def skill "skill")
 (def skill-headline "skill_headline")
 (def skill-main-headline "skill_main_headline")
+(def sni-level-1 "sni_level_1")
+(def sni-level-2 "sni_level_2")
 (def ssyk-level-1 "ssyk_level_1")
 (def ssyk-level-2 "ssyk_level_2")
 (def ssyk-level-3 "ssyk_level_3")
@@ -57,6 +59,8 @@
                          skill
                          skill-headline
                          skill-main-headline
+                         sni-level-1
+                         sni-level-2
                          ssyk-level-1
                          ssyk-level-2
                          ssyk-level-3
