@@ -35,21 +35,24 @@
 
 (defn converter
   "Immutable driving licence converter."
-;  (let [type :driving-licence                ;json-nyckeln
-;        id-67 (str (:drivinglicenceid data))        ;ska matcha legacyAmsTaxonomyId i json
-;        description-67 (:term data)]                ;ska matcha preferredTerm i json
-    ;(let
-      ;[nano-id (nano/get-nano category-67 (keyword id-67))]
-
-      [{:keys [term description drivinglicenceid]}]
-      {:pre [term description drivinglicenceid]}
+   [{:keys [term description drivinglicenceid drivinglicencecode displaysortorder]}]
+      {:pre [term description drivinglicenceid drivinglicencecode displaysortorder]}
       (let
-        [concept (u/create-concept t/occupation-field term description drivinglicenceid)]
-        [concept (u/create-term (:concept/id concept) term)]
+        [concept (u/create-concept t/driving-licence term description drivinglicenceid)
+         concept-with-extras (assoc concept
+                               :concept.external-standard/driving-licence-code drivinglicencecode
+                               :concept.category/sort-order displaysortorder)
+         concept-term (u/create-term (:concept/id concept) term)]
+        [concept-with-extras concept-term]
         ))
 
 #_
-      [{:db/id                                          (str "driving-licence-" id-67)
+    (let [type :driving-licence                ;json-nyckeln
+    id-67 (str (:drivinglicenceid data))        ;ska matcha legacyAmsTaxonomyId i json
+    description-67 (:term data)]                ;ska matcha preferredTerm i json
+    (let
+    [nano-id (nano/get-nano category-67 (keyword id-67))]
+    [{:db/id                                          (str "driving-licence-" id-67)
         :concept/id                                     nano-id
         :concept/description                            (:description data)
         :concept/preferred-term                         nano-id
@@ -59,7 +62,7 @@
         :concept.external-standard/driving-licence-code (:drivinglicencecode data)
         }
        {:db/id          nano-id
-        :term/base-form description-67}];;)))
+        :term/base-form description-67}]))
 
 
 
@@ -71,5 +74,5 @@
   []
   (concat
    (mapcat converter (legacy-migration/fetch-data legacy-migration/get-driving-licence))
-   (mapcat convert-driving-licence-combination-grouped  (group-by :kombinationsid ( legacy-migration/fetch-data  legacy-migration/get-driving-licence-combination))))
-  )
+   ;TODO this doesn't work, FIXME! (mapcat convert-driving-licence-combination-grouped  (group-by :kombinationsid (legacy-migration/fetch-data  legacy-migration/get-driving-licence-combination)))
+   ))
