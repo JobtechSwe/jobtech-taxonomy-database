@@ -1,11 +1,24 @@
 (ns jobtech-taxonomy-database.converters.worktime-extent-converter
   (:gen-class)
   (:require [jobtech-taxonomy-database.legacy-migration :as legacy-migration]
-            [jobtech-taxonomy-database.converters.nano-id-assigner :as nano-id-assigner]))
+            [jobtech-taxonomy-database.converters.nano-id-assigner :as nano-id-assigner]
+            [jobtech-taxonomy-database.converters.converter-util :as u]
+            [jobtech-taxonomy-database.types :as t]))
 
 (defn converter
   "Immutable work time extent converter."
-  [data]
+  [{:keys [beteckning arbetstidsid sortering]}]
+  {:pre [beteckning arbetstidsid sortering]}
+  (let
+    [concept (u/create-concept t/wage-type beteckning beteckning arbetstidsid)
+     concept-with-extras (assoc concept
+                           :concept.category/sort-order sortering)
+     concept-term (u/create-term-from-concept concept-with-extras)]
+    [concept-with-extras concept-term]
+    ))
+
+#_
+  ([data]
   (let [category-67 :worktime-extent              ;json-nyckeln
         id-67 (str (:arbetstidsid data))          ;ska matcha legacyAmsTaxonomyId i json
         description-67 (:beteckning data)]        ;ska matcha preferredTerm i json
