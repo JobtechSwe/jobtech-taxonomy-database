@@ -44,8 +44,8 @@
                nacelevel2id)
         concept-with-extras (assoc concept :concept.external-standard/sni-level-code nacelevel2code)
         concept-term (u/create-term-from-concept concept-with-extras)
-        temp-id-level-1 (u/create-temp-id t/sni-level-1 nacelevel1id)
-        relation (u/create-broader-relation-to-concept concept-with-extras temp-id-level-1)]
+        temp-id-parent (u/create-temp-id t/sni-level-1 nacelevel1id)
+        relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras
      concept-term
      relation]

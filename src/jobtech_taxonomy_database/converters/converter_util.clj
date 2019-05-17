@@ -31,8 +31,7 @@
    (let [[concept-id temp-id] (get-concept-id-and-temp-id instance-type legacy-id)]
      (create-concept instance-type label description legacy-id concept-id temp-id)))
   ([instance-type label description legacy-id concept-id temp-id]
-   {:pre [
-          (s/valid? ::t/concept-types instance-type)
+   {:pre [(s/valid? ::t/concept-types instance-type)
           (s/valid? string? concept-id)
           (s/valid? string? temp-id)
           (s/valid? string? label)
