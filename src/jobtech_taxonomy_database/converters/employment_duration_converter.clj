@@ -14,7 +14,7 @@
      concept-with-extras (assoc concept
                            :concept.external-standard/eures-code eureskod
                            :concept.category/sort-order sortering)
-     concept-term (u/create-term (:concept/id concept) beteckning)]
+     concept-term (u/create-term-from-concept concept-with-extras)]
     [concept-with-extras concept-term]
     ))
 

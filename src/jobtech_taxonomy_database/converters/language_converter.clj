@@ -11,7 +11,7 @@
   {:pre [term languageid_2]}
   (let
     [concept (u/create-concept t/language term term languageid_2)
-     concept-term (u/create-term (:concept/id concept) term)]
+     concept-term (u/create-term-from-concept concept)]
     [concept concept-term]
     ))
 

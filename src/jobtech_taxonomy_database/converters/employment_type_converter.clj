@@ -13,7 +13,7 @@
     [concept (u/create-concept t/employment-type beteckning beteckning anstallningtypjobbid)
      concept-with-extras (assoc concept
                            :concept.category/sort-order isortering)
-     concept-term (u/create-term (:concept/id concept) beteckning)]
+     concept-term (u/create-term-from-concept concept-with-extras)]
     [concept-with-extras concept-term]
     ))
 

@@ -42,7 +42,7 @@
          concept-with-extras (assoc concept
                                :concept.external-standard/driving-licence-code drivinglicencecode
                                :concept.category/sort-order displaysortorder)
-         concept-term (u/create-term (:concept/id concept) term)]
+         concept-term (u/create-term-from-concept concept-with-extras)]
         [concept-with-extras concept-term]
         ))
 
@@ -74,5 +74,5 @@
   []
   (concat
    (mapcat converter (legacy-migration/fetch-data legacy-migration/get-driving-licence))
-   ;TODO this doesn't work, FIXME! (mapcat convert-driving-licence-combination-grouped  (group-by :kombinationsid (legacy-migration/fetch-data  legacy-migration/get-driving-licence-combination)))
+   (mapcat convert-driving-licence-combination-grouped (group-by :kombinationsid (legacy-migration/fetch-data  legacy-migration/get-driving-licence-combination)))
    ))
