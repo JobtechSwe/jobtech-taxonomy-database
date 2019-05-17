@@ -17,7 +17,7 @@
                (if (not (empty? explanatorynotes)) explanatorynotes term)
                nacelevel1id)
      concept-with-extras (assoc concept :concept.external-standard/sni-level-code nacelevel1code)
-     concept-term (u/create-term (:concept/id concept) term)]
+     concept-term (u/create-term-from-concept concept-with-extras)]
     [concept-with-extras concept-term]
     ))
 
