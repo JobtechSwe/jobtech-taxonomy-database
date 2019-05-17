@@ -32,8 +32,8 @@
   {:pre [localecode term description localegroupid localefieldid localelevel3id]}
 
   (let [
-        temp-id-field (u/get-temp-id t/occupation-field localefieldid)
-        temp-id-ssyk-level-3 (u/get-temp-id t/ssyk-level-3 localelevel3id)
+        temp-id-field (u/create-temp-id t/occupation-field localefieldid)
+        temp-id-ssyk-level-3 (u/create-temp-id t/ssyk-level-3 localelevel3id)
         concept (u/create-concept t/occupation-group term description localegroupid )
         concept-with-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecode)
         ]
@@ -50,7 +50,7 @@
   [{:keys [localelevel3id localecodelevel3 term localelevel2id]}]
   {:pre [localelevel3id localecodelevel3 term localelevel2id]}
   (let [
-        temp-id-level-2 (u/get-temp-id t/ssyk-level-2 localelevel2id)
+        temp-id-level-2 (u/create-temp-id t/ssyk-level-2 localelevel2id)
         concept (u/create-concept t/ssyk-level-3 term term localelevel3id)
         concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel3)
         ]
@@ -67,7 +67,7 @@
   {:pre [localelevel2id localelevel1id localecodelevel2 term]}
   (let [
         concept (u/create-concept t/ssyk-level-2 term term localelevel2id)
-        temp-id-level-1 (u/get-temp-id t/ssyk-level-1 localelevel1id)
+        temp-id-level-1 (u/create-temp-id t/ssyk-level-1 localelevel1id)
         concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel2)
         ]
     [
@@ -96,8 +96,8 @@
   [{:keys [term occupationgroupid occupationnameid localegroupid]}]
   {:pre [term occupationgroupid occupationnameid localegroupid]}
   (let [
-        temp-id-ssyk (u/get-temp-id  t/occupation-group localegroupid)
-        temp-id-isco (u/get-temp-id t/isco occupationgroupid)
+        temp-id-ssyk (u/create-temp-id t/occupation-group localegroupid)
+        temp-id-isco (u/create-temp-id t/isco occupationgroupid)
         concept (u/create-concept t/occupation-name term term localegroupid)
         ]
     [
@@ -131,8 +131,8 @@
   {:pre [affinityid occupationnameid percentage]}
 
   (let [
-        temp-id-affinity-from-concept (u/get-temp-id t/occupation-name affinityid)
-        temp-id-affinity-to-concept (u/get-temp-id t/occupation-name occupationnameid)
+        temp-id-affinity-from-concept (u/create-temp-id t/occupation-name affinityid)
+        temp-id-affinity-to-concept (u/create-temp-id t/occupation-name occupationnameid)
         relation (u/create-relation  temp-id-affinity-from-concept temp-id-affinity-to-concept t/occupation-name-affinity)
         relation-with-affinity-percentage (assoc relation :relation/affinity-percentage percentage )
         ]
@@ -179,8 +179,8 @@
 (defn convert-occupation-collection-relation
   [{:keys [collectionid occupationnameid]}]
   {:pre [collectionid occupationnameid]}
-  {:relation/concept-1 (u/get-temp-id t/occupation-collection collectionid)
-   :relation/concept-2 (u/get-temp-id t/occupation-name occupationnameid)
+  {:relation/concept-1 (u/create-temp-id t/occupation-collection collectionid)
+   :relation/concept-2 (u/create-temp-id t/occupation-name occupationnameid)
    :relation/type t/related
    }
   )
@@ -189,7 +189,7 @@
   [{:keys [occupationnameidref occupationnameid term]}]
   {:pre [occupationnameidref occupationnameid term]}
   (let [
-        temp-replaced-by-id (u/get-temp-id  t/occupation-name occupationnameidref)
+        temp-replaced-by-id (u/create-temp-id t/occupation-name occupationnameidref)
         concept (u/create-concept t/occupation-name term term occupationnameid )
         deprecated-concept (assoc concept :concept/deprecated true)
         replaced-by-concept (assoc deprecated-concept :concept/replaced-by temp-replaced-by-id)
@@ -216,16 +216,16 @@
 (defn convert-popular-synonym-occupation-name-relation
   [{:keys [occupationnameid popularsynonymid]}]
   {:pre [occupationnameid popularsynonymid]}
-  (u/create-relation (u/get-temp-id t/keyword-type popularsynonymid)
-                     (u/get-temp-id t/occupation-name occupationnameid)
+  (u/create-relation (u/create-temp-id t/keyword-type popularsynonymid)
+                     (u/create-temp-id t/occupation-name occupationnameid)
                      t/related
                      ))
 
 (defn convert-occupation-group-isco-relation [{:keys [occupationgroupid localegroupid]}]
   {:pre  [occupationgroupid localegroupid]}
 
-  (u/create-relation (u/get-temp-id t/occupation-group localegroupid)
-                     (u/get-temp-id t/isco occupationgroupid)
+  (u/create-relation (u/create-temp-id t/occupation-group localegroupid)
+                     (u/create-temp-id t/isco occupationgroupid)
                      t/related
                      )
   )
