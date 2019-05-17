@@ -78,6 +78,35 @@ WHERE
         AND Skill.versionID = 67
         AND SkillReference.versionID = 67
 
+-----SARAS SKILLS--------
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-skills-sara :*
+-- :doc Get all skills - Sara's version
+SELECT Skill.*, SkillTerm.*
+FROM TaxonomyDBVersion.dbo.Skill Skill, TaxonomyDBVersion.dbo.SkillTerm SkillTerm
+WHERE
+	Skill.versionID = SkillTerm.versionID
+AND Skill.skillID = SkillTerm.skillID
+AND Skill.countryID = SkillTerm.countryID
+AND SkillTerm.versionID = 67
+AND SkillTerm.languageID = 502
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-skill-headlines-sara :*
+-- :doc Get all skill headlines - Sara's version
+SELECT SkillHeadlineTerm.*, SkillHeadline.*
+FROM TaxonomyDBVersion.dbo.SkillHeadline SkillHeadline, TaxonomyDBVersion.dbo.SkillHeadlineTerm SkillHeadlineTerm, TaxonomyDBVersion.dbo.SkillMainHeadline SkillMainHeadline
+WHERE
+	SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
+	AND SkillHeadlineTerm.languageID = 502
+        AND SkillHeadlineTerm.versionID = 67
+        AND SkillHeadline.versionID = 67
+        AND SkillMainHeadline.versionID = 67
+
+
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-language :*
@@ -192,7 +221,7 @@ AND DrivingLicenceTerm.versionID = 67
 -- :name get-driving-licence-combination :*
 -- :doc Get all driving licence combinations
 SELECT Körkortskombination.*, Körkortskoppling.*
-FROM TaxonomiDBSvenskVersion.dbo.Körkortskombination Körkortskombination, TaxonomiDBSvenskVersion.dbo.Körkortskoppling Körkortskoppling
+FROM TaxonomiDBSvensk.dbo.Körkortskombination Körkortskombination, TaxonomiDBSvensk.dbo.Körkortskoppling Körkortskoppling
 WHERE Körkortskoppling.kombinationsID = Körkortskombination.kombinationsID
 
 
