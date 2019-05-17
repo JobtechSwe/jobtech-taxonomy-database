@@ -265,13 +265,14 @@ AND LocaleGroupTerm.languageID = 502
 -- (as hashmaps) will be returned
 -- :name get-occupation-field :*
 -- :doc Get yrkesomraden occupation-field ;
-SELECT LocaleField.*, LocaleFieldTerm.*
+SELECT LocaleField.*,  LocaleFieldTerm.languageID, LocaleFieldTerm.localeFieldID, LocaleFieldTerm.modificationDate, LocaleFieldTerm.term, LocaleFieldTerm.versionID,
+       "description" =
+       CASE WHEN LocaleFieldTerm.description like '%samråd%' THEN 'Militärt arbete' ELSE LocaleFieldTerm.description END
 FROM TaxonomyDBVersion.dbo.LocaleField LocaleField, TaxonomyDBVersion.dbo.LocaleFieldTerm LocaleFieldTerm
 WHERE
 LocaleField.versionID = LocaleFieldTerm.versionID
 AND LocaleField.localeFieldID = LocaleFieldTerm.localeFieldID
 AND LocaleField.versionID = 67
-AND LocaleFieldTerm.languageID = 502
 
 
 -- :name get-ssyk-level-1 :*
