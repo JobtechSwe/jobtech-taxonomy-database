@@ -17,13 +17,13 @@
   (nano/get-nano (csk/->kebab-case-string instance-type) (str legacy-id)))
 
 
-(defn get-temp-id [instance-type legacy-id]
+(defn create-temp-id [instance-type legacy-id]
   (str (csk/->kebab-case-string instance-type)  "-" legacy-id))
 
 
 (defn- get-concept-id-and-temp-id [instance-type legacy-id]
   [(get-concept-id instance-type legacy-id)
-   (get-temp-id instance-type legacy-id)])
+   (create-temp-id instance-type legacy-id)])
 
 
 (defn create-concept
@@ -62,7 +62,7 @@
 
 
 (defn create-relation [concept1 concept2 type]
-  "concept1 should be an entity-id OR temp-id"
+  "Both concepts should be an entity-id OR temp-id"
   {:pre [(s/valid? ::t/relation-types type)]}
   {:relation/concept-1 concept1
    :relation/concept-2 concept2
@@ -70,8 +70,12 @@
 
 
 (defn create-broader-relation-to-concept [concept broader-temp-id]
-  "inputs should be entity-ids OR temp-ids"
+  "First input should be a concept, second an entity-ids OR a temp-ids"
   (create-relation (:db/id concept) broader-temp-id t/broader ))
+
+(defn create-narrower-relation-to-concept [concept narrower-temp-id]
+  "First input should be a concept, second an entity-ids OR a temp-ids"
+  (create-relation (:db/id concept) narrower-temp-id t/narrower ))
 
 
 (def get-concept-by-legacy-id-query '[:find ?s
