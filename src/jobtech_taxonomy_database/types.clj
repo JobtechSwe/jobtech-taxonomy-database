@@ -11,6 +11,7 @@
 (def continent "continent")
 (def country "country")
 (def driving-licence "driving_licence")
+(def driving-licence-combination "driving_licence_combination")
 (def employment-duration "employment_duration")
 (def employment-type "employment_type")
 (def isco "isco")
@@ -44,6 +45,7 @@
 (s/def ::concept-types #{ continent
                          country
                          driving-licence
+                         driving-licence-combination
                          employment-duration
                          employment-type
                          isco
