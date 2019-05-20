@@ -32,8 +32,7 @@
     )
   )
 
-
-(defn converter
+(defn driving-licence-converter
   "Immutable driving licence converter."
    [{:keys [term description drivinglicenceid drivinglicencecode displaysortorder]}]
       {:pre [term description drivinglicenceid drivinglicencecode displaysortorder]}
@@ -45,6 +44,24 @@
          concept-term (u/create-term-from-concept concept-with-extras)]
         [concept-with-extras concept-term]
         ))
+
+(defn combination-converter
+  "Convert one row of legacy sni codes"
+  [{:keys [term nacelevel2id nacelevel1id nacelevel2code explanatorynotes]}]
+  {:pre [term nacelevel2id nacelevel1id nacelevel2code]}
+  (let [concept (u/create-concept
+                  t/sni-level-2
+                  term
+                  (if (not (empty? explanatorynotes)) explanatorynotes term)
+                  nacelevel2id)
+        concept-with-extras (assoc concept :concept.external-standard/sni-level-code nacelevel2code)
+        concept-term (u/create-term-from-concept concept-with-extras)
+        temp-id-parent (u/create-temp-id t/sni-level-1 nacelevel1id)
+        relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
+    [concept-with-extras
+     concept-term
+     relation]
+    ))
 
 #_
     (let [type :driving-licence                ;json-nyckeln
@@ -64,15 +81,10 @@
        {:db/id          nano-id
         :term/base-form description-67}]))
 
-
-
-;; (group-by :kombinationsid ( legacy-migration/fetch-data  legacy-migration/get-driving-licence-combination))
-
-
 (defn convert
-  "Query db for driving licences, convert each entity"
+  "Query db for driving licences and driving licence combinations, convert each entity"
   []
   (concat
-   (mapcat converter (legacy-migration/fetch-data legacy-migration/get-driving-licence))
-   (mapcat convert-driving-licence-combination-grouped (group-by :kombinationsid (legacy-migration/fetch-data  legacy-migration/get-driving-licence-combination)))
+   (mapcat driving-licence-converter (legacy-migration/fetch-data legacy-migration/get-driving-licence))
+   (mapcat combination-converter (group-by :kombinationsid (legacy-migration/fetch-data  legacy-migration/get-driving-licence-combination)))
    ))

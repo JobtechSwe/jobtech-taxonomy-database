@@ -1,88 +1,8 @@
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
--- :name get-skill-mainheadlines :*
--- :doc Get all main headline skills in Swedish
-SELECT SkillMainHeadlineTerm.skillMainHeadlineID AS main_id,
-       SkillMainHeadlineTerm.term AS main_term,
-       SkillMainHeadlineTerm.languageID AS lang,
-       SkillMainHeadlineTerm.modificationDate AS main_date
-FROM   TaxonomyDBVersion.dbo.SkillMainHeadlineTerm SkillMainHeadlineTerm
-WHERE  SkillMainHeadlineTerm.languageID = 502
-       AND SkillMainHeadlineTerm.versionID = 67
-
-
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned.
--- TODO: check if this is still used. In the latest incarnation of the skill
--- converter, this is not used.0
--- Right now it uses a limit of 10 (in the weird Microsoft SQL syntax), as
--- it takes ages to retrieve all headlines from the database.
--- :name get-skill-headlines :?
--- :doc Get headline skills connected to a main headline. Used by the skill converter.
-SELECT SkillHeadlineTerm.skillHeadlineID as head_id,
-       SkillHeadlineTerm.term AS head_term,
-       SkillHeadlineTerm.languageID AS lang
-FROM TaxonomyDBVersion.dbo.SkillHeadline SkillHeadline, TaxonomyDBVersion.dbo.SkillHeadlineTerm SkillHeadlineTerm, TaxonomyDBVersion.dbo.SkillMainHeadline SkillMainHeadline
-WHERE
-	SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
-	AND SkillHeadline.skillMainHeadlineID = :id
-	AND SkillHeadlineTerm.languageID = 502
-        AND SkillHeadlineTerm.versionID = 67
-        AND SkillHeadline.versionID = 67
-        AND SkillMainHeadline.versionID = 67
-
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-skills-for-headline :?
--- :doc Get all skills that belong to the given headline
-SELECT Skill.skillID AS skill_id
-FROM   TaxonomyDBVersion.dbo.Skill Skill, TaxonomyDBVersion.dbo.SkillHeadline SkillHeadline, TaxonomyDBVersion.dbo.SkillHeadlineTerm SkillHeadlineTerm
-WHERE
-	Skill.skillHeadlineID = SkillHeadline.skillHeadlineID
-	AND SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
-	AND SkillHeadline.SkillHeadlineID = :id
-	AND SkillHeadlineTerm.languageID = 502
-        AND SkillHeadlineTerm.versionID = 67
-        AND SkillHeadline.versionID = 67
-        AND Skill.versionID = 67
-
-
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
--- :name get-prefered-skill-term :?
--- :doc Get the prefered skill term that belong to the given skill (in Swedish, FIXME)
-SELECT SkillTerm.term AS term,
-       SkillTerm.languageID AS lang,
-       SkillTerm.skillID AS skill_id
-FROM TaxonomyDBVersion.dbo.SkillTerm SkillTerm, TaxonomyDBVersion.dbo.Skill
-WHERE
-	SkillTerm.skillID = :id
-        AND SkillTerm.skillID = Skill.skillID
-	AND SkillTerm.countryID = Skill.countryID
-	AND SkillTerm.languageID = 502
-        AND Skill.versionID = 67
-        AND SkillTerm.versionID = 67
-
-
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
--- :name get-referenced-skill-terms :?
--- :doc Get the referenced skill terms that belong to the given skill
-SELECT SkillReference.term AS term
-FROM TaxonomyDBVersion.dbo.SkillReference SkillReference, TaxonomyDBVersion.dbo.Skill Skill
-WHERE
-	SKillReference.countryIDRef = SKill.countryID
-	AND SKillReference.skillIDRef = SKill.skillID
-	AND Skill.skillID = :id
-        AND Skill.versionID = 67
-        AND SkillReference.versionID = 67
-
------SARAS SKILLS--------
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
--- :name get-skills-sara :*
--- :doc Get all skills - Sara's version
+-- :name get-skills :*
+-- :doc Get all skills
 SELECT Skill.*, SkillTerm.*
 FROM TaxonomyDBVersion.dbo.Skill Skill, TaxonomyDBVersion.dbo.SkillTerm SkillTerm
 WHERE
@@ -94,8 +14,8 @@ AND SkillTerm.languageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-skill-headlines-sara :*
--- :doc Get all skill headlines - Sara's version
+-- :name get-skill-headlines :*
+-- :doc Get all skill headlines
 SELECT SkillHeadlineTerm.*, SkillHeadline.*
 FROM TaxonomyDBVersion.dbo.SkillHeadline SkillHeadline, TaxonomyDBVersion.dbo.SkillHeadlineTerm SkillHeadlineTerm, TaxonomyDBVersion.dbo.SkillMainHeadline SkillMainHeadline
 WHERE
