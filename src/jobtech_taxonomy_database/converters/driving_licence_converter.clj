@@ -7,7 +7,7 @@
 (defn combination-to-relation [{:keys [kombinationsid körkortsid]}]
   (let [temp-id-1 (u/create-temp-id t/driving-licence-combination kombinationsid)
         temp-id-2 (u/create-temp-id t/driving-licence körkortsid)
-        relation (u/create-broader-relation-to-concept temp-id-2 temp-id-1)]
+        relation (u/create-relation temp-id-2 temp-id-1 t/broader)]
     relation))
 
 (defn convert-driving-licence-combination-grouped [grouped-combinations]
