@@ -34,13 +34,11 @@
     :db/doc         "JobTech categories"
     }
 
-
-   {:db/ident       :concept/instance-type
+   {:db/ident       :concept/type
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
     :db/doc         "The concepts main type"
     }
-
 
    {:db/ident       :concept/deprecated
     :db/valueType   :db.type/boolean

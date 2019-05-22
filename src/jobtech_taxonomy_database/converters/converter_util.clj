@@ -12,7 +12,7 @@
 
 
 (defn- get-concept-id [instance-type legacy-id]
-  "- Checks if the instance-type has a valid value
+  "- Checks if the :concept/type has a valid value
   - Returns nano-id"
   (nano/get-nano (csk/->kebab-case-string instance-type) (str legacy-id)))
 
@@ -43,9 +43,9 @@
     :concept/preferred-label                      label
     :concept/preferred-term                       concept-id  ; deprecated this one
     :concept/alternative-terms                    #{concept-id}
-    :concept/instance-type                         instance-type
+    :concept/type                                 instance-type
     :concept/category                             (csk/->kebab-case-keyword instance-type) ; deprecated this one
-    :concept.external-database.ams-taxonomy-67/id (str legacy-id);; TODO rename attribute
+    :concept.external-database.ams-taxonomy-67/id (str legacy-id) ;; TODO rename attribute
     }))
 
 
@@ -78,10 +78,10 @@
 
 
 (def get-concept-by-legacy-id-query '[:find ?s
-                                      :in $ ?legacy-id ?category
+                                      :in $ ?legacy-id ?type
                                       :where
                                       [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
-                                      [?s :concept/category ?category]
+                                      [?s :concept/type ?type]
                                       ])
 
 #_
@@ -95,8 +95,8 @@
     [?s :concept/type ?type]
     ])
 
-(defn get-concept-by-legacy-id [legacy-id category]
-  (ffirst (d/q get-concept-by-legacy-id-query (conn/get-db) (str legacy-id) category)))
+(defn get-concept-by-legacy-id [legacy-id type]
+  (ffirst (d/q get-concept-by-legacy-id-query (conn/get-db) (str legacy-id) type)))
 
 
 (def get-concept-by-attribute-and-value-query '[:find ?s
@@ -132,10 +132,10 @@
           entity-id))
 
 
-(defn get-entity-if-exists-or-temp-id [legacy-id category]
-  (if-let [entity-id (get-concept-by-legacy-id legacy-id category)]
+(defn get-entity-if-exists-or-temp-id [legacy-id type]
+  (if-let [entity-id (get-concept-by-legacy-id legacy-id type)]
     entity-id
-    (str  (name category) "-" legacy-id)))
+    (create-temp-id type legacy-id)))
 
 
 (defn deprecate-concept [category legacy-id]

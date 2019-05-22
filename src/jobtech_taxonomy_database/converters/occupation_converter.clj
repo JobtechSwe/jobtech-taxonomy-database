@@ -140,13 +140,14 @@
     )
   )
 
+#_
 (def get-concept-by-legacy-id-query '[:find ?s
                                       :in $ ?legacy-id ?category
                                       :where
                                       [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
                                       [?s :concept/category ?category]
                    ])
-
+#_
 (defn get-concept-by-legacy-id [legacy-id category]
   (ffirst (d/q get-concept-by-legacy-id-query (get-db) legacy-id category))
   )
@@ -159,8 +160,8 @@
   "This one has to be transacted to the database after skill and occupation-group has been added to the database"
   [{:keys [skillid localegroupid]}]
    {:pre [skillid localegroupid]}
-  {:relation/concept-1 (get-concept-by-legacy-id localegroupid :occupation-group)
-   :relation/concept-2 (get-concept-by-legacy-id skillid :skill)
+  {:relation/concept-1 (u/get-concept-by-legacy-id localegroupid t/occupation-group)
+   :relation/concept-2 (u/get-concept-by-legacy-id skillid t/skill)
    :relation/type t/occupation-group-to-skill
    }
   )
@@ -248,6 +249,6 @@
    (mapcat convert-popular-synonym (fetch-data get-popular-synonym))
    (map convert-popular-synonym-occupation-name-relation (fetch-data get-occupation-name-synonym))
    (map convert-occupation-group-isco-relation  (remove #(= -2 (:localegroupid %)  )  (fetch-data get-occupation-group-isco-level-4-relation)))
-   (map  convert-occupation-name-replacement (fetch-data get-occupation-names-reference))
+   (mapcat convert-occupation-name-replacement (fetch-data get-occupation-names-reference))
    )
   )
