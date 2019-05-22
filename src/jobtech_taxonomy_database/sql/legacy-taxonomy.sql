@@ -1,4 +1,6 @@
 
+------------------ SKILLS --------------------
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-skills :*
@@ -17,15 +19,12 @@ AND SkillTerm.languageID = 502
 -- :name get-skill-headlines :*
 -- :doc Get all skill headlines
 SELECT SkillHeadlineTerm.*, SkillHeadline.*
-FROM TaxonomyDBVersion.dbo.SkillHeadline SkillHeadline, TaxonomyDBVersion.dbo.SkillHeadlineTerm SkillHeadlineTerm, TaxonomyDBVersion.dbo.SkillMainHeadline SkillMainHeadline
+FROM TaxonomyDBVersion.dbo.SkillHeadline SkillHeadline, TaxonomyDBVersion.dbo.SkillHeadlineTerm SkillHeadlineTerm
 WHERE
 	SkillHeadlineTerm.skillHeadlineID = SkillHeadline.skillHeadlineID
 	AND SkillHeadlineTerm.languageID = 502
         AND SkillHeadlineTerm.versionID = 67
         AND SkillHeadline.versionID = 67
-        AND SkillMainHeadline.versionID = 67
-
-
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -38,7 +37,6 @@ AND Language.languageID = 502
 AND Language.versionID = 67
 AND LanguageTerm.versionID = 67
 
-
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-language-level :*
@@ -49,7 +47,6 @@ WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID
 AND LanguageID = 502
 AND LanguageLevel.versionID = 67
 AND LanguageLevelTerm.versionID = 67
-
 
 -- A ":result" value of ":*" specifies a vector of records
 -- NOTA BENE: the database contains versionID 1, not 67.
@@ -63,8 +60,7 @@ WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
 AND Arbetstid.versionID = 1
 AND ArbetstidTerm.versionID = 1
 
-
-------------------START geographic places--------------------
+------------------ GEOGRAPHIC PLACES --------------------
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -123,7 +119,7 @@ AND Municipality.municipalityID = MunicipalityTerm.municipalityID
 AND	MunicipalityTerm.versionID = 67
 AND Municipality.versionID = 67
 
-------------------END geographic places--------------------
+------------------ DRIVING LICENCE --------------------
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -136,16 +132,11 @@ AND LanguageID = 502
 AND DrivingLicence.versionID = 67
 AND DrivingLicenceTerm.versionID = 67
 
-
-
 -- :name get-driving-licence-combination :*
 -- :doc Get all driving licence combinations
 SELECT Körkortskombination.*, Körkortskoppling.*
 FROM TaxonomiDBSvensk.dbo.Körkortskombination Körkortskombination, TaxonomiDBSvensk.dbo.Körkortskoppling Körkortskoppling
 WHERE Körkortskoppling.kombinationsID = Körkortskombination.kombinationsID
-
-
-
 
 -- A ":result" value of ":*" specifies a vector of records
 -- NOTA BENE: the database contains versionID 1, not 67.
@@ -159,7 +150,6 @@ WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsva
 AND Anställningsvaraktighet.versionID = 1
 AND AnställningsvaraktighetTerm.versionID = 1
 
-
 -- A ":result" value of ":*" specifies a vector of records
 -- NOTA BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
@@ -172,7 +162,6 @@ WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.Anstallni
 AND AnstallningTypJobb.versionID = 1
 AND AnstallningTypJobbTerm.versionID = 1
 
-
 -- A ":result" value of ":*" specifies a vector of records
 -- NOTA BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
@@ -184,6 +173,7 @@ WHERE LöneformTerm.löneformsID = Löneform.löneformsID
 AND Löneform.versionID = 1
 AND LöneformTerm.versionID = 1
 
+------------------ OCCUPATIONS --------------------
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -196,7 +186,6 @@ AND	OccupationName.occupationNameID = OccupationNameTerm.occupationNameID
 AND	OccupationName.countryID = OccupationNameTerm.countryID
 AND     OccupationName.versionID = 67
 AND     OccupationNameTerm.languageID = 502
-
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -223,7 +212,6 @@ LocaleField.versionID = LocaleFieldTerm.versionID
 AND LocaleField.localeFieldID = LocaleFieldTerm.localeFieldID
 AND LocaleField.versionID = 67
 
-
 -- :name get-ssyk-level-1 :*
 -- :doc Get ssyk level 1 ;
 SELECT LocaleLevel1.*, LocaleLevel1Term.*
@@ -232,7 +220,6 @@ WHERE LocaleLevel1.versionID = LocaleLevel1Term.versionID
 AND LocaleLevel1.localeLevel1ID = LocaleLevel1Term.localeLevel1ID
 AND LocaleLevel1Term.languageID = 502
 AND LocaleLevel1Term.versionID = 67
-
 
 -- :name get-ssyk-level-2 :*
 -- :doc Get ssyk level 2 ;
@@ -261,7 +248,6 @@ AND OccupationGroup.occupationGroupID = OccupationGroupTerm.occupationGroupID
 AND OccupationGroupTerm.languageID = 502
 AND OccupationGroup.versionID = 67
 
-
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-ssyk-skill-relation :*
@@ -280,7 +266,6 @@ WHERE AffinityRate.versionID = OccupationNameAffinity.versionID
 AND AffinityRate.affinityRateID = OccupationNameAffinity.affinityRateID
 AND OccupationNameAffinity.versionID = 67
 
-
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-occupation-collection :*
@@ -289,7 +274,6 @@ SELECT versionID, collectionID, collectionsetID, name, modificationDate
 FROM TaxonomyDBVersion.dbo.OccupationCollection
 WHERE versionID = 67;
 
-
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-occupation-collection-relations :*
@@ -297,8 +281,6 @@ WHERE versionID = 67;
 SELECT versionID, collectionID, occupationNameID, countryID, modificationDate
 FROM TaxonomyDBVersion.dbo.CollectionOccupation
 WHERE versionID = 67;
-
-
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -320,8 +302,6 @@ SELECT versionID, occupationNameID, countryID, popularSynonymID, modificationDat
 FROM TaxonomyDBVersion.dbo.OccupationNameSynonym
 WHERE versionID = 67;
 
-
-
 -- :name get-occupation-group-skill-relation :*
 -- :doc get occupation group skill relation ;
 SELECT versionID, skillID, countryID, localeGroupID, modificationDate
@@ -332,14 +312,12 @@ FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill  where versionID = 67;
 SELECT versionID, skillID, countryID, occupationGroupID, modificationDate
 FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill  where versionID = 67;
 
-
 -- :name get-occupation-group-isco-level-4-relation :*
 -- :doc get occupation group isco relation ;
 SELECT versionID, occupationGroupID, localeGroupID, modificationDate
 FROM TaxonomyDBVersion.dbo.ISCOLocale where versionID = 67;
 
-
-------------------START SUN education field--------------------
+------------------START SUN --------------------
 
 -- SUN SHOULDN'T BE CONVERTED!
 -- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
@@ -387,9 +365,7 @@ FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning3 SUNInriktning3,
 WHERE SUNInriktning3.versionID = SUNInriktning3Term.versionID
 AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
 
-------------------END SUN education field--------------------
-
-------------------START SUN education level--------------------
+------------------START SUN LEVEL--------------------
 
 -- SUN SHOULDN'T BE CONVERTED!
 -- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
@@ -437,8 +413,7 @@ FROM TaxonomiDBSvenskVersion.dbo.SUNNivå3 SUNNivå3,
 WHERE SUNNivå3.versionID = SUNNivå3Term.versionID
 AND SUNNivå3.SUNNivå3ID = SUNNivå3Term.SUNNivå3ID
 
-------------------END SUN education level--------------------
----- START NACE LEVEL
+---- START NACE/SNI
 
 -- :name get-sni-level-1 :*
 -- :doc get SNI koder level 1 ;
@@ -447,7 +422,6 @@ FROM TaxonomyDBVersion.dbo.NaceLevel1 NaceLevel1, TaxonomyDBVersion.dbo.NaceLeve
 WHERE NaceLevel1.versionID = NaceLevel1Term.versionID
 AND NaceLevel1.naceLevel1ID = NaceLevel1Term.naceLevel1ID
 AND NaceLevel1.versionID = 67
-
 
 -- :name get-sni-level-2 :*
 -- :doc get SNI koder level 2 ;
@@ -459,11 +433,10 @@ AND NaceLevel2.versionID = 67
 
 
 
-------------------- Version 68
-------------------------------------------------------------------
 
------------ OCCUPATION TERM
+------------------- Version 68 ------------------------------------------------------------------
 
+----------- OCCUPATION TERM ----------------------------
 
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
@@ -473,7 +446,6 @@ RIGHT JOIN TaxonomyDBVersion.dbo.OccupationNameTerm as OccupationNameTerm2
 ON OccupationNameTerm1.occupationNameID = OccupationNameTerm2.occupationNameID
 WHERE OccupationNameTerm1.occupationNameID is NULL
 AND OccupationNameTerm2.versionID = 67
-
 
 -- :name get-new-occupation-name :*
 -- :doc get occupation names that has been added after version 67 ;
@@ -485,9 +457,7 @@ AND OccupationName.countryID = OccupationNameTerm.countryID
 AND OccupationName.modificationDate > (
 SELECT created
 FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67
-)
-
+WHERE versionID = 67)
 
 -- :name get-replaced--occupation-name :*
 -- :doc get replaced occupation names after version 67; omkoppling
@@ -497,9 +467,7 @@ WHERE
 modificationDate > (
 SELECT created
 FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67
-)
-
+WHERE versionID = 67)
 
 -- :name get-renamed-occupation-name :*
 -- :doc get renamed occupation names after version 67
@@ -512,10 +480,7 @@ AND OccupationNameTerm.languageID = 502
 AND OccupationNameTermHistory.modificationDate > (
 SELECT created
 FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67
-)
-
-
+WHERE versionID = 67)
 
 -- :name get-new-occupation-collection :*
 -- :doc get new yrkessamlingar
@@ -524,9 +489,7 @@ FROM TaxonomyDB.dbo.OccupationCollection
 wHERE   modificationDate > (
 SELECT created
 FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67
-)
-
+WHERE versionID = 67)
 
 -- :name get-new-occupation-collection-relations :*
 -- :doc get new occupation collection relations
@@ -535,18 +498,11 @@ FROM TaxonomyDB.dbo.CollectionOccupation
 WHERE   modificationDate > (
 SELECT created
 FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67
-)
-
-
-
-
+WHERE versionID = 67)
 
 --  DET verkar inte ha tagits bort några yrken från yrkessamlingarna mellan version 67 - 68
 
-
---DRIVING LICENCE-- (No differences between versions!!!)
-
+---------------DRIVING LICENCE---(No differences between versions!!!)-------------------------------------
 
 -- :name get-deprecated-driving-licence :*
 -- :doc get deprecated driving licences, id's existing in version 67 but not version 68
@@ -605,7 +561,7 @@ OR [db-67].displaySortOrder != [db-68].displaySortOrder
 OR [db-67].drivingLicenceCode != [db-68].drivingLicenceCode
 OR [db-67-term].description NOT LIKE [db-68-term].description)
 
---EMPLOYMENT DURATION-- (No deprecated, one new, five updated)
+-----------------------EMPLOYMENT DURATION-- (No deprecated, one new, five updated) -------------------------------
 
 -- :name get-deprecated-employment-duration :*
 -- :doc get deprecated employment durations, id's existing in version 67 but not in version 68
@@ -659,7 +615,8 @@ AND ([db-67-term].beteckning != [db-68-term].beteckning
 OR [db-67].sortering != [db-68].sortering
 OR [db-67].EURESKod != [db-68].EURESKod)
 
---EMPLOYMENT TYPE-- (No difference between versions!!!)
+----------------------------EMPLOYMENT TYPE---(No difference between versions!!!)-----------------------------------
+
 -- :name get-deprecated-employment-type :*
 -- :doc get deprecated employment types, id's existing in version 67 but not in version 68
 SELECT [db-67-term].AnstallningTypJobbID AS [id-67],
@@ -709,9 +666,9 @@ AND [db-67-term].språkID = 502
 AND ([db-67-term].beteckning != [db-68-term].beteckning
 OR [db-67].iSortering != [db-68].iSortering)
 
---GEOGRAPHIC PLACES--
+-----------------------------------------GEOGRAPHIC PLACES----------------------------------------------------------
 
---CONTINENTS-- (No difference!)
+-------------------------CONTINENTS---(No difference!)----------------------------------------------------
 
 -- :name get-deprecated-continent :*
 -- :doc get deprecated continent, id's existing in version 67 but not in version 68
@@ -748,8 +705,7 @@ AND [db-68].languageID = 502
 AND [db-67].languageID = 502
 AND [db-67].term != [db-68].term
 
---COUNTRIES-- (There are differences between versions but the update sql isn't working yet so can't tell how many
--- No New or Deprecated countries though)
+----------------------COUNTRIES---No New or Deprecated, three updated countries-----------------------------------
 
 -- :name get-deprecated-country :*
 -- :doc get deprecated countries, id's existing in version 67 but not in version 68
@@ -772,7 +728,6 @@ AND [db-68-term].countryID NOT IN
 	FROM TaxonomyDB.dbo.CountryTerm AS [db-67-term]
 	WHERE [db-67-term].languageID = 502)
 
---TODO fix below - it's not working!
 -- :name get-updated-country-term :*
 -- :doc get updated countries where term/label differs between version 68 and version 67
 SELECT [db-68-term].countryID  AS [id-68],
@@ -790,12 +745,13 @@ AND [db-67-term].countryID = [db-67].countryID
 AND [db-67].countryID = [db-68].countryID
 AND [db-68].countryID = [db-68-term].countryID
 AND [db-67-term].versionID = 67
+AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
 AND ([db-67-term].term != [db-68-term].term
 OR [db-67].countryCode != [db-68].countryCode)
 
---REGIONS--(Don't know yet if there are any differences between versions yet, the Update function doesn't work)
+------------------------------------REGIONS---(No difference!)--------------------------------------------------
 
 -- :name get-deprecated-region :*
 -- :doc get deprecated regions, id's existing in version 67 but not in version 68
@@ -818,7 +774,6 @@ AND [db-68-term].EURegionID NOT IN
 	FROM TaxonomyDB.dbo.EURegionTerm AS [db-67-term]
 	WHERE [db-67-term].languageID = 502)
 
---TODO fix below - it's not working!
 -- :name get-updated-region-term :*
 -- :doc get updated regions where term/label differs between version 68 and version 67
 SELECT [db-68-term].EURegionID  AS [id-68],
@@ -836,13 +791,13 @@ AND [db-67-term].EURegionID = [db-67].EURegionID
 AND [db-67].EURegionID = [db-68].EURegionID
 AND [db-68].EURegionID = [db-68-term].EURegionID
 AND [db-67-term].versionID = 67
+AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
 AND ([db-67-term].term != [db-68-term].term
 OR [db-67].NUTSCodeLevel3 != [db-68].NUTSCodeLevel3)
 
-
---MUNICIPALITIES--(No difference between versions!!!)
+----------------------------MUNICIPALITIES--(No difference between versions!!!)------------------------------------
 
 -- :name get-deprecated-municipality :*
 -- :doc get deprecated municipalities, id's existing in version 67 but not in version 68
@@ -879,8 +834,7 @@ AND [db-68].languageID = 502
 AND [db-67].languageID = 502
 AND [db-67].term != [db-68].term
 
-
---LANGUAGE--(No difference between versions!!!)
+-------------------------------LANGUAGE--(No difference between versions!!!)-----------------------------------------
 
 -- :name get-deprecated-language :*
 -- :doc get deprecated languages, id's existing in version 67 but not in version 68
@@ -918,7 +872,7 @@ AND [db-67].translationLanguageID = 502
 AND [db-67].term != [db-68].term
 
 
---LANGUAGE LEVEL-- (No differences between versions!!!)
+------------------------------------LANGUAGE LEVEL-- (No differences between versions!!!)-----------------------------
 
 -- :name get-deprecated-language-level :*
 -- :doc get deprecated language levels, id's existing in version 67 but not in version 68
@@ -956,7 +910,7 @@ AND [db-67].languageID = 502
 AND [db-67].term != [db-68].term
 
 
---WAGE TYPE-- (No differences between versions!!!)
+------------------------------WAGE TYPE-- (No differences between versions!!!)--------------------------------------
 
 -- :name get-deprecated-wage-type :*
 -- :doc get deprecated wage types, id's existing in version 67 but not in version 68
@@ -990,8 +944,7 @@ AND [db-68].språkID = 502
 AND [db-67].språkID = 502
 AND [db-67].beteckning != [db-68].beteckning
 
-
---WORKTIME EXTENT-- (One deprecated, no new, no updated)
+-----------------------------WORKTIME EXTENT-- (One deprecated, no new, no updated)------------------------------------
 
 -- :name get-deprecated-worktime-extent :*
 -- :doc get deprecated worktime extents, id's existing in version 67 but not in version 68
@@ -1036,9 +989,7 @@ AND [db-67-term].språkID = 502
 AND ([db-67-term].beteckning != [db-68-term].beteckning
 OR [db-67].sortering != [db-68].sortering)
 
-
-
----- SKILLS
+------------------------------------------- SKILLS----------------------------------------------------------------
 
 -- :name get-new-skill :*
 -- :doc get new skills, id's existing in version 68 but not in version 67
