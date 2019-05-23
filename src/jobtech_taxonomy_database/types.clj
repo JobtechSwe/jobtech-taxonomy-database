@@ -14,7 +14,8 @@
 (def driving-licence-combination "driving_licence_combination")
 (def employment-duration "employment_duration")
 (def employment-type "employment_type")
-(def isco "isco")
+(def isco-level-4 "isco_level_4")
+(def isco-level-1 "isco_level_1")
 (def keyword-type "keyword")
 (def language "language")
 (def language-level "language_level")
@@ -48,7 +49,8 @@
                          driving-licence-combination
                          employment-duration
                          employment-type
-                         isco
+                         isco-level-4
+                         isco-level-1
                          keyword-type
                          language
                          language-level
@@ -101,7 +103,7 @@
               "employment-type"
               ],
              [
-              "isco"
+              "isco-level-4"
               ],
              [
               "keyword"

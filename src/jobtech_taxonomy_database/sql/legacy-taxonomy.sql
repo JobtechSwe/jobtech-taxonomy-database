@@ -239,6 +239,14 @@ AND LocaleLevel3.localeLevel3ID = LocaleLevel3Term.localeLevel3ID
 AND LocaleLevel3Term.languageID = 502
 AND LocaleLevel3Term.versionID = 67
 
+-- :name get-isco-level-1 :*
+-- :doc Get isco level 1 ;
+SELECT OccupationField.*, OccupationFieldTerm.*
+FROM TaxonomyDBVersion.dbo.OccupationField OccupationField, TaxonomyDBVersion.dbo.OccupationFieldTerm OccupationFieldTerm
+WHERE OccupationField.versionID = OccupationFieldTerm.versionID
+AND OccupationField.occupationFieldID = OccupationFieldTerm.occupationFieldID
+AND OccupationField.versionID = 67
+
 -- :name get-isco-level-4 :*
 -- :doc Get isco level 4 ;
 SELECT OccupationGroup.*, OccupationGroupTerm.*

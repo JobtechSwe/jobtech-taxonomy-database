@@ -19,139 +19,105 @@
 (defn convert-occupation-field
   [{:keys [term description localefieldid]}]
   {:pre [term description  localefieldid]}
-  (let [concept (u/create-concept t/occupation-field term description localefieldid )]
-    [
-     concept
-     (u/create-term (:concept/id concept) term)
-     ]
-    )
-  )
+  (let [concept (u/create-concept t/occupation-field term description localefieldid )
+        concept-term (u/create-term (:concept/id concept) term)]
+    [concept
+     concept-term]))
 
-(defn  convert-ssyk
+(defn convert-ssyk-level-4
   [{:keys [localecode term description localegroupid localefieldid localelevel3id]}]
   {:pre [localecode term description localegroupid localefieldid localelevel3id]}
-
-  (let [
-        temp-id-field (u/create-temp-id t/occupation-field localefieldid)
-        temp-id-ssyk-level-3 (u/create-temp-id t/ssyk-level-3 localelevel3id)
+  (let [temp-id-parent-field (u/create-temp-id t/occupation-field localefieldid)
+        temp-id-parent-ssyk-level-3 (u/create-temp-id t/ssyk-level-3 localelevel3id)
         concept (u/create-concept t/occupation-group term description localegroupid )
-        concept-with-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecode)
-        ]
-    [
-     concept-with-ssyk
-     (u/create-term (:db/id concept) term)
-     (u/create-broader-relation-to-concept concept temp-id-field)
-     (u/create-broader-relation-to-concept concept temp-id-ssyk-level-3)
-     ]
-    )
-  )
+        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 localecode)
+        concept-term (u/create-term-from-concept concept-with-extras)]
+    [concept-with-extras
+     concept-term
+     (u/create-broader-relation-to-concept concept temp-id-parent-field)
+     (u/create-broader-relation-to-concept concept temp-id-parent-ssyk-level-3)]))
 
 (defn convert-ssyk-level-3
   [{:keys [localelevel3id localecodelevel3 term localelevel2id]}]
   {:pre [localelevel3id localecodelevel3 term localelevel2id]}
-  (let [
-        temp-id-level-2 (u/create-temp-id t/ssyk-level-2 localelevel2id)
+  (let [temp-id-parent-level-2 (u/create-temp-id t/ssyk-level-2 localelevel2id)
         concept (u/create-concept t/ssyk-level-3 term term localelevel3id)
-        concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel3)
-        ]
-    [
-     concept-ssyk
-     (u/create-term-from-concept concept)
-     (u/create-broader-relation-to-concept concept temp-id-level-2)
-     ]
-    )
-  )
+        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 localecodelevel3)
+        concept-term (u/create-term-from-concept concept-with-extras)]
+    [concept-with-extras
+     concept-term
+     (u/create-broader-relation-to-concept concept temp-id-parent-level-2)]))
 
 (defn convert-ssyk-level-2
   [{:keys [localelevel2id localelevel1id localecodelevel2 term]}]
   {:pre [localelevel2id localelevel1id localecodelevel2 term]}
-  (let [
+  (let [temp-id-parent-level-1 (u/create-temp-id t/ssyk-level-1 localelevel1id)
         concept (u/create-concept t/ssyk-level-2 term term localelevel2id)
-        temp-id-level-1 (u/create-temp-id t/ssyk-level-1 localelevel1id)
-        concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel2)
-        ]
-    [
-     concept-ssyk
-     (u/create-term-from-concept concept-ssyk)
-     (u/create-broader-relation-to-concept concept-ssyk  temp-id-level-1)
-     ]
-    )
-  )
+        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 localecodelevel2)
+        concept-term (u/create-term-from-concept concept-with-extras)]
+    [concept-with-extras
+     concept-term
+     (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-level-1)]))
 
 (defn convert-ssyk-level-1
   [{:keys [localelevel1id localecodelevel1 term]}]
   {:pre [localelevel1id localecodelevel1 term]}
-  (let [
-        concept (u/create-concept t/ssyk-level-1 term term localelevel1id)
-        concept-ssyk (assoc concept :concept.external-standard/ssyk-2012 localecodelevel1)
-        ]
-    [
-     concept-ssyk
-     (u/create-term-from-concept concept)
-     ]
-    )
-  )
+  (let [concept (u/create-concept t/ssyk-level-1 term term localelevel1id)
+        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 localecodelevel1)
+        concept-term (u/create-term-from-concept concept-with-extras)]
+    [concept-with-extras
+     concept-term]))
 
 (defn convert-occupation-name
   [{:keys [term occupationgroupid occupationnameid localegroupid]}]
   {:pre [term occupationgroupid occupationnameid localegroupid]}
   (let [
-        temp-id-ssyk (u/create-temp-id t/occupation-group localegroupid)
-        temp-id-isco (u/create-temp-id t/isco occupationgroupid)
-        concept (u/create-concept t/occupation-name term term localegroupid)
-        ]
-    [
-     concept
-     (u/create-term-from-concept concept)
-     (u/create-broader-relation-to-concept concept temp-id-ssyk)
-     (u/create-broader-relation-to-concept concept temp-id-isco)
-     ]
-    )
- )
+        temp-id-parent-ssyk (u/create-temp-id t/occupation-group localegroupid)
+        temp-id-parent-isco (u/create-temp-id t/isco-level-4 occupationgroupid)
+        concept (u/create-concept t/occupation-name term term occupationnameid)
+        concept-term (u/create-term-from-concept concept)]
+    [concept
+     concept-term
+     (u/create-broader-relation-to-concept concept temp-id-parent-ssyk)
+     (u/create-broader-relation-to-concept concept temp-id-parent-isco)]))
 
+(defn convert-isco-level-4
+  [{:keys [isco occupationfieldid term occupationgroupid description]}]
+  {:pre [isco occupationfieldid term occupationgroupid description]}
+  (let [temp-id-parent-level-1 (u/create-temp-id t/isco-level-1 occupationfieldid)
+        concept (u/create-concept t/isco-level-4 term description occupationgroupid )
+        concept-with-extras (assoc concept :concept.external-standard/isco-08 isco)
+        concept-term (u/create-term-from-concept concept-with-extras)]
+    [concept-with-extras
+     concept-term
+     (u/create-broader-relation-to-concept concept temp-id-parent-level-1)]))
 
-(defn convert-isco
-  [{:keys [isco ilo occupationfieldid term occupationgroupid description]}]
-  {:pre [isco ilo occupationfieldid term occupationgroupid description]}
+(defn convert-isco-level-1
+  [{:keys [occupationfieldid term  description]}]
+  {:pre [occupationfieldid term description]}
+  (let [concept (u/create-concept t/isco-level-1 term description occupationfieldid)
+        concept-term (u/create-term-from-concept concept)]
+    [concept
+     concept-term]))
 
-  (let [concept (u/create-concept t/occupation-group term term occupationgroupid )
-        concept-with-isco (assoc concept :concept.external-standard/isco-08 isco)
-        ]
-    [
-     concept-with-isco
-     (u/create-term-from-concept concept-with-isco)
-     ]
-    )
-  )
-
-
-;; Get tomt svar
 (defn convert-occupation-name-affinity
   [{:keys [affinityid occupationnameid percentage]}]
   {:pre [affinityid occupationnameid percentage]}
-
-  (let [
-        temp-id-affinity-from-concept (u/create-temp-id t/occupation-name affinityid)
+  (let [temp-id-affinity-from-concept (u/create-temp-id t/occupation-name affinityid)
         temp-id-affinity-to-concept (u/create-temp-id t/occupation-name occupationnameid)
         relation (u/create-relation  temp-id-affinity-from-concept temp-id-affinity-to-concept t/occupation-name-affinity)
-        relation-with-affinity-percentage (assoc relation :relation/affinity-percentage percentage )
-        ]
-    relation-with-affinity-percentage
-    )
-  )
+        relation-with-affinity-percentage (assoc relation :relation/affinity-percentage percentage )]
+    relation-with-affinity-percentage))
 
 #_
 (def get-concept-by-legacy-id-query '[:find ?s
                                       :in $ ?legacy-id ?category
                                       :where
                                       [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
-                                      [?s :concept/category ?category]
-                   ])
+                                      [?s :concept/category ?category]])
 #_
 (defn get-concept-by-legacy-id [legacy-id category]
-  (ffirst (d/q get-concept-by-legacy-id-query (get-db) legacy-id category))
-  )
-
+  (ffirst (d/q get-concept-by-legacy-id-query (get-db) legacy-id category)))
 
 ;; FEL!! får alla concept typ??
 #_(d/q get-concept-by-legacy-id-query (get-db) "7577" :occupation-name)
@@ -169,13 +135,10 @@
 (defn convert-occupation-collection
   [{:keys [collectionid name]}]
   {:pre [collectionid name]}
-
-  (let [concept (u/create-concept t/occupation-collection name name collectionid)]
-    [
-     concept
-     (u/create-term-from-concept concept)
-     ]
-    ))
+  (let [concept (u/create-concept t/occupation-collection name name collectionid)
+        concept-term (u/create-term-from-concept concept)]
+    [concept
+     concept-term]))
 
 (defn convert-occupation-collection-relation
   [{:keys [collectionid occupationnameid]}]
@@ -189,18 +152,13 @@
 (defn convert-occupation-name-replacement
   [{:keys [occupationnameidref occupationnameid term]}]
   {:pre [occupationnameidref occupationnameid term]}
-  (let [
-        temp-replaced-by-id (u/create-temp-id t/occupation-name occupationnameidref)
+  (let [temp-id-replaced-by (u/get-entity-if-exists-or-temp-id occupationnameidref t/occupation-name )
         concept (u/create-concept t/occupation-name term term occupationnameid )
-        deprecated-concept (assoc concept :concept/deprecated true)
-        replaced-by-concept (assoc deprecated-concept :concept/replaced-by temp-replaced-by-id)
+        concept-deprecated-true (assoc concept :concept/deprecated true)
+        concept-replaced-by (assoc concept-deprecated-true :concept/replaced-by temp-id-replaced-by)]
         ;; Utred hur vi hanterar replaced by many different??
-        ]
-    [replaced-by-concept
-     (u/create-term-from-concept replaced-by-concept)
-     ]
-    )
-  )
+    [concept-replaced-by
+     (u/create-term-from-concept concept-replaced-by)]))
 
 (defn convert-popular-synonym
   [{:keys [popularsynonymid term]}]
@@ -226,25 +184,26 @@
   {:pre  [occupationgroupid localegroupid]}
 
   (u/create-relation (u/create-temp-id t/occupation-group localegroupid)
-                     (u/create-temp-id t/isco occupationgroupid)
+                     (u/create-temp-id t/isco-level-4 occupationgroupid)
                      t/related
                      )
   )
-;; (def a-occgr-isco-rel (first (fetch-data get-occupation-group-isco-level-4-relation)))
+;; (def a-occgr-isco-level-4-rel (first (fetch-data get-occupation-group-isco-level-4-level-4-relation)))
 
 (defn convert
   ""
   []
   (concat
-   (mapcat convert-occupation-field (fetch-data  get-occupation-field))
-   (mapcat convert-ssyk (fetch-data get-occupation-group-ssyk))
-   (mapcat convert-ssyk-level-3 (fetch-data get-ssyk-level-3))
-   (mapcat convert-ssyk-level-2 (fetch-data get-ssyk-level-2))
-   (mapcat convert-ssyk-level-1 (fetch-data get-ssyk-level-1))
-   (mapcat convert-occupation-name (fetch-data get-occupation-name))
-   (mapcat convert-isco (fetch-data get-isco-level-4))
-   (map convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
-   (mapcat convert-occupation-collection (fetch-data get-occupation-collection))
+    (mapcat convert-occupation-field (fetch-data  get-occupation-field))
+    (mapcat convert-ssyk-level-4 (fetch-data get-occupation-group-ssyk))
+    (mapcat convert-ssyk-level-3 (fetch-data get-ssyk-level-3))
+    (mapcat convert-ssyk-level-2 (fetch-data get-ssyk-level-2))
+    (mapcat convert-ssyk-level-1 (fetch-data get-ssyk-level-1))
+    (mapcat convert-occupation-name (fetch-data get-occupation-name))
+    (mapcat convert-isco-level-4 (fetch-data get-isco-level-4))
+    (mapcat convert-isco-level-1 (fetch-data get-isco-level-1))
+    (map convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
+    (mapcat convert-occupation-collection (fetch-data get-occupation-collection))
    (map convert-occupation-collection-relation (fetch-data get-occupation-collection-relations))
    (mapcat convert-popular-synonym (fetch-data get-popular-synonym))
    (map convert-popular-synonym-occupation-name-relation (fetch-data get-occupation-name-synonym))
