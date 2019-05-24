@@ -22,6 +22,7 @@
 
 
 (defn- get-concept-id-and-temp-id [instance-type legacy-id]
+  "Use this insteda of the above two separately"
   [(get-concept-id instance-type legacy-id)
    (create-temp-id instance-type legacy-id)])
 
@@ -50,12 +51,13 @@
 
 
 (defn create-term [nano-id term]
+  "never mind this, it's not going to be used"
   {:db/id          nano-id
    :term/base-form term})
 
 
 (defn create-term-from-concept [ {:keys  [:concept/id :concept/preferred-label ]}]
-  "never mind this, it's not going to be used"
+  "Use this instead of above"
   {:db/id id
    :term/base-form preferred-label})
 
@@ -77,29 +79,20 @@
   (create-relation (:db/id concept) narrower-temp-id t/narrower ))
 
 
-(def get-concept-by-legacy-id-query '[:find ?s
+(def get-entity-id-by-legacy-id-query '[:find ?s
                                       :in $ ?legacy-id ?type
                                       :where
                                       [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
                                       [?s :concept/type ?type]
                                       ])
 
-#_
-(def get-entity-id-query
-  "This function should replace the above function (get-concept-by-legacy-id-query) in the future.
-  Call function with legacy-id and type"
-    '[:find ?s
-    :in $ ?legacy-id ?type
-    :where
-    [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
-    [?s :concept/type ?type]
-    ])
 
-(defn get-concept-by-legacy-id [legacy-id type]
-  (ffirst (d/q get-concept-by-legacy-id-query (conn/get-db) (str legacy-id) type)))
+(defn get-entity-id-by-legacy-id [legacy-id type]
+  "Use this, it calls above"
+  (ffirst (d/q get-entity-id-by-legacy-id-query (conn/get-db) (str legacy-id) type)))
 
 
-(def get-concept-by-attribute-and-value-query '[:find ?s
+(def get-entity-id-by-attribute-and-value-query '[:find ?s
                                       :in $ ?attribute ?value ?category
                                       :where
                                       [?s ?attribute ?value]
@@ -107,7 +100,8 @@
 
 
 (defn get-concept-by-attribute-and-value [attribute value category]
-  (ffirst (d/q get-concept-by-attribute-and-value-query (conn/get-db) attribute value category)))
+  "Use this, it calls above"
+  (ffirst (d/q get-entity-id-by-attribute-and-value-query (conn/get-db) attribute value category)))
 
 
 (def get-preferred-term-and-enity-id-by-legacy-id-query '[:find ?term ?s
@@ -119,8 +113,9 @@
                                       [?s :concept/category ?category]])
 
 
-(defn get-preferred-term-by-legacy-id [legacy-id category]
-  (first (d/q get-preferred-term-and-enity-id-by-legacy-id-query (conn/get-db) legacy-id category)))
+(defn get-preferred-term-by-legacy-id [legacy-id type]
+  "Use this, it calls above"
+  (first (d/q get-preferred-term-and-enity-id-by-legacy-id-query (conn/get-db) legacy-id type)))
 
 
 (defn get-concept [entity-id]
@@ -133,14 +128,14 @@
 
 
 (defn get-entity-if-exists-or-temp-id [legacy-id type]
-  (if-let [entity-id (get-concept-by-legacy-id legacy-id type)]
+  (if-let [entity-id (get-entity-id-by-legacy-id legacy-id type)]
     entity-id
     (create-temp-id type legacy-id)))
 
 
-(defn deprecate-concept [category legacy-id]
-  {:pre [legacy-id category]}
-  (if-let [entity-id (get-concept-by-legacy-id (str legacy-id) category)]
+(defn deprecate-concept [type legacy-id]
+  {:pre [legacy-id type]}
+  (if-let [entity-id (get-entity-id-by-legacy-id (str legacy-id) type)]
     {:db/id entity-id  :concept/deprecated true  }))
 
 

@@ -126,9 +126,9 @@
   "This one has to be transacted to the database after skill and occupation-group has been added to the database"
   [{:keys [skillid localegroupid]}]
    {:pre [skillid localegroupid]}
-  {:relation/concept-1 (u/get-concept-by-legacy-id localegroupid t/occupation-group)
-   :relation/concept-2 (u/get-concept-by-legacy-id skillid t/skill)
-   :relation/type t/occupation-group-to-skill
+  {:relation/concept-1 (u/get-entity-id-by-legacy-id localegroupid t/occupation-group)
+   :relation/concept-2 (u/get-entity-id-by-legacy-id skillid t/skill)
+   :relation/type      t/occupation-group-to-skill
    }
   )
 

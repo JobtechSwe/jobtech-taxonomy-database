@@ -18,21 +18,18 @@
 (defn convert-occupation-group-skill-relation
   [{:keys [skillid localegroupid]}]
   {:pre [skillid localegroupid]}
-  (let  [skill-entity-id (util/get-concept-by-legacy-id skillid t/skill)
-         occupation-group-entity-id (util/get-concept-by-legacy-id localegroupid t/occupation-group)]
+  (let  [skill-entity-id (util/get-entity-id-by-legacy-id skillid t/skill)
+         occupation-group-entity-id (util/get-entity-id-by-legacy-id localegroupid t/occupation-group)]
     (util/create-relation occupation-group-entity-id skill-entity-id t/related)))
 
 (defn convert-isco-level-4-skill-relation
   [{:keys [skillid occupationgroupid]}]
   {:pre [skillid occupationgroupid]}
-  (let [skill-entity-id (util/get-concept-by-legacy-id skillid t/skill)
-        isco-entity-id (util/get-concept-by-legacy-id occupationgroupid t/isco-level-4)]
+  (let [skill-entity-id (util/get-entity-id-by-legacy-id skillid t/skill)
+        isco-entity-id (util/get-entity-id-by-legacy-id occupationgroupid t/isco-level-4)]
     (util/create-relation isco-entity-id skill-entity-id t/related )))
 
 (defn convert []
   (concat
    (map convert-occupation-group-skill-relation (lm/fetch-data lm/get-occupation-group-skill-relation))
-   (map convert-isco-level-4-skill-relation (lm/fetch-data lm/get-isco-level-4-skill-relation))
-   )
-
-  )
+   (map convert-isco-level-4-skill-relation (lm/fetch-data lm/get-isco-level-4-skill-relation))))

@@ -14,7 +14,7 @@
 
 (defn convert-deprecated-occupation [{:keys [deprecatedoccupation]}]
   {:pre [deprecatedoccupation]}
-  (let [occupation-to-deprecate-db-id (util/get-concept-by-legacy-id (str deprecatedoccupation) :occupation-name)]
+  (let [occupation-to-deprecate-db-id (util/get-entity-id-by-legacy-id (str deprecatedoccupation) :occupation-name)]
     {:db/id occupation-to-deprecate-db-id
      :concept/deprecated true
      }
@@ -27,8 +27,8 @@
 
   (let    [nano-id (get-nano "occupation-name-" (str occupationnameid))
            temp-id (str "occupation-name-" occupationnameid)
-           ssyk-concept-id (util/get-concept-by-legacy-id (str localegroupid) :occupation-group)
-           isco-concept-id (util/get-concept-by-legacy-id (str occupationgroupid) :isco)
+           ssyk-concept-id (util/get-entity-id-by-legacy-id (str localegroupid) :occupation-group)
+           isco-concept-id (util/get-entity-id-by-legacy-id (str occupationgroupid) :isco)
            ]
     (remove nil? [
                   (util/create-concept nano-id temp-id term term :occupation-name occupationnameid)
@@ -66,14 +66,14 @@
 
 (defn get-entity-if-exists-or-temp-id [legacy-id]
 
-  (if-let [entity-id (util/get-concept-by-legacy-id legacy-id :occupation-name)]
+  (if-let [entity-id (util/get-entity-id-by-legacy-id legacy-id :occupation-name)]
     entity-id
     (str "occupation-name-" legacy-id)
     )
   )
 
 (defn convert-replaced-by-occuaption-name [ {:keys [occupationnameid occupationnameidref]}]
-  (let [old-concept  (util/get-concept-by-legacy-id (str occupationnameid) :occupation-name)
+  (let [old-concept  (util/get-entity-id-by-legacy-id (str occupationnameid) :occupation-name)
         replaced-by-concept-id (get-entity-if-exists-or-temp-id occupationnameidref)
         ]
     {:db/id old-concept
