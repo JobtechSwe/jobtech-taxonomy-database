@@ -145,11 +145,11 @@
 
 
 (defn update-preferred-term [new-preferred-term old-preferred-term-id entity-id]
-  "refactor this later when all concepts has alternative-terms"
   (let [temp-id (str (gensym))]
     [
      (create-term temp-id new-preferred-term)
      {:db/id entity-id
       :concept/description new-preferred-term
       :concept/preferred-term temp-id
-      :concept/alternative-terms [old-preferred-term-id]}]))
+      :concept/preferred-label new-preferred-term
+      }]))
