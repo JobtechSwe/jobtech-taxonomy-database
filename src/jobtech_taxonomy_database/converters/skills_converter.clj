@@ -14,8 +14,10 @@
                term
                term
                skillheadlineid)
+
      concept-term (u/create-term-from-concept concept)]
     [concept concept-term]
+
     ))
 
 (defn converter-skill

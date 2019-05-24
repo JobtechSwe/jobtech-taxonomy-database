@@ -743,7 +743,9 @@ SELECT [db-68-term].countryID  AS [id-68],
 	[db-68].countryCode AS [country-code-68],
 	[db-67-term].countryID AS [id-67],
 	[db-67-term].term [term-67],
-	[db-67].countryCode AS [country-code-67]
+	[db-67].countryCode AS [country-code-67],
+    [db-67].continentID AS [parent-id-67],
+    [db-68].continentID AS [parent-id-68]
 FROM TaxonomyDB.dbo.CountryTerm AS [db-68-term],
 	TaxonomyDBVersion.dbo.CountryTerm AS [db-67-term],
 	TaxonomyDB.dbo.Country AS [db-68],
@@ -757,7 +759,8 @@ AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
 AND ([db-67-term].term != [db-68-term].term
-OR [db-67].countryCode != [db-68].countryCode)
+OR [db-67].countryCode != [db-68].countryCode
+OR [db-67].continentID != [db-68].continentID)
 
 ------------------------------------REGIONS---(No difference!)--------------------------------------------------
 
@@ -789,7 +792,9 @@ SELECT [db-68-term].EURegionID  AS [id-68],
 	[db-68].NUTSCodeLevel3 AS [nuts-68],
 	[db-67-term].EURegionID AS [id-67],
 	[db-67-term].term [term-67],
-	[db-67].NUTSCodeLevel3 AS [nuts-67]
+	[db-67].NUTSCodeLevel3 AS [nuts-67],
+	[db-67].CountryID AS [country-id-67],
+    [db-68].CountryID AS [country-id-68]
 FROM TaxonomyDB.dbo.EURegionTerm AS [db-68-term],
 	TaxonomyDBVersion.dbo.EURegionTerm AS [db-67-term],
 	TaxonomyDB.dbo.EURegion AS [db-68],
@@ -803,7 +808,8 @@ AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
 AND ([db-67-term].term != [db-68-term].term
-OR [db-67].NUTSCodeLevel3 != [db-68].NUTSCodeLevel3)
+OR [db-67].NUTSCodeLevel3 != [db-68].NUTSCodeLevel3
+OR [db-67].CountryID != [db-68].CountryID)
 
 ----------------------------MUNICIPALITIES--(No difference between versions!!!)------------------------------------
 
@@ -831,16 +837,25 @@ AND [db-68].municipalityID NOT IN
 
 -- :name get-updated-municipality-term :*
 -- :doc get updated municipalities where term/label differs between version 68 and version 67
-SELECT [db-68].municipalityID AS [id-68],
-	[db-68].term AS [term-68],
-	[db-67].municipalityID AS [id-67],
-	[db-67].term [term-67]
-FROM TaxonomyDB.dbo.MunicipalityTerm AS [db-68], TaxonomyDBVersion.dbo.MunicipalityTerm AS [db-67]
-WHERE [db-68].municipalityID = [db-67].municipalityID
+SELECT [db-68-term].municipalityID AS [id-68],
+	[db-68-term].term AS [term-68],
+	[db-67-term].municipalityID AS [id-67],
+	[db-67-term].term [term-67],
+	[db-67].EURegionID AS [region-id-67],
+	[db-68].EURegionID AS [region-id-68]
+FROM TaxonomyDB.dbo.MunicipalityTerm AS [db-68-term],
+	TaxonomyDBVersion.dbo.MunicipalityTerm AS [db-67-term],
+	TaxonomyDB.dbo.Municipality AS [db-68],
+	TaxonomyDBVersion.dbo.Municipality AS [db-67]
+WHERE [db-68-term].municipalityID = [db-67-term].municipalityID
+AND [db-67-term].municipalityID = [db-67].municipalityID
+AND [db-67].municipalityID = [db-68].municipalityID
+AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
-AND [db-68].languageID = 502
-AND [db-67].languageID = 502
-AND [db-67].term != [db-68].term
+AND [db-68-term].languageID = 502
+AND [db-67-term].languageID = 502
+AND ([db-67-term].term != [db-68-term].term
+OR [db-67].EURegionID != [db-68].EURegionID)
 
 -------------------------------LANGUAGE--(No difference between versions!!!)-----------------------------------------
 

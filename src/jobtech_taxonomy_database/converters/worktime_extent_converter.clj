@@ -9,7 +9,7 @@
   [{:keys [beteckning arbetstidsid sortering]}]
   {:pre [beteckning arbetstidsid sortering]}
   (let
-    [concept (u/create-concept t/wage-type beteckning beteckning arbetstidsid)
+    [concept (u/create-concept t/worktime-extent beteckning beteckning arbetstidsid)
      concept-with-extras (assoc concept
                            :concept.category/sort-order sortering)
      concept-term (u/create-term-from-concept concept-with-extras)]

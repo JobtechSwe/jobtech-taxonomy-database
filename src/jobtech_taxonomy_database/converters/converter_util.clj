@@ -138,13 +138,36 @@
   (if-let [entity-id (get-entity-id-by-legacy-id (str legacy-id) type)]
     {:db/id entity-id  :concept/deprecated true  }))
 
+(defn update-concept [entity-id attr-map]
+  (let [temp-id (str (gensym))
+        concept {:db/id entity-id}
+        concept-with-extras
+        (-> concept
+            (cond-> (contains? attr-map :new-term)
+                    (assoc :concept/preferred-label (:new-term attr-map)
+                           :concept/preferred-term temp-id))
+            (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map))
+                    (contains? attr-map :new-term) (assoc :concept/description (:new-term attr-map)))
+            (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-2012 (:ssyk attr-map)))
+            (cond-> (contains? attr-map :sort) (assoc :concept.category/sort-order (:sort attr-map)))
+            (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code (:eures attr-map)))
+            (cond-> (contains? attr-map :driving-licence-code)
+                    (assoc :concept.external-standard/driving-licence-code (:driving-licence-code attr-map)))
+            (cond-> (contains? attr-map :nuts-3) (assoc :concept.external-standard/nuts-level-3-code (:nuts-3 attr-map)))
+            (cond-> (contains? attr-map :country-code) (assoc :concept.external-standard/country-code (:country-code attr-map)))
+            (cond-> (contains? attr-map :legacy-id) (assoc :concept.external-database.ams-taxonomy-67/id (:legacy-id attr-map)))
+            (cond-> (contains? attr-map :isco) (assoc :concept.external-standard/isco-08 (:isco attr-map)))
+            (cond-> (contains? attr-map :sni) (assoc :concept.external-standard/sni-level-code (:sni attr-map))))]
+    [concept-with-extras (if (contains? attr-map :new-term) {:db/id temp-id
+                                                             :term/base-form (:new-term attr-map)} )]))
 
-(defn update-preferred-term [new-preferred-term old-preferred-term-id entity-id]
+
+(defn update-preferred-term [entity-id new-preferred-term description]
   (let [temp-id (str (gensym))]
     [
      (create-term temp-id new-preferred-term)
      {:db/id entity-id
-      :concept/description new-preferred-term
+      :concept/description description
       :concept/preferred-term temp-id
       :concept/preferred-label new-preferred-term
       }]))
