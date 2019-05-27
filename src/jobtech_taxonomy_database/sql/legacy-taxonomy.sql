@@ -441,8 +441,10 @@ AND NaceLevel2.versionID = 67
 
 
 
-
+-------------------------------------------------------------------------------------------------
 ------------------- Version 68 ------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
 ----------- OCCUPATION TERM ----------------------------
 
@@ -568,6 +570,8 @@ AND ([db-67-term].term != [db-68-term].term
 OR [db-67].displaySortOrder != [db-68].displaySortOrder
 OR [db-67].drivingLicenceCode != [db-68].drivingLicenceCode
 OR [db-67-term].description NOT LIKE [db-68-term].description)
+
+----------------------------- Driver licence combinations is already from 68. ------------------------------------
 
 -----------------------EMPLOYMENT DURATION-- (No deprecated, one new, five updated) -------------------------------
 
@@ -1075,3 +1079,84 @@ WHERE versionID = 67
 
 ------ SKILL-HEADLINE
 -- Har inga förändringar
+
+
+--------------------------------- NACE/SNI (No differences between versions!!!) ------------------------------------
+
+-- :name get-new-SNI-level-1 :*
+SELECT [db-68].*, [db-68-term].*
+FROM TaxonomyDB.dbo.NaceLevel1 AS [db-68],
+	TaxonomyDB.dbo.NaceLevel1Term AS [db-68-term]
+WHERE [db-68-term].languageID = 502
+AND [db-68-term].naceLevel1ID NOT IN
+	(SELECT [db-67-term].naceLevel1ID
+	FROM TaxonomyDBVersion.dbo.NaceLevel1Term AS [db-67-term]
+	WHERE [db-67-term].languageID = 502
+	AND [db-67-term].versionID = 67)
+
+-- :name get-deleted-SNI-level-1 :*
+SELECT [db-67].*, [db-67-term].*
+FROM TaxonomyDBVersion.dbo.NaceLevel1 AS [db-67],
+	TaxonomyDBVersion.dbo.NaceLevel1Term AS [db-67-term]
+WHERE [db-67-term].languageID = 502
+AND [db-67-term].versionID = 67
+AND [db-67-term].naceLevel1ID NOT IN
+	(SELECT [db-68-term].naceLevel1ID
+	FROM TaxonomyDB.dbo.NaceLevel1Term AS [db-68-term]
+	WHERE [db-68-term].languageID = 502)
+
+-- :name get-updated-SNI-level-1 :*
+SELECT [db-67].*, [db-67-term].*, [db-68].*, [db-68-term].*
+FROM TaxonomyDBVersion.dbo.NaceLevel1 AS [db-67],
+	TaxonomyDBVersion.dbo.NaceLevel1Term AS [db-67-term],
+	TaxonomyDBVersion.dbo.NaceLevel1 AS [db-68],
+	TaxonomyDBVersion.dbo.NaceLevel1Term AS [db-68-term]
+WHERE [db-68-term].naceLevel1ID = [db-67-term].naceLevel1ID
+AND [db-67-term].naceLevel1ID = [db-67].naceLevel1ID
+AND [db-67].naceLevel1ID = [db-68].naceLevel1ID
+AND [db-67-term].languageID = 502
+AND [db-68-term].languageID = 502
+AND [db-67-term].versionID = 67
+AND ([db-67-term].term != [db-68-term].term
+OR [db-67].naceLevel1ID != [db-68].naceLevel1ID)
+
+-- :name get-new-SNI-level-2 :*
+SELECT [db-68].*, [db-68-term].*
+FROM TaxonomyDB.dbo.NaceLevel2 AS [db-68],
+	TaxonomyDB.dbo.NaceLevel2Term AS [db-68-term]
+WHERE [db-68-term].languageID = 502
+AND [db-68-term].naceLevel2ID NOT IN
+	(SELECT [db-67-term].naceLevel2ID
+	FROM TaxonomyDBVersion.dbo.NaceLevel2Term AS [db-67-term]
+	WHERE [db-67-term].languageID = 502
+	AND [db-67-term].versionID = 67)
+
+-- :name get-deleted-SNI-level-2 :*
+SELECT [db-67].*, [db-67-term].*
+FROM TaxonomyDBVersion.dbo.NaceLevel2 AS [db-67],
+	TaxonomyDBVersion.dbo.NaceLevel2Term AS [db-67-term]
+WHERE [db-67-term].languageID = 502
+AND [db-67-term].versionID = 67
+AND [db-67-term].naceLevel2ID NOT IN
+	(SELECT [db-68-term].naceLevel2ID
+	FROM TaxonomyDB.dbo.NaceLevel2Term AS [db-68-term]
+	WHERE [db-68-term].languageID = 502)
+
+-- :name get-updated-SNI-level-2 :*
+SELECT [db-67].*, [db-67-term].*, [db-68].*, [db-68-term].*
+FROM TaxonomyDBVersion.dbo.NaceLevel2 AS [db-67],
+	TaxonomyDBVersion.dbo.NaceLevel2Term AS [db-67-term],
+	TaxonomyDBVersion.dbo.NaceLevel2 AS [db-68],
+	TaxonomyDBVersion.dbo.NaceLevel2Term AS [db-68-term]
+WHERE [db-68-term].naceLevel2ID = [db-67-term].naceLevel2ID
+AND [db-67-term].naceLevel2ID = [db-67].naceLevel2ID
+AND [db-67].naceLevel2ID = [db-68].naceLevel2ID
+AND [db-67-term].languageID = 502
+AND [db-68-term].languageID = 502
+AND [db-67-term].versionID = 67
+AND ([db-67-term].term != [db-68-term].term
+OR [db-67].naceLevel2ID != [db-68].naceLevel2ID
+OR [db-67].naceLevel1ID != [db-68].naceLevel1ID)
+
+
+
