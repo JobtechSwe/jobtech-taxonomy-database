@@ -29,25 +29,21 @@
 
 (defn create-concept
   ([instance-type label description legacy-id]
-   (let [[concept-id temp-id] (get-concept-id-and-temp-id instance-type legacy-id)]
-     (create-concept instance-type label description legacy-id concept-id temp-id)))
-  ([instance-type label description legacy-id concept-id temp-id]
    {:pre [(s/valid? ::t/concept-types instance-type)
-          (s/valid? string? concept-id)
-          (s/valid? string? temp-id)
           (s/valid? string? label)
           (s/valid? string? description)
           (or (s/valid? string? legacy-id)(s/valid? int? legacy-id))]}
-   {:db/id                                        temp-id
-    :concept/id                                   concept-id
-    :concept/description                          description
-    :concept/preferred-label                      label
-    :concept/preferred-term                       concept-id  ; deprecated this one
-    :concept/alternative-terms                    #{concept-id}
-    :concept/type                                 instance-type
-    :concept/category                             (csk/->kebab-case-keyword instance-type) ; deprecated this one
-    :concept.external-database.ams-taxonomy-67/id (str legacy-id) ;; TODO rename attribute
-    }))
+   (let [[concept-id temp-id] (get-concept-id-and-temp-id instance-type legacy-id)]
+     {:db/id                                        temp-id
+      :concept/id                                   concept-id
+      :concept/description                          description
+      :concept/preferred-label                      label
+      :concept/preferred-term                       concept-id  ; deprecated this one
+      :concept/alternative-terms                    #{concept-id}
+      :concept/type                                 instance-type
+      :concept/category                             (csk/->kebab-case-keyword instance-type) ; deprecated this one
+      :concept.external-database.ams-taxonomy-67/id (str legacy-id) ;; TODO rename attribute
+      })))
 
 
 (defn create-term [nano-id term]
