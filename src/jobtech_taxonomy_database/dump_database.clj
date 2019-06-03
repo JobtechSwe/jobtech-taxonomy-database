@@ -36,7 +36,7 @@
        )
   )
 
-(defn reduceFunction [accum next]
+(defn reduce-function [accum next]
   (let [
         type (:type next)
         id (:legacyAmsTaxonomyId next)
@@ -46,7 +46,7 @@
     ))
 
 ;Taxonomy convertion map from old Taxonomy ids to new ones
-(defn mappOldTaxonomyIdsToNewIds []
-    (generate-stream (reduce reduceFunction {} (parse-find-concept-datomic-result (d/q find-concept-by-query (get-db)))) (clojure.java.io/writer "ny_taxonomy_to_concept.json"){:pretty true})
+(defn map-old-taxonomy-ids-to-new-ids []
+    (generate-stream (reduce reduce-function {} (parse-find-concept-datomic-result (d/q find-concept-by-query (get-db)))) (clojure.java.io/writer "ny_taxonomy_to_concept.json"){:pretty true})
     )
 
