@@ -2,12 +2,13 @@
   (:gen-class)
   (:require [datomic.client.api :as d]
             [jobtech-taxonomy-database.schema :refer :all :as schema]
-            [jobtech-taxonomy-database.legacy-migration :refer :all]
+            [jobtech-taxonomy-database.legacy-migration :as lm]
             [jobtech-taxonomy-database.config :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
             [jobtech-taxonomy-database.converters.nano-id-assigner :refer :all]
             [cheshire.core :refer :all]
-            [jobtech-taxonomy-database.converters.converter-util :as util]
+            [jobtech-taxonomy-database.converters.converter-util :as u]
+            [jobtech-taxonomy-database.types :as t]
             ))
 
 #_(fetch-data get-deprecated-occupation-name)
@@ -38,6 +39,12 @@
                   ])
     )
   )
+
+(defn convert-updated-country
+  [{:keys [id-67 term-68 country-code-68]}]
+  {:pre [id-67 term-68 country-code-68]}
+  (let [entity-id (u/get-entity-id-by-legacy-id id-67 t/country)]
+    (u/update-concept entity-id {:new-term term-68 :country-code country-code-68})))
 
 (defn update-preferred-term [new-preferred-term entity-id]
   (let [temp-id (str (gensym))]
@@ -83,7 +90,7 @@
   )
 
 
-
+;; TODO below is broken after Henrik's utils fix
 (defn convert-new-occupation-collection
   [{:keys [collectionid name]}]
   {:pre [collectionid name]}
@@ -113,7 +120,7 @@
   (remove empty? (concat
                   (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
                   (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name))
-                  (map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
+                  ;(map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
                   (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
                   (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
                   ))

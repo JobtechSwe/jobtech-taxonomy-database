@@ -90,6 +90,11 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "Driving licence code"}
 
+   {:db/ident       :concept.implicit-driving-licences
+    :db/valueType   :db.type/ref
+    :db/cardinality :db.cardinality/many
+    :db/doc         "List of 'lower' ranking driving licences included in the licence"}
+
    {:db/ident       :concept.external-standard/nuts-level-3-code
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
@@ -179,7 +184,7 @@
    {:db/ident        :relation/affinity-percentage
     :db/valueType    :db.type/long
     :db/cardinality  :db.cardinality/one
-    :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a simillar occupation"
+    :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a similar occupation"
     }
 
    ])

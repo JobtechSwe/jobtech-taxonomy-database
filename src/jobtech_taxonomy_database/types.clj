@@ -16,23 +16,22 @@
 (def employment-type "employment_type")
 (def isco-level-4 "isco_level_4")
 (def isco-level-1 "isco_level_1")
-(def keyword-type "keyword")
+(def keyword "keyword")
 (def language "language")
 (def language-level "language_level")
 (def municipality "municipality")
 (def occupation-collection "occupation_collection")
 (def occupation-field "occupation_field")
-(def occupation-group "occupation_group")
 (def occupation-name "occupation_name")
 (def region "region")
 (def skill "skill")
 (def skill-headline "skill_headline")
-(def skill-main-headline "skill_main_headline")
 (def sni-level-1 "sni_level_1")
 (def sni-level-2 "sni_level_2")
 (def ssyk-level-1 "ssyk_level_1")
 (def ssyk-level-2 "ssyk_level_2")
 (def ssyk-level-3 "ssyk_level_3")
+(def ssyk-level-4 "ssyk_level_4")
 ;; (def sun-education-field-1 "sun_education_field_1")
 ;; (def sun-education-field-2 "sun_education_field_2")
 ;; (def sun-education-field-3 "sun_education_field_3")
@@ -43,46 +42,49 @@
 (def worktime-extent "worktime_extent")
 
 
-(s/def ::concept-types #{ continent
+(s/def ::concept-types #{continent
                          country
                          driving-licence
                          driving-licence-combination
                          employment-duration
                          employment-type
-                         isco-level-4
-                         isco-level-1
-                         keyword-type
                          language
                          language-level
                          municipality
-                         occupation-collection
-                         occupation-field
-                         occupation-group
-                         occupation-name
                          region
                          skill
                          skill-headline
-                         skill-main-headline
                          sni-level-1
                          sni-level-2
-                         ssyk-level-1
-                         ssyk-level-2
-                         ssyk-level-3
                          wage-type
-                         worktime-extent})
+                         worktime-extent
+                         isco-level-4           ;previously OccupationGroup
+                         isco-level-1           ;previously OccupationField
+                         keyword           ;previously
+                         occupation-collection  ;previously OccupationCollection
+                         occupation-field       ;previously LocaleField
+                         ;occupation-group       ;previously
+                         occupation-name        ;previously OccupationName
+                         ssyk-level-1           ;previously LocaleLevel1
+                         ssyk-level-2           ;previously LocaleLevel2
+                         ssyk-level-3           ;previously LocaleLevel3
+                         ssyk-level-4           ;previously LocaleGroup
+                         })
 
 ;; relation-types
 (def broader "broader")
 (def narrower "narrower")
 (def related "related")
 (def occupation-name-affinity "occupation_name_affinity")
-(def occupation-group-to-skill "occupation_group_to_skill")
+(def ssyk-4-to-skill "ssyk-4_to_skill")
+(def isco-4-to-skill "isco-4-to-skill")
 
-(s/def ::relation-types #{broader narrower occupation-name-affinity occupation-group-to-skill related})
+(s/def ::relation-types #{broader narrower occupation-name-affinity ssyk-4-to-skill isco-4-to-skill related})
 
 
 
 (comment
+  "This doesn't work anymore!"
   "I made this to create the code above from the response from jobtech taxonomy api get all types"
  "YOu have to manually change keyword to keyword-type"
 

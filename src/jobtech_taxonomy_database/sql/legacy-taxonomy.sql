@@ -1,5 +1,5 @@
 
------------------- SKILLS --------------------
+---------------------------------------------------- SKILLS -------------------------------------------------------
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -26,6 +26,8 @@ WHERE
         AND SkillHeadlineTerm.versionID = 67
         AND SkillHeadline.versionID = 67
 
+--------------------------------------------------- LANGUAGES -----------------------------------------------------
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-language :*
@@ -37,6 +39,8 @@ AND Language.languageID = 502
 AND Language.versionID = 67
 AND LanguageTerm.versionID = 67
 
+--------------------------------------------------- LANGUAGE LEVELS ------------------------------------------------
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-language-level :*
@@ -47,6 +51,8 @@ WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID
 AND LanguageID = 502
 AND LanguageLevel.versionID = 67
 AND LanguageLevelTerm.versionID = 67
+
+--------------------------------------------------- WORKTIME EXTENT -----------------------------------------------
 
 -- A ":result" value of ":*" specifies a vector of records
 -- NOTA BENE: the database contains versionID 1, not 67.
@@ -60,7 +66,7 @@ WHERE ArbetstidTerm.arbetstidsID = Arbetstid.arbetstidsID
 AND Arbetstid.versionID = 1
 AND ArbetstidTerm.versionID = 1
 
------------------- GEOGRAPHIC PLACES --------------------
+------------------------------------------ GEOGRAPHIC PLACES --------------------------------------------
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -119,14 +125,15 @@ AND Municipality.municipalityID = MunicipalityTerm.municipalityID
 AND	MunicipalityTerm.versionID = 67
 AND Municipality.versionID = 67
 
------------------- DRIVING LICENCE --------------------
+------------------------------------------ DRIVING LICENCE --------------------------------------------
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-driving-licence :*
 -- :doc Get all driving licence categories
 SELECT DrivingLicence.*, DrivingLicenceTerm.*
-FROM TaxonomyDBVersion.dbo.DrivingLicence DrivingLicence, TaxonomyDBVersion.dbo.DrivingLicenceTerm DrivingLicenceTerm
+FROM TaxonomyDBVersion.dbo.DrivingLicence DrivingLicence,
+    TaxonomyDBVersion.dbo.DrivingLicenceTerm DrivingLicenceTerm
 WHERE DrivingLicenceTerm.drivingLicenceID = DrivingLicence.drivingLicenceID
 AND LanguageID = 502
 AND DrivingLicence.versionID = 67
@@ -137,6 +144,8 @@ AND DrivingLicenceTerm.versionID = 67
 SELECT Körkortskombination.*, Körkortskoppling.*
 FROM TaxonomiDBSvensk.dbo.Körkortskombination Körkortskombination, TaxonomiDBSvensk.dbo.Körkortskoppling Körkortskoppling
 WHERE Körkortskoppling.kombinationsID = Körkortskombination.kombinationsID
+
+------------------------------------------ EMPLOYMENT DURATION --------------------------------------------
 
 -- A ":result" value of ":*" specifies a vector of records
 -- NOTA BENE: the database contains versionID 1, not 67.
@@ -150,6 +159,8 @@ WHERE AnställningsvaraktighetTerm.anställningsvaraktighetsID = Anställningsva
 AND Anställningsvaraktighet.versionID = 1
 AND AnställningsvaraktighetTerm.versionID = 1
 
+------------------------------------------ EMPLOYMENT TYPES --------------------------------------------
+
 -- A ":result" value of ":*" specifies a vector of records
 -- NOTA BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
@@ -162,6 +173,8 @@ WHERE AnstallningTypJobb.AnstallningTypJobbID = AnstallningTypJobbTerm.Anstallni
 AND AnstallningTypJobb.versionID = 1
 AND AnstallningTypJobbTerm.versionID = 1
 
+------------------------------------------ WAGE TYPES --------------------------------------------
+
 -- A ":result" value of ":*" specifies a vector of records
 -- NOTA BENE: the database contains versionID 1, not 67.
 -- (as hashmaps) will be returned
@@ -173,159 +186,197 @@ WHERE LöneformTerm.löneformsID = Löneform.löneformsID
 AND Löneform.versionID = 1
 AND LöneformTerm.versionID = 1
 
------------------- OCCUPATIONS --------------------
+------------------------------------------ OCCUPATIONS --------------------------------------------
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-occupation-name :*
 -- :doc Get all occupation names ;
-SELECT OccupationName.*, OccupationNameTerm.*
-FROM TaxonomyDBVersion.dbo.OccupationName OccupationName, TaxonomyDBVersion.dbo.OccupationNameTerm OccupationNameTerm
-WHERE   OccupationName.versionID = OccupationNameTerm.versionID
-AND	OccupationName.occupationNameID = OccupationNameTerm.occupationNameID
-AND	OccupationName.countryID = OccupationNameTerm.countryID
-AND     OccupationName.versionID = 67
-AND     OccupationNameTerm.languageID = 502
+SELECT [db].occupationNameID AS [occupation-name-id],
+	[db].occupationGroupID AS [parent-id-isco-4],
+	[db].localeGroupID AS [parent-id-ssyk-4],
+	[db-term].term AS [occupation-name-term]
+FROM TaxonomyDBVersion.dbo.OccupationName AS [db], TaxonomyDBVersion.dbo.OccupationNameTerm AS [db-term]
+WHERE [db].versionID = [db-term].versionID
+AND	[db].occupationNameID = [db-term].occupationNameID
+AND	[db].countryID = [db-term].countryID
+AND [db].versionID = 67
+AND [db-term].languageID = 502
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-occupation-group-ssyk :*
+-- :name get-ssyk-4 :*
 -- :doc Get all ssyk, dont confuse this one with ISCO ;
-SELECT LocaleGroup.*, LocaleGroupTerm.*
-FROM TaxonomyDBVersion.dbo.LocaleGroup LocaleGroup, TaxonomyDBVersion.dbo.LocaleGroupTerm LocaleGroupTerm
-WHERE
-LocaleGroup.versionID = LocaleGroupTerm.versionID
-AND LocaleGroup.localeGroupID = LocaleGroupTerm.localeGroupID
-AND LocaleGroup.versionID = 67
-AND LocaleGroupTerm.languageID = 502
+SELECT [db].localeGroupID AS [ssyk-4-id],
+	[db].localeCode AS [ssyk-4-code],
+	[db].localeLevel3ID AS [parent-id-SSYK-3],
+	[db].localeFieldID AS [parent-id-occupation-field],
+	[db-term].term AS [ssyk-4-term],
+	[db-term].description AS [ssyk-4-description]
+FROM TaxonomyDBVersion.dbo.LocaleGroup AS [db], TaxonomyDBVersion.dbo.LocaleGroupTerm AS [db-term]
+WHERE [db].versionID = [db-term].versionID
+AND	[db].localeGroupID = [db-term].localeGroupID
+AND [db].versionID = 67
+AND [db-term].languageID = 502
+
+-- :name get-ssyk-level-3 :*
+-- :doc Get ssyk level 3 ;
+SELECT [db].localeLevel3ID AS [ssyk-3-id],
+	[db].localeCodeLevel3 AS [ssyk-3-code],
+	[db].localeLevel2ID AS [parent-id-ssyk-2],
+	[db-term].term AS [ssyk-3-term]
+FROM TaxonomyDBVersion.dbo.LocaleLevel3 AS [db], TaxonomyDBVersion.dbo.LocaleLevel3Term AS [db-term]
+WHERE [db].versionID = [db-term].versionID
+AND [db].localeLevel3ID = [db-term].localeLevel3ID
+AND [db-term].languageID = 502
+AND [db-term].versionID = 67
+
+-- :name get-ssyk-level-2 :*
+-- :doc Get ssyk level 2 ;
+SELECT [db].localeLevel2ID AS [ssyk-2-id],
+	[db].localeCodeLevel2 AS [ssyk-2-code],
+	[db].localeLevel1ID AS [parent-id-ssyk-1],
+	[db-term].term AS [ssyk-2-term]
+FROM TaxonomyDBVersion.dbo.LocaleLevel2 AS [db], TaxonomyDBVersion.dbo.LocaleLevel2Term AS [db-term]
+WHERE [db].versionID = [db-term].versionID
+AND [db].localeLevel2ID = [db-term].localeLevel2ID
+AND [db-term].languageID = 502
+AND [db-term].versionID = 67
+
+-- :name get-ssyk-level-1 :*
+-- :doc Get ssyk level 1 ;
+SELECT [db].localeLevel1ID AS [ssyk-1-id],
+	[db].localeCodeLevel1 AS [ssyk-1-code],
+	[db-term].term AS [ssyk-1-term]
+FROM TaxonomyDBVersion.dbo.LocaleLevel1 AS [db], TaxonomyDBVersion.dbo.LocaleLevel1Term AS [db-term]
+WHERE [db].versionID = [db-term].versionID
+AND [db].localeLevel1ID = [db-term].localeLevel1ID
+AND [db-term].languageID = 502
+AND [db-term].versionID = 67
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-occupation-field :*
 -- :doc Get yrkesomraden occupation-field ;
-SELECT LocaleField.*,  LocaleFieldTerm.languageID, LocaleFieldTerm.localeFieldID, LocaleFieldTerm.modificationDate, LocaleFieldTerm.term, LocaleFieldTerm.versionID,
-       "description" =
-       CASE WHEN LocaleFieldTerm.description like '%samråd%' THEN 'Militärt arbete' ELSE LocaleFieldTerm.description END
-FROM TaxonomyDBVersion.dbo.LocaleField LocaleField, TaxonomyDBVersion.dbo.LocaleFieldTerm LocaleFieldTerm
+SELECT [db].localeFieldID AS [occupation-field-id],
+	[db-term].term AS [occupation-field-term],
+	[occupation-field-description] =
+    CASE WHEN [db-term].description like '%samråd%' THEN 'Militärt arbete' ELSE [db-term].description END
+FROM TaxonomyDBVersion.dbo.LocaleField AS [db], TaxonomyDBVersion.dbo.LocaleFieldTerm AS [db-term]
 WHERE
-LocaleField.versionID = LocaleFieldTerm.versionID
-AND LocaleField.localeFieldID = LocaleFieldTerm.localeFieldID
-AND LocaleField.versionID = 67
-
--- :name get-ssyk-level-1 :*
--- :doc Get ssyk level 1 ;
-SELECT LocaleLevel1.*, LocaleLevel1Term.*
-FROM TaxonomyDBVersion.dbo.LocaleLevel1 LocaleLevel1, TaxonomyDBVersion.dbo.LocaleLevel1Term LocaleLevel1Term
-WHERE LocaleLevel1.versionID = LocaleLevel1Term.versionID
-AND LocaleLevel1.localeLevel1ID = LocaleLevel1Term.localeLevel1ID
-AND LocaleLevel1Term.languageID = 502
-AND LocaleLevel1Term.versionID = 67
-
--- :name get-ssyk-level-2 :*
--- :doc Get ssyk level 2 ;
-SELECT LocaleLevel2.*, LocaleLevel2Term.*
-FROM TaxonomyDBVersion.dbo.LocaleLevel2 LocaleLevel2, TaxonomyDBVersion.dbo.LocaleLevel2Term LocaleLevel2Term
-WHERE LocaleLevel2.versionID = LocaleLevel2Term.versionID
-AND LocaleLevel2.localeLevel2ID = LocaleLevel2Term.localeLevel2ID
-AND LocaleLevel2Term.languageID = 502
-AND LocaleLevel2Term.versionID = 67
-
--- :name get-ssyk-level-3 :*
--- :doc Get ssyk level 3 ;
-SELECT LocaleLevel3.*, LocaleLevel3Term.*
-FROM TaxonomyDBVersion.dbo.LocaleLevel3 LocaleLevel3, TaxonomyDBVersion.dbo.LocaleLevel3Term LocaleLevel3Term
-WHERE LocaleLevel3.versionID = LocaleLevel3Term.versionID
-AND LocaleLevel3.localeLevel3ID = LocaleLevel3Term.localeLevel3ID
-AND LocaleLevel3Term.languageID = 502
-AND LocaleLevel3Term.versionID = 67
-
--- :name get-isco-level-1 :*
--- :doc Get isco level 1 ;
-SELECT OccupationField.*, OccupationFieldTerm.*
-FROM TaxonomyDBVersion.dbo.OccupationField OccupationField, TaxonomyDBVersion.dbo.OccupationFieldTerm OccupationFieldTerm
-WHERE OccupationField.versionID = OccupationFieldTerm.versionID
-AND OccupationField.occupationFieldID = OccupationFieldTerm.occupationFieldID
-AND OccupationField.versionID = 67
+	[db].versionID = [db-term].versionID
+AND [db].localeFieldID = [db-term].localeFieldID
+AND [db].versionID = 67
 
 -- :name get-isco-level-4 :*
 -- :doc Get isco level 4 ;
-SELECT OccupationGroup.*, OccupationGroupTerm.*
-FROM TaxonomyDBVersion.dbo.OccupationGroup OccupationGroup, TaxonomyDBVersion.dbo.OccupationGroupTerm OccupationGroupTerm
-WHERE OccupationGroup.versionID = OccupationGroupTerm.versionID
-AND OccupationGroup.occupationGroupID = OccupationGroupTerm.occupationGroupID
-AND OccupationGroupTerm.languageID = 502
-AND OccupationGroup.versionID = 67
+SELECT [db].occupationGroupID AS [isco-4-id],
+	[db].ISCO AS [isco-4-isco-code],
+	[db].occupationFieldID AS [parent-id-isco-1],
+	[db-term].term AS [isco-4-term],
+	[db-term].description AS [isco-4-description]
+FROM TaxonomyDBVersion.dbo.OccupationGroup AS [db], TaxonomyDBVersion.dbo.OccupationGroupTerm AS [db-term]
+WHERE [db].versionID = [db-term].versionID
+AND [db].occupationGroupID = [db-term].occupationGroupID
+AND [db-term].languageID = 502
+AND [db].versionID = 67
+
+-- :name get-isco-level-1 :*
+-- :doc Get isco level 1 ;
+SELECT [db].occupationFieldID AS [isco-1-id],
+	[db-term].term AS [isco-1-term],
+	[db-term].description AS [isco-1-description]
+FROM TaxonomyDBVersion.dbo.OccupationField AS [db], TaxonomyDBVersion.dbo.OccupationFieldTerm AS [db-term]
+WHERE [db].versionID = [db-term].versionID
+AND [db].occupationFieldID = [db-term].occupationFieldID
+AND [db-term].languageID = 502
+AND [db].versionID = 67
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-ssyk-skill-relation :*
--- :doc get ssyk skill relation ;
-SELECT versionID, skillID, countryID, localeGroupID, modificationDate
-FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill
-WHERE TaxonomyDBVersion.dbo.LocaleGroup_Skill.versionID = 67
+-- :name get-ssyk-4-skill-relation :*
+-- :doc get ssyk level 4 to skill relation ;
+SELECT [db].skillID AS [skill-id],
+	[db].localeGroupID AS [ssyk-4-id]
+FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill AS [db]
+WHERE [db].versionID = 67
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-occupation-name-affinity :*
--- :doc get affinity relations between occupations ;
-SELECT AffinityRate.*, OccupationNameAffinity.*
-FROM TaxonomyDBVersion.dbo.AffinityRate AffinityRate, TaxonomyDBVersion.dbo.OccupationNameAffinity OccupationNameAffinity
-WHERE AffinityRate.versionID = OccupationNameAffinity.versionID
-AND AffinityRate.affinityRateID = OccupationNameAffinity.affinityRateID
-AND OccupationNameAffinity.versionID = 67
+-- :doc get affinity relations between occupation names ;
+SELECT [db-rate].percentage AS [percentage],
+	[db-occupation-name].occupationNameID AS [affinity-to-occupation-name-id],
+	[db-occupation-name].affinityID AS [affinity-from-occupation-name-id]
+FROM TaxonomyDBVersion.dbo.AffinityRate AS [db-rate], TaxonomyDBVersion.dbo.OccupationNameAffinity AS [db-occupation-name]
+WHERE [db-rate].versionID = [db-occupation-name].versionID
+AND [db-rate].affinityRateID = [db-occupation-name].affinityRateID
+AND [db-occupation-name].versionID = 67
 
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
--- :name get-occupation-collection :*
+-- :name get-occupation-collections :*
 -- :doc get occupation collection ;
-SELECT versionID, collectionID, collectionsetID, name, modificationDate
+SELECT collectionID AS [collection-id], name AS [collection-name]
 FROM TaxonomyDBVersion.dbo.OccupationCollection
-WHERE versionID = 67;
+WHERE versionID = 67
 
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
 -- :name get-occupation-collection-relations :*
--- :doc get occupation collection relations ;
-SELECT versionID, collectionID, occupationNameID, countryID, modificationDate
-FROM TaxonomyDBVersion.dbo.CollectionOccupation
-WHERE versionID = 67;
+-- :doc get relations between occupation collections and occupations ;
+SELECT [collection-relations].collectionID AS [collection-id],
+	[collection-relations].occupationNameID AS [occupation-name-id],
+	[db-collections].name AS [collection-name]
+FROM TaxonomyDBVersion.dbo.CollectionOccupation AS [collection-relations],
+	TaxonomyDBVersion.dbo.OccupationCollection AS [db-collections]
+WHERE [collection-relations].versionID = 67
+AND [db-collections].versionID = 67
+AND [db-collections].collectionID = [collection-relations].collectionID
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-occupation-names-reference :*
+-- :name get-replaced-occupation-names-reference :*
 -- :doc get occupation names that have been replaced by a newer occupation  ;
-SELECT versionID, occupationNameID, countryID, term, standard, locale, occupationNameIDRef, countryIDRef, modificationDate
+SELECT occupationNameID AS [deprecated-occupation-name-id],
+	term AS [deprecated-occupation-name-term],
+	occupationNameIDRef AS [replacing-occupation-name-id]
 FROM TaxonomyDBVersion.dbo.OccupationNameReference
 WHERE versionID = 67;
 
--- :name get-popular-synonym :*
+-- :name get-popular-synonym-occupation :*
 -- :doc ge popular synonyms ;
-SELECT versionID, popularSynonymID, term, modificationDate
+SELECT popularSynonymID AS [synonym-id], term AS [synonym-term]
 FROM TaxonomyDBVersion.dbo.PopularSynonym
-WHERE versionID = 67;
+WHERE versionID = 67
 
--- :name get-occupation-name-synonym :*
--- :doc get occupation name synonyms ;
-SELECT versionID, occupationNameID, countryID, popularSynonymID, modificationDate
-FROM TaxonomyDBVersion.dbo.OccupationNameSynonym
-WHERE versionID = 67;
+-- :name get-popular-synonym-occupation-relation :*
+-- :doc ge popular synonyms ;
+SELECT OccupationNameSynonym.occupationNameID AS [occupation-name-id],
+	PopularSynonym.popularSynonymID AS [synonym-id],
+	PopularSynonym.term AS [synonym-term]
+FROM TaxonomyDBVersion.dbo.OccupationNameSynonym OccupationNameSynonym, TaxonomyDBVersion.dbo.PopularSynonym PopularSynonym
+WHERE
+	PopularSynonym.versionID = OccupationNameSynonym.versionID
+AND PopularSynonym.popularSynonymID = OccupationNameSynonym.popularSynonymID
+AND PopularSynonym.versionID = 67
 
--- :name get-occupation-group-skill-relation :*
+-- :name get-ssyk-4-skill-relation :*
 -- :doc get occupation group skill relation ;
-SELECT versionID, skillID, countryID, localeGroupID, modificationDate
-FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill  where versionID = 67;
+SELECT skillID AS [skill-id],
+    localeGroupID AS [ssyk-4-id]
+FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill WHERE versionID = 67;
 
--- :name get-isco-level-4-skill-relation :*
+-- :name get-isco-4-skill-relation :*
 -- :doc ge isco level 4 to skill relation ;
-SELECT versionID, skillID, countryID, occupationGroupID, modificationDate
-FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill  where versionID = 67;
+SELECT skillID AS [skill-id],
+	occupationGroupID AS [isco-4-id]
+FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill WHERE versionID = 67;
 
--- :name get-occupation-group-isco-level-4-relation :*
+-- :name get-ssyk-4-isco-4-relation :*
 -- :doc get occupation group isco relation ;
-SELECT versionID, occupationGroupID, localeGroupID, modificationDate
-FROM TaxonomyDBVersion.dbo.ISCOLocale where versionID = 67;
+SELECT occupationGroupID AS [isco-4-id],
+	localeGroupID AS [ssyk-4-id]
+FROM TaxonomyDBVersion.dbo.ISCOLocale WHERE versionID = 67;
 
-------------------START SUN --------------------
+
+------------------------------------------START SUN --------------------------------------------
 
 -- SUN SHOULDN'T BE CONVERTED!
 -- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
@@ -373,7 +424,7 @@ FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning3 SUNInriktning3,
 WHERE SUNInriktning3.versionID = SUNInriktning3Term.versionID
 AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
 
-------------------START SUN LEVEL--------------------
+------------------------------------------START SUN LEVEL--------------------------------------------
 
 -- SUN SHOULDN'T BE CONVERTED!
 -- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
@@ -421,7 +472,7 @@ FROM TaxonomiDBSvenskVersion.dbo.SUNNivå3 SUNNivå3,
 WHERE SUNNivå3.versionID = SUNNivå3Term.versionID
 AND SUNNivå3.SUNNivå3ID = SUNNivå3Term.SUNNivå3ID
 
----- START NACE/SNI
+---------------------------------------------------- START NACE/SNI------------------------------------------------
 
 -- :name get-sni-level-1 :*
 -- :doc get SNI koder level 1 ;
@@ -446,7 +497,8 @@ AND NaceLevel2.versionID = 67
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 
------------ OCCUPATION TERM ----------------------------
+
+----------------------------------------------------------- OCCUPATION NAME ----------------------------
 
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
@@ -1016,7 +1068,8 @@ AND [db-67-term].språkID = 502
 AND ([db-67-term].beteckning != [db-68-term].beteckning
 OR [db-67].sortering != [db-68].sortering)
 
-------------------------------------------- SKILLS----------------------------------------------------------------
+------------------------------------------- SKILLS ----------------------------------------------------------------
+------------------------------------------- (Skills: 169 new, 110 deprecated, 146 updated) ------------------------
 
 -- :name get-new-skill :*
 -- :doc get new skills, id's existing in version 68 but not in version 67
@@ -1044,40 +1097,36 @@ WHERE [db-68].languageID = 502)
 
 -- :name get-updated-skill :*
 -- :doc get updated skills where term/label differs between version 68 and version 67
-SELECT Skill.skillID, SkillTerm.term, Skill.skillHeadlineID, Skill67.skillID as id67, SkillTerm67.term as term67, Skill67.skillHeadlineID as headline67
-FROM TaxonomyDBVersion.dbo.Skill as Skill67, TaxonomyDBVersion.dbo.SkillTerm as SkillTerm67, TaxonomyDB.dbo.Skill as Skill, TaxonomyDB.dbo.SkillTerm as SkillTerm
-WHERE Skill67.versionID = SkillTerm67.versionID
-AND   Skill67.versionID = 67
+SELECT
+	Skill68.skillID AS id68,
+	Skill67.skillID AS id67,
+	SkillTerm68.term AS term68,
+	SkillTerm67.term AS term67,
+	Skill68.skillHeadlineID AS headline68,
+	Skill67.skillHeadlineID AS headline67
+FROM TaxonomyDBVersion.dbo.Skill AS Skill67,
+	TaxonomyDBVersion.dbo.SkillTerm AS SkillTerm67,
+	TaxonomyDB.dbo.Skill AS Skill68,
+	TaxonomyDB.dbo.SkillTerm AS SkillTerm68
+WHERE Skill67.versionID = 67
 AND   SkillTerm67.versionID = 67
 AND   Skill67.skillID = SkillTerm67.skillID
-AND   Skill.skillID = SkillTerm.skillID
-AND   Skill.skillID = Skill67.skillID
-AND   SkillTerm.languageID = 502
+AND   Skill68.skillID = SkillTerm68.skillID
+AND   Skill68.skillID = Skill67.skillID
+AND   SkillTerm68.languageID = 502
 AND   SkillTerm67.languageID = 502
-AND   SkillTerm.modificationDate > (
-SELECT created
-FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67
-)
-AND   Skill.modificationDate > (
-SELECT created
-FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67
-)
-
-
+AND   (SkillTerm68.skillID != SkillTerm67.skillID
+	OR SkillTerm68.term != SkillTerm67.term
+	OR Skill68.skillHeadlineID != Skill67.skillHeadlineID)
 
 -- :name get-replaced-skill :*
 -- :doc get skills that has been replaced by another skill
-SELECT skillID, countryID, term, standard, locale, skillIDRef, countryIDRef, modificationDate
-FROM TaxonomyDB.dbo.SkillReference
-WHERE modificationDate > (
-SELECT created
-FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67
-)
+SELECT skillID AS [deprecated-id],
+	term AS [deprecated-term],
+	skillIDRef AS [replacing-id]
+FROM TaxonomyDB.dbo.SkillReference;
 
------- SKILL-HEADLINE
+------------------------------------------- SKILL-HEADLINE-----------------------------------------------------
 -- Har inga förändringar
 
 
@@ -1109,16 +1158,17 @@ AND [db-67-term].naceLevel1ID NOT IN
 SELECT [db-67].*, [db-67-term].*, [db-68].*, [db-68-term].*
 FROM TaxonomyDBVersion.dbo.NaceLevel1 AS [db-67],
 	TaxonomyDBVersion.dbo.NaceLevel1Term AS [db-67-term],
-	TaxonomyDBVersion.dbo.NaceLevel1 AS [db-68],
-	TaxonomyDBVersion.dbo.NaceLevel1Term AS [db-68-term]
+	TaxonomyDB.dbo.NaceLevel1 AS [db-68],
+	TaxonomyDB.dbo.NaceLevel1Term AS [db-68-term]
 WHERE [db-68-term].naceLevel1ID = [db-67-term].naceLevel1ID
 AND [db-67-term].naceLevel1ID = [db-67].naceLevel1ID
 AND [db-67].naceLevel1ID = [db-68].naceLevel1ID
 AND [db-67-term].languageID = 502
 AND [db-68-term].languageID = 502
 AND [db-67-term].versionID = 67
+AND [db-67].versionID = 67
 AND ([db-67-term].term != [db-68-term].term
-OR [db-67].naceLevel1ID != [db-68].naceLevel1ID)
+OR [db-67].naceLevel1Code != [db-68].naceLevel1Code)
 
 -- :name get-new-SNI-level-2 :*
 SELECT [db-68].*, [db-68-term].*
@@ -1146,17 +1196,18 @@ AND [db-67-term].naceLevel2ID NOT IN
 SELECT [db-67].*, [db-67-term].*, [db-68].*, [db-68-term].*
 FROM TaxonomyDBVersion.dbo.NaceLevel2 AS [db-67],
 	TaxonomyDBVersion.dbo.NaceLevel2Term AS [db-67-term],
-	TaxonomyDBVersion.dbo.NaceLevel2 AS [db-68],
-	TaxonomyDBVersion.dbo.NaceLevel2Term AS [db-68-term]
+	TaxonomyDB.dbo.NaceLevel2 AS [db-68],
+	TaxonomyDB.dbo.NaceLevel2Term AS [db-68-term]
 WHERE [db-68-term].naceLevel2ID = [db-67-term].naceLevel2ID
 AND [db-67-term].naceLevel2ID = [db-67].naceLevel2ID
 AND [db-67].naceLevel2ID = [db-68].naceLevel2ID
 AND [db-67-term].languageID = 502
 AND [db-68-term].languageID = 502
 AND [db-67-term].versionID = 67
+AND [db-67].versionID = 67
 AND ([db-67-term].term != [db-68-term].term
-OR [db-67].naceLevel2ID != [db-68].naceLevel2ID
-OR [db-67].naceLevel1ID != [db-68].naceLevel1ID)
+OR [db-67].naceLevel1ID != [db-68].naceLevel1ID
+OR [db-67].naceLevel2Code != [db-68].naceLevel2Code)
 
 
 

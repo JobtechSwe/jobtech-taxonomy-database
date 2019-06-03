@@ -17,8 +17,8 @@
             [jobtech-taxonomy-database.converters.worktime-extent-converter]
             [jobtech-taxonomy-database.converters.SNI-level-converter]
             [jobtech-taxonomy-database.converters.occupation-converter]
-            [jobtech-taxonomy-database.converters.occupation-group-skill-relation-converter]
-            [jobtech-taxonomy-database.converters.occupation-deprecated-converter]
+            [jobtech-taxonomy-database.converters.occupation-skill-relation-converter]
+            ;[jobtech-taxonomy-database.converters.occupation-deprecated-converter]
             [jobtech-taxonomy-database.converters.skills-converter-new-changes]
             [jobtech-taxonomy-database.converters.geographic-places-new-changes]
             [jobtech-taxonomy-database.converters.worktime-extent-new-changes]
@@ -32,21 +32,21 @@
   '(
      ;{:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
      ;   {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
-     {:namespace jobtech-taxonomy-database.converters.employment-duration-new-changes}
+     ;{:namespace jobtech-taxonomy-database.converters.employment-duration-new-changes}
      ;{:namespace jobtech-taxonomy-database.converters.employment-type-converter}
      ;  {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
+     ;{:namespace jobtech-taxonomy-database.converters.geographic-places-new-changes}
      ;  {:namespace jobtech-taxonomy-database.converters.language-converter}
      ;  {:namespace jobtech-taxonomy-database.converters.language-level-converter}
+        {:namespace jobtech-taxonomy-database.converters.occupation-converter}
+     ;    {:namespace jobtech-taxonomy-database.converters.occupation-deprecated-converter}
+         {:namespace jobtech-taxonomy-database.converters.skills-converter}
+     ;   {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
+     {:namespace jobtech-taxonomy-database.converters.occupation-skill-relation-converter}
+     ; {:namespace jobtech-taxonomy-database.converters.SNI-level-converter}
      ; {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
      ;  {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
-     ;   {:namespace jobtech-taxonomy-database.converters.occupation-converter}
-     ;;    {:namespace jobtech-taxonomy-database.converters.occupation-deprecated-converter}
-     ;    {:namespace jobtech-taxonomy-database.converters.skills-converter}
-     ;;   {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
-     ;  {:namespace jobtech-taxonomy-database.converters.occupation-group-skill-relation-converter}
-     ; {:namespace jobtech-taxonomy-database.converters.SNI-level-converter}
-     {:namespace jobtech-taxonomy-database.converters.geographic-places-new-changes}
-     {:namespace jobtech-taxonomy-database.converters.worktime-extent-new-changes}
+     ;{:namespace jobtech-taxonomy-database.converters.worktime-extent-new-changes}
      ))
 
 
