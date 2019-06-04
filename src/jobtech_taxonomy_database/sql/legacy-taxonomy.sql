@@ -188,6 +188,7 @@ AND LöneformTerm.versionID = 1
 
 ------------------------------------------ OCCUPATIONS --------------------------------------------
 
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-occupation-name :*
@@ -502,65 +503,161 @@ AND NaceLevel2.versionID = 67
 
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
-SELECT OccupationNameTerm1.occupationNameID, OccupationNameTerm2.occupationNameID as deprecatedOccupation
-FROM TaxonomyDB.dbo.OccupationNameTerm as OccupationNameTerm1
-RIGHT JOIN TaxonomyDBVersion.dbo.OccupationNameTerm as OccupationNameTerm2
-ON OccupationNameTerm1.occupationNameID = OccupationNameTerm2.occupationNameID
-WHERE OccupationNameTerm1.occupationNameID is NULL
-AND OccupationNameTerm2.versionID = 67
+SELECT [db-67].occupationNameID AS [occupation-name-id],
+	[db-67].occupationGroupID AS [parent-id-isco-4],
+	[db-67].localeGroupID AS [parent-id-ssyk-4],
+	[db-67-term].term AS [occupation-name-term]
+FROM TaxonomyDBVersion.dbo.OccupationName AS [db-67], TaxonomyDBVersion.dbo.OccupationNameTerm AS [db-67-term]
+WHERE [db-67].versionID = [db-67-term].versionID
+AND	[db-67].occupationNameID = [db-67-term].occupationNameID
+AND	[db-67].countryID = [db-67-term].countryID
+AND [db-67].versionID = 67
+AND [db-67-term].languageID = 502
+AND [db-67-term].occupationNameID NOT IN
+	(SELECT [db-68].occupationNameID
+	FROM TaxonomyDB.dbo.OccupationName AS [db-68])
 
 -- :name get-new-occupation-name :*
--- :doc get occupation names that has been added after version 67 ;
-SELECT OccupationName.*, OccupationNameTerm.*
-FROM TaxonomyDB.dbo.OccupationName OccupationName, TaxonomyDB.dbo.OccupationNameTerm OccupationNameTerm
-WHERE OccupationName.occupationNameID = OccupationNameTerm.occupationNameID
-AND OccupationNameTerm.languageID = 502
-AND OccupationName.countryID = OccupationNameTerm.countryID
-AND OccupationName.modificationDate > (
-SELECT created
-FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67)
+-- :doc get occupation names that has been added in version 68 ;
+SELECT db68.occupationNameID AS [occupation-name-id],
+	db68term.term AS [term],
+	db68.occupationGroupID AS [parent-id-isco-4],
+	db68.localeGroupID AS [parent-id-ssyk-4]
+FROM TaxonomyDB.dbo.OccupationName AS db68,
+	TaxonomyDB.dbo.OccupationNameTerm AS db68term
+WHERE db68.occupationNameID = db68term.occupationNameID
+AND db68term.languageID = 502
+AND db68.countryID = db68term.countryID
+AND db68.occupationNameID NOT IN
+(SELECT db67.occupationNameID
+FROM TaxonomyDBVersion.dbo.OccupationName AS db67
+WHERE db67.versionID = 67)
 
--- :name get-replaced--occupation-name :*
--- :doc get replaced occupation names after version 67; omkoppling
-SELECT occupationNameID, countryID, term, standard, locale, occupationNameIDRef, countryIDRef, modificationDate
+-- :name get-updated-occupation-name-term :*
+-- :doc get occupation names that changed term in version 68;
+SELECT db68.occupationNameID AS [occupation-name-id-68],
+	db67.occupationNameID AS [occupation-name-id-67],
+	db68term.term AS [term-68],
+	db67term.term AS [term-67],
+	db68.occupationGroupID AS [parent-id-isco-4-68],
+	db67.occupationGroupID AS [parent-id-isco-4-67],
+	db68.localeGroupID AS [parent-id-ssyk-4-68],
+	db67.localeGroupID AS [parent-id-ssyk-4-67]
+FROM TaxonomyDB.dbo.OccupationName AS db68,
+	TaxonomyDB.dbo.OccupationNameTerm AS db68term,
+	TaxonomyDBVersion.dbo.OccupationName AS db67,
+	TaxonomyDBVersion.dbo.OccupationNameTerm AS db67term
+WHERE db68.occupationNameID = db68term.occupationNameID
+AND db68term.occupationNameID = db67term.occupationNameID
+AND db67term.occupationNameID = db67.occupationNameID
+AND db68term.languageID = 502
+AND db67term.languageID = 502
+AND db68.countryID = 199
+AND db67.countryID = 199
+AND db68term.countryID =199
+AND db67term.countryID =199
+AND db67.versionID = 67
+AND db67term.versionID = 67
+AND db68term.term != db67term.term
+
+-- :name get-updated-occupation-name-relation-to-parent :*
+-- :doc get occupation names that changed relation to a broader type in version 68;
+SELECT db68.occupationNameID AS [occupation-name-id-68],
+	db67.occupationNameID AS [occupation-name-id-67],
+	db68term.term AS [term-68],
+	db67term.term AS [term-67],
+	db68.occupationGroupID AS [parent-id-isco-4-68],
+	db67.occupationGroupID AS [parent-id-isco-4-67],
+	db68.localeGroupID AS [parent-id-ssyk-4-68],
+	db67.localeGroupID AS [parent-id-ssyk-4-67]
+FROM TaxonomyDB.dbo.OccupationName AS db68,
+	TaxonomyDB.dbo.OccupationNameTerm AS db68term,
+	TaxonomyDBVersion.dbo.OccupationName AS db67,
+	TaxonomyDBVersion.dbo.OccupationNameTerm AS db67term
+WHERE db68.occupationNameID = db68term.occupationNameID
+AND db68term.occupationNameID = db67term.occupationNameID
+AND db67term.occupationNameID = db67.occupationNameID
+AND db68term.languageID = 502
+AND db67term.languageID = 502
+AND db68.countryID = 199
+AND db67.countryID = 199
+AND db68term.countryID =199
+AND db67term.countryID =199
+AND db67.versionID = 67
+AND db67term.versionID = 67
+AND (db68.occupationGroupID != db67.occupationGroupID
+OR db68.localeGroupID != db67.localeGroupID)
+
+-- :name get-replaced-occupation-name :*
+-- :doc get replaced occupation names in version 68;
+SELECT occupationNameID AS [replaced-id],
+    term AS [replaced-term],
+    occupationNameIDRef AS [replacing-id]
 FROM TaxonomyDB.dbo.OccupationNameReference
-WHERE
-modificationDate > (
-SELECT created
-FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67)
+WHERE countryID = 199
 
--- :name get-renamed-occupation-name :*
--- :doc get renamed occupation names after version 67
-SELECT DISTINCT OccupationNameTerm.term, OccupationNameTerm.occupationNameID
-FROM TaxonomyDB.dbo.OccupationNameTerm OccupationNameTerm, TaxonomyDB.dbo.OccupationNameTermHistory OccupationNameTermHistory
-WHERE
-OccupationNameTermHistory.occupationNameID = OccupationNameTerm.occupationNameID
-AND OccupationNameTermHistory.countryID = OccupationNameTerm.countryID
-AND OccupationNameTerm.languageID = 502
-AND OccupationNameTermHistory.modificationDate > (
-SELECT created
-FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67)
+-- :name get-deprecated-occupation-collection :*
+-- :doc get deprecated yrkessamlingar
+SELECT collectionID AS [collection-id], name AS [collection-name]
+FROM TaxonomyDBVersion.dbo.OccupationCollection
+WHERE versionID = 67
+AND collectionID NOT IN
+(SELECT db68.collectionID
+FROM TaxonomyDB.dbo.OccupationCollection AS db68)
 
 -- :name get-new-occupation-collection :*
 -- :doc get new yrkessamlingar
-SELECT collectionID, collectionsetID, name, modificationDate
+SELECT collectionID AS [collection-id], name AS [collection-name]
 FROM TaxonomyDB.dbo.OccupationCollection
-wHERE   modificationDate > (
-SELECT created
-FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67)
+WHERE collectionID NOT IN
+(SELECT db67.collectionID
+FROM TaxonomyDBVersion.dbo.OccupationCollection AS db67
+WHERE db67.versionID = 67)
+
+-- :name get-updated-occupation-collection :*
+-- :doc get yrkessamlingar with different term in version 68
+SELECT db68.collectionID AS [collection-id-68],
+	db68.name AS [collection-name-68],
+	db67.collectionID AS [collection-id-67],
+	db67.name AS [collection-name-67]
+FROM TaxonomyDB.dbo.OccupationCollection AS db68, TaxonomyDBVersion.dbo.OccupationCollection AS db67
+WHERE db67.versionID = 67
+AND db68.collectionID = db67.collectionID
+AND db68.name != db67.name
+
+-- :name get-deprecated-occupation-collection-relations :*
+-- :doc get deprecated relations in yrkessamlingar
+SELECT [collection-relations].collectionID AS [collection-id],
+	[collection-relations].occupationNameID AS [occupation-name-id],
+	[db-collections].name AS [collection-name]
+FROM TaxonomyDBVersion.dbo.CollectionOccupation AS [collection-relations],
+	TaxonomyDBVersion.dbo.OccupationCollection AS [db-collections]
+WHERE [collection-relations].versionID = 67
+AND [db-collections].versionID = 67
+AND [db-collections].collectionID = [collection-relations].collectionID
+AND [collection-relations].occupationNameID NOT IN
+	(SELECT CollectionOccupation.occupationNameID
+	FROM TaxonomyDB.dbo.CollectionOccupation CollectionOccupation)
+
 
 -- :name get-new-occupation-collection-relations :*
 -- :doc get new occupation collection relations
-SELECT collectionID, occupationNameID, countryID, modificationDate
-FROM TaxonomyDB.dbo.CollectionOccupation
-WHERE   modificationDate > (
-SELECT created
-FROM TaxonomyDBVersion.dbo.Version
-WHERE versionID = 67)
+SELECT [collection-relations].collectionID AS [collection-id],
+	[collection-relations].occupationNameID AS [occupation-name-id],
+	[db-collections].name AS [collection-name]
+FROM TaxonomyDB.dbo.CollectionOccupation AS [collection-relations],
+	TaxonomyDB.dbo.OccupationCollection AS [db-collections]
+WHERE [db-collections].collectionID = [collection-relations].collectionID
+AND [db-collections].collectionID IN
+	(SELECT dbRelation67.collectionID
+	FROM TaxonomyDBVersion.dbo.CollectionOccupation AS dbRelation67
+	WHERE dbRelation67.versionID = 67
+	AND dbRelation67.versionID = 67)
+AND [collection-relations].occupationNameID NOT IN
+	(SELECT dbRelation67.occupationNameID
+	FROM TaxonomyDBVersion.dbo.CollectionOccupation AS dbRelation67
+	WHERE dbRelation67.versionID = 67
+	AND dbRelation67.versionID = 67)
 
 --  DET verkar inte ha tagits bort några yrken från yrkessamlingarna mellan version 67 - 68
 

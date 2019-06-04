@@ -164,12 +164,12 @@
   [{:db/ident       :relation/concept-1
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/one
-    :db/doc         "the first concept in a relation"}
+    :db/doc         "The entity ID of the first concept in a relation"}
 
    {:db/ident       :relation/concept-2
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/one
-    :db/doc         "the second concept in a relation"}
+    :db/doc         "The entity ID of the second concept in a relation"}
 
    {:db/ident       :relation/type
     :db/valueType   :db.type/string      ;; BREAKING CHANGE!!
