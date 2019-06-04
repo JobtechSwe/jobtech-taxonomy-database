@@ -188,7 +188,6 @@ AND LöneformTerm.versionID = 1
 
 ------------------------------------------ OCCUPATIONS --------------------------------------------
 
-
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-occupation-name :*
@@ -501,6 +500,8 @@ AND NaceLevel2.versionID = 67
 
 ----------------------------------------------------------- OCCUPATION NAME ----------------------------
 
+-- 13 deprecated concepts
+--TODO What to do with the relation concepts pointing to deprecated concept?
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
 SELECT [db-67].occupationNameID AS [occupation-name-id],
@@ -517,6 +518,7 @@ AND [db-67-term].occupationNameID NOT IN
 	(SELECT [db-68].occupationNameID
 	FROM TaxonomyDB.dbo.OccupationName AS [db-68])
 
+-- 97 new concepts
 -- :name get-new-occupation-name :*
 -- :doc get occupation names that has been added in version 68 ;
 SELECT db68.occupationNameID AS [occupation-name-id],
@@ -533,6 +535,7 @@ AND db68.occupationNameID NOT IN
 FROM TaxonomyDBVersion.dbo.OccupationName AS db67
 WHERE db67.versionID = 67)
 
+-- 62 updated concept terms
 -- :name get-updated-occupation-name-term :*
 -- :doc get occupation names that changed term in version 68;
 SELECT db68.occupationNameID AS [occupation-name-id-68],
@@ -560,6 +563,7 @@ AND db67.versionID = 67
 AND db67term.versionID = 67
 AND db68term.term != db67term.term
 
+-- 8 updated relations
 -- :name get-updated-occupation-name-relation-to-parent :*
 -- :doc get occupation names that changed relation to a broader type in version 68;
 SELECT db68.occupationNameID AS [occupation-name-id-68],
@@ -588,6 +592,8 @@ AND db67term.versionID = 67
 AND (db68.occupationGroupID != db67.occupationGroupID
 OR db68.localeGroupID != db67.localeGroupID)
 
+-- 113 replaced concepts
+-- TODO I guess the migration has to be done in a certain order so replacements happen after deprecations? Or the other way?
 -- :name get-replaced-occupation-name :*
 -- :doc get replaced occupation names in version 68;
 SELECT occupationNameID AS [replaced-id],
@@ -596,6 +602,7 @@ SELECT occupationNameID AS [replaced-id],
 FROM TaxonomyDB.dbo.OccupationNameReference
 WHERE countryID = 199
 
+-- 0 deprecated collections
 -- :name get-deprecated-occupation-collection :*
 -- :doc get deprecated yrkessamlingar
 SELECT collectionID AS [collection-id], name AS [collection-name]
@@ -605,6 +612,7 @@ AND collectionID NOT IN
 (SELECT db68.collectionID
 FROM TaxonomyDB.dbo.OccupationCollection AS db68)
 
+-- 2 new collections
 -- :name get-new-occupation-collection :*
 -- :doc get new yrkessamlingar
 SELECT collectionID AS [collection-id], name AS [collection-name]
@@ -614,6 +622,7 @@ WHERE collectionID NOT IN
 FROM TaxonomyDBVersion.dbo.OccupationCollection AS db67
 WHERE db67.versionID = 67)
 
+-- 0 updated collections
 -- :name get-updated-occupation-collection :*
 -- :doc get yrkessamlingar with different term in version 68
 SELECT db68.collectionID AS [collection-id-68],
@@ -625,6 +634,7 @@ WHERE db67.versionID = 67
 AND db68.collectionID = db67.collectionID
 AND db68.name != db67.name
 
+-- 0 deprecated collection-occupation-relations
 -- :name get-deprecated-occupation-collection-relations :*
 -- :doc get deprecated relations in yrkessamlingar
 SELECT [collection-relations].collectionID AS [collection-id],
@@ -639,7 +649,7 @@ AND [collection-relations].occupationNameID NOT IN
 	(SELECT CollectionOccupation.occupationNameID
 	FROM TaxonomyDB.dbo.CollectionOccupation CollectionOccupation)
 
-
+-- 8 new collection-occupation-relations
 -- :name get-new-occupation-collection-relations :*
 -- :doc get new occupation collection relations
 SELECT [collection-relations].collectionID AS [collection-id],
@@ -659,7 +669,88 @@ AND [collection-relations].occupationNameID NOT IN
 	WHERE dbRelation67.versionID = 67
 	AND dbRelation67.versionID = 67)
 
---  DET verkar inte ha tagits bort några yrken från yrkessamlingarna mellan version 67 - 68
+-- Det finns ingen "updated-collection-relation" eftersom det är samma sak som new och deprecated
+
+-- 0 deprecated occupation fields
+-- :name get-deprecated-occupation-field :*
+-- :doc Get deprecated occupation field in version 68 ;
+SELECT [db-67].localeFieldID AS [occupation-field-id-67],
+	[db-term-67].term AS [occupation-field-term-67],
+	[occupation-field-description-67] =
+    CASE WHEN [db-term-67].description like '%samråd%' THEN 'Militärt arbete' ELSE [db-term-67].description END
+FROM TaxonomyDBVersion.dbo.LocaleField AS [db-67], TaxonomyDBVersion.dbo.LocaleFieldTerm AS [db-term-67]
+WHERE
+	[db-67].versionID = [db-term-67].versionID
+AND [db-67].localeFieldID = [db-term-67].localeFieldID
+AND [db-67].versionID = 67
+AND [db-67].localeFieldID NOT IN
+(SELECT LocaleField.localeFieldID
+FROM TaxonomyDB.dbo.LocaleField)
+
+-- 0 new occupation fields
+-- :name get-new-occupation-field :*
+-- :doc Get new occupation field in version 68 ;
+SELECT [db-68].localeFieldID AS [occupation-field-id-68],
+	[db-term-68].term AS [occupation-field-term-68],
+	[occupation-field-description-68] =
+    CASE WHEN [db-term-68].description like '%samråd%' THEN 'Militärt arbete' ELSE [db-term-68].description END
+FROM TaxonomyDB.dbo.LocaleField AS [db-68], TaxonomyDB.dbo.LocaleFieldTerm AS [db-term-68]
+WHERE [db-68].localeFieldID = [db-term-68].localeFieldID
+AND [db-68].localeFieldID NOT IN
+(SELECT LocaleField.localeFieldID
+FROM TaxonomyDBVersion.dbo.LocaleField
+WHERE LocaleField.versionID = 67)
+
+-- 0 updated occupation fields
+-- :name get-updated-occupation-field :*
+-- :doc Get updated occupation field in version 68 ;
+SELECT [db-68].localeFieldID AS [occupation-field-id-68],
+	[db-67].localeFieldID AS [occupation-field-id-67],
+	[db-term-68].term AS [occupation-field-term-68],
+	[db-term-67].term AS [occupation-field-term-67],
+	[occupation-field-description-68] =
+    CASE WHEN [db-term-68].description like '%samråd%' THEN 'Militärt arbete' ELSE [db-term-68].description END,
+	[occupation-field-description-67] =
+    CASE WHEN [db-term-67].description like '%samråd%' THEN 'Militärt arbete' ELSE [db-term-67].description END
+FROM TaxonomyDB.dbo.LocaleField AS [db-68],
+	TaxonomyDB.dbo.LocaleFieldTerm AS [db-term-68],
+	TaxonomyDBVersion.dbo.LocaleField AS [db-67],
+	TaxonomyDBVersion.dbo.LocaleFieldTerm AS [db-term-67]
+WHERE [db-68].localeFieldID = [db-term-68].localeFieldID
+AND [db-term-68].localeFieldID = [db-term-67].localeFieldID
+AND [db-term-67].localeFieldID = [db-67].localeFieldID
+AND [db-term-67].versionID = 67
+AND [db-67].versionID = 67
+AND [db-term-67].languageID = 502
+AND [db-term-68].languageID = 502
+AND ([db-term-68].term != [db-term-67].term
+OR [db-term-68].description NOT LIKE [db-term-67].description)
+
+-- 2 updated occupation-field-to-ssyk-relations
+-- :name get-updated-occupation-field-relation-to-ssyk-4 :*
+-- :doc Get updated relations between ssyk level 4 and occupation field ;
+SELECT [db-67].localeGroupID AS [ssyk-4-id-67],
+	[db-68].localeGroupID AS [ssyk-4-id-68],
+	[db-67].localeFieldID AS [parent-id-occupation-field-67],
+	[db-68].localeFieldID AS [parent-id-occupation-field-68],
+	[db-term-67].term AS [ssyk-4-term-67],
+	[db-term-68].term AS [ssyk-4-term-68]
+FROM TaxonomyDBVersion.dbo.LocaleGroup AS [db-67],
+	TaxonomyDBVersion.dbo.LocaleGroupTerm AS [db-term-67],
+	TaxonomyDB.dbo.LocaleGroup AS [db-68],
+	TaxonomyDB.dbo.LocaleGroupTerm AS [db-term-68]
+WHERE [db-67].versionID = [db-term-67].versionID
+AND	[db-67].localeGroupID = [db-term-67].localeGroupID
+AND	[db-term-67].localeGroupID = [db-term-68].localeGroupID
+AND	[db-term-68].localeGroupID = [db-68].localeGroupID
+AND [db-67].versionID = 67
+AND [db-term-67].languageID = 502
+AND [db-term-68].languageID = 502
+AND [db-67].localeFieldID != [db-68].localeFieldID
+
+--TODO Is relation between occupation field and SSYK done? It feels like I've forgotten stuff to query.
+
+
 
 ---------------DRIVING LICENCE---(No differences between versions!!!)-------------------------------------
 
