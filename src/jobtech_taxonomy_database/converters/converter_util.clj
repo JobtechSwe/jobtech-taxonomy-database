@@ -65,7 +65,6 @@
    :relation/concept-2 concept2
    :relation/type type})
 
-
 (defn create-broader-relation-to-concept [concept broader-temp-id]
   "First input should be a concept, second an entity-ids OR a temp-ids"
   (create-relation (:db/id concept) broader-temp-id t/broader ))

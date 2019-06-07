@@ -11,9 +11,9 @@
             [jobtech-taxonomy-database.types :as t]
             ))
 
-(defn convert-deprecated-occupation [{:keys [deprecatedoccupation]}]
-  {:pre [deprecatedoccupation]}
-  (u/deprecate-concept t/occupation-name deprecatedoccupation )
+(defn convert-deprecated-occupation [{:keys [occupation-name-id]}]
+  {:pre [occupation-name-id]}
+  (u/deprecate-concept t/occupation-name occupation-name-id )
   )
 
 (defn create-new-occupation-name
@@ -71,27 +71,36 @@
   (u/replace-concept replaced-id replacing-id t/occupation-name)
   )
 
+;; get-new-occupation-collection
+
 ;; TODO below is broken after Henrik's utils fix ;;  du är här
 (defn convert-new-occupation-collection
-  [{:keys [collectionid name]}]
-  {:pre [collectionid name]}
+  [{:keys [collection-id collection-name]}]
+  {:pre [collection-id collection-name]}
 
-  (let [nano-id (get-nano)]
-    [
-     (u/create-term nano-id name)
-     (u/create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection collectionid)
-     ])
-  )
+  (let [concept (u/create-concept t/occupation-collection
+                                  collection-name
+                                  collection-name
+                                  collection-id)
+        term (u/create-term-from-concept concept)
+        ]
+    [concept
+     term
+     ]
+    ))
 
+;; get-new-occupation-collection-relations
 (defn convert-new-occupation-collection-relation
-  [{:keys [collectionid occupationnameid]}]
-  {:pre [collectionid occupationnameid]
+  [{:keys [collection-id occupation-name-id]}]
+  {:pre [collection-id occupation-name-id]
    :post [ (:relation/concept-1 %)  (:relation/concept-2 %)   (:relation/type %)]
    }
-  {:relation/concept-1 (u/get-entity-if-exists-or-temp-id collectionid :occupation-collection )
-   :relation/concept-2 (u/get-entity-if-exists-or-temp-id occupationnameid :occupation-name)
-   :relation/type    :meronym ; TODO find a better name for this relationship HAS-A ??
-   }
+  (let [
+        concept-entity-id-1 (u/get-entity-if-exists-or-temp-id collection-id t/occupation-collection)
+        concept-entity-id-2 (u/get-entity-if-exists-or-temp-id occupation-name-id t/occupation-name)
+        ]
+    (u/create-relation concept-entity-id-1 concept-entity-id-2 t/related )
+    )
   )
 
 
@@ -104,46 +113,19 @@
        (map update-occupation-name-relations (fetch-data get-updated-occupation-name-relation-to-parent))
        (map convert-replaced-by-occuaption-name  (fetch-data get-replaced-occupation-name))
        (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
-       (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations)))))
-;; => #'jobtech-taxonomy-database.converters.occupation-deprecated-converter/convert
+       (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
+       )))
 
 
-(comment
-
-  problem med "occupation-name-7774"
-  "occupation-name-7706"
-  "occupation-name-7739"
-
-  )
-
-(comment
-
-  Nil is not a legal value
-  {:cognitect.anomalies/category :cognitect.anomalies/incorrect,
-   :cognitect.anomalies/message "Nil is not a legal value",
-   :data [:db/add -9223301668108103499 87 nil],
-   :db/error :db.error/nil-value,
-   :dbs
-   [{:database-id "e2f03673-5ce8-4938-ad80-fd1f9a5d1b65",
-     :t 15,
-     :next-t 16,
-     :history false}]}
-
-occupation-name som saknar ssyk
-  6160
-  7782
 
 
-  )
-
-#_(def get-concept '[:find ?s ?legacy-id
-                   :in $  ;; TODO rename category
-                                      :where
-                                      [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]])
-
-#_(defn get-concepts []
-  (d/q get-concept (conn/get-db))
-  )
 
 
-;; (d/pull (get-db) '[*] 51800191807793305) ;; fetch whole entity
+
+
+
+
+
+
+
+

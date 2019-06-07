@@ -1,4 +1,3 @@
-
 ---------------------------------------------------- SKILLS -------------------------------------------------------
 
 -- A ":result" value of ":*" specifies a vector of records
@@ -379,8 +378,8 @@ FROM TaxonomyDBVersion.dbo.ISCOLocale WHERE versionID = 67;
 ------------------------------------------START SUN --------------------------------------------
 
 -- SUN SHOULDN'T BE CONVERTED!
--- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
--- A new version of SUN is released during spring 2019. 
+-- Editorial team has instructued us not to convert SUN at the moment (May 2019).
+-- A new version of SUN is released during spring 2019.
 -- The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
 
 -- A ":result" value of ":*" specifies a vector of records
@@ -427,8 +426,8 @@ AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
 ------------------------------------------START SUN LEVEL--------------------------------------------
 
 -- SUN SHOULDN'T BE CONVERTED!
--- Editorial team has instructued us not to convert SUN at the moment (May 2019). 
--- A new version of SUN is released during spring 2019. 
+-- Editorial team has instructued us not to convert SUN at the moment (May 2019).
+-- A new version of SUN is released during spring 2019.
 -- The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
 
 -- A ":result" value of ":*" specifies a vector of records
@@ -614,13 +613,14 @@ FROM TaxonomyDB.dbo.OccupationCollection AS db68)
 
 -- 2 new collections
 -- :name get-new-occupation-collection :*
--- :doc get new yrkessamlingar
+-- :doc get new yrkessamlingar, excluding nya kopplingar mellan ssyk4 och occupation name
 SELECT collectionID AS [collection-id], name AS [collection-name]
 FROM TaxonomyDB.dbo.OccupationCollection
 WHERE collectionID NOT IN
 (SELECT db67.collectionID
 FROM TaxonomyDBVersion.dbo.OccupationCollection AS db67
 WHERE db67.versionID = 67)
+AND collectionID < 7
 
 -- 0 updated collections
 -- :name get-updated-occupation-collection :*
@@ -1396,6 +1396,3 @@ AND [db-67].versionID = 67
 AND ([db-67-term].term != [db-68-term].term
 OR [db-67].naceLevel1ID != [db-68].naceLevel1ID
 OR [db-67].naceLevel2Code != [db-68].naceLevel2Code)
-
-
-
