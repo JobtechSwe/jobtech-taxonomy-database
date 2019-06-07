@@ -19,12 +19,12 @@
   )
 
 (defn create-new-occupation-name
-  [{:keys [term occupationgroupid occupationnameid localegroupid]}]
-  {:pre   [term occupationgroupid occupationnameid localegroupid]}
+  [{:keys [term occupation-name-id parent-id-ssyk-4  parent-id-isco-4]}]
+  {:pre  [term occupation-name-id parent-id-ssyk-4  parent-id-isco-4]}
 
-  (let    [entity-id-parent-ssyk  (u/get-entity-id-by-legacy-id localegroupid t/ssyk-level-4)
-           entity-id-parent-isco  (u/get-entity-id-by-legacy-id occupationnameid t/isco-level-4)
-           concept (u/create-concept t/occupation-name term term occupationnameid)
+  (let    [entity-id-parent-ssyk  (u/get-entity-id-by-legacy-id parent-id-ssyk-4 t/ssyk-level-4)
+           entity-id-parent-isco  (u/get-entity-id-by-legacy-id parent-id-isco-4 t/isco-level-4)
+           concept (u/create-concept t/occupation-name term term occupation-name-id)
            concept-term (u/create-term-from-concept concept)
            ]
     (remove nil? [
@@ -37,6 +37,9 @@
   )
 
 
+;; get-updated-occupation-name-relation-to-parent
+;;  get-updated-occupation-name-term
+
 (defn update-occupation-name-preferred-label [{:keys [occupation-name-id-67 term-68 ]}]
   {:pre [occupation-name-id-67 term-68 ]}
   (let [entity-id  (u/get-entity-id-by-legacy-id occupation-name-id-67 t/occupation-name )]
@@ -44,7 +47,11 @@
   )
 
 
-(defn update-occupation-name-relations [{:keys [occupation-name-id-67 parent-id-ssyk-4-67 parent-id-ssyk-4-68 parent-id-isco-4-67 parent-id-isco-4-68]}]
+(defn update-occupation-name-relations [{:keys [occupation-name-id-67
+                                                parent-id-ssyk-4-67
+                                                parent-id-ssyk-4-68
+                                                parent-id-isco-4-67
+                                                parent-id-isco-4-68]}]
   (concat
    (when (not=
           parent-id-ssyk-4-67 parent-id-ssyk-4-68)
@@ -66,12 +73,7 @@
       t/isco-level-4
       parent-id-isco-4-68
       t/broader
-      )
-     )
-     )
-   )
-
-
+      ))))
 
 (defn convert-replaced-by-occuaption-name [ {:keys [occupationnameid occupationnameidref]}]
   (let [old-concept  (u/get-entity-id-by-legacy-id (str occupationnameid) :occupation-name)
@@ -82,7 +84,6 @@
      }
     )
   )
-
 
 ;; TODO below is broken after Henrik's utils fix
 (defn convert-new-occupation-collection
@@ -111,9 +112,12 @@
 
 (defn convert []
   "Run this function after the database has been loaded"
-  (remove empty? (concat
-                  (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
-                 ;; (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name))
+  (remove empty?
+    (concat
+       (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
+       (map create-new-occupation-name (fetch-data get-new-occupation-name))
+       (map update-occupation-name-relations (fetch-data get-updated-occupation-name-relation-to-parent))
+
     ;; TODO kolla att denna finns med!              ;; (map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
                   (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
                   (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
