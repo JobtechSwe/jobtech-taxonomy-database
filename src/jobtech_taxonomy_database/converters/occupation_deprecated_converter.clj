@@ -71,7 +71,7 @@
   (u/replace-concept replaced-id replacing-id t/occupation-name)
   )
 
-;; TODO below is broken after Henrik's utils fix
+;; TODO below is broken after Henrik's utils fix ;;  du är här
 (defn convert-new-occupation-collection
   [{:keys [collectionid name]}]
   {:pre [collectionid name]}
@@ -82,7 +82,6 @@
      (u/create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection collectionid)
      ])
   )
-
 
 (defn convert-new-occupation-collection-relation
   [{:keys [collectionid occupationnameid]}]
@@ -103,12 +102,9 @@
        (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
        (map create-new-occupation-name (fetch-data get-new-occupation-name))
        (map update-occupation-name-relations (fetch-data get-updated-occupation-name-relation-to-parent))
-
-    ;; TODO kolla att denna finns med!              ;; (map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
-                  (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
-                  (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
-                  ))
-  )
+       (map convert-replaced-by-occuaption-name  (fetch-data get-replaced-occupation-name))
+       (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
+       (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations)))))
 ;; => #'jobtech-taxonomy-database.converters.occupation-deprecated-converter/convert
 
 
