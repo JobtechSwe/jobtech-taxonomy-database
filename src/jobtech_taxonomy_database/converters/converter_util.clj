@@ -167,3 +167,78 @@
       :concept/preferred-term temp-id
       :concept/preferred-label new-preferred-term
       }]))
+
+
+
+
+(def get-relation-by-legacy-ids-and-types-query
+  '[:find ?r ?c1
+   :in $ ?legacy-id-1 ?legacy-id-2 ?type-1 ?type-2 ?relation-type
+   :where
+   [?c1 :concept.external-database.ams-taxonomy-67/id ?legacy-id-1]
+   [?c2 :concept.external-database.ams-taxonomy-67/id ?legacy-id-2]
+    [?c1 :concept/type ?type-1]
+    [?c2 :concept/type ?type-2]
+    [?r :relation/concept-1 ?c1]
+    [?r :relation/concept-2 ?c2]
+    [?r :relation/type ?relation-type]
+    ])
+
+
+
+(defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
+  (first (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
+
+
+(defn update-relation-by-legacy-ids-and-types [legacy-id
+                                               type
+                                               old-related-legacy-id
+                                               old-related-type
+                                               new-related-legacy-id
+                                               relation-type]
+  "This function will find the relation and retract it.
+And create a new relation with the same relation-type to the new enity.
+The new entity has to exist in the database."
+
+  (let [[relation-entity-id concept-entity-id ] (get-relation-by-legacy-ids-and-types
+                                                 legacy-id
+                                                 old-related-legacy-id
+                                                 type
+                                                 old-related-type
+                                                 relation-type)
+
+        new-related-concept-entity-id (get-entity-id-by-legacy-id
+                                       new-related-legacy-id
+                                       old-related-type)
+        ]
+    [[:db/retractEntity relation-entity-id]
+     {:relation/concept-1 concept-entity-id
+      :relation/concept-2 new-related-concept-entity-id
+      :relation/type relation-type
+      }
+     ]
+    )
+  )
+
+(comment
+  "occupation_group"
+;; some debugging
+
+  (def get-a-relation
+    '[:find (pull ?r [*])
+      :in $ relation-type
+      :where
+      [?r :relation/type ?relation-type]
+      ]
+    )
+
+  (def get-all-legacy-id
+    '[:find (pull ?r [*])
+      :in $ ?legacy-id
+      :where
+      [?r :concept.external-database.ams-taxonomy-67/id ?legacy-id]
+      ]
+    )
+
+
+  )

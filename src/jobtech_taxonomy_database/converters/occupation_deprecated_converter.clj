@@ -2,7 +2,7 @@
   (:gen-class)
   (:require [datomic.client.api :as d]
             [jobtech-taxonomy-database.schema :refer :all :as schema]
-            [jobtech-taxonomy-database.legacy-migration :as lm]
+            [jobtech-taxonomy-database.legacy-migration :refer :all]
             [jobtech-taxonomy-database.config :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
             [jobtech-taxonomy-database.converters.nano-id-assigner :refer :all]
@@ -15,72 +15,66 @@
 
 (defn convert-deprecated-occupation [{:keys [deprecatedoccupation]}]
   {:pre [deprecatedoccupation]}
-  (let [occupation-to-deprecate-db-id (util/get-entity-id-by-legacy-id (str deprecatedoccupation) :occupation-name)]
-    {:db/id occupation-to-deprecate-db-id
-     :concept/deprecated true
-     }
-    )
+  (u/deprecate-concept t/occupation-name deprecatedoccupation )
   )
 
 (defn create-new-occupation-name
   [{:keys [term occupationgroupid occupationnameid localegroupid]}]
   {:pre   [term occupationgroupid occupationnameid localegroupid]}
 
-  (let    [nano-id (get-nano "occupation-name-" (str occupationnameid))
-           temp-id (str "occupation-name-" occupationnameid)
-           ssyk-concept-id (util/get-entity-id-by-legacy-id (str localegroupid) :occupation-group)
-           isco-concept-id (util/get-entity-id-by-legacy-id (str occupationgroupid) :isco)
+  (let    [entity-id-parent-ssyk  (u/get-entity-id-by-legacy-id localegroupid t/ssyk-level-4)
+           entity-id-parent-isco  (u/get-entity-id-by-legacy-id occupationnameid t/isco-level-4)
+           concept (u/create-concept t/occupation-name term term occupationnameid)
+           concept-term (u/create-term-from-concept concept)
            ]
     (remove nil? [
-                  (util/create-concept nano-id temp-id term term :occupation-name occupationnameid)
-                  (util/create-term nano-id term)
-                  (when ssyk-concept-id (util/create-relation temp-id ssyk-concept-id :hyperonym)) ;; sometimes ssyk is -1 and becomes nil
-                  (util/create-relation temp-id isco-concept-id :hyperonym)
+                  concept
+                  concept-term
+                  (when entity-id-parent-ssyk (u/create-broader-relation-to-concept concept entity-id-parent-ssyk )) ;; sometimes ssyk is -1 and becomes nil
+                  (u/create-broader-relation-to-concept concept entity-id-parent-isco)
                   ])
     )
   )
 
-(defn convert-updated-country
-  [{:keys [id-67 term-68 country-code-68]}]
-  {:pre [id-67 term-68 country-code-68]}
-  (let [entity-id (u/get-entity-id-by-legacy-id id-67 t/country)]
-    (u/update-concept entity-id {:new-term term-68 :country-code country-code-68})))
 
-(defn update-preferred-term [new-preferred-term entity-id]
-  (let [temp-id (str (gensym))]
-    [
-     (util/create-term temp-id new-preferred-term)
-     {:db/id entity-id
-      :concept/preferred-term temp-id
-      }
-     ])
+(defn update-occupation-name-preferred-label [{:keys [occupation-name-id-67 term-68 ]}]
+  {:pre [occupation-name-id-67 term-68 ]}
+  (let [entity-id  (u/get-entity-id-by-legacy-id occupation-name-id-67 t/occupation-name )]
+    (u/update-preferred-term entity-id term-68 term-68  ))
   )
 
-(defn convert-added-occupation-name
-  [{:keys [term occupationgroupid occupationnameid localegroupid] :as data}  ]
-  {:pre   [term occupationgroupid occupationnameid localegroupid]}
 
-  (let [[preferred-term entity-id]  (util/get-preferred-term-by-legacy-id (str occupationnameid) :occupation-name)]
-  (cond
-      (nil? preferred-term) (create-new-occupation-name data)
-      (= term preferred-term) []
-      :else  (update-preferred-term preferred-term entity-id)
-      ))
-  )
+(defn update-occupation-name-relations [{:keys [occupation-name-id-67 parent-id-ssyk-4-67 parent-id-ssyk-4-68 parent-id-isco-4-67 parent-id-isco-4-68]}]
+  (concat
+   (when (not=
+          parent-id-ssyk-4-67 parent-id-ssyk-4-68)
+     (u/update-relation-by-legacy-ids-and-types
+      occupation-name-id-67
+      t/occupation-name
+      parent-id-ssyk-4-67
+      t/ssyk-level-4
+      parent-id-ssyk-4-68
+      t/broader
+      )
+     )
+   (when (not=
+          parent-id-isco-4-67 parent-id-isco-4-68)
+     (u/update-relation-by-legacy-ids-and-types
+      occupation-name-id-67
+      t/occupation-name
+      parent-id-isco-4-67
+      t/isco-level-4
+      parent-id-isco-4-68
+      t/broader
+      )
+     )
+     )
+   )
 
-#_(defn convert-renamed-occupation-name []
-    )
 
-(defn get-entity-if-exists-or-temp-id [legacy-id]
-
-  (if-let [entity-id (util/get-entity-id-by-legacy-id legacy-id :occupation-name)]
-    entity-id
-    (str "occupation-name-" legacy-id)
-    )
-  )
 
 (defn convert-replaced-by-occuaption-name [ {:keys [occupationnameid occupationnameidref]}]
-  (let [old-concept  (util/get-entity-id-by-legacy-id (str occupationnameid) :occupation-name)
+  (let [old-concept  (u/get-entity-id-by-legacy-id (str occupationnameid) :occupation-name)
         replaced-by-concept-id (get-entity-if-exists-or-temp-id occupationnameidref)
         ]
     {:db/id old-concept
@@ -97,8 +91,8 @@
 
   (let [nano-id (get-nano)]
     [
-     (util/create-term nano-id name)
-     (util/create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection collectionid)
+     (u/create-term nano-id name)
+     (u/create-concept nano-id (str "occupation-collection-" collectionid) name name :occupation-collection collectionid)
      ])
   )
 
@@ -108,8 +102,8 @@
   {:pre [collectionid occupationnameid]
    :post [ (:relation/concept-1 %)  (:relation/concept-2 %)   (:relation/type %)]
    }
-  {:relation/concept-1 (util/get-entity-if-exists-or-temp-id collectionid :occupation-collection )
-   :relation/concept-2 (util/get-entity-if-exists-or-temp-id occupationnameid :occupation-name)
+  {:relation/concept-1 (u/get-entity-if-exists-or-temp-id collectionid :occupation-collection )
+   :relation/concept-2 (u/get-entity-if-exists-or-temp-id occupationnameid :occupation-name)
    :relation/type    :meronym ; TODO find a better name for this relationship HAS-A ??
    }
   )
@@ -119,13 +113,13 @@
   "Run this function after the database has been loaded"
   (remove empty? (concat
                   (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
-                  (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name))
-                  ;(map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
+                 ;; (mapcat convert-added-occupation-name (fetch-data get-new-occupation-name))
+    ;; TODO kolla att denna finns med!              ;; (map convert-replaced-by-occuaption-name (fetch-data get-replaced--occupation-name))
                   (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
                   (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations))
                   ))
   )
-
+;; => #'jobtech-taxonomy-database.converters.occupation-deprecated-converter/convert
 
 
 (comment
