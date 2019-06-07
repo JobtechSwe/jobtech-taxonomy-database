@@ -11,8 +11,6 @@
             [jobtech-taxonomy-database.types :as t]
             ))
 
-#_(fetch-data get-deprecated-occupation-name)
-
 (defn convert-deprecated-occupation [{:keys [deprecatedoccupation]}]
   {:pre [deprecatedoccupation]}
   (u/deprecate-concept t/occupation-name deprecatedoccupation )
@@ -32,13 +30,7 @@
                   concept-term
                   (when entity-id-parent-ssyk (u/create-broader-relation-to-concept concept entity-id-parent-ssyk )) ;; sometimes ssyk is -1 and becomes nil
                   (u/create-broader-relation-to-concept concept entity-id-parent-isco)
-                  ])
-    )
-  )
-
-
-;; get-updated-occupation-name-relation-to-parent
-;;  get-updated-occupation-name-term
+                  ])))
 
 (defn update-occupation-name-preferred-label [{:keys [occupation-name-id-67 term-68 ]}]
   {:pre [occupation-name-id-67 term-68 ]}
@@ -75,14 +67,8 @@
       t/broader
       ))))
 
-(defn convert-replaced-by-occuaption-name [ {:keys [occupationnameid occupationnameidref]}]
-  (let [old-concept  (u/get-entity-id-by-legacy-id (str occupationnameid) :occupation-name)
-        replaced-by-concept-id (get-entity-if-exists-or-temp-id occupationnameidref)
-        ]
-    {:db/id old-concept
-     :concept/replaced-by replaced-by-concept-id
-     }
-    )
+(defn convert-replaced-by-occuaption-name [ {:keys [replaced-id replacing-id]}]
+  (u/replace-concept replaced-id replacing-id t/occupation-name)
   )
 
 ;; TODO below is broken after Henrik's utils fix

@@ -168,9 +168,6 @@
       :concept/preferred-label new-preferred-term
       }]))
 
-
-
-
 (def get-relation-by-legacy-ids-and-types-query
   '[:find ?r ?c1
    :in $ ?legacy-id-1 ?legacy-id-2 ?type-1 ?type-2 ?relation-type
@@ -183,8 +180,6 @@
     [?r :relation/concept-2 ?c2]
     [?r :relation/type ?relation-type]
     ])
-
-
 
 (defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
   (first (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
@@ -217,14 +212,23 @@ The new entity has to exist in the database."
       :relation/type relation-type
       }
      ]
+    ))
+
+
+(defn replace-concept [replaced-legacy-id replacing-legacy-id type]
+  (let [old-concept  (get-entity-id-by-legacy-id replaced-legacy-id type)
+        replaced-by-concept-id (get-entity-if-exists-or-temp-id replacing-legacy-id type)
+        ]
+    {:db/id old-concept
+     :concept/replaced-by replaced-by-concept-id
+     }
     )
   )
 
 (comment
-  "occupation_group"
-;; some debugging
+ "Some debugging helper functions"
 
-  (def get-a-relation
+ (def get-a-relation
     '[:find (pull ?r [*])
       :in $ relation-type
       :where
@@ -239,6 +243,4 @@ The new entity has to exist in the database."
       [?r :concept.external-database.ams-taxonomy-67/id ?legacy-id]
       ]
     )
-
-
   )
