@@ -499,7 +499,7 @@ AND NaceLevel2.versionID = 67
 
 ----------------------------------------------------------- OCCUPATION NAME ----------------------------
 
--- 13 deprecated concepts
+-- 67 deprecated concepts
 --TODO What to do with the relation concepts pointing to deprecated concept?
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
@@ -517,7 +517,7 @@ AND [db-67-term].occupationNameID NOT IN
 	(SELECT [db-68].occupationNameID
 	FROM TaxonomyDB.dbo.OccupationName AS [db-68])
 
--- 97 new concepts
+-- 129 new concepts
 -- :name get-new-occupation-name :*
 -- :doc get occupation names that has been added in version 68 ;
 SELECT db68.occupationNameID AS [occupation-name-id],
@@ -534,7 +534,7 @@ AND db68.occupationNameID NOT IN
 FROM TaxonomyDBVersion.dbo.OccupationName AS db67
 WHERE db67.versionID = 67)
 
--- 62 updated concept terms
+-- 90 updated concept terms
 -- :name get-updated-occupation-name-term :*
 -- :doc get occupation names that changed term in version 68;
 SELECT db68.occupationNameID AS [occupation-name-id-68],
@@ -562,7 +562,7 @@ AND db67.versionID = 67
 AND db67term.versionID = 67
 AND db68term.term != db67term.term
 
--- 8 updated relations
+-- 18 updated relations
 -- :name get-updated-occupation-name-relation-to-parent :*
 -- :doc get occupation names that changed relation to a broader type in version 68;
 SELECT db68.occupationNameID AS [occupation-name-id-68],
@@ -591,7 +591,7 @@ AND db67term.versionID = 67
 AND (db68.occupationGroupID != db67.occupationGroupID
 OR db68.localeGroupID != db67.localeGroupID)
 
--- 113 replaced concepts
+-- 157 replaced concepts
 -- TODO I guess the migration has to be done in a certain order so replacements happen after deprecations? Or the other way?
 -- :name get-replaced-occupation-name :*
 -- :doc get replaced occupation names in version 68;
@@ -611,7 +611,8 @@ AND collectionID NOT IN
 (SELECT db68.collectionID
 FROM TaxonomyDB.dbo.OccupationCollection AS db68)
 
--- 2 new collections
+--TODO DON'T USE THIS ONE! Maybe..?
+-- 44 new collections
 -- :name get-new-occupation-collection :*
 -- :doc get new yrkessamlingar, excluding nya kopplingar mellan ssyk4 och occupation name
 SELECT collectionID AS [collection-id], name AS [collection-name]
@@ -634,7 +635,7 @@ WHERE db67.versionID = 67
 AND db68.collectionID = db67.collectionID
 AND db68.name != db67.name
 
--- 0 deprecated collection-occupation-relations
+-- 21 deprecated collection-occupation-relations
 -- :name get-deprecated-occupation-collection-relations :*
 -- :doc get deprecated relations in yrkessamlingar
 SELECT [collection-relations].collectionID AS [collection-id],
@@ -649,7 +650,7 @@ AND [collection-relations].occupationNameID NOT IN
 	(SELECT CollectionOccupation.occupationNameID
 	FROM TaxonomyDB.dbo.CollectionOccupation CollectionOccupation)
 
--- 8 new collection-occupation-relations
+-- 9 new collection-occupation-relations
 -- :name get-new-occupation-collection-relations :*
 -- :doc get new occupation collection relations
 SELECT [collection-relations].collectionID AS [collection-id],
@@ -701,7 +702,7 @@ AND [db-68].localeFieldID NOT IN
 FROM TaxonomyDBVersion.dbo.LocaleField
 WHERE LocaleField.versionID = 67)
 
--- 0 updated occupation fields
+-- 21 updated occupation fields
 -- :name get-updated-occupation-field :*
 -- :doc Get updated occupation field in version 68 ;
 SELECT [db-68].localeFieldID AS [occupation-field-id-68],
@@ -726,7 +727,7 @@ AND [db-term-68].languageID = 502
 AND ([db-term-68].term != [db-term-67].term
 OR [db-term-68].description NOT LIKE [db-term-67].description)
 
--- 2 updated occupation-field-to-ssyk-relations
+-- 4 updated occupation-field-to-ssyk-relations
 -- :name get-updated-occupation-field-relation-to-ssyk-4 :*
 -- :doc Get updated relations between ssyk level 4 and occupation field ;
 SELECT [db-67].localeGroupID AS [ssyk-4-id-67],
@@ -1257,7 +1258,7 @@ AND ([db-67-term].beteckning != [db-68-term].beteckning
 OR [db-67].sortering != [db-68].sortering)
 
 ------------------------------------------- SKILLS ----------------------------------------------------------------
-------------------------------------------- (Skills: 169 new, 110 deprecated, 146 updated) ------------------------
+------------------------------------------- (Skills: 242 new, 120 deprecated, 171 updated) ------------------------
 
 -- :name get-new-skill :*
 -- :doc get new skills, id's existing in version 68 but not in version 67
@@ -1315,6 +1316,7 @@ SELECT skillID AS [deprecated-id],
 FROM TaxonomyDB.dbo.SkillReference;
 
 ------------------------------------------- SKILL-HEADLINE-----------------------------------------------------
+-- TODO Check if this is still true with latest db dump
 -- Har inga förändringar
 
 
