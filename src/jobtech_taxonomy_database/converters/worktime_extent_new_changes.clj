@@ -7,11 +7,9 @@
 (defn convert-deprecated
   [{:keys [id-67]}]
   {:pre [id-67]}
-  [(u/deprecate-concept t/worktime-extent id-67)]) ;list because only one value deprecated
+  [(u/deprecate-concept t/worktime-extent id-67)]) ;list since only one value is deprecated
 
 (defn convert []
   "Run this function after the database has been loaded"
   (remove nil? (concat
                 (mapcat convert-deprecated (lm/fetch-data lm/get-deprecated-worktime-extent)))))
-
-(lm/fetch-data lm/get-worktime-extent)
