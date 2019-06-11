@@ -136,8 +136,9 @@
             (cond-> (contains? attr-map :legacy-id) (assoc :concept.external-database.ams-taxonomy-67/id (:legacy-id attr-map)))
             (cond-> (contains? attr-map :isco) (assoc :concept.external-standard/isco-08 (:isco attr-map)))
             (cond-> (contains? attr-map :sni) (assoc :concept.external-standard/sni-level-code (:sni attr-map))))]
-    [concept-with-extras (if (contains? attr-map :new-term) {:db/id temp-id
-                                                             :term/base-form (:new-term attr-map)})]))
+    (concat [concept-with-extras]
+             (if (contains? attr-map :new-term)
+               [{:db/id temp-id :term/base-form (:new-term attr-map)}]))))
 
 (def get-relation-by-legacy-ids-and-types-query
   '[:find ?r ?c1
@@ -154,25 +155,25 @@
 (defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
   (first (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
-(defn update-relation-by-legacy-ids-and-types [legacy-id
-                                               type
-                                               old-related-legacy-id
-                                               old-related-type
-                                               new-related-legacy-id
-                                               relation-type]
+(defn update-relation-by-legacy-ids-and-types
+  [concept-legacy-id
+   concept-type
+   old-related-concept-legacy-id
+   related-concept-type
+   new-related-concept-legacy-id
+   relation-type]
   "This function will find the relation and retract it.
-And create a new relation with the same relation-type to the new entity.
-The new entity has to exist in the database."
-
+  And create a new relation with the same relation-type to the new entity.
+  The new entity has to exist in the database."
   (let [[relation-entity-id concept-entity-id] (get-relation-by-legacy-ids-and-types
-                                                legacy-id
-                                                old-related-legacy-id
-                                                type
-                                                old-related-type
+                                                concept-legacy-id
+                                                old-related-concept-legacy-id
+                                                concept-type
+                                                related-concept-type
                                                 relation-type)
         new-related-concept-entity-id (get-entity-id-by-legacy-id
-                                       new-related-legacy-id
-                                       old-related-type)]
+                                       new-related-concept-legacy-id
+                                       related-concept-type)]
     [[:db/retractEntity relation-entity-id]
      {:relation/concept-1 concept-entity-id
       :relation/concept-2 new-related-concept-entity-id
