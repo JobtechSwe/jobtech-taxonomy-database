@@ -9,73 +9,69 @@
   [{:keys [term id]}]
   {:pre [term id]}
   (let
-    [concept (u/create-concept
-               t/continent
-               term
-               term
-               id)
-     concept-term (u/create-term-from-concept concept)]
-    [concept concept-term]
-    ))
+   [concept (u/create-concept
+             t/continent
+             term
+             term
+             id)
+    concept-term (u/create-term-from-concept concept)]
+    [concept concept-term]))
 
 (defn converter-countries
   "Convert countries"
   [{:keys [term id code parent-id]}]
   {:pre [term id code parent-id]}
   (let [concept (u/create-concept
-                  t/country
-                  term
-                  term
-                  id)
+                 t/country
+                 term
+                 term
+                 id)
         concept-with-extras (assoc concept :concept.external-standard/country-code code)
         concept-term (u/create-term-from-concept concept-with-extras)
         temp-id-parent (u/create-temp-id t/continent parent-id)
         relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras
      concept-term
-     relation]
-    ))
+     relation]))
 
 (defn converter-regions
   "Convert EU regions (NUTS level 3)"
   [{:keys [term id code parent-id]}]
   {:pre [term id parent-id]}
   (let [concept (u/create-concept
-                  t/region
-                  term
-                  term
-                  id)
+                 t/region
+                 term
+                 term
+                 id)
         concept-with-extras (conj concept (when code [:concept.external-standard/nuts-level-3-code code]))
         concept-term (u/create-term-from-concept concept-with-extras)
         temp-id-parent (u/create-temp-id t/country parent-id)
         relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras
      concept-term
-     relation]
-    ))
+     relation]))
 
 (defn converter-municipalities
   "Convert municipalities"
   [{:keys [term id parent-id]}]
   {:pre [term id parent-id]}
   (let [concept (u/create-concept
-                  t/municipality
-                  term
-                  term
-                  id)
+                 t/municipality
+                 term
+                 term
+                 id)
         concept-term (u/create-term-from-concept concept)
         temp-id-parent (u/create-temp-id t/region parent-id)
         relation (u/create-broader-relation-to-concept concept temp-id-parent)]
     [concept
      concept-term
-     relation]
-    ))
+     relation]))
 
 (defn convert
   "Query SQL db for geographical places, convert each entity"
   []
   (concat
-  (mapcat converter-continents (lm/fetch-data lm/get-continents))
-  (mapcat converter-countries (lm/fetch-data lm/get-countries))
-  (mapcat converter-regions (lm/fetch-data lm/get-EU-regions))
-  (mapcat converter-municipalities (lm/fetch-data lm/get-municipalities))))
+   (mapcat converter-continents (lm/fetch-data lm/get-continents))
+   (mapcat converter-countries (lm/fetch-data lm/get-countries))
+   (mapcat converter-regions (lm/fetch-data lm/get-EU-regions))
+   (mapcat converter-municipalities (lm/fetch-data lm/get-municipalities))))

@@ -8,18 +8,17 @@
   {:pre [id-68 term-68 skill-headline]}
   (if (not (u/get-entity-id-by-legacy-id id-68 t/skill))
     (let [concept (u/create-concept
-                    t/skill
-                    term-68
-                    term-68
-                    id-68)
+                   t/skill
+                   term-68
+                   term-68
+                   id-68)
           concept-term (u/create-term-from-concept concept)
           concept-relation (u/create-broader-relation-to-concept
-                             concept (u/get-entity-if-exists-or-temp-id skill-headline t/skill-headline))]
-      [concept concept-term concept-relation
-       ])))
+                            concept (u/get-entity-if-exists-or-temp-id skill-headline t/skill-headline))]
+      [concept concept-term concept-relation])))
 
 (defn convert-deprecated-skill [{:keys [id-67]}]
-  {:pre [id-67]}()
+  {:pre [id-67]} ()
   (u/deprecate-concept t/skill id-67))
 
 (defn convert-updated-skill [{:keys [skillid term]}]

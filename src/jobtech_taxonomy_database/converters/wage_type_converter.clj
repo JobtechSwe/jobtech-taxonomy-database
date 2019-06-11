@@ -9,12 +9,11 @@
   [{:keys [beteckning löneformsid sortering]}]
   {:pre [beteckning löneformsid sortering]}
   (let
-    [concept (u/create-concept t/wage-type beteckning beteckning löneformsid)
-     concept-with-extras (assoc concept
-                           :concept.category/sort-order sortering)
-     concept-term (u/create-term-from-concept concept-with-extras)]
-    [concept-with-extras concept-term]
-    ))
+   [concept (u/create-concept t/wage-type beteckning beteckning löneformsid)
+    concept-with-extras (assoc concept
+                               :concept.category/sort-order sortering)
+    concept-term (u/create-term-from-concept concept-with-extras)]
+    [concept-with-extras concept-term]))
 
 (defn convert
   "Query db for wage types, convert each entity"

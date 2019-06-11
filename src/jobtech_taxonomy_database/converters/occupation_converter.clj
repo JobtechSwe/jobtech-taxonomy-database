@@ -101,11 +101,11 @@
   [{:keys [affinity-to-occupation-name-id affinity-from-occupation-name-id percentage]}]
   {:pre [affinity-to-occupation-name-id affinity-from-occupation-name-id percentage]}
   (let [temp-id-affinity-from-concept (u/create-temp-id
-                                        t/occupation-name
-                                        affinity-from-occupation-name-id)
+                                       t/occupation-name
+                                       affinity-from-occupation-name-id)
         temp-id-affinity-to-concept (u/create-temp-id
-                                      t/occupation-name
-                                      affinity-to-occupation-name-id)
+                                     t/occupation-name
+                                     affinity-to-occupation-name-id)
         relation (u/create-relation temp-id-affinity-from-concept temp-id-affinity-to-concept t/occupation-name-affinity)
         relation-with-affinity-percentage (assoc relation :relation/affinity-percentage percentage)]
     relation-with-affinity-percentage))
@@ -138,17 +138,17 @@
   [{:keys [synonym-id synonym-term occupation-name-id]}]
   {:pre [synonym-id synonym-term occupation-name-id]}
   (let [temp-id-occupation-name (u/create-temp-id
-                                  t/occupation-name
-                                  occupation-name-id)
+                                 t/occupation-name
+                                 occupation-name-id)
         temp-id-synonym (u/create-temp-id
-                          t/keyword
-                          synonym-id)
+                         t/keyword
+                         synonym-id)
         relation (u/create-relation temp-id-occupation-name temp-id-synonym t/related)]
     relation))
 
 (defn convert-ssyk-4-isco-4-relation
-  [{:keys [isco-4-id ssyk-4-id ]}]
-  {:pre  [isco-4-id ssyk-4-id ]}
+  [{:keys [isco-4-id ssyk-4-id]}]
+  {:pre  [isco-4-id ssyk-4-id]}
   (let [temp-id-ssyk (u/create-temp-id t/ssyk-level-4 ssyk-4-id)
         temp-id-isco (u/create-temp-id t/isco-level-4 isco-4-id)
         relation (u/create-relation temp-id-ssyk temp-id-isco t/related)]
@@ -173,42 +173,18 @@
   ""
   []
   (concat
-    (mapcat convert-occupation-name (lm/fetch-data lm/get-occupation-name))
-    (mapcat convert-ssyk-level-4 (lm/fetch-data lm/get-ssyk-4))
-    (mapcat convert-ssyk-level-3 (lm/fetch-data lm/get-ssyk-level-3))
-    (mapcat convert-ssyk-level-2 (lm/fetch-data lm/get-ssyk-level-2))
-    (mapcat convert-ssyk-level-1 (lm/fetch-data lm/get-ssyk-level-1))
-    (mapcat convert-occupation-field (lm/fetch-data lm/get-occupation-field))
-    (mapcat convert-isco-level-4 (lm/fetch-data lm/get-isco-level-4))
-    (mapcat convert-isco-level-1 (lm/fetch-data lm/get-isco-level-1))
-  (map convert-occupation-name-affinity (lm/fetch-data lm/get-occupation-name-affinity))
-  (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
-  (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
-  ;(mapcat convert-popular-synonym (lm/fetch-data lm/get-popular-synonym-occupation))
-  ;(map convert-popular-synonym-relation (lm/fetch-data lm/get-popular-synonym-occupation-relation))
-  ;(map convert-ssyk-4-isco-4-relation (remove #(= -2 (:ssyk-4-id %)  ) (lm/fetch-data lm/get-ssyk-4-isco-4-relation)))
-  ;(mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))
-  ))
-
-#_
-(defn convert
-  ""
-  []
-  (concat
-    (mapcat convert-occupation-field (fetch-data  get-occupation-field))
-    (mapcat convert-ssyk-level-4 (fetch-data get-occupation-group-ssyk))
-    (mapcat convert-ssyk-level-3 (fetch-data get-ssyk-level-3))
-    (mapcat convert-ssyk-level-2 (fetch-data get-ssyk-level-2))
-    (mapcat convert-ssyk-level-1 (fetch-data get-ssyk-level-1))
-    (mapcat convert-occupation-name (fetch-data get-occupation-name))
-    (mapcat convert-isco-level-4 (fetch-data get-isco-level-4))
-    (mapcat convert-isco-level-1 (fetch-data get-isco-level-1))
-    (map convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
-    (mapcat convert-occupation-collection (fetch-data get-occupation-collection))
-   (map convert-occupation-collection-relation (fetch-data get-occupation-collection-relations))
-   (mapcat convert-popular-synonym (fetch-data get-popular-synonym))
-   (map convert-popular-synonym-occupation-name-relation (fetch-data get-occupation-name-synonym))
-   (map convert-occupation-group-isco-relation  (remove #(= -2 (:localegroupid %)  )  (fetch-data get-occupation-group-isco-level-4-relation)))
-   (mapcat convert-occupation-name-replacement (fetch-data get-occupation-names-reference))
-   )
-  )
+   (mapcat convert-occupation-name (lm/fetch-data lm/get-occupation-name))
+   (mapcat convert-ssyk-level-4 (lm/fetch-data lm/get-ssyk-4))
+   (mapcat convert-ssyk-level-3 (lm/fetch-data lm/get-ssyk-level-3))
+   (mapcat convert-ssyk-level-2 (lm/fetch-data lm/get-ssyk-level-2))
+   (mapcat convert-ssyk-level-1 (lm/fetch-data lm/get-ssyk-level-1))
+   (mapcat convert-occupation-field (lm/fetch-data lm/get-occupation-field))
+   (mapcat convert-isco-level-4 (lm/fetch-data lm/get-isco-level-4))
+   (mapcat convert-isco-level-1 (lm/fetch-data lm/get-isco-level-1))
+   (map convert-occupation-name-affinity (lm/fetch-data lm/get-occupation-name-affinity))
+   (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
+   (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
+   (mapcat convert-popular-synonym (lm/fetch-data lm/get-popular-synonym-occupation))
+   (map convert-popular-synonym-relation (lm/fetch-data lm/get-popular-synonym-occupation-relation))
+   (map convert-ssyk-4-isco-4-relation (remove #(= -1 (:ssyk-4-id %)) (remove #(= -2 (:ssyk-4-id %)) (lm/fetch-data lm/get-ssyk-4-isco-4-relation))))
+   (mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))))

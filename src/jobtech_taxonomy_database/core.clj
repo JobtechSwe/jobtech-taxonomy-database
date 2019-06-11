@@ -21,16 +21,14 @@
             ;[jobtech-taxonomy-database.converters.occupation-deprecated-converter]
             [jobtech-taxonomy-database.converters.skills-converter-new-changes]
             [jobtech-taxonomy-database.converters.geographic-places-new-changes]
-            [jobtech-taxonomy-database.converters.worktime-extent-new-changes]
-            ))
+            [jobtech-taxonomy-database.converters.worktime-extent-new-changes]))
 
 (def converters
   "Each logic section of the old taxonomy can be handled by a converter
   set consisting of a reader, converter, writer and their
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
-  '(
-     ;{:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
+  '(;{:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
      ;   {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
      ;{:namespace jobtech-taxonomy-database.converters.employment-duration-new-changes}
      ;{:namespace jobtech-taxonomy-database.converters.employment-type-converter}
@@ -38,18 +36,16 @@
      ;{:namespace jobtech-taxonomy-database.converters.geographic-places-new-changes}
      ;  {:namespace jobtech-taxonomy-database.converters.language-converter}
      ;  {:namespace jobtech-taxonomy-database.converters.language-level-converter}
-        {:namespace jobtech-taxonomy-database.converters.occupation-converter}
+    {:namespace jobtech-taxonomy-database.converters.occupation-converter}
      ;    {:namespace jobtech-taxonomy-database.converters.occupation-deprecated-converter}
-         {:namespace jobtech-taxonomy-database.converters.skills-converter}
+    {:namespace jobtech-taxonomy-database.converters.skills-converter}
      ;   {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
-     {:namespace jobtech-taxonomy-database.converters.occupation-skill-relation-converter}
+    {:namespace jobtech-taxonomy-database.converters.occupation-skill-relation-converter}
      ; {:namespace jobtech-taxonomy-database.converters.SNI-level-converter}
      ; {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
      ;  {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
      ;{:namespace jobtech-taxonomy-database.converters.worktime-extent-new-changes}
-     ))
-
-
+    ))
 
 (defn -main
   []

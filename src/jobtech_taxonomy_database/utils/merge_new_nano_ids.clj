@@ -11,13 +11,13 @@
          id-struct        (first (vals category-struct))
          found-cat        (get target (keyword category))
          found-id         (get found-cat id)]
-    (if found-id
-      (binding [*out* *err*]
-        (if (not= (get found-id :preferredTerm)
-                  (get id-struct :preferredTerm))
-          (println (format "very bad, id %s differens in preferredTerm: \"%s\" vs. \"%s\"" id (get found-id :preferredTerm) (get id-struct :preferredTerm))))))
-    (assoc target (keyword category)
-           (assoc found-cat (keyword id) id-struct))))
+        (if found-id
+          (binding [*out* *err*]
+            (if (not= (get found-id :preferredTerm)
+                      (get id-struct :preferredTerm))
+              (println (format "very bad, id %s differens in preferredTerm: \"%s\" vs. \"%s\"" id (get found-id :preferredTerm) (get id-struct :preferredTerm))))))
+        (assoc target (keyword category)
+               (assoc found-cat (keyword id) id-struct))))
 
 (defn merge-new-ids-rec "" [target lines rdr]
   (let [line (first lines)
@@ -49,6 +49,6 @@
   []
   (let* [org-struct  (open-json "resources/taxonomy_to_concept_v67.json")
          result (merge-new-ids org-struct "resources/ids-for-skill-headlines-and-mainheadlines_v67.json")]
-    (save (generate-string result {:pretty true}) "resources/taxonomy_to_concept_with_headlines_and_mainheadlines_v67.json")
-    result))
+        (save (generate-string result {:pretty true}) "resources/taxonomy_to_concept_with_headlines_and_mainheadlines_v67.json")
+        result))
 ;; (-main)

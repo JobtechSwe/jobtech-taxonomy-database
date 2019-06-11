@@ -9,12 +9,11 @@
   [{:keys [beteckning arbetstidsid sortering]}]
   {:pre [beteckning arbetstidsid sortering]}
   (let
-    [concept (u/create-concept t/worktime-extent beteckning beteckning arbetstidsid)
-     concept-with-extras (assoc concept
-                           :concept.category/sort-order sortering)
-     concept-term (u/create-term-from-concept concept-with-extras)]
-    [concept-with-extras concept-term]
-    ))
+   [concept (u/create-concept t/worktime-extent beteckning beteckning arbetstidsid)
+    concept-with-extras (assoc concept
+                               :concept.category/sort-order sortering)
+    concept-term (u/create-term-from-concept concept-with-extras)]
+    [concept-with-extras concept-term]))
 
 (defn convert
   "Query db for work time extent, convert each entity"

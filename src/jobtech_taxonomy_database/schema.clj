@@ -31,28 +31,22 @@
    {:db/ident       :concept/category
     :db/valueType   :db.type/keyword
     :db/cardinality :db.cardinality/one
-    :db/doc         "JobTech categories"
-    }
+    :db/doc         "JobTech categories"}
 
    {:db/ident       :concept/type
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "The concepts main type"
-    }
+    :db/doc         "The concepts main type"}
 
    {:db/ident       :concept/deprecated
     :db/valueType   :db.type/boolean
     :db/cardinality :db.cardinality/one
-    :db/doc         "If a concept is deprecated"
-    }
+    :db/doc         "If a concept is deprecated"}
 
    {:db/ident       :concept/replaced-by
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/many
-    :db/doc         "Refers to other concepts that is replacing this one"
-    }
-
-   ])
+    :db/doc         "Refers to other concepts that is replacing this one"}])
 
 ;; Example:
 ;;  (def some-concepts
@@ -128,9 +122,7 @@
    {:db/ident       :concept.external-standard/sni-level-code
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "SNI level code"}
-
-   ])
+    :db/doc         "SNI level code"}])
 
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
@@ -184,7 +176,4 @@
    {:db/ident        :relation/affinity-percentage
     :db/valueType    :db.type/long
     :db/cardinality  :db.cardinality/one
-    :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a similar occupation"
-    }
-
-   ])
+    :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a similar occupation"}])
