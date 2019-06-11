@@ -483,7 +483,7 @@ AND NaceLevel2.versionID = 67
 ----------------------------------------------------------- OCCUPATION NAME ----------------------------
 
 -- 67 deprecated concepts
---TODO What to do with the relation concepts pointing to deprecated concept? Answer:
+--TODO What to do with the relation concepts pointing to deprecated concept?
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
 SELECT [db-67].occupationNameID AS [occupation-name-id],
@@ -603,6 +603,8 @@ WHERE ([db-collections].collectionID = 5
 	OR [db-collections].collectionID = 6)
 AND [db-collections].collectionID = [collection-relations].collectionID
 
+------------------------------- OCCUPATION FIELDS --------------------------------------------------------------
+
 -- 0 deprecated occupation fields
 -- :name get-deprecated-occupation-field :*
 -- :doc Get deprecated occupation field in version 68 ;
@@ -658,6 +660,37 @@ AND [db-term-68].languageID = 502
 AND ([db-term-68].term != [db-term-67].term
 OR [db-term-68].description NOT LIKE [db-term-67].description)
 
+-- 0 deprecated occupation-field-to-ssyk-relations
+-- :name get-deprecated-occupation-field-relation-to-ssyk-4 :*
+-- :doc Get deprecated relations between ssyk level 4 and occupation field ;
+SELECT [db-67].localeGroupID AS [ssyk-4-id-67],
+	[db-67].localeFieldID AS [parent-id-occupation-field-67],
+	[db-term-67].term AS [ssyk-4-term-67]
+FROM TaxonomyDBVersion.dbo.LocaleGroup AS [db-67],
+	TaxonomyDBVersion.dbo.LocaleGroupTerm AS [db-term-67]
+WHERE [db-67].versionID = [db-term-67].versionID
+AND	[db-67].localeGroupID = [db-term-67].localeGroupID
+AND [db-67].versionID = 67
+AND [db-term-67].languageID = 502
+AND [db-67].localeFieldID NOT IN
+	(SELECT [db-68].localeFieldID AS [parent-id-occupation-field-68]
+	FROM TaxonomyDB.dbo.LocaleGroup AS [db-68])
+
+-- 0 new occupation-field-to-ssyk-relations
+-- :name get-new-occupation-field-relation-to-ssyk-4 :*
+-- :doc Get new relations between ssyk level 4 and occupation field ;
+SELECT [db-68].localeGroupID AS [ssyk-4-id-68],
+	[db-68].localeFieldID AS [parent-id-occupation-field-68],
+	[db-term-68].term AS [ssyk-4-term-68]
+FROM TaxonomyDB.dbo.LocaleGroup AS [db-68],
+	TaxonomyDB.dbo.LocaleGroupTerm AS [db-term-68]
+WHERE [db-68].localeGroupID = [db-term-68].localeGroupID
+AND [db-term-68].languageID = 502
+AND [db-68].localeFieldID NOT IN
+	(SELECT [db-67].localeFieldID AS [parent-id-occupation-field-67]
+	FROM TaxonomyDBVersion.dbo.LocaleGroup AS [db-67]
+	WHERE [db-67].versionID = 67)
+
 -- 4 updated occupation-field-to-ssyk-relations
 -- :name get-updated-occupation-field-relation-to-ssyk-4 :*
 -- :doc Get updated relations between ssyk level 4 and occupation field ;
@@ -679,10 +712,6 @@ AND [db-67].versionID = 67
 AND [db-term-67].languageID = 502
 AND [db-term-68].languageID = 502
 AND [db-67].localeFieldID != [db-68].localeFieldID
-
---TODO Is relation between occupation field and SSYK done? It feels like I've forgotten stuff to query.
-
-
 
 ---------------DRIVING LICENCE---(No differences between versions!!!)-------------------------------------
 
