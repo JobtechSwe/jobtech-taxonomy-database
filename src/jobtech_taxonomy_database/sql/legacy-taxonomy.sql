@@ -1247,12 +1247,10 @@ WHERE [db-68].languageID = 502)
 -- :name get-updated-skill :*
 -- :doc get updated skills where term/label differs between version 68 and version 67
 SELECT
-	Skill68.skillID AS id68,
-	Skill67.skillID AS id67,
-	SkillTerm68.term AS term68,
-	SkillTerm67.term AS term67,
-	Skill68.skillHeadlineID AS headline68,
-	Skill67.skillHeadlineID AS headline67
+	Skill68.skillID AS [skill-id-68],
+    Skill67.skillID AS [skill-id-67],
+    SkillTerm68.term AS [skill-term-68],
+    SkillTerm67.term AS [skill-term-67]
 FROM TaxonomyDBVersion.dbo.Skill AS Skill67,
 	TaxonomyDBVersion.dbo.SkillTerm AS SkillTerm67,
 	TaxonomyDB.dbo.Skill AS Skill68,
@@ -1264,9 +1262,45 @@ AND   Skill68.skillID = SkillTerm68.skillID
 AND   Skill68.skillID = Skill67.skillID
 AND   SkillTerm68.languageID = 502
 AND   SkillTerm67.languageID = 502
-AND   (SkillTerm68.skillID != SkillTerm67.skillID
-	OR SkillTerm68.term != SkillTerm67.term
-	OR Skill68.skillHeadlineID != Skill67.skillHeadlineID)
+AND   SkillTerm68.term != SkillTerm67.term
+
+-- 0 deprecated
+-- :name get-deprecated-skill-relation-to-headline :*
+-- :doc get deprecated relations between skills and headlines in version 68
+SELECT
+	Skill67.skillID AS [skill-id-67],
+	Skill67.skillHeadlineID AS [parent-headline-id-67]
+FROM TaxonomyDBVersion.dbo.Skill AS Skill67
+WHERE Skill67.versionID = 67
+AND Skill67.skillHeadlineID NOT IN
+	(SELECT Skill68.skillHeadlineID
+	FROM TaxonomyDB.dbo.Skill AS Skill68)
+
+-- 0 new
+-- :name get-new-skill-relation-to-headline :*
+-- :doc get new relations between skills and headlines in version 68
+SELECT
+	Skill68.skillID AS [skill-id-68],
+	Skill68.skillHeadlineID AS [parent-headline-id-68]
+FROM TaxonomyDB.dbo.Skill AS Skill68
+WHERE Skill68.skillHeadlineID NOT IN
+	(SELECT Skill67.skillHeadlineID
+	FROM TaxonomyDBVersion.dbo.Skill AS Skill67
+	WHERE Skill67.versionID = 67)
+
+-- 8 updated
+-- :name get-updated-skill-relation-to-headline :*
+-- :doc get updated relations between skills and headlines in version 68
+SELECT
+	Skill68.skillID AS [skill-id-68],
+	Skill67.skillID AS [skill-id-67],
+	Skill68.skillHeadlineID AS [parent-headline-id-68],
+	Skill67.skillHeadlineID AS [parent-headline-id-67]
+FROM TaxonomyDBVersion.dbo.Skill AS Skill67,
+	TaxonomyDB.dbo.Skill AS Skill68
+WHERE Skill67.versionID = 67
+AND   Skill67.skillID = Skill68.skillID
+AND   Skill68.skillHeadlineID != Skill67.skillHeadlineID
 
 -- :name get-replaced-skill :*
 -- :doc get skills that has been replaced by another skill

@@ -1,6 +1,6 @@
 (ns jobtech-taxonomy-database.converters.skills-converter-new-changes
   (:gen-class)
-  (:require [jobtech-taxonomy-database.legacy-migration :refer :all]
+  (:require [jobtech-taxonomy-database.legacy-migration :as lm]
             [jobtech-taxonomy-database.converters.converter-util :as u]
             [jobtech-taxonomy-database.types :as t]))
 
@@ -30,9 +30,23 @@
   {:pre [deprecated-id replacing-id]}
   (u/replace-concept deprecated-id replacing-id t/skill))
 
+(defn convert-update-skill-relations
+  [{:keys [skill-id-67
+           parent-headline-id-67
+           parent-headline-id-68]}]
+  (u/update-relation-by-legacy-ids-and-types
+    skill-id-67
+    t/skill
+    parent-headline-id-67
+    t/skill-headline
+    parent-headline-id-68
+    t/broader))
+
 (defn convert []
   (remove nil? (concat
-                (mapcat convert-new-skill (fetch-data get-new-skill))
-                (map convert-deprecated-skill (fetch-data get-deprecated-skill))
-                (mapcat convert-updated-skill (fetch-data get-updated-skill))
-                (map convert-replaced-skill (fetch-data get-replaced-skill)))))
+                (mapcat convert-new-skill (lm/fetch-data lm/get-new-skill))
+                (map convert-deprecated-skill (lm/fetch-data lm/get-deprecated-skill))
+                (mapcat convert-updated-skill (lm/fetch-data lm/get-updated-skill))
+                (map convert-replaced-skill (lm/fetch-data lm/get-replaced-skill))
+                (mapcat convert-update-skill-relations (lm/fetch-data lm/get-updated-skill-relation-to-headline))
+                )))
