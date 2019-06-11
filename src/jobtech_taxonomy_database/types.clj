@@ -2,11 +2,10 @@
   (:gen-class)
   (:require
    ;[camel-snake-kebab.core :as csk]
-   [clojure.spec.alpha :as s]
-   )
-  )
+   [clojure.spec.alpha :as s]))
 
 ;;concept-types
+
 
 (def continent "continent")
 (def country "country")
@@ -40,7 +39,6 @@
 ;; (def sun-education-level-3 "sun_education_level_3")
 (def wage-type "wage_type")
 (def worktime-extent "worktime_extent")
-
 
 (s/def ::concept-types #{continent
                          country
@@ -81,106 +79,40 @@
 
 (s/def ::relation-types #{broader narrower occupation-name-affinity ssyk-4-to-skill isco-4-to-skill related})
 
-
-
 (comment
   "This doesn't work anymore!"
   "I made this to create the code above from the response from jobtech taxonomy api get all types"
- "YOu have to manually change keyword to keyword-type"
+  "YOu have to manually change keyword to keyword-type"
 
-  (def dump [
-             [
-              "continent"
-              ],
-             [
-              "country"
-              ],
-             [
-              "driving-license"
-              ],
-             [
-              "employment-duration"
-              ],
-             [
-              "employment-type"
-              ],
-             [
-              "isco-level-4"
-              ],
-             [
-              "keyword"
-              ],
-             [
-              "language"
-              ],
-             [
-              "language-level"
-              ],
-             [
-              "municipality"
-              ],
-             [
-              "occupation-collection"
-              ],
-             [
-              "occupation-field"
-              ],
-             [
-              "occupation-group"
-              ],
-             [
-              "occupation-name"
-              ],
-             [
-              "region"
-              ],
-             [
-              "skill"
-              ],
-             [
-              "skill-headline"
-              ],
-             [
-              "skill-main-headline"
-              ],
-             [
-              "ssyk-level-1"
-              ],
-             [
-              "ssyk-level-2"
-              ],
-             [
-              "ssyk-level-3"
-              ],
-             [
-              "sun-education-field-1"
-              ],
-             [
-              "sun-education-field-2"
-              ],
-             [
-              "sun-education-field-3"
-              ],
-             [
-              "sun-education-level-1"
-              ],
-             [
-              "sun-education-level-2"
-              ],
-             [
-              "sun-education-level-3"
-              ],
-             [
-              "wage-type"
-              ],
-             [
-              "worktime-extent"
-              ]
-             ])
-
+  (def dump [["continent"],
+             ["country"],
+             ["driving-license"],
+             ["employment-duration"],
+             ["employment-type"],
+             ["isco-level-4"],
+             ["keyword"],
+             ["language"],
+             ["language-level"],
+             ["municipality"],
+             ["occupation-collection"],
+             ["occupation-field"],
+             ["occupation-group"],
+             ["occupation-name"],
+             ["region"],
+             ["skill"],
+             ["skill-headline"],
+             ["skill-main-headline"],
+             ["ssyk-level-1"],
+             ["ssyk-level-2"],
+             ["ssyk-level-3"],
+             ["sun-education-field-1"],
+             ["sun-education-field-2"],
+             ["sun-education-field-3"],
+             ["sun-education-level-1"],
+             ["sun-education-level-2"],
+             ["sun-education-level-3"],
+             ["wage-type"],
+             ["worktime-extent"]])
 
   (defn generate-def [type]
-    (println (str "(def "  (first type)  " \""  (csk/->snake_case_string (first type))   "\""      ")" ))
-    )
-
-  )
+    (println (str "(def "  (first type)  " \""  (csk/->snake_case_string (first type))   "\""      ")"))))

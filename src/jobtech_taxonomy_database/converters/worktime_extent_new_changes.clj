@@ -12,7 +12,6 @@
 (defn convert []
   "Run this function after the database has been loaded"
   (remove nil? (concat
-                 (mapcat convert-deprecated (lm/fetch-data lm/get-deprecated-worktime-extent))
-                 )))
+                (mapcat convert-deprecated (lm/fetch-data lm/get-deprecated-worktime-extent)))))
 
 (lm/fetch-data lm/get-worktime-extent)

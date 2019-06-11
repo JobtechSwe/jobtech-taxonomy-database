@@ -8,7 +8,6 @@
   (:require [jobtech-taxonomy-database.legacy-migration :as legacy-migration]
             [jobtech-taxonomy-database.converters.nano-id-assigner :as nano-id-assigner]))
 
-
 (defn ^:private make-tempid-concept
   "Create temporary ID for transaction purpose"
   [category id]
@@ -44,28 +43,28 @@
   (let [legacy-id (str (:id data))
         term (str (:term data))
         code (if (:code data) (str (:code data))
-                              nil)
+                 nil)
         nano-id (if (not= legacy-id nil) (nano-id-assigner/get-nano category legacy-id))
         temp-id (make-tempid-concept category legacy-id)
         temp-id-parent (if (not= (:parent-id data) nil)
                          (make-tempid-concept parent-category (:parent-id data)))
         converted-concept (convert-concept
-                            temp-id
-                            nano-id
-                            term
-                            category
-                            legacy-id
-                            code)
+                           temp-id
+                           nano-id
+                           term
+                           category
+                           legacy-id
+                           code)
         converted-term (convert-term
-                         temp-id
-                         term)
+                        temp-id
+                        term)
         converted-relation (when (not= category "sun-education-level-1")
                              (convert-relation
-                               temp-id-parent
-                               temp-id
-                               (str parent-category "-to-" category)))]
+                              temp-id-parent
+                              temp-id
+                              (str parent-category "-to-" category)))]
     (if converted-relation [converted-concept converted-term converted-relation]
-                           [converted-concept converted-term])))
+        [converted-concept converted-term])))
 
 (defn convert-level-1
   "Query db for SUN education level 1, convert each entity"

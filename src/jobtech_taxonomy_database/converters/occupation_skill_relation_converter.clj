@@ -24,6 +24,5 @@
   ""
   []
   (concat
-    (map convert-ssyk-4-skill (lm/fetch-data lm/get-ssyk-4-skill-relation))
-    (map convert-isco-4-skill (lm/fetch-data lm/get-isco-4-skill-relation))
-    ))
+   (map convert-ssyk-4-skill (lm/fetch-data lm/get-ssyk-4-skill-relation))
+   (map convert-isco-4-skill (lm/fetch-data lm/get-isco-4-skill-relation))))

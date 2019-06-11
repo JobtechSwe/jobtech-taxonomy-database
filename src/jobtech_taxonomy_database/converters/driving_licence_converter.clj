@@ -26,11 +26,11 @@
   [{:keys [term description drivinglicenceid drivinglicencecode displaysortorder]}]
   {:pre [term description drivinglicenceid drivinglicencecode displaysortorder]}
   (let
-    [concept (u/create-concept t/driving-licence term description drivinglicenceid)
-     concept-with-extras (assoc concept
-                           :concept.external-standard/driving-licence-code drivinglicencecode
-                           :concept.category/sort-order displaysortorder)
-     concept-term (u/create-term-from-concept concept-with-extras)]
+   [concept (u/create-concept t/driving-licence term description drivinglicenceid)
+    concept-with-extras (assoc concept
+                               :concept.external-standard/driving-licence-code drivinglicencecode
+                               :concept.category/sort-order displaysortorder)
+    concept-term (u/create-term-from-concept concept-with-extras)]
     [concept-with-extras concept-term]))
 
 (defn convert

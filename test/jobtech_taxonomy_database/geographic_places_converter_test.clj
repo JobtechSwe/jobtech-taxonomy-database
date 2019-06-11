@@ -9,46 +9,38 @@
   and actual output, and expect 'only-in-a' and 'only-in-b' to be
   nil."
   (let* [input '({:answer-with-nuts
-                  (
-                    {:continent-id             2,
-                     :continent-term           "Europa/EU/EES/EURES",
-                     :country-id               195,
-                     :country-term             "Förenade konungariket, Storbritannien och Nordirland",
-                     :region-eu-id             1634,
-                     :region-nuts-code-level-3 "UKN05",
-                     :region-eu-term           "West and South of Northern Ireland"}
-                    )},
-                  {:answer-no-country
-                   (
-                     {:continent-id             0,
-                      :continent-term           "Hela världen",
-                      :country-id               nil,
-                      :country-term             nil,
-                      :region-eu-id             nil,
-                      :region-nuts-code-level-3 nil,
-                      :region-eu-term           nil}
-                     )},
-                  {:answer-norway
-                   (
-                     {:continent-id             2,
-                      :continent-term           "Europa/EU/EES/EURES",
-                      :country-id               155,
-                      :country-term             "Norge",
-                      :region-eu-id             158,
-                      :region-nuts-code-level-3 nil,
-                      :region-eu-term           "Akershus"}
-                     )},
-                  {:answer-no-nuts
-                   (
-                     {:continent-id             14,
-                      :continent-term           "Västafrika",
-                      :country-id               134,
-                      :country-term             "Mauretanien",
-                      :region-eu-id             nil,
-                      :region-nuts-code-level-3 nil,
-                      :region-eu-term           nil}
-                     )}
-                  )
+                  ({:continent-id             2,
+                    :continent-term           "Europa/EU/EES/EURES",
+                    :country-id               195,
+                    :country-term             "Förenade konungariket, Storbritannien och Nordirland",
+                    :region-eu-id             1634,
+                    :region-nuts-code-level-3 "UKN05",
+                    :region-eu-term           "West and South of Northern Ireland"})},
+                 {:answer-no-country
+                  ({:continent-id             0,
+                    :continent-term           "Hela världen",
+                    :country-id               nil,
+                    :country-term             nil,
+                    :region-eu-id             nil,
+                    :region-nuts-code-level-3 nil,
+                    :region-eu-term           nil})},
+                 {:answer-norway
+                  ({:continent-id             2,
+                    :continent-term           "Europa/EU/EES/EURES",
+                    :country-id               155,
+                    :country-term             "Norge",
+                    :region-eu-id             158,
+                    :region-nuts-code-level-3 nil,
+                    :region-eu-term           "Akershus"})},
+                 {:answer-no-nuts
+                  ({:continent-id             14,
+                    :continent-term           "Västafrika",
+                    :country-id               134,
+                    :country-term             "Mauretanien",
+                    :region-eu-id             nil,
+                    :region-nuts-code-level-3 nil,
+                    :region-eu-term           nil})})
+
          expected-output '[#:concept{:id "0000000002", ;TODO change expected output!
                                      :description "hrpf",
                                      :preferred-term [:term/base-form "Datakunskaper"],
@@ -81,6 +73,6 @@
          output (converter input)
          diff   (diff expected-output output)]
 
-    (testing "geographic-places-converter"
-      (is (and (= (first diff) nil)
-               (= (second diff) nil))))))
+        (testing "geographic-places-converter"
+          (is (and (= (first diff) nil)
+                   (= (second diff) nil))))))
