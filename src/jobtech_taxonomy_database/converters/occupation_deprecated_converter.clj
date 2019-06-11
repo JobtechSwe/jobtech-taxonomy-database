@@ -40,8 +40,7 @@
       t/ssyk-level-4
       parent-id-ssyk-4-68
       t/broader))
-   (when (not=
-          parent-id-isco-4-67 parent-id-isco-4-68)
+   (when not=
      (u/update-relation-by-legacy-ids-and-types
       occupation-name-id-67
       t/occupation-name
@@ -79,10 +78,10 @@
   (remove empty?
           (concat
            (map convert-deprecated-occupation (lm/fetch-data lm/get-deprecated-occupation-name))
-           (map create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
-           (map update-occupation-name-relations (lm/fetch-data lm/get-updated-occupation-name-relation-to-parent))
+           (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
+           (mapcat update-occupation-name-relations (lm/fetch-data lm/get-updated-occupation-name-relation-to-parent))
            (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
-           (map update-occupation-name-preferred-label (lm/fetch-data lm/get-updated-occupation-name-term))
+           (mapcat update-occupation-name-preferred-label (lm/fetch-data lm/get-updated-occupation-name-term))
            (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
            (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
            )))
