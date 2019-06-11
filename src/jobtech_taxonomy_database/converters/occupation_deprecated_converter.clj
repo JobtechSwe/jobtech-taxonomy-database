@@ -86,4 +86,3 @@
            (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
            (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
            )))
-
