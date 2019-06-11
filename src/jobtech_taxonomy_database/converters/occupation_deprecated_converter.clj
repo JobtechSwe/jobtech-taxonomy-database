@@ -1,12 +1,6 @@
 (ns jobtech-taxonomy-database.converters.occupation-deprecated-converter
   (:gen-class)
-  (:require [datomic.client.api :as d]
-            [jobtech-taxonomy-database.schema :refer :all :as schema]
-            [jobtech-taxonomy-database.legacy-migration :refer :all]
-            [jobtech-taxonomy-database.config :refer :all]
-            [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
-            [jobtech-taxonomy-database.converters.nano-id-assigner :refer :all]
-            [cheshire.core :refer :all]
+  (:require [jobtech-taxonomy-database.legacy-migration :as lm]
             [jobtech-taxonomy-database.converters.converter-util :as u]
             [jobtech-taxonomy-database.types :as t]))
 
@@ -78,9 +72,6 @@
     [concept
      term]))
 
-;; get-new-occupation-collection-relations
-
-
 (defn convert-new-occupation-collection-relation
   [{:keys [collection-id occupation-name-id]}]
   {:pre [collection-id occupation-name-id]
@@ -93,23 +84,9 @@
   "Run this function after the database has been loaded"
   (remove empty?
           (concat
-           (map convert-deprecated-occupation (fetch-data get-deprecated-occupation-name))
-           (map create-new-occupation-name (fetch-data get-new-occupation-name))
-           (map update-occupation-name-relations (fetch-data get-updated-occupation-name-relation-to-parent))
-           (map convert-replaced-by-occuaption-name  (fetch-data get-replaced-occupation-name))
-           (mapcat convert-new-occupation-collection (fetch-data get-new-occupation-collection))
-           (map convert-new-occupation-collection-relation (fetch-data get-new-occupation-collection-relations)))))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+           (map convert-deprecated-occupation (lm/fetch-data lm/get-deprecated-occupation-name))
+           (map create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
+           (map update-occupation-name-relations (lm/fetch-data lm/get-updated-occupation-name-relation-to-parent))
+           (map convert-replaced-by-occuaption-name  (lm/fetch-data lm/get-replaced-occupation-name))
+           (mapcat convert-new-occupation-collection (lm/fetch-data lm/get-new-occupation-collection))
+           (map convert-new-occupation-collection-relation (lm/fetch-data lm/get-new-occupation-collection-relations)))))

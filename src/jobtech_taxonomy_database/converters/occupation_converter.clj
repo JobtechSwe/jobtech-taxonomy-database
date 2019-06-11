@@ -184,28 +184,7 @@
    (map convert-occupation-name-affinity (lm/fetch-data lm/get-occupation-name-affinity))
    (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
    (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
-  ;(mapcat convert-popular-synonym (lm/fetch-data lm/get-popular-synonym-occupation))
-  ;(map convert-popular-synonym-relation (lm/fetch-data lm/get-popular-synonym-occupation-relation))
-  ;(map convert-ssyk-4-isco-4-relation (remove #(= -2 (:ssyk-4-id %)  ) (lm/fetch-data lm/get-ssyk-4-isco-4-relation)))
-  ;(mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))
-   ))
-
-#_(defn convert
-    ""
-    []
-    (concat
-     (mapcat convert-occupation-field (fetch-data  get-occupation-field))
-     (mapcat convert-ssyk-level-4 (fetch-data get-occupation-group-ssyk))
-     (mapcat convert-ssyk-level-3 (fetch-data get-ssyk-level-3))
-     (mapcat convert-ssyk-level-2 (fetch-data get-ssyk-level-2))
-     (mapcat convert-ssyk-level-1 (fetch-data get-ssyk-level-1))
-     (mapcat convert-occupation-name (fetch-data get-occupation-name))
-     (mapcat convert-isco-level-4 (fetch-data get-isco-level-4))
-     (mapcat convert-isco-level-1 (fetch-data get-isco-level-1))
-     (map convert-occupation-name-affinity (fetch-data get-occupation-name-affinity))
-     (mapcat convert-occupation-collection (fetch-data get-occupation-collection))
-     (map convert-occupation-collection-relation (fetch-data get-occupation-collection-relations))
-     (mapcat convert-popular-synonym (fetch-data get-popular-synonym))
-     (map convert-popular-synonym-occupation-name-relation (fetch-data get-occupation-name-synonym))
-     (map convert-occupation-group-isco-relation  (remove #(= -2 (:localegroupid %))  (fetch-data get-occupation-group-isco-level-4-relation)))
-     (mapcat convert-occupation-name-replacement (fetch-data get-occupation-names-reference))))
+   (mapcat convert-popular-synonym (lm/fetch-data lm/get-popular-synonym-occupation))
+   (map convert-popular-synonym-relation (lm/fetch-data lm/get-popular-synonym-occupation-relation))
+   (map convert-ssyk-4-isco-4-relation (remove #(= -1 (:ssyk-4-id %)) (remove #(= -2 (:ssyk-4-id %)) (lm/fetch-data lm/get-ssyk-4-isco-4-relation))))
+   (mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))))

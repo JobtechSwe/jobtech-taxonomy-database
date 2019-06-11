@@ -169,7 +169,7 @@
                                                new-related-legacy-id
                                                relation-type]
   "This function will find the relation and retract it.
-And create a new relation with the same relation-type to the new enity.
+And create a new relation with the same relation-type to the new entity.
 The new entity has to exist in the database."
 
   (let [[relation-entity-id concept-entity-id] (get-relation-by-legacy-ids-and-types
@@ -178,7 +178,6 @@ The new entity has to exist in the database."
                                                 type
                                                 old-related-type
                                                 relation-type)
-
         new-related-concept-entity-id (get-entity-id-by-legacy-id
                                        new-related-legacy-id
                                        old-related-type)]

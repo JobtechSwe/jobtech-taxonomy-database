@@ -14,7 +14,6 @@
 
 ;; "jobtech-taxonomy-henrik-dev" ;; "jobtech-taxonomy-development"  ;; "jobtech-taxonomy-production"
 
-
 (def datomic-config
   {:datomic-name "jobtech-taxonomy-henrik-dev"
    :datomic-cfg {:server-type :ion
@@ -23,7 +22,7 @@
                  ;;:creds-profile "<your_aws_profile_if_not_using_the_default>"
                  :endpoint "http://entry.prod-jobtech-taxonomy-db.eu-west-1.datomic.net:8182/"
                  :proxy-port 8182
-                 :timeout 6000000}})
+                 :timeout 600000000}})
 
 (def ^:private legacydb-config
   {:subprotocol "mssql"
