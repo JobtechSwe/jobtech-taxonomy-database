@@ -110,22 +110,6 @@
         relation-with-affinity-percentage (assoc relation :relation/affinity-percentage percentage)]
     relation-with-affinity-percentage))
 
-(defn convert-occupation-collection
-  [{:keys [collection-id collection-name]}]
-  {:pre [collection-id collection-name]}
-  (let [concept (u/create-concept t/occupation-collection collection-name collection-name collection-id)
-        concept-term (u/create-term-from-concept concept)]
-    [concept
-     concept-term]))
-
-(defn convert-occupation-collection-relation
-  [{:keys [collection-id collection-name occupation-name-id]}]
-  {:pre [collection-id collection-name occupation-name-id]}
-  (let [temp-id-occupation-name (u/create-temp-id t/occupation-name occupation-name-id)
-        temp-id-collection (u/create-temp-id t/occupation-collection collection-id)
-        relation (u/create-relation temp-id-occupation-name temp-id-collection t/related)]
-    relation))
-
 (defn convert-popular-synonym
   [{:keys [synonym-id synonym-term]}]
   {:pre [synonym-id synonym-term]}

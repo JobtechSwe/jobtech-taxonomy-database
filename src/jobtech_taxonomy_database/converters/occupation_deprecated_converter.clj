@@ -57,26 +57,22 @@
 
 ;; TODO below is broken after Henrik's utils fix ;;  du är här
 
-
-(defn convert-new-occupation-collection
+(defn convert-occupation-collection
   [{:keys [collection-id collection-name]}]
   {:pre [collection-id collection-name]}
-
-  (let [concept (u/create-concept t/occupation-collection
-                                  collection-name
-                                  collection-name
-                                  collection-id)
-        term (u/create-term-from-concept concept)]
+  (let [concept (u/create-concept t/occupation-collection collection-name collection-name collection-id)
+        concept-term (u/create-term-from-concept concept)]
     [concept
-     term]))
+     concept-term]))
 
-(defn convert-new-occupation-collection-relation
-  [{:keys [collection-id occupation-name-id]}]
-  {:pre [collection-id occupation-name-id]
+(defn convert-occupation-collection-relation
+  [{:keys [collection-id collection-name occupation-name-id]}]
+  {:pre [collection-id collection-name occupation-name-id]
    :post [(:relation/concept-1 %) (:relation/concept-2 %) (:relation/type %)]}
-  (let [concept-entity-id-1 (u/get-entity-if-exists-or-temp-id collection-id t/occupation-collection)
-        concept-entity-id-2 (u/get-entity-if-exists-or-temp-id occupation-name-id t/occupation-name)]
-    (u/create-relation concept-entity-id-1 concept-entity-id-2 t/related)))
+  (let [entity-id-occupation-name (u/get-entity-if-exists-or-temp-id occupation-name-id t/occupation-name)
+        temp-id-collection (u/create-temp-id t/occupation-collection collection-id)
+        relation (u/create-relation entity-id-occupation-name temp-id-collection t/related)]
+    relation))
 
 (defn convert []
   "Run this function after the database has been loaded"
@@ -85,10 +81,9 @@
            (map convert-deprecated-occupation (lm/fetch-data lm/get-deprecated-occupation-name))
            (map create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
            (map update-occupation-name-relations (lm/fetch-data lm/get-updated-occupation-name-relation-to-parent))
-           (map convert-replaced-by-occupation-name  (lm/fetch-data lm/get-replaced-occupation-name))
-           (mapcat convert-new-occupation-collection (lm/fetch-data lm/get-new-occupation-collection))
-           (map convert-new-occupation-collection-relation (lm/fetch-data lm/get-new-occupation-collection-relations)))))
            (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
            (map update-occupation-name-preferred-label (lm/fetch-data lm/get-updated-occupation-name-term))
+           (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
+           (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
            )))
 
