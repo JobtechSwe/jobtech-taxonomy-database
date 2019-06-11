@@ -20,16 +20,17 @@
                   (when entity-id-parent-ssyk (u/create-broader-relation-to-concept concept entity-id-parent-ssyk)) ;; sometimes ssyk is -1 and becomes nil
                   (u/create-broader-relation-to-concept concept entity-id-parent-isco)])))
 
-(defn update-occupation-name-preferred-label [{:keys [occupation-name-id-67 term-68]}]
+(defn update-occupation-name [{:keys [occupation-name-id-67 term-68]}]
   {:pre [occupation-name-id-67 term-68]}
   (let [entity-id (u/get-entity-id-by-legacy-id occupation-name-id-67 t/occupation-name)]
     (u/update-concept entity-id {:new-term term-68})))
 
-(defn update-occupation-name-relations [{:keys [occupation-name-id-67
-                                                parent-id-ssyk-4-67
-                                                parent-id-ssyk-4-68
-                                                parent-id-isco-4-67
-                                                parent-id-isco-4-68]}]
+(defn update-occupation-name-relations
+  [{:keys [occupation-name-id-67
+      parent-id-ssyk-4-67
+      parent-id-ssyk-4-68
+      parent-id-isco-4-67
+      parent-id-isco-4-68]}]
   (concat
    (when (not=
           parent-id-ssyk-4-67 parent-id-ssyk-4-68)
@@ -40,7 +41,8 @@
       t/ssyk-level-4
       parent-id-ssyk-4-68
       t/broader))
-   (when not=
+   (when (not=
+          parent-id-isco-4-67 parent-id-isco-4-68)
      (u/update-relation-by-legacy-ids-and-types
       occupation-name-id-67
       t/occupation-name
@@ -73,6 +75,37 @@
         relation (u/create-relation entity-id-occupation-name temp-id-collection t/related)]
     relation))
 
+(defn update-occupation-field
+  [{:keys [occupation-field-id-67
+           occupation-field-term-67
+           occupation-field-term-68
+           occupation-field-description-67
+           occupation-field-description-68]}]
+  {:pre [occupation-field-id-67
+         occupation-field-term-67
+         occupation-field-term-68
+         occupation-field-description-67
+         occupation-field-description-68]}
+  (let [entity-id (u/get-entity-id-by-legacy-id occupation-field-id-67 t/occupation-field)
+        attribute-map (merge
+                        (when (not= occupation-field-term-67 occupation-field-term-68)
+                          {:new-term occupation-field-term-68})
+                        (when (not= occupation-field-description-67 occupation-field-description-68)
+                          {:description occupation-field-description-68}))]
+    (u/update-concept entity-id attribute-map)))
+
+(defn update-occupation-field-relations
+  [{:keys [ssyk-4-id-67
+           parent-id-occupation-field-67
+           parent-id-occupation-field-68]}]
+    (u/update-relation-by-legacy-ids-and-types
+      ssyk-4-id-67
+      t/ssyk-level-4
+      parent-id-occupation-field-67
+      t/occupation-field
+      parent-id-occupation-field-68
+      t/broader))
+
 (defn convert []
   "Run this function after the database has been loaded"
   (remove empty?
@@ -81,7 +114,9 @@
            (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
            (mapcat update-occupation-name-relations (lm/fetch-data lm/get-updated-occupation-name-relation-to-parent))
            (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
-           (mapcat update-occupation-name-preferred-label (lm/fetch-data lm/get-updated-occupation-name-term))
+           (mapcat update-occupation-name (lm/fetch-data lm/get-updated-occupation-name-term))
            (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
            (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
+           (mapcat update-occupation-field (lm/fetch-data lm/get-updated-occupation-field))
+           (mapcat update-occupation-field-relations (lm/fetch-data lm/get-updated-occupation-field-relation-to-ssyk-4))
            )))
