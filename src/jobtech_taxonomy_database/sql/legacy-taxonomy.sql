@@ -1310,10 +1310,22 @@ AND   (SkillTerm68.skillID != SkillTerm67.skillID
 
 -- :name get-replaced-skill :*
 -- :doc get skills that has been replaced by another skill
-SELECT skillID AS [deprecated-id],
-	term AS [deprecated-term],
-	skillIDRef AS [replacing-id]
-FROM TaxonomyDB.dbo.SkillReference;
+SELECT
+        skillID AS [deprecated-id],
+        term AS [deprecated-term],
+        skillIDRef AS [replacing-id]
+FROM TaxonomyDB.dbo.SkillReference
+WHERE modificationDate > (
+      SELECT created
+      FROM TaxonomyDBVersion.dbo.Version
+      WHERE versionID = 67
+)
+AND
+skillID IN (
+        SELECT skillID FROM TaxonomyDBVersion.dbo.Skill
+        WHERE versionID = 67
+)
+
 
 ------------------------------------------- SKILL-HEADLINE-----------------------------------------------------
 -- TODO Check if this is still true with latest db dump

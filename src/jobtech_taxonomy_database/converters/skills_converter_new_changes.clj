@@ -22,16 +22,15 @@
   {:pre [id-67]}()
   (u/deprecate-concept t/skill id-67))
 
-(defn convert-updated-skill [{:keys [skillid term]}]
-  (let [entity-id (u/get-entity-id-by-legacy-id skillid t/skill)]
-    (u/update-preferred-term entity-id term term)))
+(defn convert-updated-skill [{:keys [id67 term68]}]
+  {:pre [id67 term68]}
+  (let [entity-id (u/get-entity-id-by-legacy-id id67 t/skill)]
+    (u/update-preferred-term entity-id term68 term68)))
 
-(defn convert-replaced-skill [{:keys [skillid skillidref]}]
-  (let [entity-id-old-skill (u/get-entity-id-by-legacy-id skillid t/skill)
-        entity-id-new-skill (u/get-entity-id-by-legacy-id skillidref t/skill)]
-    (when (and entity-id-old-skill entity-id-new-skill)
-      {:db/id entity-id-old-skill
-       :concept/replaced-by entity-id-new-skill})))
+(defn convert-replaced-skill [ {:keys [deprecated-id replacing-id]}]
+  {:pre [deprecated-id replacing-id]}
+  (u/replace-concept deprecated-id replacing-id t/skill)
+  )
 
 (defn convert []
   (remove nil? (concat
