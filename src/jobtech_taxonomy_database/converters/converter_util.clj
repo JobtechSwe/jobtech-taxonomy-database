@@ -139,14 +139,6 @@
     [concept-with-extras (if (contains? attr-map :new-term) {:db/id temp-id
                                                              :term/base-form (:new-term attr-map)})]))
 
-(defn update-preferred-term [entity-id new-preferred-term description]
-  (let [temp-id (str (gensym))]
-    [(create-term temp-id new-preferred-term)
-     {:db/id entity-id
-      :concept/description description
-      :concept/preferred-term temp-id
-      :concept/preferred-label new-preferred-term}]))
-
 (def get-relation-by-legacy-ids-and-types-query
   '[:find ?r ?c1
     :in $ ?legacy-id-1 ?legacy-id-2 ?type-1 ?type-2 ?relation-type
@@ -186,14 +178,13 @@ The new entity has to exist in the database."
       :relation/type relation-type}]))
 
 (defn replace-concept [replaced-legacy-id replacing-legacy-id type]
-  (let [old-concept  (get-entity-id-by-legacy-id replaced-legacy-id type)
+  (let [old-concept (get-entity-id-by-legacy-id replaced-legacy-id type)
         replaced-by-concept-id (get-entity-if-exists-or-temp-id replacing-legacy-id type)]
     {:db/id old-concept
      :concept/replaced-by replaced-by-concept-id}))
 
 (comment
   "Some debugging helper functions"
-
   (def get-a-relation
     '[:find (pull ?r [*])
       :in $ relation-type

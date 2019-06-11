@@ -25,8 +25,8 @@
 
 (defn update-occupation-name-preferred-label [{:keys [occupation-name-id-67 term-68]}]
   {:pre [occupation-name-id-67 term-68]}
-  (let [entity-id  (u/get-entity-id-by-legacy-id occupation-name-id-67 t/occupation-name)]
-    (u/update-preferred-term entity-id term-68 term-68)))
+  (let [entity-id (u/get-entity-id-by-legacy-id occupation-name-id-67 t/occupation-name)]
+    (u/update-concept entity-id {:new-term term-68})))
 
 (defn update-occupation-name-relations [{:keys [occupation-name-id-67
                                                 parent-id-ssyk-4-67
@@ -89,6 +89,7 @@
            (map create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
            (map update-occupation-name-relations (lm/fetch-data lm/get-updated-occupation-name-relation-to-parent))
            (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
+           (map update-occupation-name-preferred-label (lm/fetch-data lm/get-updated-occupation-name-term))
            ;(mapcat convert-new-occupation-collection (lm/fetch-data lm/get-new-occupation-collection))
            ;(map convert-new-occupation-collection-relation (lm/fetch-data lm/get-new-occupation-collection-relations))
            )))

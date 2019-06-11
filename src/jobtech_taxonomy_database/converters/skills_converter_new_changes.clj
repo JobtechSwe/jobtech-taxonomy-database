@@ -23,7 +23,7 @@
 
 (defn convert-updated-skill [{:keys [skillid term]}]
   (let [entity-id (u/get-entity-id-by-legacy-id skillid t/skill)]
-    (u/update-preferred-term entity-id term term)))
+    (u/update-concept entity-id {:new-term term})))
 
 (defn convert-replaced-skill [{:keys [skillid skillidref]}]
   (let [entity-id-old-skill (u/get-entity-id-by-legacy-id skillid t/skill)
