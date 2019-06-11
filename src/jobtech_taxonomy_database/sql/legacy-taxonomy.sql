@@ -312,23 +312,6 @@ WHERE [db-rate].versionID = [db-occupation-name].versionID
 AND [db-rate].affinityRateID = [db-occupation-name].affinityRateID
 AND [db-occupation-name].versionID = 67
 
--- :name get-occupation-collections :*
--- :doc get occupation collection ;
-SELECT collectionID AS [collection-id], name AS [collection-name]
-FROM TaxonomyDBVersion.dbo.OccupationCollection
-WHERE versionID = 67
-
--- :name get-occupation-collection-relations :*
--- :doc get relations between occupation collections and occupations ;
-SELECT [collection-relations].collectionID AS [collection-id],
-	[collection-relations].occupationNameID AS [occupation-name-id],
-	[db-collections].name AS [collection-name]
-FROM TaxonomyDBVersion.dbo.CollectionOccupation AS [collection-relations],
-	TaxonomyDBVersion.dbo.OccupationCollection AS [db-collections]
-WHERE [collection-relations].versionID = 67
-AND [db-collections].versionID = 67
-AND [db-collections].collectionID = [collection-relations].collectionID
-
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-replaced-occupation-names-reference :*
@@ -500,7 +483,7 @@ AND NaceLevel2.versionID = 67
 ----------------------------------------------------------- OCCUPATION NAME ----------------------------
 
 -- 67 deprecated concepts
---TODO What to do with the relation concepts pointing to deprecated concept?
+--TODO What to do with the relation concepts pointing to deprecated concept? Answer:
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
 SELECT [db-67].occupationNameID AS [occupation-name-id],
@@ -601,76 +584,24 @@ SELECT occupationNameID AS [replaced-id],
 FROM TaxonomyDB.dbo.OccupationNameReference
 WHERE countryID = 199
 
--- 0 deprecated collections
--- :name get-deprecated-occupation-collection :*
--- :doc get deprecated yrkessamlingar
-SELECT collectionID AS [collection-id], name AS [collection-name]
-FROM TaxonomyDBVersion.dbo.OccupationCollection
-WHERE versionID = 67
-AND collectionID NOT IN
-(SELECT db68.collectionID
-FROM TaxonomyDB.dbo.OccupationCollection AS db68)
-
---TODO DON'T USE THIS ONE! Maybe..?
--- 44 new collections
--- :name get-new-occupation-collection :*
--- :doc get new yrkessamlingar, excluding nya kopplingar mellan ssyk4 och occupation name
+-- COLLECTIONS! (Obs! There are no collections migrated from 67 - these are the only migration scripts for collections)
+-- :name get-occupation-collections :*
+-- :doc get occupation collection ;
 SELECT collectionID AS [collection-id], name AS [collection-name]
 FROM TaxonomyDB.dbo.OccupationCollection
-WHERE collectionID NOT IN
-(SELECT db67.collectionID
-FROM TaxonomyDBVersion.dbo.OccupationCollection AS db67
-WHERE db67.versionID = 67)
-AND collectionID < 7
+WHERE collectionID = 5
+OR collectionID = 6
 
--- 0 updated collections
--- :name get-updated-occupation-collection :*
--- :doc get yrkessamlingar with different term in version 68
-SELECT db68.collectionID AS [collection-id-68],
-	db68.name AS [collection-name-68],
-	db67.collectionID AS [collection-id-67],
-	db67.name AS [collection-name-67]
-FROM TaxonomyDB.dbo.OccupationCollection AS db68, TaxonomyDBVersion.dbo.OccupationCollection AS db67
-WHERE db67.versionID = 67
-AND db68.collectionID = db67.collectionID
-AND db68.name != db67.name
-
--- 21 deprecated collection-occupation-relations
--- :name get-deprecated-occupation-collection-relations :*
--- :doc get deprecated relations in yrkessamlingar
-SELECT [collection-relations].collectionID AS [collection-id],
-	[collection-relations].occupationNameID AS [occupation-name-id],
-	[db-collections].name AS [collection-name]
-FROM TaxonomyDBVersion.dbo.CollectionOccupation AS [collection-relations],
-	TaxonomyDBVersion.dbo.OccupationCollection AS [db-collections]
-WHERE [collection-relations].versionID = 67
-AND [db-collections].versionID = 67
-AND [db-collections].collectionID = [collection-relations].collectionID
-AND [collection-relations].occupationNameID NOT IN
-	(SELECT CollectionOccupation.occupationNameID
-	FROM TaxonomyDB.dbo.CollectionOccupation CollectionOccupation)
-
--- 9 new collection-occupation-relations
--- :name get-new-occupation-collection-relations :*
--- :doc get new occupation collection relations
+-- :name get-occupation-collection-relations :*
+-- :doc get relations between occupation collections and occupations ;
 SELECT [collection-relations].collectionID AS [collection-id],
 	[collection-relations].occupationNameID AS [occupation-name-id],
 	[db-collections].name AS [collection-name]
 FROM TaxonomyDB.dbo.CollectionOccupation AS [collection-relations],
 	TaxonomyDB.dbo.OccupationCollection AS [db-collections]
-WHERE [db-collections].collectionID = [collection-relations].collectionID
-AND [db-collections].collectionID IN
-	(SELECT dbRelation67.collectionID
-	FROM TaxonomyDBVersion.dbo.CollectionOccupation AS dbRelation67
-	WHERE dbRelation67.versionID = 67
-	AND dbRelation67.versionID = 67)
-AND [collection-relations].occupationNameID NOT IN
-	(SELECT dbRelation67.occupationNameID
-	FROM TaxonomyDBVersion.dbo.CollectionOccupation AS dbRelation67
-	WHERE dbRelation67.versionID = 67
-	AND dbRelation67.versionID = 67)
-
--- Det finns ingen "updated-collection-relation" eftersom det är samma sak som new och deprecated
+WHERE ([db-collections].collectionID = 5
+	OR [db-collections].collectionID = 6)
+AND [db-collections].collectionID = [collection-relations].collectionID
 
 -- 0 deprecated occupation fields
 -- :name get-deprecated-occupation-field :*
