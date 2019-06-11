@@ -24,7 +24,7 @@
 (defn convert-updated-skill [{:keys [id67 term68]}]
   {:pre [id67 term68]}
   (let [entity-id (u/get-entity-id-by-legacy-id id67 t/skill)]
-    (u/update-preferred-term entity-id term68 term68)))
+    (u/update-concept entity-id {:new-term term})))
 
 (defn convert-replaced-skill [{:keys [deprecated-id replacing-id]}]
   {:pre [deprecated-id replacing-id]}
