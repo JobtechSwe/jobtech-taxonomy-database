@@ -482,8 +482,7 @@ AND NaceLevel2.versionID = 67
 
 ----------------------------------------------------------- OCCUPATION NAME ----------------------------
 
--- 67 deprecated concepts
---TODO What to do with the relation concepts pointing to deprecated concept?
+-- 67 deprecated concepts (June 12)
 -- :name get-deprecated-occupation-name :*
 -- :doc get occupation names that have been deprecated after version 67  ;
 SELECT [db-67].occupationNameID AS [occupation-name-id],
@@ -500,7 +499,7 @@ AND [db-67-term].occupationNameID NOT IN
 	(SELECT [db-68].occupationNameID
 	FROM TaxonomyDB.dbo.OccupationName AS [db-68])
 
--- 129 new concepts
+-- 129 new concepts (June 12)
 -- :name get-new-occupation-name :*
 -- :doc get occupation names that has been added in version 68 ;
 SELECT db68.occupationNameID AS [occupation-name-id],
@@ -517,7 +516,7 @@ AND db68.occupationNameID NOT IN
 FROM TaxonomyDBVersion.dbo.OccupationName AS db67
 WHERE db67.versionID = 67)
 
--- 90 updated concept terms
+-- 90 updated concept terms (June 12)
 -- :name get-updated-occupation-name-term :*
 -- :doc get occupation names that changed term in version 68;
 SELECT db68.occupationNameID AS [occupation-name-id-68],
@@ -545,37 +544,75 @@ AND db67.versionID = 67
 AND db67term.versionID = 67
 AND db68term.term != db67term.term
 
--- 18 updated relations
--- :name get-updated-occupation-name-relation-to-parent :*
--- :doc get occupation names that changed relation to a broader type in version 68;
-SELECT db68.occupationNameID AS [occupation-name-id-68],
+-- 84 relations (June 12)
+-- :name get-deprecated-occupation-name-relation-to-parent-isco :*
+SELECT
 	db67.occupationNameID AS [occupation-name-id-67],
-	db68term.term AS [term-68],
 	db67term.term AS [term-67],
-	db68.occupationGroupID AS [parent-id-isco-4-68],
-	db67.occupationGroupID AS [parent-id-isco-4-67],
-	db68.localeGroupID AS [parent-id-ssyk-4-68],
-	db67.localeGroupID AS [parent-id-ssyk-4-67]
-FROM TaxonomyDB.dbo.OccupationName AS db68,
-	TaxonomyDB.dbo.OccupationNameTerm AS db68term,
-	TaxonomyDBVersion.dbo.OccupationName AS db67,
+	db67.occupationGroupID AS [parent-id-isco-4-67]
+FROM TaxonomyDBVersion.dbo.OccupationName AS db67,
 	TaxonomyDBVersion.dbo.OccupationNameTerm AS db67term
-WHERE db68.occupationNameID = db68term.occupationNameID
-AND db68term.occupationNameID = db67term.occupationNameID
-AND db67term.occupationNameID = db67.occupationNameID
-AND db68term.languageID = 502
-AND db67term.languageID = 502
-AND db68.countryID = 199
-AND db67.countryID = 199
-AND db68term.countryID =199
-AND db67term.countryID =199
-AND db67.versionID = 67
+WHERE db67.versionID = 67
 AND db67term.versionID = 67
-AND (db68.occupationGroupID != db67.occupationGroupID
-OR db68.localeGroupID != db67.localeGroupID)
+AND db67.occupationNameID = db67term.occupationNameID
+AND NOT EXISTS
+(SELECT occupationGroupID, occupationNameID
+	FROM TaxonomyDB.dbo.OccupationName
+	WHERE occupationGroupID = db67.occupationGroupID
+	AND occupationNameID = db67.occupationNameID)
 
--- 157 replaced concepts
--- TODO I guess the migration has to be done in a certain order so replacements happen after deprecations? Or the other way?
+-- 146 relations (June 12)
+-- :name get-new-occupation-name-relation-to-parent-isco :*
+SELECT
+	db68.occupationNameID AS [occupation-name-id-68],
+	db68term.term AS [term-68],
+	db68.occupationGroupID AS [parent-id-isco-4-68]
+FROM TaxonomyDB.dbo.OccupationName AS db68,
+	TaxonomyDB.dbo.OccupationNameTerm AS db68term
+WHERE db68.occupationNameID = db68term.occupationNameID
+AND db68term.languageID = 502
+AND NOT EXISTS
+(SELECT occupationGroupID, occupationNameID
+	FROM TaxonomyDBVersion.dbo.OccupationName
+	WHERE occupationGroupID = db68.occupationGroupID
+	AND occupationNameID = db68.occupationNameID
+	AND versionID = 67)
+
+-- 84 relations (June 12)
+-- :name get-deprecated-occupation-name-relation-to-parent-ssyk :*
+SELECT
+	db67.occupationNameID AS [occupation-name-id-67],
+	db67term.term AS [term-67],
+	db67.localeGroupID AS [parent-id-ssyk-4-67]
+FROM TaxonomyDBVersion.dbo.OccupationName AS db67,
+	TaxonomyDBVersion.dbo.OccupationNameTerm AS db67term
+WHERE db67.versionID = 67
+AND db67term.versionID = 67
+AND db67.occupationNameID = db67term.occupationNameID
+AND NOT EXISTS
+(SELECT localeGroupID, occupationNameID
+	FROM TaxonomyDB.dbo.OccupationName
+	WHERE localeGroupID = db67.localeGroupID
+	AND occupationNameID = db67.occupationNameID)
+
+-- 146 relations (June 12)
+-- :name get-new-occupation-name-relation-to-parent-ssyk :*
+SELECT
+	db68.occupationNameID AS [occupation-name-id-68],
+	db68term.term AS [term-68],
+	db68.localeGroupID AS [parent-id-ssyk-4-68]
+FROM TaxonomyDB.dbo.OccupationName AS db68,
+	TaxonomyDB.dbo.OccupationNameTerm AS db68term
+WHERE db68.occupationNameID = db68term.occupationNameID
+AND db68term.languageID = 502
+AND NOT EXISTS
+(SELECT localeGroupID, occupationNameID
+	FROM TaxonomyDBVersion.dbo.OccupationName
+	WHERE localeGroupID = db68.localeGroupID
+	AND occupationNameID = db68.occupationNameID
+	AND versionID = 67)
+
+-- 157 replaced concepts (June 12)
 -- :name get-replaced-occupation-name :*
 -- :doc get replaced occupation names in version 68;
 SELECT occupationNameID AS [replaced-id],
@@ -584,7 +621,9 @@ SELECT occupationNameID AS [replaced-id],
 FROM TaxonomyDB.dbo.OccupationNameReference
 WHERE countryID = 199
 
--- COLLECTIONS! (Obs! There are no collections migrated from 67 - these are the only migration scripts for collections)
+----------------------------------- COLLECTIONS! ------------------------------------------
+-- 2 (June 12)
+-- (Obs! There are no collections migrated from 67 - these are the only migration scripts for collections)
 -- :name get-occupation-collections :*
 -- :doc get occupation collection ;
 SELECT collectionID AS [collection-id], name AS [collection-name]
@@ -592,6 +631,7 @@ FROM TaxonomyDB.dbo.OccupationCollection
 WHERE collectionID = 5
 OR collectionID = 6
 
+-- 466 (June 12)
 -- :name get-occupation-collection-relations :*
 -- :doc get relations between occupation collections and occupations ;
 SELECT [collection-relations].collectionID AS [collection-id],
@@ -605,7 +645,7 @@ AND [db-collections].collectionID = [collection-relations].collectionID
 
 ------------------------------- OCCUPATION FIELDS --------------------------------------------------------------
 
--- 0 deprecated occupation fields
+-- 0 deprecated occupation fields (June 12)
 -- :name get-deprecated-occupation-field :*
 -- :doc Get deprecated occupation field in version 68 ;
 SELECT [db-67].localeFieldID AS [occupation-field-id-67],
@@ -621,7 +661,7 @@ AND [db-67].localeFieldID NOT IN
 (SELECT LocaleField.localeFieldID
 FROM TaxonomyDB.dbo.LocaleField)
 
--- 0 new occupation fields
+-- 0 new occupation fields (June 12)
 -- :name get-new-occupation-field :*
 -- :doc Get new occupation field in version 68 ;
 SELECT [db-68].localeFieldID AS [occupation-field-id-68],
@@ -635,7 +675,7 @@ AND [db-68].localeFieldID NOT IN
 FROM TaxonomyDBVersion.dbo.LocaleField
 WHERE LocaleField.versionID = 67)
 
--- 21 updated occupation fields
+-- 21 updated occupation fields (June 12)
 -- :name get-updated-occupation-field :*
 -- :doc Get updated occupation field in version 68 ;
 SELECT [db-68].localeFieldID AS [occupation-field-id-68],
@@ -660,7 +700,7 @@ AND [db-term-68].languageID = 502
 AND ([db-term-68].term != [db-term-67].term
 OR [db-term-68].description NOT LIKE [db-term-67].description)
 
--- 0 deprecated occupation-field-to-ssyk-relations
+-- 0 deprecated occupation-field-to-ssyk-relations (June 12)
 -- :name get-deprecated-occupation-field-relation-to-ssyk-4 :*
 -- :doc Get deprecated relations between ssyk level 4 and occupation field ;
 SELECT [db-67].localeGroupID AS [ssyk-4-id-67],
@@ -676,7 +716,7 @@ AND [db-67].localeFieldID NOT IN
 	(SELECT [db-68].localeFieldID AS [parent-id-occupation-field-68]
 	FROM TaxonomyDB.dbo.LocaleGroup AS [db-68])
 
--- 0 new occupation-field-to-ssyk-relations
+-- 4 new (June 12)
 -- :name get-new-occupation-field-relation-to-ssyk-4 :*
 -- :doc Get new relations between ssyk level 4 and occupation field ;
 SELECT [db-68].localeGroupID AS [ssyk-4-id-68],
@@ -686,35 +726,191 @@ FROM TaxonomyDB.dbo.LocaleGroup AS [db-68],
 	TaxonomyDB.dbo.LocaleGroupTerm AS [db-term-68]
 WHERE [db-68].localeGroupID = [db-term-68].localeGroupID
 AND [db-term-68].languageID = 502
-AND [db-68].localeFieldID NOT IN
-	(SELECT [db-67].localeFieldID AS [parent-id-occupation-field-67]
+AND NOT EXISTS
+	(SELECT [db-67].localeGroupID, [db-67].localeFieldID
 	FROM TaxonomyDBVersion.dbo.LocaleGroup AS [db-67]
-	WHERE [db-67].versionID = 67)
+	WHERE [db-67].localeGroupID = [db-68].localeGroupID
+	AND [db-67].localeFieldID = [db-68].localeFieldID
+	AND [db-67].versionID = 67)
 
--- 4 updated occupation-field-to-ssyk-relations
--- :name get-updated-occupation-field-relation-to-ssyk-4 :*
--- :doc Get updated relations between ssyk level 4 and occupation field ;
+-- 4 deprecated (June 12)
+-- :name get-deprecated-occupation-field-relation-to-ssyk-4 :*
 SELECT [db-67].localeGroupID AS [ssyk-4-id-67],
-	[db-68].localeGroupID AS [ssyk-4-id-68],
 	[db-67].localeFieldID AS [parent-id-occupation-field-67],
-	[db-68].localeFieldID AS [parent-id-occupation-field-68],
-	[db-term-67].term AS [ssyk-4-term-67],
-	[db-term-68].term AS [ssyk-4-term-68]
+	[db-term-67].term AS [ssyk-4-term-67]
 FROM TaxonomyDBVersion.dbo.LocaleGroup AS [db-67],
-	TaxonomyDBVersion.dbo.LocaleGroupTerm AS [db-term-67],
-	TaxonomyDB.dbo.LocaleGroup AS [db-68],
-	TaxonomyDB.dbo.LocaleGroupTerm AS [db-term-68]
-WHERE [db-67].versionID = [db-term-67].versionID
-AND	[db-67].localeGroupID = [db-term-67].localeGroupID
-AND	[db-term-67].localeGroupID = [db-term-68].localeGroupID
-AND	[db-term-68].localeGroupID = [db-68].localeGroupID
-AND [db-67].versionID = 67
+	TaxonomyDBVersion.dbo.LocaleGroupTerm AS [db-term-67]
+WHERE [db-67].localeGroupID = [db-term-67].localeGroupID
 AND [db-term-67].languageID = 502
-AND [db-term-68].languageID = 502
-AND [db-67].localeFieldID != [db-68].localeFieldID
+AND [db-67].versionID = 67
+AND [db-term-67].versionID = 67
+AND NOT EXISTS
+	(SELECT [db-68].localeGroupID, [db-68].localeFieldID
+	FROM TaxonomyDB.dbo.LocaleGroup AS [db-68]
+	WHERE [db-67].localeGroupID = [db-68].localeGroupID
+	AND [db-67].localeFieldID = [db-68].localeFieldID)
+
+--------------------------------- POPULAR SYNONYMS -------------------------------------------------------
+
+-- 4 deprecated (June 12)
+-- :name get-deprecated-synonyms :*
+-- :doc get deprecated popular synonyms, id's existing in version 67 but not version 68
+SELECT db67.popularSynonymID AS [synonym-id], db67.term AS [synonym-term]
+FROM TaxonomyDBVersion.dbo.PopularSynonym AS db67
+WHERE db67.versionID = 67
+AND db67.popularSynonymID NOT IN
+	(SELECT db68.popularSynonymID
+	FROM TaxonomyDB.dbo.PopularSynonym AS db68)
+
+-- 83 deprecated (June 12)
+-- :name get-new-synonyms :*
+-- :doc get new popular synonyms, id's existing in version 68 but not version 67
+SELECT db68.popularSynonymID AS [synonym-id], db68.term AS [synonym-term]
+FROM TaxonomyDB.dbo.PopularSynonym AS db68
+WHERE db68.popularSynonymID NOT IN
+	(SELECT db67.popularSynonymID
+	FROM TaxonomyDBVersion.dbo.PopularSynonym AS db67
+	WHERE db67.versionID = 67)
+
+-- 1 deprecated (June 12)
+-- :name get-updated-synonym-terms :*
+-- :doc get updated popular synonyms where terms differ between version 67 and version 68
+SELECT
+	db68.popularSynonymID AS [synonym-id-68],
+	db67.popularSynonymID AS [synonym-id-67],
+	db68.term AS [synonym-term-68],
+	db67.term AS [synonym-term-67]
+FROM TaxonomyDB.dbo.PopularSynonym AS db68,
+	TaxonomyDBVersion.dbo.PopularSynonym AS db67
+WHERE db68.popularSynonymID = db67.popularSynonymID
+AND db67.versionID = 67
+AND db68.term != db67.term
+
+-- 26 (June 12)
+-- :name get-deprecated-synonym-relation-to-occupation :*
+-- :doc get popular synonyms where relation to occupation no longer exist in version 68 ;
+SELECT [occupation-synonym-67].occupationNameID AS [occupation-name-id-67],
+	[synonym-67].popularSynonymID AS [synonym-id-67],
+	[synonym-67].term AS [synonym-term-67]
+FROM TaxonomyDBVersion.dbo.OccupationNameSynonym AS [occupation-synonym-67],
+    TaxonomyDBVersion.dbo.PopularSynonym AS [synonym-67]
+WHERE [occupation-synonym-67].popularSynonymID = [synonym-67].popularSynonymID
+AND [occupation-synonym-67].versionID = 67
+AND [synonym-67].versionID = 67
+AND NOT EXISTS
+	(SELECT
+		[occupation-synonym-68].occupationNameID,
+		[synonym-68].popularSynonymID
+	FROM TaxonomyDB.dbo.OccupationNameSynonym AS [occupation-synonym-68],
+    TaxonomyDB.dbo.PopularSynonym AS [synonym-68]
+	WHERE [occupation-synonym-68].occupationNameID = [occupation-synonym-67].occupationNameID
+	AND [synonym-68].popularSynonymID = [synonym-67].popularSynonymID)
+
+-- 141 (June 12)
+-- :name get-new-synonym-relation-to-occupation :*
+-- :doc get popular synonyms where relation to occupation does not exist in version 67 ;
+SELECT [occupation-synonym-68].occupationNameID AS [occupation-name-id-68],
+	[synonym-68].popularSynonymID AS [synonym-id-68],
+	[synonym-68].term AS [synonym-term-68]
+FROM TaxonomyDB.dbo.OccupationNameSynonym AS [occupation-synonym-68],
+    TaxonomyDB.dbo.PopularSynonym AS [synonym-68]
+WHERE [occupation-synonym-68].popularSynonymID = [synonym-68].popularSynonymID
+AND NOT EXISTS
+	(SELECT
+		[occupation-synonym-67].occupationNameID,
+		[synonym-67].popularSynonymID
+	FROM TaxonomyDBVersion.dbo.OccupationNameSynonym AS [occupation-synonym-67],
+    TaxonomyDBVersion.dbo.PopularSynonym AS [synonym-67]
+	WHERE [occupation-synonym-68].occupationNameID = [occupation-synonym-67].occupationNameID
+	AND [synonym-68].popularSynonymID = [synonym-67].popularSynonymID
+	AND [occupation-synonym-67].versionID = 67
+	AND [synonym-67].versionID = 67)
+
+
+--------------------------------- RELATIONS BETWEEN ISCO, SSYK & SKILLS --------------------------------------------
+
+-- 223 deprecated (June 12)
+-- :name get-deprecated-isco-4-skill-relation :*
+-- :doc Get deprecated relations between ISCO level 4 and skills ;
+SELECT skillID AS [skill-id-67],
+	occupationGroupID AS [isco-4-id-67]
+  FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill AS db67
+WHERE versionID = 67
+AND NOT EXISTS
+(SELECT skillID, occupationGroupID
+	FROM TaxonomyDB.dbo.OccupationGroup_Skill
+	WHERE skillID = db67.skillID
+	AND occupationGroupID = db67.occupationGroupID)
+
+-- 497 (June 12) --
+-- :name get-new-isco-4-skill-relation :*
+-- :doc Get new relations between ISCO level 4 and skills ;
+SELECT skillID AS [skill-id-68],
+	occupationGroupID AS [isco-4-id-68]
+  FROM TaxonomyDB.dbo.OccupationGroup_Skill AS db68
+WHERE NOT EXISTS
+(SELECT skillID, occupationGroupID
+	FROM TaxonomyDBVersion.dbo.OccupationGroup_Skill
+	WHERE versionID = 67
+	AND skillID = db68.skillID
+	AND occupationGroupID = db68.occupationGroupID)
+
+
+-- 1 (June 12) --
+-- :name get-deprecated-ssyk-4-skill-relation :*
+-- :doc Get deprecated relations between SSYK level 4 and skills ;
+SELECT skillID AS [skill-id-67],
+	localeGroupID AS [ssyk-4-id-67]
+FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill AS db67
+WHERE versionID = 67
+AND NOT EXISTS
+(SELECT skillID, localeGroupID
+	FROM TaxonomyDB.dbo.LocaleGroup_Skill
+	WHERE skillID = db67.skillID
+	AND localeGroupID = db67.localeGroupID)
+
+-- 0 (June 12) --
+-- :name get-new-ssyk-4-skill-relation :*
+-- :doc Get new relations between SSYK level 4 and skills ;
+SELECT skillID AS [skill-id-68],
+	localeGroupID AS [ssyk-4-id-68]
+FROM TaxonomyDB.dbo.LocaleGroup_Skill AS db68
+WHERE NOT EXISTS
+(SELECT skillID, localeGroupID
+	FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill
+	WHERE skillID = db68.skillID
+	AND localeGroupID = db68.localeGroupID
+	AND versionID = 67)
+
+-- 0 (June 12) --
+-- :name get-deprecated-ssyk-isco-relation :*
+-- :doc Get deprecated relations between SSYK level 4 and ISCO level 4 ;
+SELECT occupationGroupID AS [isco-4-id-67],
+	localeGroupID AS [ssyk-4-id-67]
+FROM TaxonomyDBVersion.dbo.ISCOLocale AS db67
+WHERE versionID = 67
+AND NOT EXISTS
+(SELECT occupationGroupID, localeGroupID
+	FROM TaxonomyDB.dbo.ISCOLocale
+	WHERE occupationGroupID = db67.occupationGroupID
+	AND localeGroupID = db67.localeGroupID)
+
+-- 0 (June 12) --
+-- :name get-new-ssyk-isco-relation :*
+-- :doc Get new relations between SSYK level 4 and ISCO level 4 ;
+SELECT occupationGroupID AS [isco-4-id-68],
+	localeGroupID AS [ssyk-4-id-68]
+FROM TaxonomyDB.dbo.ISCOLocale AS db68
+WHERE NOT EXISTS
+(SELECT occupationGroupID, localeGroupID
+	FROM TaxonomyDBVersion.dbo.ISCOLocale
+	WHERE occupationGroupID = db68.occupationGroupID
+	AND localeGroupID = db68.localeGroupID
+	AND versionID = 67)
 
 ---------------DRIVING LICENCE---(No differences between versions!!!)-------------------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-driving-licence :*
 -- :doc get deprecated driving licences, id's existing in version 67 but not version 68
 SELECT [db-67-term].drivingLicenceID AS [id-67],
@@ -729,6 +925,7 @@ AND [db-67-term].drivingLicenceID NOT IN
 	FROM TaxonomyDB.dbo.DrivingLicenceTerm AS [db-68-term]
 	WHERE [db-68-term].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-new-driving-licence :*
 -- :doc get new driving licences, id's existing in version 68 but not in version 67
 SELECT [db-68-term].drivingLicenceID AS [id-68-term],
@@ -743,6 +940,7 @@ AND [db-68-term].drivingLicenceID NOT IN
 	WHERE [db-67-term].versionID = 67
 	AND [db-67-term].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-updated-driving-licence :*
 -- :doc get updated driving licences where some value differs between version 68 and version 67
 SELECT [db-68-term].drivingLicenceID AS [id-68],
@@ -772,10 +970,11 @@ OR [db-67].displaySortOrder != [db-68].displaySortOrder
 OR [db-67].drivingLicenceCode != [db-68].drivingLicenceCode
 OR [db-67-term].description NOT LIKE [db-68-term].description)
 
------------------------------ Driver licence combinations is already from 68. ------------------------------------
+------------------- Driver licence combinations is already from 68. ------------------------------------
 
------------------------EMPLOYMENT DURATION-- (No deprecated, one new, five updated) -------------------------------
+-----------------------EMPLOYMENT DURATION -------------------------------------------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-employment-duration :*
 -- :doc get deprecated employment durations, id's existing in version 67 but not in version 68
 SELECT [db-67-term].anställningsvaraktighetsID AS [id-67-term],
@@ -790,6 +989,7 @@ AND [db-67-term].anställningsvaraktighetsID NOT IN
 	FROM TaxonomiDBSvensk.dbo.AnställningsvaraktighetTerm AS [db-68-term]
 	WHERE [db-68-term].språkID = 502)
 
+-- 1 (June 12)
 -- :name get-new-employment-duration :*
 -- :doc get new employment durations, id's existing in version 68 but not in version 67
 SELECT [db-68-term].anställningsvaraktighetsID AS [id-68],
@@ -804,6 +1004,7 @@ AND [db-68-term].anställningsvaraktighetsID NOT IN
 	FROM TaxonomiDBSvenskVersion.dbo.AnställningsvaraktighetTerm AS [db-67-term]
 	WHERE [db-67-term].språkID = 502)
 
+-- 5 (June 12)
 -- :name get-updated-employment-duration :*
 -- :doc get updated employment durations where some value differs between version 68 and version 67
 SELECT [db-68-term].anställningsvaraktighetsID  AS [id-68],
@@ -830,6 +1031,7 @@ OR [db-67].EURESKod != [db-68].EURESKod)
 
 ----------------------------EMPLOYMENT TYPE---(No difference between versions!!!)-----------------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-employment-type :*
 -- :doc get deprecated employment types, id's existing in version 67 but not in version 68
 SELECT [db-67-term].AnstallningTypJobbID AS [id-67],
@@ -844,6 +1046,7 @@ AND [db-67-term].AnstallningTypJobbID NOT IN
 	FROM TaxonomiDBSvensk.dbo.AnstallningTypJobbTerm AS [db-68-term]
 	WHERE [db-68-term].språkID = 502)
 
+-- 0 (June 12)
 -- :name get-new-employment-type :*
 -- :doc get new employment types, id's existing in version 68 but not in version 67
 SELECT [db-68-term].AnstallningTypJobbID AS [id-68],
@@ -858,6 +1061,7 @@ AND [db-68-term].AnstallningTypJobbID NOT IN
 	FROM TaxonomiDBSvenskVersion.dbo.AnstallningTypJobbTerm AS [db-67-term]
 	WHERE [db-67-term].språkID = 502)
 
+-- 0 (June 12)
 -- :name get-updated-employment-type-term :*
 -- :doc get updated employment types where term/label differs between version 68 and version 67
 SELECT [db-68-term].AnstallningTypJobbID  AS [id-68],
@@ -883,6 +1087,7 @@ OR [db-67].iSortering != [db-68].iSortering)
 
 -------------------------CONTINENTS---(No difference!)----------------------------------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-continent :*
 -- :doc get deprecated continent, id's existing in version 67 but not in version 68
 SELECT [db-67].continentID AS [id-67], [db-67].term AS [term-67]
@@ -894,6 +1099,7 @@ AND [db-67].continentID NOT IN
 	FROM TaxonomyDB.dbo.ContinentTerm AS [db-68]
 	WHERE [db-68].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-new-continent :*
 -- :doc get new continent, id's existing in version 68 but not in version 67
 SELECT [db-68].continentID AS [id-68], [db-68].term AS [term-68]
@@ -905,6 +1111,7 @@ AND [db-68].continentID NOT IN
 	WHERE [db-67].languageID = 502
 	AND [db-67].versionID = 67)
 
+-- 0 (June 12)
 -- :name get-updated-continent-term :*
 -- :doc get updated continent where term/label differs between version 68 and version 67
 SELECT [db-68].continentID AS [id-68],
@@ -918,8 +1125,9 @@ AND [db-68].languageID = 502
 AND [db-67].languageID = 502
 AND [db-67].term != [db-68].term
 
-----------------------COUNTRIES---No New or Deprecated, three updated countries-----------------------------------
+----------------------------------------- COUNTRIES --------------------------------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-country :*
 -- :doc get deprecated countries, id's existing in version 67 but not in version 68
 SELECT [db-67-term].countryID AS [id-67], [db-67-term].term AS [term-67], [db-67].countryCode AS [country-code-67]
@@ -931,6 +1139,7 @@ AND [db-67-term].countryID NOT IN
 	FROM TaxonomyDB.dbo.CountryTerm AS [db-68-term]
 	WHERE [db-68-term].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-new-country :*
 -- :doc get new countries, id's existing in version 68 but not in version 67
 SELECT [db-68-term].countryID AS [id-68], [db-68-term].term AS [term-68], [db-68].countryCode AS [country-code-68]
@@ -941,6 +1150,7 @@ AND [db-68-term].countryID NOT IN
 	FROM TaxonomyDB.dbo.CountryTerm AS [db-67-term]
 	WHERE [db-67-term].languageID = 502)
 
+-- 2 (June 12)
 -- :name get-updated-country-term :*
 -- :doc get updated countries where term/label differs between version 68 and version 67
 SELECT [db-68-term].countryID  AS [id-68],
@@ -948,9 +1158,7 @@ SELECT [db-68-term].countryID  AS [id-68],
 	[db-68].countryCode AS [country-code-68],
 	[db-67-term].countryID AS [id-67],
 	[db-67-term].term [term-67],
-	[db-67].countryCode AS [country-code-67],
-    [db-67].continentID AS [parent-id-67],
-    [db-68].continentID AS [parent-id-68]
+	[db-67].countryCode AS [country-code-67]
 FROM TaxonomyDB.dbo.CountryTerm AS [db-68-term],
 	TaxonomyDBVersion.dbo.CountryTerm AS [db-67-term],
 	TaxonomyDB.dbo.Country AS [db-68],
@@ -964,11 +1172,39 @@ AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
 AND ([db-67-term].term != [db-68-term].term
-OR [db-67].countryCode != [db-68].countryCode
-OR [db-67].continentID != [db-68].continentID)
+OR [db-67].countryCode != [db-68].countryCode)
+
+-- 1 (June 12)
+-- :name get-deprecated-country-relation-to-continent :*
+-- :doc get deprecated relations between countries and continents
+SELECT [db-67].countryID AS [country-id-67],
+	[db-67].continentID AS [parent-continent-id-67]
+FROM TaxonomyDBVersion.dbo.Country AS [db-67]
+WHERE [db-67].versionID = 67
+AND NOT EXISTS
+	(SELECT
+		countryID, continentID
+	FROM TaxonomyDB.dbo.Country
+	WHERE countryID = [db-67].countryID
+	AND continentID = [db-67].continentID)
+
+-- 1 (June 12)
+-- :name get-new-country-relation-to-continent :*
+-- :doc get new relations between countries and continents
+SELECT [db-68].countryID AS [country-id-68],
+	[db-68].continentID AS [parent-continent-id-68]
+FROM TaxonomyDB.dbo.Country AS [db-68]
+WHERE NOT EXISTS
+	(SELECT
+		countryID, continentID
+	FROM TaxonomyDBVersion.dbo.Country
+	WHERE countryID = [db-68].countryID
+	AND continentID = [db-68].continentID
+	AND versionID = 67)
 
 ------------------------------------REGIONS---(No difference!)--------------------------------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-region :*
 -- :doc get deprecated regions, id's existing in version 67 but not in version 68
 SELECT [db-67-term].EURegionID AS [id-67], [db-67-term].term AS [term-67], [db-67].NUTSCodeLevel3 AS [nuts-67]
@@ -980,6 +1216,7 @@ AND [db-67-term].EURegionID NOT IN
 	FROM TaxonomyDB.dbo.EURegionTerm AS [db-68-term]
 	WHERE [db-68-term].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-new-region :*
 -- :doc get new regions, id's existing in version 68 but not in version 67
 SELECT [db-68-term].EURegionID AS [id-68], [db-68-term].term AS [term-68], [db-68].NUTSCodeLevel3 AS [nuts-68]
@@ -990,6 +1227,7 @@ AND [db-68-term].EURegionID NOT IN
 	FROM TaxonomyDB.dbo.EURegionTerm AS [db-67-term]
 	WHERE [db-67-term].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-updated-region-term :*
 -- :doc get updated regions where term/label differs between version 68 and version 67
 SELECT [db-68-term].EURegionID  AS [id-68],
@@ -1013,11 +1251,39 @@ AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
 AND ([db-67-term].term != [db-68-term].term
-OR [db-67].NUTSCodeLevel3 != [db-68].NUTSCodeLevel3
-OR [db-67].CountryID != [db-68].CountryID)
+OR [db-67].NUTSCodeLevel3 != [db-68].NUTSCodeLevel3)
+
+-- 0 (June 12)
+-- :name get-deprecated-region-relation-to-parent :*
+-- :doc get deprecated relations between regions and countries
+SELECT [db-67].EURegionID AS [region-67],
+	[db-67].countryID AS [parent-id-67]
+FROM TaxonomyDBVersion.dbo.EURegion AS [db-67]
+WHERE [db-67].versionID = 67
+AND NOT EXISTS
+	(SELECT
+		countryID, EURegionID
+	FROM TaxonomyDB.dbo.EURegion
+	WHERE countryID = [db-67].countryID
+	AND EURegionID = [db-67].EURegionID)
+
+-- 0 (June 12)
+-- :name get-new-region-relation-to-parent :*
+-- :doc get new relations between regions and countries
+SELECT [db-68].EURegionID AS [region-68],
+	[db-68].countryID AS [parent-id-68]
+FROM TaxonomyDB.dbo.EURegion AS [db-68]
+WHERE NOT EXISTS
+	(SELECT
+		countryID, EURegionID
+	FROM TaxonomyDBVersion.dbo.EURegion
+	WHERE countryID = [db-68].countryID
+	AND EURegionID = [db-68].EURegionID
+	AND versionID = 67)
 
 ----------------------------MUNICIPALITIES--(No difference between versions!!!)------------------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-municipality :*
 -- :doc get deprecated municipalities, id's existing in version 67 but not in version 68
 SELECT [db-67].municipalityID AS [id-67], [db-67].term AS [term-67]
@@ -1029,6 +1295,7 @@ AND [db-67].municipalityID NOT IN
 	FROM TaxonomyDB.dbo.MunicipalityTerm AS [db-68]
 	WHERE [db-68].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-new-municipality :*
 -- :doc get new municipalities, id's existing in version 68 but not in version 67
 SELECT [db-68].municipalityID AS [id-68], [db-68].term AS [term-68]
@@ -1040,6 +1307,7 @@ AND [db-68].municipalityID NOT IN
 	WHERE [db-67].languageID = 502
 	AND [db-67].versionID = 67)
 
+-- 0 (June 12)
 -- :name get-updated-municipality-term :*
 -- :doc get updated municipalities where term/label differs between version 68 and version 67
 SELECT [db-68-term].municipalityID AS [id-68],
@@ -1059,11 +1327,39 @@ AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
-AND ([db-67-term].term != [db-68-term].term
-OR [db-67].EURegionID != [db-68].EURegionID)
+AND [db-67-term].term != [db-68-term].term
+
+-- 0 (June 12)
+-- :name get-new-municipality-relation-to-parent :*
+-- :doc get new relations between municipalities and regions
+SELECT [db-68].municipalityID AS [municipality-68],
+	[db-68].EURegionID AS [parent-id-68]
+FROM TaxonomyDB.dbo.Municipality AS [db-68]
+WHERE NOT EXISTS
+	(SELECT
+		municipalityID, EURegionID
+	FROM TaxonomyDBVersion.dbo.Municipality
+	WHERE municipalityID = [db-68].municipalityID
+	AND EURegionID = [db-68].EURegionID
+	AND versionID = 67)
+
+-- 0 (June 12)
+-- :name get-deprecated-municipality-relation-to-parent :*
+-- :doc get deprecated relations between municipalities and regions
+SELECT [db-67].municipalityID AS [municipality-67],
+	[db-67].EURegionID AS [parent-id-67]
+FROM TaxonomyDBVersion.dbo.Municipality AS [db-67]
+WHERE versionID = 67
+AND NOT EXISTS
+	(SELECT
+		municipalityID, EURegionID
+	FROM TaxonomyDB.dbo.Municipality
+	WHERE municipalityID = [db-67].municipalityID
+	AND EURegionID = [db-67].EURegionID)
 
 -------------------------------LANGUAGE--(No difference between versions!!!)-----------------------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-language :*
 -- :doc get deprecated languages, id's existing in version 67 but not in version 68
 SELECT [db-67].languageID AS [id-67], [db-67].term AS [term-67]
@@ -1075,6 +1371,7 @@ AND [db-67].languageID NOT IN
 	FROM TaxonomyDB.dbo.LanguageTerm AS [db-68]
 	WHERE [db-68].translationLanguageID = 502)
 
+-- 0 (June 12)
 -- :name get-new-language :*
 -- :doc get new languages, id's existing in version 68 but not in version 67
 SELECT [db-68].languageID AS [id-68], [db-68].term AS [term-68]
@@ -1086,6 +1383,7 @@ AND [db-68].languageID NOT IN
 	WHERE [db-67].translationLanguageID = 502
 	AND [db-67].versionID = 67)
 
+-- 0 (June 12)
 -- :name get-updated-language-term :*
 -- :doc get updated languages where term/label differs between version 68 and version 67
 SELECT [db-68].languageID  AS [id-68],
@@ -1102,6 +1400,7 @@ AND [db-67].term != [db-68].term
 
 ------------------------------------LANGUAGE LEVEL-- (No differences between versions!!!)-----------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-language-level :*
 -- :doc get deprecated language levels, id's existing in version 67 but not in version 68
 SELECT [db-67].languageLevelID AS [id-67], [db-67].term AS [term-67]
@@ -1113,6 +1412,7 @@ AND [db-67].languageLevelID NOT IN
 	FROM TaxonomyDB.dbo.LanguageLevelTerm AS [db-68]
 	WHERE [db-68].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-new-language-level :*
 -- :doc get new language levels, id's existing in version 68 but not in version 67
 SELECT [db-68].languageLevelID AS [id-68], [db-68].term AS [term-68]
@@ -1124,6 +1424,7 @@ AND [db-68].languageLevelID NOT IN
 	WHERE [db-67].languageID = 502
 	AND [db-67].versionID = 67)
 
+-- 0 (June 12)
 -- :name get-updated-language-level-term :*
 -- :doc get updated language levels where term/label differs between version 68 and version 67
 SELECT [db-68].languageLevelID AS [id-68],
@@ -1140,6 +1441,7 @@ AND [db-67].term != [db-68].term
 
 ------------------------------WAGE TYPE-- (No differences between versions!!!)--------------------------------------
 
+-- 0 (June 12)
 -- :name get-deprecated-wage-type :*
 -- :doc get deprecated wage types, id's existing in version 67 but not in version 68
 SELECT [db-67].löneformsID AS [id-67], [db-67].beteckning AS [term-67]
@@ -1150,6 +1452,7 @@ AND [db-67].löneformsID NOT IN
 	FROM TaxonomiDBSvensk.dbo.LöneformTerm AS [db-68]
 	WHERE [db-68].språkID = 502)
 
+-- 0 (June 12)
 -- :name get-new-wage-type :*
 -- :doc get new wage types, id's existing in version 68 but not in version 67
 SELECT [db-68].löneformsID AS [id-68], [db-68].beteckning AS [term-68]
@@ -1160,6 +1463,7 @@ AND [db-68].löneformsID NOT IN
 	FROM TaxonomiDBSvenskVersion.dbo.LöneformTerm AS [db-67]
 	WHERE [db-67].språkID = 502)
 
+-- 0 (June 12)
 -- :name get-updated-wage-type-term :*
 -- :doc get updated wage types where term/label differs between version 68 and version 67
 SELECT [db-68].löneformsID  AS [id-68],
@@ -1172,8 +1476,9 @@ AND [db-68].språkID = 502
 AND [db-67].språkID = 502
 AND [db-67].beteckning != [db-68].beteckning
 
------------------------------WORKTIME EXTENT-- (One deprecated, no new, no updated)------------------------------------
+----------------------------- WORKTIME EXTENT ------------------------------------------------------------
 
+-- 1 (June 12)
 -- :name get-deprecated-worktime-extent :*
 -- :doc get deprecated worktime extents, id's existing in version 67 but not in version 68
 SELECT [db-67-term].arbetstidsID AS [id-67], [db-67-term].beteckning AS [term-67], [db-67].sortering AS [sort-67]
@@ -1185,6 +1490,7 @@ AND [db-67-term].arbetstidsID NOT IN
 	FROM TaxonomiDBSvensk.dbo.ArbetstidTerm AS [db-68-term]
 	WHERE [db-68-term].språkID = 502)
 
+-- 0 (June 12)
 -- :name get-new-worktime-extent :*
 -- :doc get new worktime extents, id's existing in version 68 but not in version 67
 SELECT [db-68-term].arbetstidsID AS [id-68], [db-68-term].beteckning AS [term-68], [db-68].sortering AS [sort-68]
@@ -1196,6 +1502,7 @@ AND [db-68-term].arbetstidsID NOT IN
 	FROM TaxonomiDBSvenskVersion.dbo.ArbetstidTerm AS [db-67-term]
 	WHERE [db-67-term].språkID = 502)
 
+-- 0 (June 12)
 -- :name get-updated-worktime-extent-term :*
 -- :doc get updated worktime extents where term/label differs between version 68 and version 67
 SELECT [db-68-term].arbetstidsID  AS [id-68],
@@ -1218,8 +1525,8 @@ AND ([db-67-term].beteckning != [db-68-term].beteckning
 OR [db-67].sortering != [db-68].sortering)
 
 ------------------------------------------- SKILLS ----------------------------------------------------------------
-------------------------------------------- (Skills: 242 new, 120 deprecated, 171 updated) ------------------------
 
+-- 242 (June 12)
 -- :name get-new-skill :*
 -- :doc get new skills, id's existing in version 68 but not in version 67
 SELECT [db-68].skillID AS [id-68], [db-68].term AS [term-68], skill.skillHeadlineID as [skill-headline]
@@ -1232,7 +1539,7 @@ FROM TaxonomyDBVersion.dbo.SkillTerm AS [db-67]
 WHERE [db-67].versionID = 67
 AND [db-67].languageID = 502)
 
-
+-- 120 (June 12)
 -- :name get-deprecated-skill :*
 -- :doc get deprecated skills, id's existing in version 67 but not version 68
 SELECT [db-67].skillID AS [id-67], [db-67].term AS [67-term]
@@ -1244,6 +1551,7 @@ AND [db-67].skillID NOT IN
 FROM TaxonomyDB.dbo.SkillTerm AS [db-68]
 WHERE [db-68].languageID = 502)
 
+-- 166 (June 12)
 -- :name get-updated-skill :*
 -- :doc get updated skills where term/label differs between version 68 and version 67
 SELECT
@@ -1264,44 +1572,35 @@ AND   SkillTerm68.languageID = 502
 AND   SkillTerm67.languageID = 502
 AND   SkillTerm68.term != SkillTerm67.term
 
--- 0 deprecated
+-- 128 (June 12)
 -- :name get-deprecated-skill-relation-to-headline :*
 -- :doc get deprecated relations between skills and headlines in version 68
-SELECT
-	Skill67.skillID AS [skill-id-67],
-	Skill67.skillHeadlineID AS [parent-headline-id-67]
-FROM TaxonomyDBVersion.dbo.Skill AS Skill67
-WHERE Skill67.versionID = 67
-AND Skill67.skillHeadlineID NOT IN
-	(SELECT Skill68.skillHeadlineID
-	FROM TaxonomyDB.dbo.Skill AS Skill68)
+SELECT [db-67].skillID AS [skill-id-67],
+	[db-67].skillHeadlineID AS [parent-headline-id-67]
+FROM TaxonomyDBVersion.dbo.Skill AS [db-67]
+WHERE versionID = 67
+AND NOT EXISTS
+	(SELECT
+		skillID, skillHeadlineID
+	FROM TaxonomyDB.dbo.Skill
+	WHERE skillID = [db-67].skillID
+	AND skillHeadlineID = [db-67].skillHeadlineID)
 
--- 0 new
+-- 250 (June 12)
 -- :name get-new-skill-relation-to-headline :*
 -- :doc get new relations between skills and headlines in version 68
-SELECT
-	Skill68.skillID AS [skill-id-68],
-	Skill68.skillHeadlineID AS [parent-headline-id-68]
-FROM TaxonomyDB.dbo.Skill AS Skill68
-WHERE Skill68.skillHeadlineID NOT IN
-	(SELECT Skill67.skillHeadlineID
-	FROM TaxonomyDBVersion.dbo.Skill AS Skill67
-	WHERE Skill67.versionID = 67)
+SELECT [db-68].skillID AS [skill-id-68],
+	[db-68].skillHeadlineID AS [parent-headline-id-68]
+FROM TaxonomyDB.dbo.Skill AS [db-68]
+WHERE NOT EXISTS
+	(SELECT
+		skillID, skillHeadlineID
+	FROM TaxonomyDBVersion.dbo.Skill
+	WHERE skillID = [db-68].skillID
+	AND skillHeadlineID = [db-68].skillHeadlineID
+	AND versionID = 67)
 
--- 8 updated
--- :name get-updated-skill-relation-to-headline :*
--- :doc get updated relations between skills and headlines in version 68
-SELECT
-	Skill68.skillID AS [skill-id-68],
-	Skill67.skillID AS [skill-id-67],
-	Skill68.skillHeadlineID AS [parent-headline-id-68],
-	Skill67.skillHeadlineID AS [parent-headline-id-67]
-FROM TaxonomyDBVersion.dbo.Skill AS Skill67,
-	TaxonomyDB.dbo.Skill AS Skill68
-WHERE Skill67.versionID = 67
-AND   Skill67.skillID = Skill68.skillID
-AND   Skill68.skillHeadlineID != Skill67.skillHeadlineID
-
+-- 7 (June 12)
 -- :name get-replaced-skill :*
 -- :doc get skills that has been replaced by another skill
 SELECT
@@ -1322,12 +1621,55 @@ skillID IN (
 
 
 ------------------------------------------- SKILL-HEADLINE-----------------------------------------------------
--- TODO Check if this is still true with latest db dump
--- Har inga förändringar
 
+-- 0 (June 12)
+-- :name get-new-skill-headline :*
+-- :doc get new skill headlines, id's existing in version 68 but not in version 67
+SELECT [db-68].skillHeadlineID AS [id-68], [db-68-term].term AS [term-68]
+FROM TaxonomyDB.dbo.SkillHeadlineTerm AS [db-68-term], TaxonomyDB.dbo.SkillHeadline as [db-68]
+WHERE [db-68-term].languageID = 502
+AND [db-68].skillHeadlineID = [db-68-term].skillHeadlineID
+AND [db-68].skillHeadlineID NOT IN
+(SELECT [db-67].skillHeadlineID
+FROM TaxonomyDBVersion.dbo.SkillHeadline AS [db-67]
+WHERE [db-67].versionID = 67)
+
+-- 0 (June 12)
+-- :name get-deprecated-skill-headline :*
+-- :doc get deprecated skill headlines, id's existing in version 67 but not in version 68
+SELECT [db-67].skillHeadlineID AS [id-67], [db-67-term].term AS [term-67]
+FROM TaxonomyDBVersion.dbo.SkillHeadlineTerm AS [db-67-term], TaxonomyDBVersion.dbo.SkillHeadline as [db-67]
+WHERE [db-67-term].languageID = 502
+AND [db-67].skillHeadlineID = [db-67-term].skillHeadlineID
+AND [db-67].versionID = 67
+AND [db-67].skillHeadlineID NOT IN
+(SELECT [db-68].skillHeadlineID
+FROM TaxonomyDB.dbo.SkillHeadline AS [db-68])
+
+-- 0 (June 12)
+-- :name get-updated-skill-headline-term :*
+-- :doc get updated skill headlines, terms differing between version 67 and 68
+SELECT
+	Skill68.skillHeadlineID AS [headline-id-68],
+    Skill67.skillHeadlineID AS [headline-id-67],
+    SkillTerm68.term AS [headline-term-68],
+    SkillTerm67.term AS [headline-term-67]
+FROM TaxonomyDBVersion.dbo.SkillHeadline AS Skill67,
+	TaxonomyDBVersion.dbo.SkillHeadlineTerm AS SkillTerm67,
+	TaxonomyDB.dbo.SkillHeadline AS Skill68,
+	TaxonomyDB.dbo.SkillHeadlineTerm AS SkillTerm68
+WHERE Skill67.versionID = 67
+AND   SkillTerm67.versionID = 67
+AND   Skill67.skillHeadlineID = SkillTerm67.skillHeadlineID
+AND   Skill68.skillHeadlineID = SkillTerm68.skillHeadlineID
+AND   Skill68.skillHeadlineID = Skill67.skillHeadlineID
+AND   SkillTerm68.languageID = 502
+AND   SkillTerm67.languageID = 502
+AND   SkillTerm68.term != SkillTerm67.term
 
 --------------------------------- NACE/SNI (No differences between versions!!!) ------------------------------------
 
+-- 0 (June 12)
 -- :name get-new-SNI-level-1 :*
 SELECT [db-68].*, [db-68-term].*
 FROM TaxonomyDB.dbo.NaceLevel1 AS [db-68],
@@ -1339,6 +1681,7 @@ AND [db-68-term].naceLevel1ID NOT IN
 	WHERE [db-67-term].languageID = 502
 	AND [db-67-term].versionID = 67)
 
+-- 0 (June 12)
 -- :name get-deleted-SNI-level-1 :*
 SELECT [db-67].*, [db-67-term].*
 FROM TaxonomyDBVersion.dbo.NaceLevel1 AS [db-67],
@@ -1350,6 +1693,7 @@ AND [db-67-term].naceLevel1ID NOT IN
 	FROM TaxonomyDB.dbo.NaceLevel1Term AS [db-68-term]
 	WHERE [db-68-term].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-updated-SNI-level-1 :*
 SELECT [db-67].*, [db-67-term].*, [db-68].*, [db-68-term].*
 FROM TaxonomyDBVersion.dbo.NaceLevel1 AS [db-67],
@@ -1366,6 +1710,7 @@ AND [db-67].versionID = 67
 AND ([db-67-term].term != [db-68-term].term
 OR [db-67].naceLevel1Code != [db-68].naceLevel1Code)
 
+-- 0 (June 12)
 -- :name get-new-SNI-level-2 :*
 SELECT [db-68].*, [db-68-term].*
 FROM TaxonomyDB.dbo.NaceLevel2 AS [db-68],
@@ -1377,6 +1722,7 @@ AND [db-68-term].naceLevel2ID NOT IN
 	WHERE [db-67-term].languageID = 502
 	AND [db-67-term].versionID = 67)
 
+-- 0 (June 12)
 -- :name get-deleted-SNI-level-2 :*
 SELECT [db-67].*, [db-67-term].*
 FROM TaxonomyDBVersion.dbo.NaceLevel2 AS [db-67],
@@ -1388,6 +1734,7 @@ AND [db-67-term].naceLevel2ID NOT IN
 	FROM TaxonomyDB.dbo.NaceLevel2Term AS [db-68-term]
 	WHERE [db-68-term].languageID = 502)
 
+-- 0 (June 12)
 -- :name get-updated-SNI-level-2 :*
 SELECT [db-67].*, [db-67-term].*, [db-68].*, [db-68-term].*
 FROM TaxonomyDBVersion.dbo.NaceLevel2 AS [db-67],
@@ -1402,5 +1749,31 @@ AND [db-68-term].languageID = 502
 AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
 AND ([db-67-term].term != [db-68-term].term
-OR [db-67].naceLevel1ID != [db-68].naceLevel1ID
 OR [db-67].naceLevel2Code != [db-68].naceLevel2Code)
+
+-- 0 (June 12)
+-- :name get-deprecated-SNI-level-2-relation-to-SNI-1 :*
+SELECT [db-67].naceLevel2ID,
+	[db-67].naceLevel1ID
+FROM TaxonomyDBVersion.dbo.NaceLevel2 AS [db-67]
+WHERE versionID = 67
+AND NOT EXISTS
+	(SELECT
+		naceLevel2ID, naceLevel1ID
+	FROM TaxonomyDB.dbo.NaceLevel2
+	WHERE naceLevel2ID = [db-67].naceLevel2ID
+	AND naceLevel1ID = [db-67].naceLevel1ID)
+
+-- 0 (June 12)
+-- :name get-new-SNI-level-2-relation-to-SNI-1 :*
+SELECT [db-68].naceLevel2ID,
+	[db-68].naceLevel1ID
+FROM TaxonomyDB.dbo.NaceLevel2 AS [db-68]
+WHERE NOT EXISTS
+	(SELECT
+		naceLevel2ID, naceLevel1ID
+	FROM TaxonomyDBVersion.dbo.NaceLevel2
+	WHERE naceLevel2ID = [db-68].naceLevel2ID
+	AND naceLevel1ID = [db-68].naceLevel1ID
+	AND versionID = 67)
+
