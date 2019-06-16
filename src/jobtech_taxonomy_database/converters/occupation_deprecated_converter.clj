@@ -11,8 +11,8 @@
 (defn create-new-occupation-name
   [{:keys [term occupation-name-id parent-id-ssyk-4  parent-id-isco-4]}]
   {:pre  [term occupation-name-id parent-id-ssyk-4  parent-id-isco-4]}
-  (let    [entity-id-parent-ssyk  (u/get-entity-id-by-legacy-id parent-id-ssyk-4 t/ssyk-level-4)
-           entity-id-parent-isco  (u/get-entity-id-by-legacy-id parent-id-isco-4 t/isco-level-4)
+  (let    [entity-id-parent-ssyk (u/get-entity-id-by-legacy-id parent-id-ssyk-4 t/ssyk-level-4)
+           entity-id-parent-isco (u/get-entity-id-by-legacy-id parent-id-isco-4 t/isco-level-4)
            concept (u/create-concept t/occupation-name term term occupation-name-id)
            concept-term (u/create-term-from-concept concept)]
     (remove nil? [concept
@@ -25,38 +25,59 @@
   (let [entity-id (u/get-entity-id-by-legacy-id occupation-name-id-67 t/occupation-name)]
     (u/update-concept entity-id {:new-term term-68})))
 
+#_
 (defn update-occupation-name-relations
   [{:keys [occupation-name-id-67
-      parent-id-ssyk-4-67
-      parent-id-ssyk-4-68
-      parent-id-isco-4-67
-      parent-id-isco-4-68]}]
+           parent-id-ssyk-4-67
+           parent-id-ssyk-4-68
+           parent-id-isco-4-67
+           parent-id-isco-4-68]}]
   (concat
-   (when (not=
-          parent-id-ssyk-4-67 parent-id-ssyk-4-68)
-     (u/update-relation-by-legacy-ids-and-types
+    (when (not=
+            parent-id-ssyk-4-67 parent-id-ssyk-4-68)
+      (u/update-relation-by-legacy-ids-and-types
+        occupation-name-id-67
+        t/occupation-name
+        parent-id-ssyk-4-67
+        t/ssyk-level-4
+        parent-id-ssyk-4-68
+        t/broader))
+    (when (not=
+            parent-id-isco-4-67 parent-id-isco-4-68)
+      (u/update-relation-by-legacy-ids-and-types
+        occupation-name-id-67
+        t/occupation-name
+        parent-id-isco-4-67
+        t/isco-level-4
+        parent-id-isco-4-68
+        t/broader))))
+
+(defn retract-occupation-name-relations-to-parent
+  [{:keys [occupation-name-id-67
+           parent-id-67
+           parent-type]}]
+  (concat
+    (u/retract-relation-by-legacy-ids-and-types
       occupation-name-id-67
       t/occupation-name
-      parent-id-ssyk-4-67
-      t/ssyk-level-4
-      parent-id-ssyk-4-68
-      t/broader))
-   (when (not=
-          parent-id-isco-4-67 parent-id-isco-4-68)
-     (u/update-relation-by-legacy-ids-and-types
-      occupation-name-id-67
-      t/occupation-name
-      parent-id-isco-4-67
-      t/isco-level-4
-      parent-id-isco-4-68
-      t/broader))))
+      parent-id-67
+      (if (= parent-type "ssyk-level-4") t/ssyk-level-4 t/isco-level-4)
+      t/broader)))
+
+(defn convert-new-occupation-name-relation-to-parent
+  [{:keys [occupation-name-id-67
+           parent-id-68
+           parent-type]}]
+  (concat
+    (u/get-new-relation-by-legacy-ids-and-types
+        occupation-name-id-67
+        t/occupation-name
+        parent-id-68
+        (if (= parent-type "ssyk-level-4") t/ssyk-level-4 t/isco-level-4)
+        t/broader)))
 
 (defn convert-replaced-by-occupation-name [{:keys [replaced-id replacing-id]}]
   (u/replace-concept replaced-id replacing-id t/occupation-name))
-
-;; get-new-occupation-collection
-
-;; TODO below is broken after Henrik's utils fix ;;  du är här
 
 (defn convert-occupation-collection
   [{:keys [collection-id collection-name]}]
@@ -98,25 +119,38 @@
   [{:keys [ssyk-4-id-67
            parent-id-occupation-field-67
            parent-id-occupation-field-68]}]
-    (u/update-relation-by-legacy-ids-and-types
-      ssyk-4-id-67
-      t/ssyk-level-4
-      parent-id-occupation-field-67
-      t/occupation-field
-      parent-id-occupation-field-68
-      t/broader))
+  (u/update-relation-by-legacy-ids-and-types
+    ssyk-4-id-67
+    t/ssyk-level-4
+    parent-id-occupation-field-67
+    t/occupation-field
+    parent-id-occupation-field-68
+    t/broader))
 
 (defn convert []
   "Run this function after the database has been loaded"
   (remove empty?
           (concat
-           (map convert-deprecated-occupation (lm/fetch-data lm/get-deprecated-occupation-name))
-           (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
-           (mapcat update-occupation-name-relations (lm/fetch-data lm/get-updated-occupation-name-relation-to-parent))
-           (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
-           (mapcat update-occupation-name (lm/fetch-data lm/get-updated-occupation-name-term))
-           (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
-           (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
-           (mapcat update-occupation-field (lm/fetch-data lm/get-updated-occupation-field))
-           (mapcat update-occupation-field-relations (lm/fetch-data lm/get-updated-occupation-field-relation-to-ssyk-4))
-           )))
+            (map convert-deprecated-occupation (lm/fetch-data lm/get-deprecated-occupation-name))
+            (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
+            (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-isco))
+            (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-ssyk))
+            (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-isco))
+            (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-ssyk))
+            ; TODO continue here
+            (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
+            (mapcat update-occupation-name (lm/fetch-data lm/get-updated-occupation-name-term))
+            (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
+            (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
+            (mapcat update-occupation-field (lm/fetch-data lm/get-updated-occupation-field))
+            (mapcat update-occupation-field-relations (lm/fetch-data lm/get-deprecated-occupation-field-relation-to-ssyk-4))
+            (mapcat update-occupation-field-relations (lm/fetch-data lm/get-new-occupation-field-relation-to-ssyk-4))
+            )))
+
+(comment
+  "These should be converted as well"
+  -- :name get-deprecated-synonyms :*
+  -- :name get-new-synonyms :*
+  -- :name get-updated-synonym-terms :*
+  -- :name get-deprecated-synonym-relation-to-occupation :*
+  -- :name get-new-synonym-relation-to-occupation :*)

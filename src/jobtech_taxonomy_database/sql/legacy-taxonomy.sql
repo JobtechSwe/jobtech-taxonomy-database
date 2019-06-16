@@ -549,7 +549,8 @@ AND db68term.term != db67term.term
 SELECT
 	db67.occupationNameID AS [occupation-name-id-67],
 	db67term.term AS [term-67],
-	db67.occupationGroupID AS [parent-id-isco-4-67]
+	db67.occupationGroupID AS [parent-id-67],
+	'isco-level-4' AS [parent-type]
 FROM TaxonomyDBVersion.dbo.OccupationName AS db67,
 	TaxonomyDBVersion.dbo.OccupationNameTerm AS db67term
 WHERE db67.versionID = 67
@@ -566,7 +567,8 @@ AND NOT EXISTS
 SELECT
 	db68.occupationNameID AS [occupation-name-id-68],
 	db68term.term AS [term-68],
-	db68.occupationGroupID AS [parent-id-isco-4-68]
+	db68.occupationGroupID AS [parent-id-68],
+	'isco-level-4' AS [parent-type]
 FROM TaxonomyDB.dbo.OccupationName AS db68,
 	TaxonomyDB.dbo.OccupationNameTerm AS db68term
 WHERE db68.occupationNameID = db68term.occupationNameID
@@ -583,7 +585,8 @@ AND NOT EXISTS
 SELECT
 	db67.occupationNameID AS [occupation-name-id-67],
 	db67term.term AS [term-67],
-	db67.localeGroupID AS [parent-id-ssyk-4-67]
+	db67.localeGroupID AS [parent-id-67],
+    'ssyk-level-4' AS [parent-type]
 FROM TaxonomyDBVersion.dbo.OccupationName AS db67,
 	TaxonomyDBVersion.dbo.OccupationNameTerm AS db67term
 WHERE db67.versionID = 67
@@ -600,7 +603,8 @@ AND NOT EXISTS
 SELECT
 	db68.occupationNameID AS [occupation-name-id-68],
 	db68term.term AS [term-68],
-	db68.localeGroupID AS [parent-id-ssyk-4-68]
+	db68.localeGroupID AS [parent-id-68],
+	'ssyk-level-4' AS [parent-type]
 FROM TaxonomyDB.dbo.OccupationName AS db68,
 	TaxonomyDB.dbo.OccupationNameTerm AS db68term
 WHERE db68.occupationNameID = db68term.occupationNameID

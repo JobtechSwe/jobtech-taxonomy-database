@@ -19,11 +19,12 @@
   (str (csk/->kebab-case-string instance-type)  "-" legacy-id))
 
 (defn- get-concept-id-and-temp-id [instance-type legacy-id]
-  "Use this insteda of the above two separately"
+  "Checks if type is valid, returns nano-id as concept ID, and temp ID (only useful in the specific transaction)"
   [(get-concept-id instance-type legacy-id)
    (create-temp-id instance-type legacy-id)])
 
 (defn create-concept
+  "Creates map for standard concept with default attributes"
   ([instance-type label description legacy-id]
    {:pre [(s/valid? ::t/concept-types instance-type)
           (s/valid? string? label)
@@ -41,61 +42,62 @@
       :concept.external-database.ams-taxonomy-67/id (str legacy-id) ;; TODO rename attribute
       })))
 
+#_
 (defn create-term [nano-id term]
   "never mind this, it's not going to be used"
   {:db/id          nano-id
    :term/base-form term})
 
 (defn create-term-from-concept [{:keys  [:concept/id :concept/preferred-label]}]
-  "Use this instead of above"
+  " Takes a concept, returns map for preferred-label-concept"
   {:db/id id
    :term/base-form preferred-label})
 
-(defn create-relation [concept1 concept2 type]
-  "Both concepts should be an entity-id OR temp-id"
+(defn create-relation [concept1-id concept2-id type]
+  "Both parameters should be either entity-id or temp-id"
   {:pre [(s/valid? ::t/relation-types type)]}
-  {:relation/concept-1 concept1
-   :relation/concept-2 concept2
+  {:relation/concept-1 concept1-id
+   :relation/concept-2 concept2-id
    :relation/type type})
 
 (defn create-broader-relation-to-concept [concept broader-temp-id]
-  "First input should be a concept, second an entity-ids OR a temp-ids"
+  "First input should be a concept, second an entity-id or a temp-id"
   (create-relation (:db/id concept) broader-temp-id t/broader))
 
 (defn create-narrower-relation-to-concept [concept narrower-temp-id]
   "First input should be a concept, second an entity-ids OR a temp-ids"
   (create-relation (:db/id concept) narrower-temp-id t/narrower))
 
-(def get-entity-id-by-legacy-id-query '[:find ?s
-                                        :in $ ?legacy-id ?type
-                                        :where
-                                        [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
-                                        [?s :concept/type ?type]])
+(def get-entity-id-by-legacy-id-query
+  '[:find ?s
+    :in $ ?legacy-id ?type
+    :where
+    [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
+    [?s :concept/type ?type]])
 
 (defn get-entity-id-by-legacy-id [legacy-id type]
-  "Use this, it calls above"
   (ffirst (d/q get-entity-id-by-legacy-id-query (conn/get-db) (str legacy-id) type)))
 
-(def get-entity-id-by-attribute-and-value-query '[:find ?s
-                                                  :in $ ?attribute ?value ?category
-                                                  :where
-                                                  [?s ?attribute ?value]
-                                                  [?s :concept/category ?category]])
+(def get-entity-id-by-attribute-and-value-query
+  '[:find ?s
+    :in $ ?attribute ?value ?category
+    :where
+    [?s ?attribute ?value]
+    [?s :concept/category ?category]])
 
 (defn get-concept-by-attribute-and-value [attribute value category]
-  "Use this, it calls above"
   (ffirst (d/q get-entity-id-by-attribute-and-value-query (conn/get-db) attribute value category)))
 
-(def get-preferred-term-and-enity-id-by-legacy-id-query '[:find ?term ?s
-                                                          :in $ ?legacy-id ?category
-                                                          :where
-                                                          [?t :term/base-form ?term]
-                                                          [?s :concept/preferred-term ?t]
-                                                          [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
-                                                          [?s :concept/category ?category]])
+(def get-preferred-term-and-enity-id-by-legacy-id-query
+  '[:find ?term ?s
+    :in $ ?legacy-id ?category
+    :where
+    [?t :term/base-form ?term]
+    [?s :concept/preferred-term ?t]
+    [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
+    [?s :concept/category ?category]])
 
 (defn get-preferred-term-by-legacy-id [legacy-id type]
-  "Use this, it calls above"
   (first (d/q get-preferred-term-and-enity-id-by-legacy-id-query (conn/get-db) legacy-id type)))
 
 (defn get-concept [entity-id]
@@ -152,8 +154,23 @@
     [?r :relation/concept-2 ?c2]
     [?r :relation/type ?relation-type]])
 
+(def get-only-relation-by-legacy-ids-and-types-query
+  '[:find ?r
+    :in $ ?legacy-id-1 ?legacy-id-2 ?type-1 ?type-2 ?relation-type
+    :where
+    [?c1 :concept.external-database.ams-taxonomy-67/id ?legacy-id-1]
+    [?c2 :concept.external-database.ams-taxonomy-67/id ?legacy-id-2]
+    [?c1 :concept/type ?type-1]
+    [?c2 :concept/type ?type-2]
+    [?r :relation/concept-1 ?c1]
+    [?r :relation/concept-2 ?c2]
+    [?r :relation/type ?relation-type]])
+
 (defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
   (first (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
+
+(defn get-only-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
+  (first (d/q get-only-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
 (defn update-relation-by-legacy-ids-and-types
   [concept-legacy-id
@@ -175,9 +192,34 @@
                                        new-related-concept-legacy-id
                                        related-concept-type)]
     [[:db/retractEntity relation-entity-id]
-     {:relation/concept-1 concept-entity-id
-      :relation/concept-2 new-related-concept-entity-id
-      :relation/type relation-type}]))
+     (create-relation concept-entity-id new-related-concept-entity-id relation-type)]))
+
+(defn retract-relation-by-legacy-ids-and-types
+  [concept-legacy-id
+   concept-type
+   old-related-concept-legacy-id
+   related-concept-type
+   relation-type]
+  "This function will find the relation and retract it."
+  (let [[relation-entity-id] (get-only-relation-by-legacy-ids-and-types
+                               concept-legacy-id
+                               old-related-concept-legacy-id
+                               concept-type
+                               related-concept-type
+                               relation-type)]
+    [[:db/retractEntity relation-entity-id]]))
+
+(defn get-new-relation-by-legacy-ids-and-types
+  [concept-legacy-id
+   concept-type
+   new-related-concept-legacy-id
+   related-concept-type
+   relation-type]
+  "This function will find the entity ID's of two concepts and create a new relation between them.
+  Both concepts has to exist in the database."
+  (let [entity-1-id (get-entity-id-by-legacy-id concept-legacy-id concept-type)
+        entity-2-id (get-entity-if-exists-or-temp-id new-related-concept-legacy-id related-concept-type)]
+    [(create-relation  entity-1-id entity-2-id relation-type)]))
 
 (defn replace-concept [replaced-legacy-id replacing-legacy-id type]
   (let [old-concept (get-entity-id-by-legacy-id replaced-legacy-id type)
