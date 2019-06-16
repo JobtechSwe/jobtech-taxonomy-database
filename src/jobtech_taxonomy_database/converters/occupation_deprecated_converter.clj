@@ -4,7 +4,7 @@
             [jobtech-taxonomy-database.converters.converter-util :as u]
             [jobtech-taxonomy-database.types :as t]))
 
-(defn convert-deprecated-occupation [{:keys [occupation-name-id]}]
+(defn convert-deprecated-occupation-names [{:keys [occupation-name-id]}]
   {:pre [occupation-name-id]}
   (u/deprecate-concept t/occupation-name occupation-name-id))
 
@@ -24,33 +24,6 @@
   {:pre [occupation-name-id-67 term-68]}
   (let [entity-id (u/get-entity-id-by-legacy-id occupation-name-id-67 t/occupation-name)]
     (u/update-concept entity-id {:new-term term-68})))
-
-#_
-(defn update-occupation-name-relations
-  [{:keys [occupation-name-id-67
-           parent-id-ssyk-4-67
-           parent-id-ssyk-4-68
-           parent-id-isco-4-67
-           parent-id-isco-4-68]}]
-  (concat
-    (when (not=
-            parent-id-ssyk-4-67 parent-id-ssyk-4-68)
-      (u/update-relation-by-legacy-ids-and-types
-        occupation-name-id-67
-        t/occupation-name
-        parent-id-ssyk-4-67
-        t/ssyk-level-4
-        parent-id-ssyk-4-68
-        t/broader))
-    (when (not=
-            parent-id-isco-4-67 parent-id-isco-4-68)
-      (u/update-relation-by-legacy-ids-and-types
-        occupation-name-id-67
-        t/occupation-name
-        parent-id-isco-4-67
-        t/isco-level-4
-        parent-id-isco-4-68
-        t/broader))))
 
 (defn retract-occupation-name-relations-to-parent
   [{:keys [occupation-name-id-67
@@ -115,42 +88,76 @@
                           {:description occupation-field-description-68}))]
     (u/update-concept entity-id attribute-map)))
 
-(defn update-occupation-field-relations
+(defn convert-new-occupation-field-relation-to-ssyk-4
   [{:keys [ssyk-4-id-67
-           parent-id-occupation-field-67
            parent-id-occupation-field-68]}]
-  (u/update-relation-by-legacy-ids-and-types
-    ssyk-4-id-67
-    t/ssyk-level-4
-    parent-id-occupation-field-67
-    t/occupation-field
-    parent-id-occupation-field-68
-    t/broader))
+  (concat
+    (u/get-new-relation-by-legacy-ids-and-types
+      ssyk-4-id-67
+      t/ssyk-level-4
+      parent-id-occupation-field-68
+      t/occupation-field
+      t/broader)))
+
+(defn convert-deprecated-occupation-synonyms
+  [{:keys [synonym-id]}]
+  {:pre [synonym-id]}
+  (u/deprecate-concept t/keyword synonym-id))
+
+(defn create-new-occupation-synonyms
+  [{:keys [synonym-id synonym-term]}]
+  {:pre [synonym-id synonym-term]}
+  (let [concept (u/create-concept t/keyword synonym-term synonym-term synonym-id)
+        concept-term (u/create-term-from-concept concept)]
+    [concept
+     concept-term]))
+
+(defn update-occupation-synonym-term [{:keys [synonym-id-67 synonym-term-68]}]
+  {:pre [synonym-id-67 synonym-term-68]}
+  (let [entity-id (u/get-entity-id-by-legacy-id synonym-id-67 t/keyword)]
+    (u/update-concept entity-id {:new-term synonym-term-68})))
+
+(defn retract-synonym-relations-to-occupation-name
+  [{:keys [occupation-name-id-67
+           synonym-id-67]}]
+  (concat
+    (u/retract-relation-by-legacy-ids-and-types
+      occupation-name-id-67
+      t/occupation-name
+      synonym-id-67
+      t/keyword
+      t/related)))
+
+(defn convert-new-synonym-relation-to-occupation-name
+  [{:keys [occupation-name-id-68
+           synonym-id-68]}]
+  (concat
+    (u/get-new-relation-by-legacy-ids-and-types
+      occupation-name-id-68
+      t/occupation-name
+      synonym-id-68
+      t/keyword
+      t/related)))
 
 (defn convert []
   "Run this function after the database has been loaded"
   (remove empty?
           (concat
-            (map convert-deprecated-occupation (lm/fetch-data lm/get-deprecated-occupation-name))
+            (map convert-deprecated-occupation-names (lm/fetch-data lm/get-deprecated-occupation-name))
             (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
             (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-isco))
             (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-ssyk))
             (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-isco))
             (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-ssyk))
-            ; TODO continue here
             (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
             (mapcat update-occupation-name (lm/fetch-data lm/get-updated-occupation-name-term))
             (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
             (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
             (mapcat update-occupation-field (lm/fetch-data lm/get-updated-occupation-field))
-            (mapcat update-occupation-field-relations (lm/fetch-data lm/get-deprecated-occupation-field-relation-to-ssyk-4))
-            (mapcat update-occupation-field-relations (lm/fetch-data lm/get-new-occupation-field-relation-to-ssyk-4))
+            (mapcat convert-new-occupation-field-relation-to-ssyk-4 (lm/fetch-data lm/get-new-occupation-field-relation-to-ssyk-4))
+            (map convert-deprecated-occupation-synonyms (lm/fetch-data lm/get-deprecated-synonyms))
+            (mapcat create-new-occupation-synonyms (lm/fetch-data lm/get-new-synonyms))
+            (mapcat update-occupation-synonym-term (lm/fetch-data lm/get-updated-synonym-terms))
+            (mapcat retract-synonym-relations-to-occupation-name (lm/fetch-data lm/get-deprecated-synonym-relation-to-occupation))
+            (mapcat convert-new-synonym-relation-to-occupation-name (lm/fetch-data lm/get-new-synonym-relation-to-occupation))
             )))
-
-(comment
-  "These should be converted as well"
-  -- :name get-deprecated-synonyms :*
-  -- :name get-new-synonyms :*
-  -- :name get-updated-synonym-terms :*
-  -- :name get-deprecated-synonym-relation-to-occupation :*
-  -- :name get-new-synonym-relation-to-occupation :*)
