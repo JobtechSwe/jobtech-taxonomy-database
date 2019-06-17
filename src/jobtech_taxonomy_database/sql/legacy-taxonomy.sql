@@ -1155,7 +1155,7 @@ AND [db-68-term].countryID NOT IN
 	WHERE [db-67-term].languageID = 502)
 
 -- 2 (June 12)
--- :name get-updated-country-term :*
+-- :name get-updated-country :*
 -- :doc get updated countries where term/label differs between version 68 and version 67
 SELECT [db-68-term].countryID  AS [id-68],
 	[db-68-term].term AS [term-68],
