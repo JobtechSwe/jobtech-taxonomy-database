@@ -20,14 +20,8 @@
   (let [entity-id (u/get-entity-id-by-legacy-id id-67 t/employment-duration)]
     (u/update-concept entity-id {:new-term term-68 :sort sortering-68 :eures eures-68})))
 
-(defn convert-deprecated
-  [{:keys [id-67]}]
-  {:pre [id-67]}
-  (u/deprecate-concept t/employment-duration id-67))
-
 (defn convert []
   "Run this function after the database has been loaded"
   (remove nil? (concat
                 (mapcat convert-new (lm/fetch-data lm/get-new-employment-duration))
                 (mapcat convert-updated (lm/fetch-data lm/get-updated-employment-duration)))))
-
