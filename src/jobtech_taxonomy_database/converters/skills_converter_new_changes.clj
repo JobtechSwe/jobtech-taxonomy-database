@@ -30,16 +30,24 @@
   {:pre [deprecated-id replacing-id]}
   (u/replace-concept deprecated-id replacing-id t/skill))
 
-(defn convert-update-skill-relations
+(defn retract-skill-relations
   [{:keys [skill-id-67
-           parent-headline-id-67
-           parent-headline-id-68]}]
-  (u/update-relation-by-legacy-ids-and-types
+           parent-headline-id-67]}]
+  (u/retract-relation-by-legacy-ids-and-types
     skill-id-67
     t/skill
     parent-headline-id-67
     t/skill-headline
+    t/broader))
+
+(defn convert-new-skill-relations
+  [{:keys [skill-id-67
+           parent-headline-id-68]}]
+  (u/get-new-relation-by-legacy-ids-and-types
+    skill-id-67
+    t/skill
     parent-headline-id-68
+    t/skill-headline
     t/broader))
 
 (defn convert []
@@ -48,5 +56,6 @@
                 (map convert-deprecated-skill (lm/fetch-data lm/get-deprecated-skill))
                 (mapcat convert-updated-skill (lm/fetch-data lm/get-updated-skill))
                 (map convert-replaced-skill (lm/fetch-data lm/get-replaced-skill))
-                (mapcat convert-update-skill-relations (lm/fetch-data lm/get-updated-skill-relation-to-headline))
+                (mapcat retract-skill-relations (lm/fetch-data lm/get-deprecated-skill-relation-to-headline))
+                (mapcat convert-new-skill-relations (lm/fetch-data lm/get-new-skill-relation-to-headline))
                 )))

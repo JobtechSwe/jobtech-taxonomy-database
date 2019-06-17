@@ -142,6 +142,7 @@
              (if (contains? attr-map :new-term)
                [{:db/id temp-id :term/base-form (:new-term attr-map)}]))))
 
+#_
 (def get-relation-by-legacy-ids-and-types-query
   '[:find ?r ?c1
     :in $ ?legacy-id-1 ?legacy-id-2 ?type-1 ?type-2 ?relation-type
@@ -166,12 +167,14 @@
     [?r :relation/concept-2 ?c2]
     [?r :relation/type ?relation-type]])
 
+#_
 (defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
   (first (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
 (defn get-only-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
   (first (d/q get-only-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
+#_
 (defn update-relation-by-legacy-ids-and-types
   [concept-legacy-id
    concept-type
@@ -216,7 +219,7 @@
    related-concept-type
    relation-type]
   "This function will find the entity ID's of two concepts and create a new relation between them.
-  Both concepts has to exist in the database."
+  Both concepts has to exist in the database or be part of the current transaction."
   (let [entity-1-id (get-entity-id-by-legacy-id concept-legacy-id concept-type)
         entity-2-id (get-entity-if-exists-or-temp-id new-related-concept-legacy-id related-concept-type)]
     [(create-relation  entity-1-id entity-2-id relation-type)]))
