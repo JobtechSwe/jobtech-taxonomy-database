@@ -216,7 +216,7 @@
    relation-type]
   "This function will find the entity ID's of two concepts and create a new relation between them.
   Both concepts has to exist in the database or be part of the current transaction."
-  (let [entity-1-id (get-entity-id-by-legacy-id concept-legacy-id concept-type)
+  (let [entity-1-id (get-entity-if-exists-or-temp-id concept-legacy-id concept-type)
         entity-2-id (get-entity-if-exists-or-temp-id new-related-concept-legacy-id related-concept-type)]
     [(create-relation  entity-1-id entity-2-id relation-type)]))
 
