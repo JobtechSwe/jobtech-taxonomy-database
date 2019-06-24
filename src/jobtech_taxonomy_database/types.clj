@@ -74,8 +74,8 @@
 (def narrower "narrower")
 (def related "related")
 (def occupation-name-affinity "occupation_name_affinity")
-(def ssyk-4-to-skill "ssyk-4_to_skill")
-(def isco-4-to-skill "isco-4-to-skill")
+(def ssyk-4-to-skill "ssyk_4_to_skill")
+(def isco-4-to-skill "isco_4_to_skill")
 
 (s/def ::relation-types #{broader narrower occupation-name-affinity ssyk-4-to-skill isco-4-to-skill related})
 

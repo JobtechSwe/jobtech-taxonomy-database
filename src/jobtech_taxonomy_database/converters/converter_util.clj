@@ -87,7 +87,7 @@
 (defn get-concept-by-attribute-and-value [attribute value category]
   (ffirst (d/q get-entity-id-by-attribute-and-value-query (conn/get-db) attribute value category)))
 
-(def get-preferred-term-and-enity-id-by-legacy-id-query
+(def get-preferred-term-and-entity-id-by-legacy-id-query
   '[:find ?term ?s
     :in $ ?legacy-id ?category
     :where
@@ -97,7 +97,7 @@
     [?s :concept/category ?category]])
 
 (defn get-preferred-term-by-legacy-id [legacy-id type]
-  (first (d/q get-preferred-term-and-enity-id-by-legacy-id-query (conn/get-db) legacy-id type)))
+  (first (d/q get-preferred-term-and-entity-id-by-legacy-id-query (conn/get-db) legacy-id type)))
 
 (defn get-concept [entity-id]
   (d/pull (conn/get-db)   [:concept/id
@@ -141,7 +141,7 @@
             (if (contains? attr-map :new-term)
               [{:db/id temp-id :term/base-form (:new-term attr-map)}]))))
 
-#_(def get-relation-by-legacy-ids-and-types-query
+(def get-relation-by-legacy-ids-and-types-query
     '[:find ?r ?c1
       :in $ ?legacy-id-1 ?legacy-id-2 ?type-1 ?type-2 ?relation-type
       :where
@@ -165,13 +165,13 @@
     [?r :relation/concept-2 ?c2]
     [?r :relation/type ?relation-type]])
 
-#_(defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
-    (first (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
+(defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
+    (ffirst (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
 (defn get-only-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
-  (first (d/q get-only-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
+  (ffirst (d/q get-only-relation-by-legacy-ids-and-types-query (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
-#_(defn update-relation-by-legacy-ids-and-types
+(defn update-relation-by-legacy-ids-and-types
     [concept-legacy-id
      concept-type
      old-related-concept-legacy-id
@@ -200,7 +200,7 @@
    related-concept-type
    relation-type]
   "This function will find the relation and retract it."
-  (let [[relation-entity-id] (get-only-relation-by-legacy-ids-and-types
+  (let [relation-entity-id (get-only-relation-by-legacy-ids-and-types
                               concept-legacy-id
                               old-related-concept-legacy-id
                               concept-type

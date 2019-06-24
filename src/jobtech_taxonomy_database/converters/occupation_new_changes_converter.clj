@@ -38,12 +38,12 @@
     t/broader)))
 
 (defn convert-new-occupation-name-relation-to-parent
-  [{:keys [occupation-name-id-67
+  [{:keys [occupation-name-id-68
            parent-id-68
            parent-type]}]
   (concat
    (u/get-new-relation-by-legacy-ids-and-types
-    occupation-name-id-67
+    occupation-name-id-68
     t/occupation-name
     parent-id-68
     (if (= parent-type "ssyk-level-4") t/ssyk-level-4 t/isco-level-4)
@@ -89,11 +89,11 @@
     (u/update-concept entity-id attribute-map)))
 
 (defn convert-new-occupation-field-relation-to-ssyk-4
-  [{:keys [ssyk-4-id-67
+  [{:keys [ssyk-4-id-68
            parent-id-occupation-field-68]}]
   (concat
    (u/get-new-relation-by-legacy-ids-and-types
-    ssyk-4-id-67
+    ssyk-4-id-68
     t/ssyk-level-4
     parent-id-occupation-field-68
     t/occupation-field
@@ -143,20 +143,26 @@
   "Run this function after the database has been loaded"
   (remove empty?
           (concat
-           (map convert-deprecated-occupation-names (lm/fetch-data lm/get-deprecated-occupation-name))
-           (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
-           (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-isco))
-           (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-ssyk))
+            (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
            (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-isco))
            (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-ssyk))
+
+           (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
+
+           (mapcat create-new-occupation-synonyms (lm/fetch-data lm/get-new-synonyms))
            (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
            (mapcat update-occupation-name (lm/fetch-data lm/get-updated-occupation-name-term))
-           (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
-           (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
            (mapcat update-occupation-field (lm/fetch-data lm/get-updated-occupation-field))
-           (mapcat convert-new-occupation-field-relation-to-ssyk-4 (lm/fetch-data lm/get-new-occupation-field-relation-to-ssyk-4))
-           (map convert-deprecated-occupation-synonyms (lm/fetch-data lm/get-deprecated-synonyms))
-           (mapcat create-new-occupation-synonyms (lm/fetch-data lm/get-new-synonyms))
            (mapcat update-occupation-synonym-term (lm/fetch-data lm/get-updated-synonym-terms))
-           (mapcat retract-synonym-relations-to-occupation-name (lm/fetch-data lm/get-deprecated-synonym-relation-to-occupation))
-           (mapcat convert-new-synonym-relation-to-occupation-name (lm/fetch-data lm/get-new-synonym-relation-to-occupation)))))
+
+           (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
+           (mapcat convert-new-occupation-field-relation-to-ssyk-4 (lm/fetch-data lm/get-new-occupation-field-relation-to-ssyk-4))
+           (mapcat convert-new-synonym-relation-to-occupation-name (lm/fetch-data lm/get-new-synonym-relation-to-occupation))
+
+           (map convert-deprecated-occupation-names (lm/fetch-data lm/get-deprecated-occupation-name))
+           (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-isco))
+           (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-ssyk))
+
+            (map convert-deprecated-occupation-synonyms (lm/fetch-data lm/get-deprecated-synonyms))
+            (mapcat retract-synonym-relations-to-occupation-name (lm/fetch-data lm/get-deprecated-synonym-relation-to-occupation))
+           )))
