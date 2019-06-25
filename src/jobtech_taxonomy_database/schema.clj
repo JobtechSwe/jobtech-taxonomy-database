@@ -10,7 +10,13 @@
    {:db/ident       :concept/description
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "Text describing the concept, is used for disambiguation."}
+    :db/doc         "Text describing the concept, is used for disambiguation. Deprecated"}
+
+   {:db/ident       :concept/definition
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Text defining the concept, is used for disambiguation."}
+
 
    {:db/ident       :concept/preferred-label
     :db/valueType   :db.type/string

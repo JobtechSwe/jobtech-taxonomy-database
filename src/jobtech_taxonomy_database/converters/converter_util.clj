@@ -33,6 +33,7 @@
      {:db/id                                        temp-id
       :concept/id                                   concept-id
       :concept/description                          description
+      :concept/definition                           description
       :concept/preferred-label                      label
       :concept/preferred-term                       concept-id  ; deprecated this one
       :concept/alternative-terms                    #{concept-id}
@@ -101,6 +102,7 @@
 (defn get-concept [entity-id]
   (d/pull (conn/get-db)   [:concept/id
                            :concept/description
+                           :concept/definition
                            {:concept/preferred-term [:db/id :term/base-form]}
                            :concept/category
                            :concept.external-database.ams-taxonomy-67/id]
@@ -124,8 +126,12 @@
             (cond-> (contains? attr-map :new-term)
               (assoc :concept/preferred-label (:new-term attr-map)
                      :concept/preferred-term temp-id))
-            (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map))
-                    (contains? attr-map :new-term) (assoc :concept/description (:new-term attr-map)))
+            (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map)
+                                                             :concept/definition (:description attr-map)
+                                                             )
+                    (contains? attr-map :new-term) (assoc :concept/description (:new-term attr-map)
+                                                          :concept/definition (:description attr-map)
+                                                          )) ;; kommer den här att skriva över description om den har en new-term?
             (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-2012 (:ssyk attr-map)))
             (cond-> (contains? attr-map :sort) (assoc :concept.category/sort-order (:sort attr-map)))
             (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code (:eures attr-map)))
