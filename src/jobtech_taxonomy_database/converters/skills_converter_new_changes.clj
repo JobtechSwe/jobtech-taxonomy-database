@@ -21,26 +21,34 @@
   {:pre [id-67]} ()
   (u/deprecate-concept t/skill id-67))
 
-(defn convert-updated-skill [{:keys [id67 term68]}]
-  {:pre [id67 term68]}
-  (let [entity-id (u/get-entity-id-by-legacy-id id67 t/skill)]
-    (u/update-concept entity-id {:new-term term68})))
+(defn convert-updated-skill [{:keys [skill-id-67 skill-term-68]}]
+  {:pre [skill-id-67 skill-term-68]}
+  (let [entity-id (u/get-entity-id-by-legacy-id skill-id-67 t/skill)]
+    (u/update-concept entity-id {:new-term skill-term-68})))
 
 (defn convert-replaced-skill [{:keys [deprecated-id replacing-id]}]
   {:pre [deprecated-id replacing-id]}
   (u/replace-concept deprecated-id replacing-id t/skill))
 
-(defn convert-update-skill-relations
+(defn retract-skill-relations
   [{:keys [skill-id-67
-           parent-headline-id-67
+           parent-headline-id-67]}]
+  (u/retract-relation-by-legacy-ids-and-types
+   skill-id-67
+   t/skill
+   parent-headline-id-67
+   t/skill-headline
+   t/broader))
+
+(defn convert-new-skill-relations
+  [{:keys [skill-id-67
            parent-headline-id-68]}]
-  (u/update-relation-by-legacy-ids-and-types
-    skill-id-67
-    t/skill
-    parent-headline-id-67
-    t/skill-headline
-    parent-headline-id-68
-    t/broader))
+  (u/get-new-relation-by-legacy-ids-and-types
+   skill-id-67
+   t/skill
+   parent-headline-id-68
+   t/skill-headline
+   t/broader))
 
 (defn convert []
   (remove nil? (concat
@@ -48,5 +56,6 @@
                 (map convert-deprecated-skill (lm/fetch-data lm/get-deprecated-skill))
                 (mapcat convert-updated-skill (lm/fetch-data lm/get-updated-skill))
                 (map convert-replaced-skill (lm/fetch-data lm/get-replaced-skill))
-                (mapcat convert-update-skill-relations (lm/fetch-data lm/get-updated-skill-relation-to-headline))
-                )))
+                (mapcat retract-skill-relations (lm/fetch-data lm/get-deprecated-skill-relation-to-headline))
+                ;;TODO Above returns list of vectors, does that work?
+                (mapcat convert-new-skill-relations (lm/fetch-data lm/get-new-skill-relation-to-headline)))))
