@@ -165,9 +165,8 @@
     [?r :relation/concept-2 ?c2]
     [?r :relation/type ?relation-type]])
 
-["*" {:track/artists [:artist/name]}]
 
-(def get-relation
+#_(def get-relation
   '[:find (pull ?r ["*" {:relation/concept-1 [*]
                          :relation/concept-2 [*]
                          }
