@@ -33,6 +33,8 @@
 (defn retract-skill-relations
   [{:keys [skill-id-67
            parent-headline-id-67]}]
+  {:pre [skill-id-67
+         parent-headline-id-67]}
   (u/retract-relation-by-legacy-ids-and-types
    skill-id-67
    t/skill
@@ -41,10 +43,12 @@
    t/broader))
 
 (defn convert-new-skill-relations
-  [{:keys [skill-id-67
+  [{:keys [skill-id-68
            parent-headline-id-68]}]
+  {:pre [skill-id-68
+         parent-headline-id-68]}
   (u/get-new-relation-by-legacy-ids-and-types
-   skill-id-67
+   skill-id-68
    t/skill
    parent-headline-id-68
    t/skill-headline

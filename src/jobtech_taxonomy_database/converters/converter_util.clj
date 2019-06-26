@@ -165,6 +165,28 @@
     [?r :relation/concept-2 ?c2]
     [?r :relation/type ?relation-type]])
 
+["*" {:track/artists [:artist/name]}]
+
+(def get-relation
+  '[:find (pull ?r ["*" {:relation/concept-1 [*]
+                         :relation/concept-2 [*]
+                         }
+
+                    ])
+    :in $ ?relation-type ?legacy-id-1  ?legacy-id-2
+    :where
+    [?r :relation/type ?relation-type]
+    [?r :relation/concept-1 ?c1]
+    [?c1 :concept.external-database.ams-taxonomy-67/id ?legacy-id-1]
+    [?r :relation/concept-2 ?c2]
+    [?c2 :concept.external-database.ams-taxonomy-67/id ?legacy-id-2]
+    ]
+  )
+
+;; (first (d/q get-relation (conn/get-db) "isco_4_to_skill" "41"  "606897" ))
+
+
+
 (defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
     (ffirst (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
@@ -207,6 +229,7 @@
                               related-concept-type
                               relation-type)]
     [[:db/retractEntity relation-entity-id]]))
+
 
 (defn get-new-relation-by-legacy-ids-and-types
   [concept-legacy-id
