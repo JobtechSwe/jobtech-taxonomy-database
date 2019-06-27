@@ -1,4 +1,5 @@
 (ns jobtech-taxonomy-database.types
+  (:refer-clojure :exclude [keyword])
   (:gen-class)
   (:require
    ;[camel-snake-kebab.core :as csk]
@@ -74,10 +75,8 @@
 (def narrower "narrower")
 (def related "related")
 (def occupation-name-affinity "occupation_name_affinity")
-(def ssyk-4-to-skill "ssyk_4_to_skill")
-(def isco-4-to-skill "isco_4_to_skill")
 
-(s/def ::relation-types #{broader narrower occupation-name-affinity ssyk-4-to-skill isco-4-to-skill related})
+(s/def ::relation-types #{broader narrower occupation-name-affinity related})
 
 (comment
   "This doesn't work anymore!"

@@ -23,6 +23,8 @@
             [jobtech-taxonomy-database.converters.occupation-skill-relation-new-changes]
             [jobtech-taxonomy-database.converters.geographic-places-new-changes]
             [jobtech-taxonomy-database.converters.worktime-extent-new-changes]
+            [jobtech-taxonomy-database.converters.version-67]
+            [jobtech-taxonomy-database.converters.version-68]
             ))
 
 (def converters
@@ -30,26 +32,31 @@
   set consisting of a reader, converter, writer and their
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
-  '(  ;;{:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.employment-type-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.language-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.language-level-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.occupation-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.skills-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.occupation-skill-relation-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.SNI-level-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.wage-type-converter}
-     ;;{:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
-     ;; {:namespace jobtech-taxonomy-database.converters.employment-duration-new-changes}
+  '(
+    {:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
+     {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
+     {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
+     {:namespace jobtech-taxonomy-database.converters.geographic-places-converter}
+     {:namespace jobtech-taxonomy-database.converters.language-converter}
+     {:namespace jobtech-taxonomy-database.converters.language-level-converter}
+     {:namespace jobtech-taxonomy-database.converters.occupation-converter}
+     {:namespace jobtech-taxonomy-database.converters.skills-converter}
+     {:namespace jobtech-taxonomy-database.converters.occupation-skill-relation-converter}
+     {:namespace jobtech-taxonomy-database.converters.SNI-level-converter}
+     {:namespace jobtech-taxonomy-database.converters.wage-type-converter}
+    {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
 
-      {:namespace jobtech-taxonomy-database.converters.occupation-new-changes-converter}
-     ;; {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
-     ;; {:namespace jobtech-taxonomy-database.converters.occupation-skill-relation-new-changes}
-     ;; {:namespace jobtech-taxonomy-database.converters.geographic-places-new-changes}
-     ;; {:namespace jobtech-taxonomy-database.converters.worktime-extent-new-changes}
-     ))
+    {:namespace jobtech-taxonomy-database.converters.version-67}
+
+     {:namespace jobtech-taxonomy-database.converters.employment-duration-new-changes}
+    {:namespace jobtech-taxonomy-database.converters.occupation-new-changes-converter}
+     {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
+     {:namespace jobtech-taxonomy-database.converters.occupation-skill-relation-new-changes}
+     {:namespace jobtech-taxonomy-database.converters.geographic-places-new-changes}
+     {:namespace jobtech-taxonomy-database.converters.worktime-extent-new-changes}
+
+    {:namespace jobtech-taxonomy-database.converters.version-67}
+    ))
 
 (defn -main
   []
@@ -59,7 +66,7 @@
   (with-open [w (clojure.java.io/writer "/tmp/latest-convert-for-debug.edn")]
     (binding [*out* w]
       (run! (fn [x]
-              ;;(println "**** Calling " (get x :namespace))
+              (println "**** Calling " (get x :namespace))
               (let [converted-data ((ns-resolve (get x :namespace) 'convert))]
                 (pp/write converted-data)
                 (d/transact (get-conn) {:tx-data converted-data})))

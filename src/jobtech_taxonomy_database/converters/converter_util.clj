@@ -130,9 +130,9 @@
             (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map)
                                                              :concept/definition (:description attr-map)
                                                              )
-                    (contains? attr-map :new-term) (assoc :concept/description (:new-term attr-map)
-                                                          :concept/definition (:description attr-map)
-                                                          )) ;; kommer den här att skriva över description om den har en new-term?
+                    (contains? attr-map :new-term) (assoc :concept/description (or (:description attr-map)  (:new-term attr-map))
+                                                          :concept/definition  (or (:description attr-map)  (:new-term attr-map))
+                                                          ))
             (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-2012 (:ssyk attr-map)))
             (cond-> (contains? attr-map :sort) (assoc :concept.category/sort-order (:sort attr-map)))
             (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code (:eures attr-map)))
