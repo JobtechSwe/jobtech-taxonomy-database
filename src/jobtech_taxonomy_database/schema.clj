@@ -10,7 +10,13 @@
    {:db/ident       :concept/description
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "Text describing the concept, is used for disambiguation."}
+    :db/doc         "Text describing the concept, is used for disambiguation. Deprecated"}
+
+   {:db/ident       :concept/definition
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Text defining the concept, is used for disambiguation."}
+
 
    {:db/ident       :concept/preferred-label
     :db/valueType   :db.type/string
@@ -31,22 +37,22 @@
    {:db/ident       :concept/category
     :db/valueType   :db.type/keyword
     :db/cardinality :db.cardinality/one
-    :db/doc         "JobTech categories"
-    }
+    :db/doc         "JobTech categories"}
+
+   {:db/ident       :concept/type
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "The concepts main type"}
 
    {:db/ident       :concept/deprecated
     :db/valueType   :db.type/boolean
     :db/cardinality :db.cardinality/one
-    :db/doc         "If a concept is deprecated"
-    }
+    :db/doc         "If a concept is deprecated"}
 
    {:db/ident       :concept/replaced-by
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/many
-    :db/doc         "Refers to other concepts that is replacing this one"
-    }
-
-   ])
+    :db/doc         "Refers to other concepts that is replacing this one"}])
 
 ;; Example:
 ;;  (def some-concepts
@@ -84,6 +90,11 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "Driving licence code"}
 
+   {:db/ident       :concept.implicit-driving-licences
+    :db/valueType   :db.type/ref
+    :db/cardinality :db.cardinality/many
+    :db/doc         "List of 'lower' ranking driving licences included in the licence"}
+
    {:db/ident       :concept.external-standard/nuts-level-3-code
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
@@ -117,9 +128,7 @@
    {:db/ident       :concept.external-standard/sni-level-code
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "SNI level code"}
-
-   ])
+    :db/doc         "SNI level code"}])
 
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
@@ -153,15 +162,15 @@
   [{:db/ident       :relation/concept-1
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/one
-    :db/doc         "the first concept in a relation"}
+    :db/doc         "The entity ID of the first concept in a relation"}
 
    {:db/ident       :relation/concept-2
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/one
-    :db/doc         "the second concept in a relation"}
+    :db/doc         "The entity ID of the second concept in a relation"}
 
    {:db/ident       :relation/type
-    :db/valueType   :db.type/keyword
+    :db/valueType   :db.type/string      ;; BREAKING CHANGE!!
     :db/cardinality :db.cardinality/one
     :db/doc         "the type of relationship"}
 
@@ -173,7 +182,12 @@
    {:db/ident        :relation/affinity-percentage
     :db/valueType    :db.type/long
     :db/cardinality  :db.cardinality/one
-    :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a simillar occupation"
-    }
+    :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a similar occupation"}])
 
-   ])
+(def version-schema
+  [{:db/ident         :taxonomy-version/id
+    :db/valueType     :db.type/long
+    :db/cardinality   :db.cardinality/one
+    :db/doc           "The current version of the database. Is used almost like a tag in Git."
+    }]
+  )

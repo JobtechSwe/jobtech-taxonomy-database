@@ -4,9 +4,7 @@
             [clojure.set :as set]
             [jobtech-taxonomy-database.config :refer :all]
             [jobtech-taxonomy-database.datomic-connection :refer :all :as conn]
-            [cheshire.core :refer :all]
-            )
-  )
+            [cheshire.core :refer :all]))
 
 (def find-concept-by-query
   '[:find (pull ?c [:concept/id
@@ -15,8 +13,7 @@
                     ;    :concept/deprecated
                     {:concept/preferred-term [:term/base-form]}
                     ;  {:concept/referring-terms [:term/base-form]}
-                    :concept.external-database.ams-taxonomy-67/id
-                    ])
+                    :concept.external-database.ams-taxonomy-67/id])
     :in $
     :where [?c :concept/id]])
 
@@ -25,28 +22,22 @@
 
 (defn lift-term [concept]
   (assoc (dissoc concept :preferred-term)
-    :concept/preferred-term (get-in concept [:concept/preferred-term :term/base-form])))
+         :concept/preferred-term (get-in concept [:concept/preferred-term :term/base-form])))
 
 (defn parse-find-concept-datomic-result [result]
   (->> result
        (map first)
        (map #(lift-term %))
        ;  (map #(update % :concept/category name))
-       (map rename-concept-keys-for-json)
-       )
-  )
+       (map rename-concept-keys-for-json)))
 
 (defn reduce-function [accum next]
-  (let [
-        type (:type next)
-        id (:legacyAmsTaxonomyId next)
-        ]
-    (
-      assoc-in accum [type id] next)
-    ))
+  (let [type (:type next)
+        id (:legacyAmsTaxonomyId next)]
+    (assoc-in accum [type id] next)))
 
 ;Taxonomy convertion map from old Taxonomy ids to new ones
-(defn map-old-taxonomy-ids-to-new-ids []
-    (generate-stream (reduce reduce-function {} (parse-find-concept-datomic-result (d/q find-concept-by-query (get-db)))) (clojure.java.io/writer "ny_taxonomy_to_concept.json"){:pretty true})
-    )
 
+
+(defn map-old-taxonomy-ids-to-new-ids []
+  (generate-stream (reduce reduce-function {} (parse-find-concept-datomic-result (d/q find-concept-by-query (get-db)))) (clojure.java.io/writer "ny_taxonomy_to_concept.json") {:pretty true}))

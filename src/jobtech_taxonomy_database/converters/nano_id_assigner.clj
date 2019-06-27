@@ -38,10 +38,9 @@
   (let [description (find-description category-67 id-67)]
     (if (= description-67 description) "same description" "different description")))
 
-(defn get-nano
-  ([] (nano/generate-new-id-with-underscore))
-  ([category id]
-   (get-in taxonomy-67 [(keyword category) (keyword id) :conceptId] (nano/generate-new-id-with-underscore))))
+(defn get-nano [category id]
+  {:pre [category id]}
+  (get-in taxonomy-67 [(keyword category) (keyword id) :conceptId] (nano/generate-new-id-with-underscore)))
 
 (defn append-line "" [file line]
   (with-open [w (clojure.java.io/writer file :append true)]
