@@ -183,3 +183,11 @@
     :db/valueType    :db.type/long
     :db/cardinality  :db.cardinality/one
     :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a similar occupation"}])
+
+(def version-schema
+  [{:db/ident         :taxonomy-version/id
+    :db/valueType     :db.type/long
+    :db/cardinality   :db.cardinality/one
+    :db/doc           "The current version of the database. Is used almost like a tag in Git."
+    }]
+  )

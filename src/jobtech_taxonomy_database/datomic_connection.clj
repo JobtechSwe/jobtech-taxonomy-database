@@ -36,7 +36,8 @@
   (d/transact conn {:tx-data (vec (concat schema/term-schema
                                           schema/concept-schema
                                           schema/concept-schema-extras
-                                          schema/concept-relation-schema))}))
+                                          schema/concept-relation-schema
+                                          schema/version-schema))}))
 
 ;;;; Public ;;;;
 
