@@ -8,27 +8,20 @@
 
 (def find-concept-by-query
   '[:find (pull ?c [:concept/id
-                    ;  :concept/description
-                    :concept/category
-                    ;    :concept/deprecated
-                    {:concept/preferred-term [:term/base-form]}
-                    ;  {:concept/referring-terms [:term/base-form]}
-                    :concept.external-database.ams-taxonomy-67/id])
+                    :concept/type
+                    :concept/preferred-label
+                    :concept.external-database.ams-taxonomy-67/id
+                    ])
     :in $
     :where [?c :concept/id]])
 
 (defn rename-concept-keys-for-json [concept]
-  (set/rename-keys concept {:concept/id :conceptId, :concept.external-database.ams-taxonomy-67/id :legacyAmsTaxonomyId, :concept/preferred-term :preferredLabel, :concept/category :type}))
+  (set/rename-keys concept {:concept/id :conceptId, :concept.external-database.ams-taxonomy-67/id :legacyAmsTaxonomyId, :concept/preferred-label :preferredLabel, :concept/type :type}))
 
-(defn lift-term [concept]
-  (assoc (dissoc concept :preferred-term)
-         :concept/preferred-term (get-in concept [:concept/preferred-term :term/base-form])))
 
 (defn parse-find-concept-datomic-result [result]
   (->> result
        (map first)
-       (map #(lift-term %))
-       ;  (map #(update % :concept/category name))
        (map rename-concept-keys-for-json)))
 
 (defn reduce-function [accum next]
