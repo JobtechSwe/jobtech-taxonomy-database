@@ -55,7 +55,7 @@
      {:namespace jobtech-taxonomy-database.converters.geographic-places-new-changes}
      {:namespace jobtech-taxonomy-database.converters.worktime-extent-new-changes}
 
-    {:namespace jobtech-taxonomy-database.converters.version-67}
+    {:namespace jobtech-taxonomy-database.converters.version-68}
     ))
 
 (defn -main
