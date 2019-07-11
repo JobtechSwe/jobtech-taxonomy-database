@@ -4,6 +4,8 @@
             [jobtech-taxonomy-database.config :refer :all]
             [jobtech-taxonomy-database.schema :refer :all :as schema]))
 
+;; TODO Remove since not being used
+#_
 (def find-concept-by-preferred-term-query
   '[:find (pull ?c
                 [:concept/id
@@ -33,7 +35,7 @@
   (d/db (get-conn-with-config config)))
 
 (defn ^:private init-new-db-with-conn [conn]
-  (d/transact conn {:tx-data (vec (concat schema/term-schema
+  (d/transact conn {:tx-data (vec (concat ;schema/term-schema
                                           schema/concept-schema
                                           schema/concept-schema-extras
                                           schema/concept-relation-schema))}))

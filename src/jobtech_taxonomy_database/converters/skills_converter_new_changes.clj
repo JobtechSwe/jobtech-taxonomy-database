@@ -12,10 +12,12 @@
                    term-68
                    term-68
                    id-68)
-          concept-term (u/create-term-from-concept concept)
+          ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
           concept-relation (u/create-broader-relation-to-concept
                             concept (u/get-entity-if-exists-or-temp-id skill-headline t/skill-headline))]
-      [concept concept-term concept-relation])))
+      [concept
+       ;concept-term ;; TODO Remove since not being used
+       concept-relation])))
 
 (defn convert-deprecated-skill [{:keys [id-67]}]
   {:pre [id-67]} ()

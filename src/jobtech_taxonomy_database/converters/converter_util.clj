@@ -35,18 +35,21 @@
       :concept/id                                   concept-id
       :concept/description                          description
       :concept/preferred-label                      label
-      :concept/preferred-term                       concept-id  ; deprecated this one
-      :concept/alternative-terms                    #{concept-id}
+      ;:concept/preferred-term                       concept-id  ; deprecated this one ;; TODO Remove since not being used
+      ;:concept/alternative-terms                    #{concept-id} ;; TODO Remove since not being used
       :concept/type                                 instance-type
       :concept/category                             (csk/->kebab-case-keyword instance-type) ; deprecated this one
       :concept.external-database.ams-taxonomy-67/id (str legacy-id) ;; TODO rename attribute
       })))
 
+;; TODO Remove since not being used
 #_(defn create-term [nano-id term]
     "never mind this, it's not going to be used"
     {:db/id          nano-id
      :term/base-form term})
 
+;; TODO Remove since not being used
+#_
 (defn create-term-from-concept [{:keys  [:concept/id :concept/preferred-label]}]
   " Takes a concept, returns map for preferred-label-concept"
   {:db/id id
@@ -63,6 +66,7 @@
   "First input should be a concept, second an entity-id or a temp-id"
   (create-relation (:db/id concept) broader-temp-id t/broader))
 
+;; TODO Remove since not being used
 (defn create-narrower-relation-to-concept [concept narrower-temp-id]
   "First input should be a concept, second an entity-ids OR a temp-ids"
   (create-relation (:db/id concept) narrower-temp-id t/narrower))
@@ -77,6 +81,7 @@
 (defn get-entity-id-by-legacy-id [legacy-id type]
   (ffirst (d/q get-entity-id-by-legacy-id-query (conn/get-db) (str legacy-id) type)))
 
+;; TODO Remove since not being used
 (def get-entity-id-by-attribute-and-value-query
   '[:find ?s
     :in $ ?attribute ?value ?category
@@ -84,25 +89,28 @@
     [?s ?attribute ?value]
     [?s :concept/category ?category]])
 
+;; TODO Remove since not being used
 (defn get-concept-by-attribute-and-value [attribute value category]
   (ffirst (d/q get-entity-id-by-attribute-and-value-query (conn/get-db) attribute value category)))
 
+;; TODO Remove since not being used
 (def get-preferred-term-and-entity-id-by-legacy-id-query
-  '[:find ?term ?s
+  '[:find ?s ;?term
     :in $ ?legacy-id ?category
     :where
-    [?t :term/base-form ?term]
+    ;[?t :term/base-form ?term]
     [?s :concept/preferred-term ?t]
     [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
     [?s :concept/category ?category]])
 
+;; TODO Remove since not being used
 (defn get-preferred-term-by-legacy-id [legacy-id type]
   (first (d/q get-preferred-term-and-entity-id-by-legacy-id-query (conn/get-db) legacy-id type)))
 
 (defn get-concept [entity-id]
   (d/pull (conn/get-db)   [:concept/id
                            :concept/description
-                           {:concept/preferred-term [:db/id :term/base-form]}
+                           ;{:concept/preferred-term [:db/id :term/base-form]} ;; TODO Remove since not being used
                            :concept/category
                            :concept.external-database.ams-taxonomy-67/id]
           entity-id))
@@ -138,9 +146,11 @@
             (cond-> (contains? attr-map :isco) (assoc :concept.external-standard/isco-08 (:isco attr-map)))
             (cond-> (contains? attr-map :sni) (assoc :concept.external-standard/sni-level-code (:sni attr-map))))]
     (concat [concept-with-extras]
-            (if (contains? attr-map :new-term)
-              [{:db/id temp-id :term/base-form (:new-term attr-map)}]))))
+            ;(if (contains? attr-map :new-term) ;; TODO Remove since not being used
+              ;[{:db/id temp-id :term/base-form (:new-term attr-map)}]) ;; TODO Remove since not being used
+              )))
 
+;; TODO Remove since not being used
 (def get-relation-by-legacy-ids-and-types-query
     '[:find ?r ?c1
       :in $ ?legacy-id-1 ?legacy-id-2 ?type-1 ?type-2 ?relation-type
@@ -165,12 +175,14 @@
     [?r :relation/concept-2 ?c2]
     [?r :relation/type ?relation-type]])
 
+;; TODO Remove since not being used
 (defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
     (ffirst (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
 (defn get-only-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
   (ffirst (d/q get-only-relation-by-legacy-ids-and-types-query (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
+;; TODO Remove since not being used
 (defn update-relation-by-legacy-ids-and-types
     [concept-legacy-id
      concept-type

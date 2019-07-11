@@ -15,11 +15,13 @@
         temp-id (u/create-temp-id t/driving-licence-combination combination-id)
         relations (map combination-to-relation (second grouped-combinations))
         concept (u/create-concept t/driving-licence-combination temp-id temp-id combination-id)
-        concept-term (u/create-term-from-concept concept)]
+        ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
+        ]
     (concat
      relations
      [concept
-      concept-term])))
+      ;concept-term ;; TODO Remove since not being used
+      ])))
 
 (defn driving-licence-converter
   "Immutable driving licence converter."
@@ -30,8 +32,11 @@
     concept-with-extras (assoc concept
                                :concept.external-standard/driving-licence-code drivinglicencecode
                                :concept.category/sort-order displaysortorder)
-    concept-term (u/create-term-from-concept concept-with-extras)]
-    [concept-with-extras concept-term]))
+    ;concept-term (u/create-term-from-concept concept-with-extras) ;; TODO Remove since not being used
+    ]
+    [concept-with-extras
+     ;concept-term ;; TODO Remove since not being used
+     ]))
 
 (defn convert
   "Query db for driving licences and driving licence combinations, convert each entity"
@@ -39,4 +44,5 @@
   (concat
    (mapcat driving-licence-converter (lm/fetch-data lm/get-driving-licence))
    (mapcat convert-driving-licence-combination-grouped
-           (group-by :kombinationsid (lm/fetch-data lm/get-driving-licence-combination)))))
+           (group-by :kombinationsid (lm/fetch-data lm/get-driving-licence-combination)))
+   ))

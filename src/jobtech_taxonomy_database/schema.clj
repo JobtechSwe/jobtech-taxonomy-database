@@ -17,8 +17,8 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "What we prefer to call the concept."}
 
-   ;deprecated
-   {:db/ident       :concept/preferred-term
+   ;; TODO Remove since not being used
+   #_{:db/ident       :concept/preferred-term
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/one
     :db/doc         "What we prefer to call the concept"}
@@ -50,17 +50,11 @@
 
 ;; Example:
 ;;  (def some-concepts
-;;    [
-;;     {
+;;    [{
 ;;      :concept/id                "MZ6wMoAfyP"
 ;;      :concept/description       "Kontaktmannaskap är ett sätt att organisera arbetet för kontinuitet. Kontaktmannen har till uppgift att kommunicera, informera och bidra till sociala aktiviteter samt fungera som en kontakt och länk till anhöriga. Inom omsorg är kontinuitet och kunskap oerhört viktigt för att skapa trygghet."
-;;      :concept/preferred-term    [:term/base-form "KontaktmannaskapX"]
-;;      :concept/alternative-terms #{[:term/base-form "Kontaktmannaskap"]}
-;;      }
-;;     ]
-;;    )
+;;      }}])
 ;;  (d/transact conn {:tx-data some-concepts})
-
 
 (def concept-schema-extras
   [{:db/ident       :concept.external-standard/ssyk-2012
@@ -128,7 +122,8 @@
 
 ;; TODO add Transaction Function that checks that the term is connected to a concept
 
-
+;; TODO Remove since not being used
+#_
 (def term-schema
   [{:db/ident       :term/base-form
     :db/valueType   :db.type/string

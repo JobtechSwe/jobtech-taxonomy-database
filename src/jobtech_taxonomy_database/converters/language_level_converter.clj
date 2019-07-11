@@ -10,8 +10,11 @@
   {:pre [term languagelevelid]}
   (let
    [concept (u/create-concept t/language-level term term languagelevelid)
-    concept-term (u/create-term-from-concept concept)]
-    [concept concept-term]))
+    ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
+    ]
+    [concept
+     ;concept-term ;; TODO Remove since not being used
+     ]))
 
 (defn convert
   "Query db for language levels, convert each entity"
