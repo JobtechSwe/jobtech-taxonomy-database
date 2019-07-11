@@ -126,13 +126,15 @@
     {:db/id entity-id  :concept/deprecated true}))
 
 (defn update-concept [entity-id attr-map]
-  (let [temp-id (str (gensym))
+  (let [
+        ; temp-id (str (gensym)) ;; TODO Remove since not being used
         concept {:db/id entity-id}
         concept-with-extras
         (-> concept
             (cond-> (contains? attr-map :new-term)
               (assoc :concept/preferred-label (:new-term attr-map)
-                     :concept/preferred-term temp-id))
+                     ; :concept/preferred-term temp-id ;; TODO Remove since not being used
+                     ))
             (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map))
                     (contains? attr-map :new-term) (assoc :concept/description (:new-term attr-map)))
             (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-2012 (:ssyk attr-map)))

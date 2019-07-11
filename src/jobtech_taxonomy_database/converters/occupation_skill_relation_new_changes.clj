@@ -39,6 +39,7 @@
   []
   (remove nil?
           (concat
-           (mapcat retract-isco-skill-relations (lm/fetch-data lm/get-deprecated-isco-4-skill-relation))
+           ;(mapcat retract-isco-skill-relations (lm/fetch-data lm/get-deprecated-isco-4-skill-relation))
            (mapcat convert-new-isco-skill-relations (lm/fetch-data lm/get-new-isco-4-skill-relation))
-           (mapcat retract-ssyk-skill-relations (lm/fetch-data lm/get-deprecated-ssyk-4-skill-relation)))))
+           ;(mapcat retract-ssyk-skill-relations (lm/fetch-data lm/get-deprecated-ssyk-4-skill-relation))
+           )))
