@@ -42,10 +42,14 @@
 (defn get-verion-67-entity []
   (ffirst (d/q get-version (get-db))))
 
-(defn convert []
+
+#_(defn convert []
   (let [version-db-id (get-verion-67-entity)]
     [{:db/id version-db-id
       :taxonomy-version/id 68}]
     )
+  )
 
+(defn convert []
+  [{:taxonomy-version/id 68}]
   )

@@ -68,7 +68,7 @@
 ;(def database-name "jobtech-taxonomy-development")
 ;(def database-name "jobtech-taxonomy-production")
 
-(def database-name "jobtech-taxonomy-henrik-dev")
+(def database-name "jobtech-taxonomy-henrik-dev-2")
 
 (defn delete-database
   ([]       (d/delete-database (get-client) {:db-name database-name}  ))
@@ -83,13 +83,3 @@
 (defn list-databases
   ([]       (d/list-databases (get-client) {:db-name database-name}  ))
   ([config] (d/list-databases (get-client config) {:db-name nil}  )))
-
-
-;; (d/create-database client {:db-name "jobtech-taxonomy-development"}  )
-#_("demo"
-   "jobtech-taxonomy-development"
-   "jobtech-taxonomy-henrik-dev"
-   "jobtech-taxonomy-joakim-dev"
-   "jobtech-taxonomy-production"
-   "jobtech-taxonomy-simon-dev"
-   "taxonomy_v13")
