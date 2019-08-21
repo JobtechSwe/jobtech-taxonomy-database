@@ -143,7 +143,7 @@
   "Run this function after the database has been loaded"
   (remove empty?
           (concat
-            (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
+           (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
            (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-isco))
            (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-ssyk))
 

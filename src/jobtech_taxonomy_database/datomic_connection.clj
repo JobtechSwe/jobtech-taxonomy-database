@@ -65,10 +65,10 @@
   (d/transact (get-conn) {:tx-data data}))
 
 
-;(def database-name "jobtech-taxonomy-development")
+(def database-name "jobtech-taxonomy-development")
 ;(def database-name "jobtech-taxonomy-production")
 
-(def database-name "jobtech-taxonomy-henrik-dev-2")
+;; (def database-name "jobtech-taxonomy-henrik-dev-2")
 
 (defn delete-database
   ([]       (d/delete-database (get-client) {:db-name database-name}  ))
