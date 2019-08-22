@@ -89,10 +89,15 @@ fi
 
 
 ## Is java installed?
-if ! which java; then
-    echo "No java installed, installing openjdk-11-jre (prompting for sudo pass now)" >&2
-    sudo apt-get update && sudo apt-get install openjdk-11-jre
+if [ ! -d /usr/lib/jvm/java-8-openjdk-amd64/jre/bin ]; then
+    echo "Java 8 not installed in Ubuntu's default location, installing openjdk-8-jre (prompting for sudo pass now)" >&2
+    sudo apt-get update && sudo apt-get install openjdk-8-jre
 fi
+
+
+## Datomic Peer REQUIRES java 8 - it does NOT work with java 11
+## (you would see error message from MQ "cannot connect").
+export PATH=/usr/lib/jvm/java-8-openjdk-amd64/jre/bin:$PATH
 
 
 ## Is docker installed?
@@ -203,6 +208,14 @@ function start_taxonomydb() {
         docker run --rm -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Taxonomy123!' -e 'MSSQL_PID=Express' -v $PWD:/data --name mssql-server -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest
 
         sleep 10
+
+        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE [TaxonomyDB] FROM DISK = N'/data/taxonomydb.bak' WITH FILE = 1, NOUNLOAD, REPLACE, NORECOVERY, STATS = 5"
+
+        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE TaxonomyDB WITH RECOVERY"
+
+        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE [TaxonomiDBSvensk] FROM DISK = N'/data/taxonomydb-svensk.bak' WITH FILE = 1, NOUNLOAD, REPLACE, NORECOVERY, STATS = 5"
+
+        docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE TaxonomiDBSvensk WITH RECOVERY"
 
         docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Taxonomy123!' -Q "RESTORE DATABASE [TaxonomyDBVersion] FROM DISK = N'/data/taxonomydb-version.bak' WITH FILE = 1, NOUNLOAD, REPLACE, NORECOVERY, STATS = 5"
 

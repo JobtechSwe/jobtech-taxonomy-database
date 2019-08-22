@@ -10,7 +10,13 @@
    {:db/ident       :concept/description
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "Text describing the concept, is used for disambiguation."}
+    :db/doc         "Text describing the concept, is used for disambiguation. Deprecated"}
+
+   {:db/ident       :concept/definition
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Text defining the concept, is used for disambiguation."}
+
 
    {:db/ident       :concept/preferred-label
     :db/valueType   :db.type/string
@@ -46,7 +52,13 @@
    {:db/ident       :concept/replaced-by
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/many
-    :db/doc         "Refers to other concepts that is replacing this one"}])
+    :db/doc         "Refers to other concepts that is replacing this one"}
+
+   {:db/ident       :concept.relation/related
+    :db/valueType   :db.type/ref
+    :db/cardinality :db.cardinality/many
+    :db/doc         "related concepts"}
+   ])
 
 ;; Example:
 ;;  (def some-concepts
@@ -172,3 +184,40 @@
     :db/valueType    :db.type/long
     :db/cardinality  :db.cardinality/one
     :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a similar occupation"}])
+
+(def version-schema
+  [{:db/ident         :taxonomy-version/id
+    :db/valueType     :db.type/long
+    :db/cardinality   :db.cardinality/one
+    :db/unique        :db.unique/identity
+    :db/doc           "The current version of the database. Is used almost like a tag in Git."
+    }]
+  )
+
+;; (d/transact (get-conn) {:tx-data [{:db/id "a" :concept/id "a" :concept/preferred-label "clojure" :concept.relation/related "b" }  {:db/id "b" :concept/id "b"  :concept/preferred-label "java"} ]} )
+
+
+;; (d/q '[:find (pull ?e [*])  :in $ :where [?e :concept/id] ] (get-db))
+
+;; (d/transact (get-conn) {:tx-data [{:db/id "c"  :concept/id "c" :concept/preferred-label "scala"}]})
+
+
+;; (d/transact (get-conn) {:tx-data [[:db/add 37541725018783840 :concept.relation/related 67822275247734882]]} )
+
+
+;; (d/transact (get-conn) {:tx-data [[:db/retract 37541725018783840 :concept.relation/related 67822275247734882]]} )
+
+(def scheme-schema
+  [{:db/ident         :scheme/name
+    :db/valueType     :db.type/string
+    :db/cardinality   :db.cardinality/one
+    :db/doc           "The scheme name."
+    }
+
+   {:db/ident        :scheme/member
+    :db/valueType    :db.type/ref
+    :db/cardinality  :db.cardinality/many
+    :db/doc          "members of the scheme"
+    }
+   ]
+  )

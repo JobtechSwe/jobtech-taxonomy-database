@@ -113,7 +113,7 @@
                            :concept/description
                            ;{:concept/preferred-term [:db/id :term/base-form]} ;; TODO Remove since not being used
                            :concept/definition
-                           {:concept/preferred-term [:db/id :term/base-form]}
+                           ;{:concept/preferred-term [:db/id :term/base-form]}
                            :concept/category
                            :concept.external-database.ams-taxonomy-67/id]
           entity-id))
@@ -135,6 +135,14 @@
         concept-with-extras
         (-> concept
             (cond-> (contains? attr-map :new-term)
+              (assoc :concept/preferred-label (:new-term attr-map)
+                     :concept/preferred-term temp-id))
+            (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map)
+                                                             :concept/definition (:description attr-map)
+                                                             )
+                    (contains? attr-map :new-term) (assoc :concept/description (or (:description attr-map)  (:new-term attr-map))
+                                                          :concept/definition  (or (:description attr-map)  (:new-term attr-map))
+                                                          ))
                     (assoc :concept/preferred-label (:new-term attr-map)
                            ; :concept/preferred-term temp-id ;; TODO Remove since not being used
                            ))

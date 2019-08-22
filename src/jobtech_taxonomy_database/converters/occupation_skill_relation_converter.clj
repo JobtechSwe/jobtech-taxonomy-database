@@ -9,7 +9,7 @@
   {:pre [skill-id ssyk-4-id]}
   (let [temp-id-ssyk (u/get-entity-if-exists-or-temp-id ssyk-4-id t/ssyk-level-4)
         temp-id-skill (u/get-entity-if-exists-or-temp-id skill-id t/skill)
-        relation (u/create-relation temp-id-ssyk temp-id-skill t/ssyk-4-to-skill)]
+        relation (u/create-relation temp-id-ssyk temp-id-skill t/related)]
     relation))
 
 (defn convert-isco-4-skill
@@ -17,7 +17,7 @@
   {:pre [skill-id isco-4-id]}
   (let [temp-id-isco (u/get-entity-if-exists-or-temp-id isco-4-id t/isco-level-4)
         temp-id-skill (u/get-entity-if-exists-or-temp-id skill-id t/skill)
-        relation (u/create-relation temp-id-isco temp-id-skill t/isco-4-to-skill)]
+        relation (u/create-relation temp-id-isco temp-id-skill t/related)]
     relation))
 
 (defn convert

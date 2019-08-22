@@ -7,32 +7,38 @@
 (defn retract-isco-skill-relations
   [{:keys [skill-id-67
            isco-4-id-67]}]
+  {:pre [skill-id-67
+         isco-4-id-67]}
   (u/retract-relation-by-legacy-ids-and-types
-   skill-id-67
-   t/skill
    isco-4-id-67
    t/isco-level-4
-   t/isco-4-to-skill))
+   skill-id-67
+   t/skill
+   t/related))
 
 (defn convert-new-isco-skill-relations
   [{:keys [skill-id-68
            isco-4-id-68]}]
+  {:pre [skill-id-68
+         isco-4-id-68]}
   (u/get-new-relation-by-legacy-ids-and-types
    skill-id-68
    t/skill
    isco-4-id-68
    t/isco-level-4
-   t/isco-4-to-skill))
+   t/related))
 
 (defn retract-ssyk-skill-relations
   [{:keys [skill-id-67
            ssyk-4-id-67]}]
+  {:pre [skill-id-67
+         ssyk-4-id-67]}
   (u/retract-relation-by-legacy-ids-and-types
-   skill-id-67
-   t/skill
    ssyk-4-id-67
    t/ssyk-level-4
-   t/ssyk-4-to-skill))
+   skill-id-67
+   t/skill
+   t/related))
 
 (defn convert
   ""
