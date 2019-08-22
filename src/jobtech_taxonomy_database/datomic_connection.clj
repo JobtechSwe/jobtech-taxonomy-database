@@ -65,9 +65,11 @@
 
 ;(def database-name "jobtech-taxonomy-development")
 ;(def database-name "jobtech-taxonomy-production")
+;(def database-name "jobtech-taxonomy-henrik-dev")
+;(def database-name "datomic-dev-sara")
 
 
-(def database-name "jobtech-taxonomy-henrik-dev")
+(def database-name "datomic-dev-sara")
 
 (defn ^:private delete-database []
   (d/delete-database (get-client) {:db-name database-name}))

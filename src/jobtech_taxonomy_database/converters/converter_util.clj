@@ -135,13 +135,13 @@
         concept-with-extras
         (-> concept
             (cond-> (contains? attr-map :new-term)
-              (assoc :concept/preferred-label (:new-term attr-map)
-                     ; :concept/preferred-term temp-id ;; TODO Remove since not being used
-                     ))
+                    (assoc :concept/preferred-label (:new-term attr-map)
+                           ; :concept/preferred-term temp-id ;; TODO Remove since not being used
+                           ))
             (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map))
                     (contains? attr-map :new-term) (assoc :concept/description (:new-term attr-map)))
-                    ;)
-                    ; :concept/preferred-term temp-id))
+            ;)
+            ; :concept/preferred-term temp-id))
             (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map)
                                                              :concept/definition (:description attr-map)
                                                              )
@@ -152,7 +152,7 @@
             (cond-> (contains? attr-map :sort) (assoc :concept.category/sort-order (:sort attr-map)))
             (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code (:eures attr-map)))
             (cond-> (contains? attr-map :driving-licence-code)
-              (assoc :concept.external-standard/driving-licence-code (:driving-licence-code attr-map)))
+                    (assoc :concept.external-standard/driving-licence-code (:driving-licence-code attr-map)))
             (cond-> (contains? attr-map :nuts-3) (assoc :concept.external-standard/nuts-level-3-code (:nuts-3 attr-map)))
             (cond-> (contains? attr-map :country-code) (assoc :concept.external-standard/country-code (:country-code attr-map)))
             (cond-> (contains? attr-map :legacy-id) (assoc :concept.external-database.ams-taxonomy-67/id (:legacy-id attr-map)))
@@ -160,8 +160,8 @@
             (cond-> (contains? attr-map :sni) (assoc :concept.external-standard/sni-level-code (:sni attr-map))))]
     (concat [concept-with-extras]
             ;(if (contains? attr-map :new-term) ;; TODO Remove since not being used
-              ;[{:db/id temp-id :term/base-form (:new-term attr-map)}]) ;; TODO Remove since not being used
-              )))
+            ;[{:db/id temp-id :term/base-form (:new-term attr-map)}]) ;; TODO Remove since not being used
+            )))
 
 ;; TODO Remove since not being used
 (def get-relation-by-legacy-ids-and-types-query
