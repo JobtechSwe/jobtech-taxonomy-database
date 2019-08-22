@@ -34,6 +34,7 @@
      {:db/id                                        temp-id
       :concept/id                                   concept-id
       :concept/description                          description
+      :concept/definition                           description
       :concept/preferred-label                      label
       ;:concept/preferred-term                       concept-id  ; deprecated this one ;; TODO Remove since not being used
       ;:concept/alternative-terms                    #{concept-id} ;; TODO Remove since not being used
@@ -111,6 +112,8 @@
   (d/pull (conn/get-db)   [:concept/id
                            :concept/description
                            ;{:concept/preferred-term [:db/id :term/base-form]} ;; TODO Remove since not being used
+                           :concept/definition
+                           {:concept/preferred-term [:db/id :term/base-form]}
                            :concept/category
                            :concept.external-database.ams-taxonomy-67/id]
           entity-id))
@@ -137,6 +140,14 @@
                      ))
             (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map))
                     (contains? attr-map :new-term) (assoc :concept/description (:new-term attr-map)))
+                    ;)
+                    ; :concept/preferred-term temp-id))
+            (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map)
+                                                             :concept/definition (:description attr-map)
+                                                             )
+                    (contains? attr-map :new-term) (assoc :concept/description (or (:description attr-map)  (:new-term attr-map))
+                                                          :concept/definition  (or (:description attr-map)  (:new-term attr-map))
+                                                          ))
             (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-2012 (:ssyk attr-map)))
             (cond-> (contains? attr-map :sort) (assoc :concept.category/sort-order (:sort attr-map)))
             (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code (:eures attr-map)))
@@ -178,6 +189,27 @@
     [?r :relation/type ?relation-type]])
 
 ;; TODO Remove since not being used
+
+#_(def get-relation
+  '[:find (pull ?r ["*" {:relation/concept-1 [*]
+                         :relation/concept-2 [*]
+                         }
+
+                    ])
+    :in $ ?relation-type ?legacy-id-1  ?legacy-id-2
+    :where
+    [?r :relation/type ?relation-type]
+    [?r :relation/concept-1 ?c1]
+    [?c1 :concept.external-database.ams-taxonomy-67/id ?legacy-id-1]
+    [?r :relation/concept-2 ?c2]
+    [?c2 :concept.external-database.ams-taxonomy-67/id ?legacy-id-2]
+    ]
+  )
+
+;; (first (d/q get-relation (conn/get-db) "isco_4_to_skill" "41"  "606897" ))
+
+
+
 (defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
     (ffirst (d/q get-relation-by-legacy-ids-and-types-query  (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
 
@@ -221,6 +253,7 @@
                               related-concept-type
                               relation-type)]
     [[:db/retractEntity relation-entity-id]]))
+
 
 (defn get-new-relation-by-legacy-ids-and-types
   [concept-legacy-id
