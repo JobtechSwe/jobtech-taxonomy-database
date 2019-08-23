@@ -2,7 +2,7 @@
   (:gen-class)
   (:require [datomic.client.api :as d]
             [jobtech-taxonomy-database.config :refer :all]
-            [jobtech-taxonomy-database.schema :refer :all :as schema]))
+            [jobtech-taxonomy-database.schema :as schema]))
 
 ;; TODO Remove since not being used
 #_
