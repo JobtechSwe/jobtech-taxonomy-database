@@ -3,7 +3,6 @@
   jobtech-taxonomy-database.converters.converter-util
   (:gen-class)
   (:require [datomic.client.api :as d]
-            ;[jobtech-taxonomy-database.legacy-migration :as legacy-migration]
             [jobtech-taxonomy-database.converters.nano-id-assigner :as nano]
             [jobtech-taxonomy-database.datomic-connection :as conn]
             [camel-snake-kebab.core :as csk]
@@ -36,24 +35,10 @@
       :concept/description                          description
       :concept/definition                           description
       :concept/preferred-label                      label
-      ;:concept/preferred-term                       concept-id  ; deprecated this one ;; TODO Remove since not being used
-      ;:concept/alternative-terms                    #{concept-id} ;; TODO Remove since not being used
       :concept/type                                 instance-type
       :concept/category                             (csk/->kebab-case-keyword instance-type) ; deprecated this one
       :concept.external-database.ams-taxonomy-67/id (str legacy-id) ;; TODO rename attribute
       })))
-
-;; TODO Remove since not being used
-#_(defn create-term [nano-id term]
-    "never mind this, it's not going to be used"
-    {:db/id          nano-id
-     :term/base-form term})
-
-;; TODO Remove since not being used
-#_(defn create-term-from-concept [{:keys [:concept/id :concept/preferred-label]}]
-    " Takes a concept, returns map for preferred-label-concept"
-    {:db/id          id
-     :term/base-form preferred-label})
 
 (defn create-relation [concept1-id concept2-id type]
   "Both parameters should be either entity-id or temp-id"
@@ -66,11 +51,6 @@
   "First input should be a concept, second an entity-id or a temp-id"
   (create-relation (:db/id concept) broader-temp-id t/broader))
 
-;; TODO Remove since not being used
-#_(defn create-narrower-relation-to-concept [concept narrower-temp-id]
-    "First input should be a concept, second an entity-ids OR a temp-ids"
-    (create-relation (:db/id concept) narrower-temp-id t/narrower))
-
 (def get-entity-id-by-legacy-id-query
   '[:find ?s
     :in $ ?legacy-id ?type
@@ -81,38 +61,10 @@
 (defn get-entity-id-by-legacy-id [legacy-id type]
   (ffirst (d/q get-entity-id-by-legacy-id-query (conn/get-db) (str legacy-id) type)))
 
-;; TODO Remove since not being used
-#_(def get-entity-id-by-attribute-and-value-query
-    '[:find ?s
-      :in $ ?attribute ?value ?category
-      :where
-      [?s ?attribute ?value]
-      [?s :concept/category ?category]])
-
-;; TODO Remove since not being used
-#_(defn get-concept-by-attribute-and-value [attribute value category]
-    (ffirst (d/q get-entity-id-by-attribute-and-value-query (conn/get-db) attribute value category)))
-
-;; TODO Remove since not being used
-#_(def get-preferred-term-and-entity-id-by-legacy-id-query
-    '[:find ?s                                              ;?term
-      :in $ ?legacy-id ?category
-      :where
-      ;[?t :term/base-form ?term]
-      [?s :concept/preferred-term ?t]
-      [?s :concept.external-database.ams-taxonomy-67/id ?legacy-id]
-      [?s :concept/category ?category]])
-
-;; TODO Remove since not being used
-#_(defn get-preferred-term-by-legacy-id [legacy-id type]
-    (first (d/q get-preferred-term-and-entity-id-by-legacy-id-query (conn/get-db) legacy-id type)))
-
 (defn get-concept [entity-id]
   (d/pull (conn/get-db) [:concept/id
                          :concept/description
-                         ;{:concept/preferred-term [:db/id :term/base-form]} ;; TODO Remove since not being used
                          :concept/definition
-                         ;{:concept/preferred-term [:db/id :term/base-form]}
                          :concept/category
                          :concept.external-database.ams-taxonomy-67/id]
           entity-id))
@@ -129,18 +81,14 @@
 
 (defn update-concept [entity-id attr-map]
   (let [
-        ; temp-id (str (gensym)) ;; TODO Remove since not being used
         concept {:db/id entity-id}
         concept-with-extras
         (-> concept
             (cond-> (contains? attr-map :new-term)
                     (assoc :concept/preferred-label (:new-term attr-map)
-                           ; :concept/preferred-term temp-id ;; TODO Remove since not being used
                            ))
             (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map))
                     (contains? attr-map :new-term) (assoc :concept/description (:new-term attr-map)))
-            ;)
-            ; :concept/preferred-term temp-id))
             (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map)
                                                              :concept/definition (:description attr-map)
                                                              )
@@ -158,22 +106,7 @@
             (cond-> (contains? attr-map :isco) (assoc :concept.external-standard/isco-08 (:isco attr-map)))
             (cond-> (contains? attr-map :sni) (assoc :concept.external-standard/sni-level-code (:sni attr-map))))]
     (concat [concept-with-extras]
-            ;(if (contains? attr-map :new-term) ;; TODO Remove since not being used
-            ;[{:db/id temp-id :term/base-form (:new-term attr-map)}]) ;; TODO Remove since not being used
             )))
-
-;; TODO Remove since not being used
-#_(def get-relation-by-legacy-ids-and-types-query
-    '[:find ?r ?c1
-      :in $ ?legacy-id-1 ?legacy-id-2 ?type-1 ?type-2 ?relation-type
-      :where
-      [?c1 :concept.external-database.ams-taxonomy-67/id ?legacy-id-1]
-      [?c2 :concept.external-database.ams-taxonomy-67/id ?legacy-id-2]
-      [?c1 :concept/type ?type-1]
-      [?c2 :concept/type ?type-2]
-      [?r :relation/concept-1 ?c1]
-      [?r :relation/concept-2 ?c2]
-      [?r :relation/type ?relation-type]])
 
 (def get-only-relation-by-legacy-ids-and-types-query
   '[:find ?r
@@ -187,56 +120,8 @@
     [?r :relation/concept-2 ?c2]
     [?r :relation/type ?relation-type]])
 
-;; TODO Remove since not being used
-#_(def get-relation
-    '[:find (pull ?r ["*" {:relation/concept-1 [*]
-                           :relation/concept-2 [*]
-                           }
-
-                      ])
-      :in $ ?relation-type ?legacy-id-1 ?legacy-id-2
-      :where
-      [?r :relation/type ?relation-type]
-      [?r :relation/concept-1 ?c1]
-      [?c1 :concept.external-database.ams-taxonomy-67/id ?legacy-id-1]
-      [?r :relation/concept-2 ?c2]
-      [?c2 :concept.external-database.ams-taxonomy-67/id ?legacy-id-2]
-      ]
-    )
-
-;; (first (d/q get-relation (conn/get-db) "isco_4_to_skill" "41"  "606897" ))
-
-
-;; TODO Remove since not being used
-#_
-(defn get-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
-  (ffirst (d/q get-relation-by-legacy-ids-and-types-query (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
-
 (defn get-only-relation-by-legacy-ids-and-types [legacy-id-1 legacy-id-2 type-1 type-2 relation-type]
   (ffirst (d/q get-only-relation-by-legacy-ids-and-types-query (conn/get-db) (str legacy-id-1) (str legacy-id-2) type-1 type-2 relation-type)))
-
-;; TODO Remove since not being used
-#_(defn update-relation-by-legacy-ids-and-types
-    [concept-legacy-id
-     concept-type
-     old-related-concept-legacy-id
-     related-concept-type
-     new-related-concept-legacy-id
-     relation-type]
-    "This function will find the relation and retract it.
-  And create a new relation with the same relation-type to the new entity.
-  The new entity has to exist in the database."
-    (let [[relation-entity-id concept-entity-id] (get-relation-by-legacy-ids-and-types
-                                                   concept-legacy-id
-                                                   old-related-concept-legacy-id
-                                                   concept-type
-                                                   related-concept-type
-                                                   relation-type)
-          new-related-concept-entity-id (get-entity-id-by-legacy-id
-                                          new-related-concept-legacy-id
-                                          related-concept-type)]
-      [[:db/retractEntity relation-entity-id]
-       (create-relation concept-entity-id new-related-concept-entity-id relation-type)]))
 
 (defn retract-relation-by-legacy-ids-and-types
   [concept-legacy-id

@@ -2,8 +2,6 @@
   (:gen-class)
   (:require [datomic.client.api :as d]
             [clojure.pprint :as pp]
-            ;[jobtech-taxonomy-database.schema :refer :all :as schema]
-            ;[jobtech-taxonomy-database.legacy-migration :refer :all]
             [jobtech-taxonomy-database.datomic-connection :as conn]
             [jobtech-taxonomy-database.converters.driving-licence-converter]
             [jobtech-taxonomy-database.converters.employment-duration-converter]

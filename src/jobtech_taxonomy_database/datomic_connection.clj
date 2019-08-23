@@ -4,21 +4,7 @@
             [jobtech-taxonomy-database.config :refer :all]
             [jobtech-taxonomy-database.schema :as schema]))
 
-;; TODO Remove since not being used
-#_
-(def find-concept-by-preferred-term-query
-  '[:find (pull ?c
-                [:concept/id
-                 :concept/description
-                 {:concept/preferred-term [:term/base-form]}
-                 {:concept/referring-terms [:term/base-form]}])
-    :in $ ?term
-    :where [?t :term/base-form ?term]
-    [?c :concept/preferred-term ?t]])
-;; (d/q find-concept-by-preferred-term-query (get-db) "Kontaktmannaskap")
-
 ;;;; Private ;;;;
-
 
 (declare db-conn)
 
@@ -72,7 +58,7 @@
 ;(def database-name "jobtech-taxonomy-henrik-dev")
 ;(def database-name "datomic-dev-sara")
 
-(def database-name "jobtech-taxonomy-henrik-dev-2")
+(def database-name "datomic-dev-sara")
 
 (defn delete-database
   ([]       (d/delete-database (get-client) {:db-name database-name}  ))
