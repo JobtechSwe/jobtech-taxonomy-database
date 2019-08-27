@@ -84,7 +84,7 @@
 
   (def dump [["continent"],
              ["country"],
-             ["driving-license"],
+             ["driving-license"], ;; should be licence
              ["employment-duration"],
              ["employment-type"],
              ["isco-level-4"],
