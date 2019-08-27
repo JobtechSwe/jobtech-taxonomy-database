@@ -10,10 +10,8 @@
   {:pre [term languageid_2]}
   (let
    [concept (u/create-concept t/language term term languageid_2)
-    ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
     ]
     [concept
-     ;concept-term ;; TODO Remove since not being used
      ]))
 
 (defn convert

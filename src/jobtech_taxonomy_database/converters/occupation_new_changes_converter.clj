@@ -14,10 +14,8 @@
   (let    [entity-id-parent-ssyk (u/get-entity-id-by-legacy-id parent-id-ssyk-4 t/ssyk-level-4)
            entity-id-parent-isco (u/get-entity-id-by-legacy-id parent-id-isco-4 t/isco-level-4)
            concept (u/create-concept t/occupation-name term term occupation-name-id)
-           ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
            ]
     (remove nil? [concept
-                  ;concept-term ;; TODO Remove since not being used
                   (when entity-id-parent-ssyk (u/create-broader-relation-to-concept concept entity-id-parent-ssyk)) ;; sometimes ssyk is -1 and becomes nil
                   (u/create-broader-relation-to-concept concept entity-id-parent-isco)])))
 
@@ -57,10 +55,8 @@
   [{:keys [collection-id collection-name]}]
   {:pre [collection-id collection-name]}
   (let [concept (u/create-concept t/occupation-collection collection-name collection-name collection-id)
-        ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
         ]
     [concept
-     ;concept-term ;; TODO Remove since not being used
      ]))
 
 (defn convert-occupation-collection-relation
@@ -111,10 +107,8 @@
   [{:keys [synonym-id synonym-term]}]
   {:pre [synonym-id synonym-term]}
   (let [concept (u/create-concept t/keyword synonym-term synonym-term synonym-id)
-        ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
         ]
     [concept
-     ;concept-term ;; TODO Remove since not being used
      ]))
 
 (defn update-occupation-synonym-term [{:keys [synonym-id-67 synonym-term-68]}]

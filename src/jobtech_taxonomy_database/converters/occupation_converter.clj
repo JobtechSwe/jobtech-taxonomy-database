@@ -10,11 +10,9 @@
   (let [temp-id-parent-ssyk (u/create-temp-id t/ssyk-level-4 parent-id-ssyk-4)
         temp-id-parent-isco (u/create-temp-id t/isco-level-4 parent-id-isco-4)
         concept (u/create-concept t/occupation-name occupation-name-term occupation-name-term occupation-name-id)
-        ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
         relation-to-parent-ssyk (u/create-broader-relation-to-concept concept temp-id-parent-ssyk)
         relation-to-parent-isco (u/create-broader-relation-to-concept concept temp-id-parent-isco)]
     [concept
-     ;concept-term ;; TODO Remove since not being used
      relation-to-parent-ssyk
      relation-to-parent-isco]))
 
@@ -25,10 +23,8 @@
                                   occupation-field-term
                                   occupation-field-description
                                   occupation-field-id)
-        ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
         ]
     [concept
-     ;concept-term ;; TODO Remove since not being used
      ]))
 
 (defn convert-ssyk-level-4
@@ -38,11 +34,9 @@
         temp-id-parent-ssyk-level-3 (u/create-temp-id t/ssyk-level-3 parent-id-ssyk-3)
         concept (u/create-concept t/ssyk-level-4 ssyk-4-term ssyk-4-description ssyk-4-id)
         concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-4-code)
-        ;concept-term (u/create-term-from-concept concept-with-extras) ;; TODO Remove since not being used
         relation-to-parent-ssyk (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-ssyk-level-3)
         relation-to-parent-field (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-field)]
     [concept-with-extras
-     ;concept-term ;; TODO Remove since not being used
      relation-to-parent-ssyk
      relation-to-parent-field]))
 
@@ -52,10 +46,8 @@
   (let [temp-id-parent-ssyk-2 (u/create-temp-id t/ssyk-level-2 parent-id-ssyk-2)
         concept (u/create-concept t/ssyk-level-3 ssyk-3-term ssyk-3-term ssyk-3-id)
         concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-3-code)
-        ;concept-term (u/create-term-from-concept concept-with-extras) ;; TODO Remove since not being used
         relation-to-parent (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-ssyk-2)]
     [concept-with-extras
-     ;concept-term ;; TODO Remove since not being used
      relation-to-parent]))
 
 (defn convert-ssyk-level-2
@@ -64,10 +56,8 @@
   (let [temp-id-parent-level-1 (u/create-temp-id t/ssyk-level-1 parent-id-ssyk-1)
         concept (u/create-concept t/ssyk-level-2 ssyk-2-term ssyk-2-term ssyk-2-id)
         concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-2-code)
-        ;concept-term (u/create-term-from-concept concept-with-extras) ;; TODO Remove since not being used
         relation-to-parent-ssyk-1 (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-level-1)]
     [concept-with-extras
-     ;concept-term ;; TODO Remove since not being used
      relation-to-parent-ssyk-1]))
 
 (defn convert-ssyk-level-1
@@ -75,10 +65,8 @@
   {:pre [ssyk-1-id ssyk-1-term ssyk-1-code]}
   (let [concept (u/create-concept t/ssyk-level-1 ssyk-1-term ssyk-1-term ssyk-1-id)
         concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-1-code)
-        ;concept-term (u/create-term-from-concept concept-with-extras) ;; TODO Remove since not being used
         ]
     [concept-with-extras
-     ;concept-term ;; TODO Remove since not being used
      ]))
 
 (defn convert-isco-level-4
@@ -87,20 +75,16 @@
   (let [temp-id-parent-isco-1 (u/create-temp-id t/isco-level-1 parent-id-isco-1)
         concept (u/create-concept t/isco-level-4 isco-4-term isco-4-description isco-4-id)
         concept-with-extras (assoc concept :concept.external-standard/isco-08 isco-4-isco-code)
-        ;concept-term (u/create-term-from-concept concept-with-extras) ;; TODO Remove since not being used
         relation-to-parent (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-isco-1)]
     [concept-with-extras
-     ;concept-term ;; TODO Remove since not being used
      relation-to-parent]))
 
 (defn convert-isco-level-1
   [{:keys [isco-1-id isco-1-term isco-1-description]}]
   {:pre [isco-1-id isco-1-term isco-1-description]}
   (let [concept (u/create-concept t/isco-level-1 isco-1-term isco-1-description isco-1-id)
-        ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
         ]
     [concept
-     ;concept-term ;; TODO Remove since not being used
      ]))
 
 (defn convert-occupation-name-affinity
@@ -120,10 +104,8 @@
   [{:keys [synonym-id synonym-term]}]
   {:pre [synonym-id synonym-term]}
   (let [concept (u/create-concept t/keyword synonym-term synonym-term synonym-id)
-        ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
         ]
     [concept
-     ;concept-term ;; TODO Remove since not being used
      ]))
 
 (defn convert-popular-synonym-relation
@@ -156,11 +138,9 @@
                                   deprecated-occupation-name-id)
         concept-deprecated-true (assoc concept :concept/deprecated true)
         concept-replaced (assoc concept-deprecated-true :concept/replaced-by temp-id-replacing-concept)
-        ;concept-term (u/create-term-from-concept concept-replaced) ;; TODO Remove since not being used
         ]
     ;; TODO Utred hur vi hanterar replaced by many different??
     [concept-replaced
-     ;concept-term ;; TODO Remove since not being used
      ]))
 
 (defn convert

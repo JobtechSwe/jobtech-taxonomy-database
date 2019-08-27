@@ -14,10 +14,8 @@
              term
              term
              id)
-    ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
     ]
     [concept
-     ;concept-term ;; TODO Remove since not being used
      ]))
 
 (defn converter-countries
@@ -30,11 +28,9 @@
                  term
                  id)
         concept-with-extras (assoc concept :concept.external-standard/country-code code)
-        ;concept-term (u/create-term-from-concept concept-with-extras) ;; TODO Remove since not being used
         temp-id-parent (u/create-temp-id t/continent parent-id)
         relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras
-     ;concept-term ;; TODO Remove since not being used
      relation]))
 
 (defn converter-regions
@@ -47,11 +43,9 @@
                  term
                  id)
         concept-with-extras (conj concept (when code [:concept.external-standard/nuts-level-3-code code]))
-        ;concept-term (u/create-term-from-concept concept-with-extras) ;; TODO Remove since not being used
         temp-id-parent (u/create-temp-id t/country parent-id)
         relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras
-     ;concept-term ;; TODO Remove since not being used
      relation]))
 
 (defn converter-municipalities
@@ -63,11 +57,9 @@
                  term
                  term
                  id)
-        ;concept-term (u/create-term-from-concept concept) ;; TODO Remove since not being used
         temp-id-parent (u/create-temp-id t/region parent-id)
         relation (u/create-broader-relation-to-concept concept temp-id-parent)]
     [concept
-     ;concept-term ;; TODO Remove since not being used
      relation]))
 
 (defn convert
