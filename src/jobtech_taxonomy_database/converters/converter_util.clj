@@ -1,5 +1,5 @@
 (ns ^{:author "Batfish"
-      :doc    "utils for converting SQL data to Datomic"}
+      :doc    "Utility functions for the jobtech-taxonomy-database project."}
  jobtech-taxonomy-database.converters.converter-util
   (:gen-class)
   (:require [datomic.client.api :as d]
