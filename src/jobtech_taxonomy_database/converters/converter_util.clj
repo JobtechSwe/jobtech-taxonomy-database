@@ -1,6 +1,6 @@
 (ns ^{:author "Batfish"
       :doc    "utils for converting SQL data to Datomic"}
-  jobtech-taxonomy-database.converters.converter-util
+ jobtech-taxonomy-database.converters.converter-util
   (:gen-class)
   (:require [datomic.client.api :as d]
             [jobtech-taxonomy-database.converters.nano-id-assigner :as nano]
@@ -80,33 +80,28 @@
     {:db/id entity-id :concept/deprecated true}))
 
 (defn update-concept [entity-id attr-map]
-  (let [
-        concept {:db/id entity-id}
+  (let [concept {:db/id entity-id}
         concept-with-extras
         (-> concept
             (cond-> (contains? attr-map :new-term)
-                    (assoc :concept/preferred-label (:new-term attr-map)
-                           ))
+              (assoc :concept/preferred-label (:new-term attr-map)))
             (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map))
                     (contains? attr-map :new-term) (assoc :concept/description (:new-term attr-map)))
             (cond-> (contains? attr-map :description) (assoc :concept/description (:description attr-map)
-                                                             :concept/definition (:description attr-map)
-                                                             )
+                                                             :concept/definition (:description attr-map))
                     (contains? attr-map :new-term) (assoc :concept/description (or (:description attr-map) (:new-term attr-map))
-                                                          :concept/definition (or (:description attr-map) (:new-term attr-map))
-                                                          ))
+                                                          :concept/definition (or (:description attr-map) (:new-term attr-map))))
             (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-2012 (:ssyk attr-map)))
             (cond-> (contains? attr-map :sort) (assoc :concept.category/sort-order (:sort attr-map)))
             (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code (:eures attr-map)))
             (cond-> (contains? attr-map :driving-licence-code)
-                    (assoc :concept.external-standard/driving-licence-code (:driving-licence-code attr-map)))
+              (assoc :concept.external-standard/driving-licence-code (:driving-licence-code attr-map)))
             (cond-> (contains? attr-map :nuts-3) (assoc :concept.external-standard/nuts-level-3-code (:nuts-3 attr-map)))
             (cond-> (contains? attr-map :country-code) (assoc :concept.external-standard/country-code (:country-code attr-map)))
             (cond-> (contains? attr-map :legacy-id) (assoc :concept.external-database.ams-taxonomy-67/id (:legacy-id attr-map)))
             (cond-> (contains? attr-map :isco) (assoc :concept.external-standard/isco-08 (:isco attr-map)))
             (cond-> (contains? attr-map :sni) (assoc :concept.external-standard/sni-level-code (:sni attr-map))))]
-    (concat [concept-with-extras]
-            )))
+    (concat [concept-with-extras])))
 
 (def get-only-relation-by-legacy-ids-and-types-query
   '[:find ?r
@@ -131,13 +126,12 @@
    relation-type]
   "This function will find the relation and retract it."
   (let [relation-entity-id (get-only-relation-by-legacy-ids-and-types
-                             concept-legacy-id
-                             old-related-concept-legacy-id
-                             concept-type
-                             related-concept-type
-                             relation-type)]
+                            concept-legacy-id
+                            old-related-concept-legacy-id
+                            concept-type
+                            related-concept-type
+                            relation-type)]
     [[:db/retractEntity relation-entity-id]]))
-
 
 (defn get-new-relation-by-legacy-ids-and-types
   [concept-legacy-id

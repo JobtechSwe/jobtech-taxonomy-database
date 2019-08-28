@@ -11,10 +11,8 @@
   (let
    [concept (u/create-concept t/worktime-extent beteckning beteckning arbetstidsid)
     concept-with-extras (assoc concept
-                               :concept.category/sort-order sortering)
-    ]
-    [concept-with-extras
-     ]))
+                               :concept.category/sort-order sortering)]
+    [concept-with-extras]))
 
 (defn convert
   "Query db for work time extent, convert each entity"

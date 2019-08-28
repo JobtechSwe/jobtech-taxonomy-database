@@ -22,10 +22,10 @@
 
 (defn ^:private init-new-db-with-conn [conn]
   (d/transact conn {:tx-data (vec (concat ;schema/term-schema
-                                          schema/concept-schema
-                                          schema/concept-schema-extras
-                                          schema/concept-relation-schema
-                                          schema/version-schema))}))
+                                   schema/concept-schema
+                                   schema/concept-schema-extras
+                                   schema/concept-relation-schema
+                                   schema/version-schema))}))
 
 ;;;; Public ;;;;
 
@@ -44,7 +44,6 @@
   ([]       (init-new-db-with-conn (get-conn)))
   ([conn]   (init-new-db-with-conn conn)))
 
-
 (defn get-client
   ([]       (d/client (get (get-datomic-config) :datomic-cfg)))
   ([config] (d/client (get config :datomic-cfg))))
@@ -58,18 +57,19 @@
 ;(def database-name "jobtech-taxonomy-henrik-dev")
 ;(def database-name "datomic-dev-sara")
 
+
 (def database-name "datomic-dev-sara")
 
 (defn delete-database
-  ([]       (d/delete-database (get-client) {:db-name database-name}  ))
+  ([]       (d/delete-database (get-client) {:db-name database-name}))
   ([config] (let [db-name (get config :datomic-name)]
-              (d/delete-database (get-client config) {:db-name db-name}  ))))
+              (d/delete-database (get-client config) {:db-name db-name}))))
 
 (defn create-database
-  ([]       (d/create-database (get-client) {:db-name database-name}  ))
+  ([]       (d/create-database (get-client) {:db-name database-name}))
   ([config] (let [db-name (get config :datomic-name)]
-              (d/create-database (get-client config) {:db-name db-name}  ))))
+              (d/create-database (get-client config) {:db-name db-name}))))
 
 (defn list-databases
-  ([]       (d/list-databases (get-client) {:db-name database-name}  ))
-  ([config] (d/list-databases (get-client config) {:db-name nil}  )))
+  ([]       (d/list-databases (get-client) {:db-name database-name}))
+  ([config] (d/list-databases (get-client config) {:db-name nil})))

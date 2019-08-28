@@ -13,8 +13,7 @@
   {:pre  [term occupation-name-id parent-id-ssyk-4  parent-id-isco-4]}
   (let    [entity-id-parent-ssyk (u/get-entity-id-by-legacy-id parent-id-ssyk-4 t/ssyk-level-4)
            entity-id-parent-isco (u/get-entity-id-by-legacy-id parent-id-isco-4 t/isco-level-4)
-           concept (u/create-concept t/occupation-name term term occupation-name-id)
-           ]
+           concept (u/create-concept t/occupation-name term term occupation-name-id)]
     (remove nil? [concept
                   (when entity-id-parent-ssyk (u/create-broader-relation-to-concept concept entity-id-parent-ssyk)) ;; sometimes ssyk is -1 and becomes nil
                   (u/create-broader-relation-to-concept concept entity-id-parent-isco)])))
@@ -54,10 +53,8 @@
 (defn convert-occupation-collection
   [{:keys [collection-id collection-name]}]
   {:pre [collection-id collection-name]}
-  (let [concept (u/create-concept t/occupation-collection collection-name collection-name collection-id)
-        ]
-    [concept
-     ]))
+  (let [concept (u/create-concept t/occupation-collection collection-name collection-name collection-id)]
+    [concept]))
 
 (defn convert-occupation-collection-relation
   [{:keys [collection-id collection-name occupation-name-id]}]
@@ -106,10 +103,8 @@
 (defn create-new-occupation-synonyms
   [{:keys [synonym-id synonym-term]}]
   {:pre [synonym-id synonym-term]}
-  (let [concept (u/create-concept t/keyword synonym-term synonym-term synonym-id)
-        ]
-    [concept
-     ]))
+  (let [concept (u/create-concept t/keyword synonym-term synonym-term synonym-id)]
+    [concept]))
 
 (defn update-occupation-synonym-term [{:keys [synonym-id-67 synonym-term-68]}]
   {:pre [synonym-id-67 synonym-term-68]}
@@ -142,26 +137,25 @@
   "Run this function after the database has been loaded"
   (remove empty?
           (concat
-            (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
-            (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-isco))
-            (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-ssyk))
+           (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
+           (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-isco))
+           (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-ssyk))
 
-            (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
+           (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
 
-            (mapcat create-new-occupation-synonyms (lm/fetch-data lm/get-new-synonyms))
-            (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
-            (mapcat update-occupation-name (lm/fetch-data lm/get-updated-occupation-name-term))
-            (mapcat update-occupation-field (lm/fetch-data lm/get-updated-occupation-field))
-            (mapcat update-occupation-synonym-term (lm/fetch-data lm/get-updated-synonym-terms))
+           (mapcat create-new-occupation-synonyms (lm/fetch-data lm/get-new-synonyms))
+           (map convert-replaced-by-occupation-name (lm/fetch-data lm/get-replaced-occupation-name))
+           (mapcat update-occupation-name (lm/fetch-data lm/get-updated-occupation-name-term))
+           (mapcat update-occupation-field (lm/fetch-data lm/get-updated-occupation-field))
+           (mapcat update-occupation-synonym-term (lm/fetch-data lm/get-updated-synonym-terms))
 
-            (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
-            (mapcat convert-new-occupation-field-relation-to-ssyk-4 (lm/fetch-data lm/get-new-occupation-field-relation-to-ssyk-4))
-            (mapcat convert-new-synonym-relation-to-occupation-name (lm/fetch-data lm/get-new-synonym-relation-to-occupation))
+           (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
+           (mapcat convert-new-occupation-field-relation-to-ssyk-4 (lm/fetch-data lm/get-new-occupation-field-relation-to-ssyk-4))
+           (mapcat convert-new-synonym-relation-to-occupation-name (lm/fetch-data lm/get-new-synonym-relation-to-occupation))
 
-            (map convert-deprecated-occupation-names (lm/fetch-data lm/get-deprecated-occupation-name))
-            (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-isco))
-            (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-ssyk))
+           (map convert-deprecated-occupation-names (lm/fetch-data lm/get-deprecated-occupation-name))
+           (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-isco))
+           (mapcat retract-occupation-name-relations-to-parent (lm/fetch-data lm/get-deprecated-occupation-name-relation-to-parent-ssyk))
 
-            (map convert-deprecated-occupation-synonyms (lm/fetch-data lm/get-deprecated-synonyms))
-            (mapcat retract-synonym-relations-to-occupation-name (lm/fetch-data lm/get-deprecated-synonym-relation-to-occupation))
-           )))
+           (map convert-deprecated-occupation-synonyms (lm/fetch-data lm/get-deprecated-synonyms))
+           (mapcat retract-synonym-relations-to-occupation-name (lm/fetch-data lm/get-deprecated-synonym-relation-to-occupation)))))

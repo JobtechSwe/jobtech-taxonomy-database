@@ -13,10 +13,8 @@
              t/skill-headline
              term
              term
-             skillheadlineid)
-    ]
-    [concept
-     ]))
+             skillheadlineid)]
+    [concept]))
 
 (defn converter-skill
   "Convert skills"

@@ -22,10 +22,8 @@
   (let [concept (u/create-concept t/occupation-field
                                   occupation-field-term
                                   occupation-field-description
-                                  occupation-field-id)
-        ]
-    [concept
-     ]))
+                                  occupation-field-id)]
+    [concept]))
 
 (defn convert-ssyk-level-4
   [{:keys [ssyk-4-id ssyk-4-term ssyk-4-code ssyk-4-description parent-id-ssyk-3 parent-id-occupation-field]}]
@@ -64,10 +62,8 @@
   [{:keys [ssyk-1-id ssyk-1-term ssyk-1-code]}]
   {:pre [ssyk-1-id ssyk-1-term ssyk-1-code]}
   (let [concept (u/create-concept t/ssyk-level-1 ssyk-1-term ssyk-1-term ssyk-1-id)
-        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-1-code)
-        ]
-    [concept-with-extras
-     ]))
+        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-1-code)]
+    [concept-with-extras]))
 
 (defn convert-isco-level-4
   [{:keys [isco-4-id isco-4-term isco-4-description isco-4-isco-code parent-id-isco-1]}]
@@ -82,10 +78,8 @@
 (defn convert-isco-level-1
   [{:keys [isco-1-id isco-1-term isco-1-description]}]
   {:pre [isco-1-id isco-1-term isco-1-description]}
-  (let [concept (u/create-concept t/isco-level-1 isco-1-term isco-1-description isco-1-id)
-        ]
-    [concept
-     ]))
+  (let [concept (u/create-concept t/isco-level-1 isco-1-term isco-1-description isco-1-id)]
+    [concept]))
 
 (defn convert-occupation-name-affinity
   [{:keys [affinity-to-occupation-name-id affinity-from-occupation-name-id percentage]}]
@@ -103,10 +97,8 @@
 (defn convert-popular-synonym
   [{:keys [synonym-id synonym-term]}]
   {:pre [synonym-id synonym-term]}
-  (let [concept (u/create-concept t/keyword synonym-term synonym-term synonym-id)
-        ]
-    [concept
-     ]))
+  (let [concept (u/create-concept t/keyword synonym-term synonym-term synonym-id)]
+    [concept]))
 
 (defn convert-popular-synonym-relation
   [{:keys [synonym-id synonym-term occupation-name-id]}]
@@ -137,11 +129,9 @@
                                   deprecated-occupation-name-term
                                   deprecated-occupation-name-id)
         concept-deprecated-true (assoc concept :concept/deprecated true)
-        concept-replaced (assoc concept-deprecated-true :concept/replaced-by temp-id-replacing-concept)
-        ]
+        concept-replaced (assoc concept-deprecated-true :concept/replaced-by temp-id-replacing-concept)]
     ;; TODO Utred hur vi hanterar replaced by many different??
-    [concept-replaced
-     ]))
+    [concept-replaced]))
 
 (defn convert
   ""

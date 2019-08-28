@@ -13,10 +13,8 @@
              t/continent
              term
              term
-             id)
-    ]
-    [concept
-     ]))
+             id)]
+    [concept]))
 
 (defn converter-countries
   "Convert countries"

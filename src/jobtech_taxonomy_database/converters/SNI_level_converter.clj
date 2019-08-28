@@ -14,10 +14,8 @@
              term
              (if (not (empty? explanatorynotes)) explanatorynotes term)
              nacelevel1id)
-    concept-with-extras (assoc concept :concept.external-standard/sni-level-code nacelevel1code)
-    ]
-    [concept-with-extras
-     ]))
+    concept-with-extras (assoc concept :concept.external-standard/sni-level-code nacelevel1code)]
+    [concept-with-extras]))
 
 (defn converter-2
   "Convert one row of legacy sni codes"
