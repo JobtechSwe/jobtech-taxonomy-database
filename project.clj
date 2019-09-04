@@ -16,6 +16,7 @@
                  [cheshire "5.8.1"]
                  [nano-id "0.9.3"]
                  [camel-snake-kebab "0.4.0"]
+                 [dk.ative/docjure "1.13.0"]
                  ]
   :repositories [["snapshots" {:url "https://repo.clojars.org"
                                :username "batfish"
