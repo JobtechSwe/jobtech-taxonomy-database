@@ -4,7 +4,7 @@
             [jobtech-taxonomy-database.converters.converter-util :as u]
             [jobtech-taxonomy-database.types :as t]))
 
-(def combination-mapping ;; key is drivers licence ID, array contains implicit IDs
+(def combination-mapping ;; key is drivers licence ID, value array contains implicit IDs
   {16 []
    2 [16]
    17 [16 2]
