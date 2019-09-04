@@ -10,7 +10,7 @@
 (def continent "continent")
 (def country "country")
 (def driving-licence "driving_licence")
-(def driving-licence-combination "driving_licence_combination")
+;; (def driving-licence-combination "driving_licence_combination") ;; Not used anymore
 (def employment-duration "employment_duration")
 (def employment-type "employment_type")
 (def isco-level-4 "isco_level_4")
@@ -43,7 +43,7 @@
 (s/def ::concept-types #{continent
                          country
                          driving-licence
-                         driving-licence-combination
+                         ;; driving-licence-combination ;; Not used anymore
                          employment-duration
                          employment-type
                          language
@@ -58,10 +58,9 @@
                          worktime-extent
                          isco-level-4           ;previously OccupationGroup
                          isco-level-1           ;previously OccupationField
-                         keyword           ;previously
+                         keyword                ;previously PopularSynonyms
                          occupation-collection  ;previously OccupationCollection
                          occupation-field       ;previously LocaleField
-                         ;occupation-group       ;previously
                          occupation-name        ;previously OccupationName
                          ssyk-level-1           ;previously LocaleLevel1
                          ssyk-level-2           ;previously LocaleLevel2
