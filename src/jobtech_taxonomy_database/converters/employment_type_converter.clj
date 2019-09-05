@@ -11,9 +11,8 @@
   (let
    [concept (u/create-concept t/employment-type beteckning beteckning anstallningtypjobbid)
     concept-with-extras (assoc concept
-                               :concept.category/sort-order isortering)
-    concept-term (u/create-term-from-concept concept-with-extras)]
-    [concept-with-extras concept-term]))
+                               :concept.category/sort-order isortering)]
+    [concept-with-extras]))
 
 (defn convert
   "Query db for employment types, convert each entity"

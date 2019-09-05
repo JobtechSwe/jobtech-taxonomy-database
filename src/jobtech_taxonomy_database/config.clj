@@ -14,8 +14,9 @@
 
 ;; "jobtech-taxonomy-henrik-dev" ;; "jobtech-taxonomy-development"  ;; "jobtech-taxonomy-production"
 
+
 (def datomic-config
-  {:datomic-name "jobtech-taxonomy-henrik-dev"
+  {:datomic-name "datomic-dev-sara"
    :datomic-cfg {:server-type :ion
                  :region "eu-west-1" ;; e.g. us-east-1
                  :system "prod-jobtech-taxonomy-db"

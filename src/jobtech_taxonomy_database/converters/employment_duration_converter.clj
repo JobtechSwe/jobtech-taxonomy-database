@@ -12,9 +12,8 @@
    [concept (u/create-concept t/employment-duration beteckning beteckning anställningsvaraktighetsid)
     concept-with-extras (assoc concept
                                :concept.external-standard/eures-code eureskod
-                               :concept.category/sort-order sortering)
-    concept-term (u/create-term-from-concept concept-with-extras)]
-    [concept-with-extras concept-term]))
+                               :concept.category/sort-order sortering)]
+    [concept-with-extras]))
 
 (defn convert
   "Query db for employment duration, convert each entity"

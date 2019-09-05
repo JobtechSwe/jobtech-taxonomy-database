@@ -13,9 +13,8 @@
              t/continent
              term
              term
-             id)
-    concept-term (u/create-term-from-concept concept)]
-    [concept concept-term]))
+             id)]
+    [concept]))
 
 (defn converter-countries
   "Convert countries"
@@ -27,11 +26,9 @@
                  term
                  id)
         concept-with-extras (assoc concept :concept.external-standard/country-code code)
-        concept-term (u/create-term-from-concept concept-with-extras)
         temp-id-parent (u/create-temp-id t/continent parent-id)
         relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras
-     concept-term
      relation]))
 
 (defn converter-regions
@@ -44,11 +41,9 @@
                  term
                  id)
         concept-with-extras (conj concept (when code [:concept.external-standard/nuts-level-3-code code]))
-        concept-term (u/create-term-from-concept concept-with-extras)
         temp-id-parent (u/create-temp-id t/country parent-id)
         relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras
-     concept-term
      relation]))
 
 (defn converter-municipalities
@@ -60,11 +55,9 @@
                  term
                  term
                  id)
-        concept-term (u/create-term-from-concept concept)
         temp-id-parent (u/create-temp-id t/region parent-id)
         relation (u/create-broader-relation-to-concept concept temp-id-parent)]
     [concept
-     concept-term
      relation]))
 
 (defn convert

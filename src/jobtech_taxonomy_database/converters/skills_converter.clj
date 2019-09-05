@@ -13,10 +13,8 @@
              t/skill-headline
              term
              term
-             skillheadlineid)
-
-    concept-term (u/create-term-from-concept concept)]
-    [concept concept-term]))
+             skillheadlineid)]
+    [concept]))
 
 (defn converter-skill
   "Convert skills"
@@ -27,11 +25,9 @@
                  term
                  term
                  skillid)
-        concept-term (u/create-term-from-concept concept)
         temp-id-parent (u/create-temp-id t/skill-headline skillheadlineid)
         relation (u/create-broader-relation-to-concept concept temp-id-parent)]
     [concept
-     concept-term
      relation]))
 
 (defn convert

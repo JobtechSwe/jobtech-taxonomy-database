@@ -2,21 +2,9 @@
   (:gen-class)
   (:require [datomic.client.api :as d]
             [jobtech-taxonomy-database.config :refer :all]
-            [jobtech-taxonomy-database.schema :refer :all :as schema]))
-
-(def find-concept-by-preferred-term-query
-  '[:find (pull ?c
-                [:concept/id
-                 :concept/description
-                 {:concept/preferred-term [:term/base-form]}
-                 {:concept/referring-terms [:term/base-form]}])
-    :in $ ?term
-    :where [?t :term/base-form ?term]
-    [?c :concept/preferred-term ?t]])
-;; (d/q find-concept-by-preferred-term-query (get-db) "Kontaktmannaskap")
+            [jobtech-taxonomy-database.schema :as schema]))
 
 ;;;; Private ;;;;
-
 
 (declare db-conn)
 
@@ -33,11 +21,11 @@
   (d/db (get-conn-with-config config)))
 
 (defn ^:private init-new-db-with-conn [conn]
-  (d/transact conn {:tx-data (vec (concat schema/term-schema
-                                          schema/concept-schema
-                                          schema/concept-schema-extras
-                                          schema/concept-relation-schema
-                                          schema/version-schema))}))
+  (d/transact conn {:tx-data (vec (concat ;schema/term-schema
+                                   schema/concept-schema
+                                   schema/concept-schema-extras
+                                   schema/concept-relation-schema
+                                   schema/version-schema))}))
 
 ;;;; Public ;;;;
 
@@ -56,7 +44,6 @@
   ([]       (init-new-db-with-conn (get-conn)))
   ([conn]   (init-new-db-with-conn conn)))
 
-
 (defn get-client
   ([]       (d/client (get (get-datomic-config) :datomic-cfg)))
   ([config] (d/client (get config :datomic-cfg))))
@@ -67,19 +54,22 @@
 
 ;(def database-name "jobtech-taxonomy-development")
 ;(def database-name "jobtech-taxonomy-production")
+;(def database-name "jobtech-taxonomy-henrik-dev")
+;(def database-name "datomic-dev-sara")
 
-(def database-name "jobtech-taxonomy-henrik-dev-2")
+
+(def database-name "datomic-dev-sara")
 
 (defn delete-database
-  ([]       (d/delete-database (get-client) {:db-name database-name}  ))
+  ([]       (d/delete-database (get-client) {:db-name database-name}))
   ([config] (let [db-name (get config :datomic-name)]
-              (d/delete-database (get-client config) {:db-name db-name}  ))))
+              (d/delete-database (get-client config) {:db-name db-name}))))
 
 (defn create-database
-  ([]       (d/create-database (get-client) {:db-name database-name}  ))
+  ([]       (d/create-database (get-client) {:db-name database-name}))
   ([config] (let [db-name (get config :datomic-name)]
-              (d/create-database (get-client config) {:db-name db-name}  ))))
+              (d/create-database (get-client config) {:db-name db-name}))))
 
 (defn list-databases
-  ([]       (d/list-databases (get-client) {:db-name database-name}  ))
-  ([config] (d/list-databases (get-client config) {:db-name nil}  )))
+  ([]       (d/list-databases (get-client) {:db-name database-name}))
+  ([config] (d/list-databases (get-client config) {:db-name nil})))

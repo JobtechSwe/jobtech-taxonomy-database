@@ -9,9 +9,8 @@
   [{:keys [term languageid_2]}]
   {:pre [term languageid_2]}
   (let
-   [concept (u/create-concept t/language term term languageid_2)
-    concept-term (u/create-term-from-concept concept)]
-    [concept concept-term]))
+   [concept (u/create-concept t/language term term languageid_2)]
+    [concept]))
 
 (defn convert
   "Query db for languages, convert each entity"

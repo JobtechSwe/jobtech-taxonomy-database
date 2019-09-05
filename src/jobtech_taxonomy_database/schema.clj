@@ -17,17 +17,16 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "Text defining the concept, is used for disambiguation."}
 
-
    {:db/ident       :concept/preferred-label
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
     :db/doc         "What we prefer to call the concept."}
 
-   ;deprecated
-   {:db/ident       :concept/preferred-term
-    :db/valueType   :db.type/ref
-    :db/cardinality :db.cardinality/one
-    :db/doc         "What we prefer to call the concept"}
+   ;; TODO Remove since not being used
+   #_{:db/ident       :concept/preferred-term
+      :db/valueType   :db.type/ref
+      :db/cardinality :db.cardinality/one
+      :db/doc         "What we prefer to call the concept"}
 
    {:db/ident       :concept/alternative-terms
     :db/cardinality :db.cardinality/many
@@ -57,20 +56,14 @@
    {:db/ident       :concept.relation/related
     :db/valueType   :db.type/ref
     :db/cardinality :db.cardinality/many
-    :db/doc         "related concepts"}
-   ])
+    :db/doc         "related concepts"}])
 
 ;; Example:
 ;;  (def some-concepts
-;;    [
-;;     {
+;;    [{
 ;;      :concept/id                "MZ6wMoAfyP"
 ;;      :concept/description       "Kontaktmannaskap är ett sätt att organisera arbetet för kontinuitet. Kontaktmannen har till uppgift att kommunicera, informera och bidra till sociala aktiviteter samt fungera som en kontakt och länk till anhöriga. Inom omsorg är kontinuitet och kunskap oerhört viktigt för att skapa trygghet."
-;;      :concept/preferred-term    [:term/base-form "KontaktmannaskapX"]
-;;      :concept/alternative-terms #{[:term/base-form "Kontaktmannaskap"]}
-;;      }
-;;     ]
-;;    )
+;;      }}])
 ;;  (d/transact conn {:tx-data some-concepts})
 
 
@@ -140,23 +133,23 @@
 
 ;; TODO add Transaction Function that checks that the term is connected to a concept
 
+;; TODO Remove since not being used
+#_(def term-schema
+    [{:db/ident       :term/base-form
+      :db/valueType   :db.type/string
+      :db/cardinality :db.cardinality/one
+      :db/unique      :db.unique/identity ; Should this really be unique/identity? Same term can be different concepts. /Sara
+      :db/doc         "Term value, the actual text string that is referring to concepts"}
 
-(def term-schema
-  [{:db/ident       :term/base-form
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/unique      :db.unique/identity ; Should this really be unique/identity? Same term can be different concepts. /Sara
-    :db/doc         "Term value, the actual text string that is referring to concepts"}
+     {:db/ident       :term/special-usage
+      :db/valueType   :db.type/keyword
+      :db/cardinality :db.cardinality/one
+      :db/doc         "A restricted term has term/special-usage :restricted, a historic term has term/special-usage :historic"}
 
-   {:db/ident       :term/special-usage
-    :db/valueType   :db.type/keyword
-    :db/cardinality :db.cardinality/one
-    :db/doc         "A restricted term has term/special-usage :restricted, a historic term has term/special-usage :historic"}
-
-   {:db/ident       :term/term-to-use-instead
-    :db/valueType   :db.type/ref
-    :db/cardinality :db.cardinality/one
-    :db/doc         "A historic term refers to a term to use instead."}])
+     {:db/ident       :term/term-to-use-instead
+      :db/valueType   :db.type/ref
+      :db/cardinality :db.cardinality/one
+      :db/doc         "A historic term refers to a term to use instead."}])
 
 ;; Example:
 ;;  (def some-terms
@@ -195,9 +188,7 @@
     :db/valueType     :db.type/long
     :db/cardinality   :db.cardinality/one
     :db/unique        :db.unique/identity
-    :db/doc           "The current version of the database. Is used almost like a tag in Git."
-    }]
-  )
+    :db/doc           "The current version of the database. Is used almost like a tag in Git."}])
 
 ;; (d/transact (get-conn) {:tx-data [{:db/id "a" :concept/id "a" :concept/preferred-label "clojure" :concept.relation/related "b" }  {:db/id "b" :concept/id "b"  :concept/preferred-label "java"} ]} )
 
@@ -212,17 +203,14 @@
 
 ;; (d/transact (get-conn) {:tx-data [[:db/retract 37541725018783840 :concept.relation/related 67822275247734882]]} )
 
+
 (def scheme-schema
   [{:db/ident         :scheme/name
     :db/valueType     :db.type/string
     :db/cardinality   :db.cardinality/one
-    :db/doc           "The scheme name."
-    }
+    :db/doc           "The scheme name."}
 
    {:db/ident        :scheme/member
     :db/valueType    :db.type/ref
     :db/cardinality  :db.cardinality/many
-    :db/doc          "members of the scheme"
-    }
-   ]
-  )
+    :db/doc          "members of the scheme"}])

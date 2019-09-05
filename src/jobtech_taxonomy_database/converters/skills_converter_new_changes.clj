@@ -12,10 +12,10 @@
                    term-68
                    term-68
                    id-68)
-          concept-term (u/create-term-from-concept concept)
           concept-relation (u/create-broader-relation-to-concept
                             concept (u/get-entity-if-exists-or-temp-id skill-headline t/skill-headline))]
-      [concept concept-term concept-relation])))
+      [concept
+       concept-relation])))
 
 (defn convert-deprecated-skill [{:keys [id-67]}]
   {:pre [id-67]} ()
@@ -61,5 +61,4 @@
                 (mapcat convert-updated-skill (lm/fetch-data lm/get-updated-skill))
                 (map convert-replaced-skill (lm/fetch-data lm/get-replaced-skill))
                 (mapcat retract-skill-relations (lm/fetch-data lm/get-deprecated-skill-relation-to-headline))
-                ;;TODO Above returns list of vectors, does that work?
                 (mapcat convert-new-skill-relations (lm/fetch-data lm/get-new-skill-relation-to-headline)))))
