@@ -5,6 +5,7 @@
             [dk.ative.docjure.spreadsheet :as dox]
             [jobtech-taxonomy-database.types :as t]
             [jobtech-taxonomy-database.converters.converter-util :as u]
+            [clojure.string :as s]
             ))
 
 
@@ -60,8 +61,8 @@
    [(create-level-concept
      (u/create-temp-id instance-type code)
      (u/get-concept-id instance-type code)
-     label
-     label
+     (s/trim label)
+     (s/trim label)
      instance-type
      code
      external-standard
