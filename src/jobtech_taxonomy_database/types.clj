@@ -31,12 +31,13 @@
 (def ssyk-level-2 "ssyk_level_2")
 (def ssyk-level-3 "ssyk_level_3")
 (def ssyk-level-4 "ssyk_level_4")
-;; (def sun-education-field-1 "sun_education_field_1")
-;; (def sun-education-field-2 "sun_education_field_2")
-;; (def sun-education-field-3 "sun_education_field_3")
-;; (def sun-education-level-1 "sun_education_level_1")
-;; (def sun-education-level-2 "sun_education_level_2")
-;; (def sun-education-level-3 "sun_education_level_3")
+(def sun-education-field-1 "sun_education_field_1")
+(def sun-education-field-2 "sun_education_field_2")
+(def sun-education-field-3 "sun_education_field_3")
+(def sun-education-field-4 "sun_education_field_4")
+(def sun-education-level-1 "sun_education_level_1")
+(def sun-education-level-2 "sun_education_level_2")
+(def sun-education-level-3 "sun_education_level_3")
 (def wage-type "wage_type")
 (def worktime-extent "worktime_extent")
 
@@ -66,6 +67,11 @@
                          ssyk-level-2           ;previously LocaleLevel2
                          ssyk-level-3           ;previously LocaleLevel3
                          ssyk-level-4           ;previously LocaleGroup
+
+                         sun-education-field-1
+                         sun-education-field-2
+                         sun-education-field-3
+                         sun-education-field-4
                          })
 
 ;; relation-types

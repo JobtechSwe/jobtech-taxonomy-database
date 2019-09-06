@@ -9,7 +9,7 @@
             [clojure.spec.alpha :as s]
             [jobtech-taxonomy-database.types :as t]))
 
-(defn- get-concept-id [instance-type legacy-id]
+(defn get-concept-id [instance-type legacy-id]
   "- Checks if the :concept/type has a valid value
   - Returns nano-id"
   (nano/get-nano (csk/->kebab-case-string instance-type) (str legacy-id)))

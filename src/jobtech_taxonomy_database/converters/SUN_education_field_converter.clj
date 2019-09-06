@@ -1,92 +1,222 @@
-; THIS CODE SHOULDN'T BE USED! 
-; Editorial team has instructued us not to convert SUN at the moment (May 2019). 
-; A new version of SUN is released during spring 2019. 
-; The new version will be edited by editorial team and ready to be written to Datomic in September at the latest.
-
 (ns jobtech-taxonomy-database.converters.SUN-education-field-converter
   (:gen-class)
   (:require [jobtech-taxonomy-database.legacy-migration :as legacy-migration]
-            [jobtech-taxonomy-database.converters.nano-id-assigner :as nano-id-assigner]))
+            [jobtech-taxonomy-database.converters.nano-id-assigner :as nano-id-assigner]
+            [dk.ative.docjure.spreadsheet :as dox]
+            [jobtech-taxonomy-database.types :as t]
+            [jobtech-taxonomy-database.converters.converter-util :as u]
+            [clojure.string :as s]
+            ))
 
-(defn ^:private make-tempid-concept
-  "Create temporary ID for transaction purpose"
-  [category id]
-  (str "temp-id-" category "-" id))
 
-(defn convert-relation
-  "Create Datomic schema relationship structure"
-  [concept-1 concept-2 relationship-type]
-  {:relation/concept-1 concept-1
-   :relation/concept-2 concept-2
-   :relation/type      (keyword relationship-type)})
+(defn if-double-convert-to-int-string [stuff]
+  (if (double? stuff)
+    (str (int stuff))
+    (str stuff)
+    )
+  )
 
-(defn convert-term
-  "Create Datomic schema term structure"
-  [temp-id term]
-  {:db/id          temp-id
-   :term/base-form term})
+(defn load-book []
+  (dox/load-workbook "resources/suncode.xlsx")
+  )
 
-(defn convert-concept
-  "Create Datomic schema concept structure"
-  [temp-id nano-id term category legacy-id code]
-  {:concept/id                                   nano-id
-   :concept/description                          term
-   :concept/preferred-term                       temp-id
-   :concept/category                             (keyword category)
-   :concept.external-database.ams-taxonomy-67/id legacy-id
-   :concept.external-standard/SUN-field-code     code})
+(def book (memoize load-book))
 
-(defn converter
-  "Converter for SUN education fields 1, 2 & 3.
-  Creates relationship between entities in adjacent taxonomy ranks"
-  [data category parent-category]
-  ;TODO Check below
-  (let [legacy-id (str (:id data))
-        term (str (:term data))
-        code (if (:code data) (str (:code data))
-                 nil)
-        nano-id (if (not= legacy-id nil) (nano-id-assigner/get-nano category legacy-id))
-        temp-id (make-tempid-concept category legacy-id)
-        temp-id-parent (if (not= (:parent-id data) nil)
-                         (make-tempid-concept parent-category (:parent-id data)))
-        converted-concept (convert-concept
-                           temp-id
-                           nano-id
-                           term
-                           category
-                           legacy-id
-                           code)
-        converted-term (convert-term
-                        temp-id
-                        term)
-        converted-relation (when (not= category "sun-education-field-1")
-                             (convert-relation
-                              temp-id-parent
-                              temp-id
-                              (str parent-category "-to-" category)))]
-    (if converted-relation [converted-concept converted-term converted-relation]
-        [converted-concept converted-term])))
 
-(defn convert-field-1
-  "Query db for SUN education field 1, convert each entity"
-  []
-  (mapcat (fn [x] (converter x "sun-education-field-1" nil))
-          (legacy-migration/fetch-data legacy-migration/get-sun-field-1)))
+(defn load-sheet [sheet-name]
+  (dox/select-sheet  sheet-name (book))
+  )
 
-(defn convert-field-2
-  "Query db for SUN education field 2, convert each entity"
-  []
-  (mapcat (fn [x] (converter x "sun-education-field-2" "sun-education-field-1"))
-          (legacy-migration/fetch-data legacy-migration/get-sun-field-2)))
 
-(defn convert-field-3
-  "Query db for SUN education field 3, convert each entity"
-  []
-  (mapcat (fn [x] (converter x "sun-education-field-3" "sun-education-field-2"))
-          (legacy-migration/fetch-data legacy-migration/get-sun-field-3)))
+(defn load-sun-levels-raw []
+  (dox/select-columns {:A :level-1-code :B :level-1-label :D :level-2-code :E :level-2-label :G :level-3-code :H :level-3-label}  (load-sheet "Nivåer, klartext"))
+  )
 
-(defn convert
-  "Compile converted SUN education fields 1, 2 & 3"
-  []
-  (concat (convert-field-1) (convert-field-2) (convert-field-3)))
+(def sun-levels-data (memoize load-sun-levels-raw))
 
+
+(defn load-sun-fields-raw []
+  (dox/select-columns {:A :field-1-code :B :field-1-label :D :field-2-code :E :field-2-label :G :field-3-code :H :field-3-label :J :field-4-code :K :field-4-label}  (load-sheet "Inriktning, klartext"))
+  )
+
+(def sun-fields-data (memoize load-sun-fields-raw))
+
+(defn create-broader-temp-id [code type]
+  (u/create-temp-id type (apply str (drop-last code)))
+  )
+
+(defn create-level-concept [temp-id concept-id definition label instance-type code-2020 external-standard]
+  {:db/id                                        temp-id
+   :concept/id                                   concept-id
+   :concept/definition                           definition
+   :concept/preferred-label                      label
+   :concept/type                                 instance-type
+   external-standard code-2020
+   }
+  )
+
+(defn sun-level-as-concept
+
+  ([code label instance-type external-standard]
+   [(create-level-concept
+     (u/create-temp-id instance-type code)
+     (u/get-concept-id instance-type code)
+     (s/trim label)
+     (s/trim label)
+     instance-type
+     code
+     external-standard
+     )])
+  ([code label instance-type external-standard broader-instance-type]
+   (let [concept (first (sun-level-as-concept code label instance-type external-standard))
+         relation  (u/create-broader-relation-to-concept concept (create-broader-temp-id code broader-instance-type ))
+         ]
+
+     [concept relation]
+     )
+   )
+  )
+
+(defn extract-level-1 [data]
+  (mapcat (fn [{:keys [level-1-code level-1-label]}]
+         (sun-level-as-concept
+          (if-double-convert-to-int-string level-1-code)
+          level-1-label
+          t/sun-education-level-1
+          :concept.external-standard/sun-education-level-code-2020
+          )
+         )
+       (drop 4(take 11 data)))
+  )
+
+
+(defn get-sun-level-1 []
+  (extract-level-1 (sun-levels-data))
+  )
+
+
+
+(defn extract-level-2 [data]
+  (mapcat (fn [{:keys [level-2-code level-2-label]}]
+         (sun-level-as-concept
+          (if-double-convert-to-int-string level-2-code)
+          level-2-label
+          t/sun-education-level-2
+          :concept.external-standard/sun-education-level-code-2020
+          t/sun-education-level-1
+          )
+         )
+       (drop 4(take 18 data)))
+  )
+
+(defn get-sun-level-2 []
+  (extract-level-2 (sun-levels-data))
+  )
+
+
+(defn extract-level-3 [data]
+  (mapcat (fn [{:keys [level-3-code level-3-label]}]
+         (sun-level-as-concept
+          (if-double-convert-to-int-string level-3-code)
+          level-3-label
+          t/sun-education-level-3
+          :concept.external-standard/sun-education-level-code-2020
+          t/sun-education-level-2
+          )
+         )
+       (drop 4(take 54 data)))
+  )
+
+(defn get-sun-level-3 []
+  (extract-level-3 (sun-levels-data))
+  )
+
+
+
+(defn extract-field-1 [data]
+  (mapcat (fn [{:keys [field-1-code field-1-label]}]
+            (sun-level-as-concept
+             (if-double-convert-to-int-string field-1-code)
+             field-1-label
+             t/sun-education-field-1
+             :concept.external-standard/sun-education-field-code-2020
+             )
+            )
+          (drop 4 (take 14 data)))
+  )
+
+
+(defn get-sun-field-1 []
+  (extract-field-1 (sun-fields-data))
+  )
+
+
+
+(defn extract-field-2 [data]
+  (mapcat (fn [{:keys [field-2-code field-2-label]}]
+            (sun-level-as-concept
+             (if-double-convert-to-int-string field-2-code)
+             field-2-label
+             t/sun-education-field-2
+             :concept.external-standard/sun-education-field-code-2020
+             t/sun-education-field-1
+             )
+            )
+          (drop 4 (take 30 data)))
+  )
+
+
+(defn get-sun-field-2 []
+  (extract-field-2 (sun-fields-data))
+  )
+
+
+(defn extract-field-3 [data]
+  (mapcat (fn [{:keys [field-3-code field-3-label]}]
+            (sun-level-as-concept
+             (if-double-convert-to-int-string field-3-code)
+             field-3-label
+             t/sun-education-field-3
+             :concept.external-standard/sun-education-field-code-2020
+             t/sun-education-field-2
+             )
+            )
+          (drop 4 (take 122 data)))
+  )
+
+
+(defn get-sun-field-3 []
+  (extract-field-3 (sun-fields-data))
+  )
+
+
+(defn extract-field-4 [data]
+  (mapcat (fn [{:keys [field-4-code field-4-label]}]
+            (sun-level-as-concept
+             (if-double-convert-to-int-string field-4-code)
+             field-4-label
+             t/sun-education-field-4
+             :concept.external-standard/sun-education-field-code-2020
+             t/sun-education-field-3
+             )
+            )
+          (drop 4 (take 381 data)))
+  )
+
+
+(defn get-sun-field-4 []
+  (extract-field-4 (sun-fields-data))
+  )
+
+
+(defn convert []
+  (concat
+   (get-sun-level-1)
+   (get-sun-level-2)
+   (get-sun-level-3)
+   (get-sun-field-1)
+   (get-sun-field-2)
+   (get-sun-field-3)
+   (get-sun-field-4)
+   )
+  )
