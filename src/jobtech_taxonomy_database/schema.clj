@@ -121,18 +121,13 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "ISCO-08 level 4"}
 
-   {:db/ident       :concept.external-standard/sun-field-code-2020
+   {:db/ident       :concept.external-standard/sun-education-field-code-2020
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc         "SUN education field code, either 1, 2 or 3 digits"}
-
-   {:db/ident       :concept.external-standard/sun-field-code-2000
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "SUN education field code, either 1, 2 or 3 digits"}
+    :db/doc         "SUN education field code, either 1, 2 or 3 digits and a letter"}
 
 
-   {:db/ident       :concept.external-standard/SUN-level-code
+   {:db/ident       :concept.external-standard/sun-education-level-code-2020
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
     :db/doc         "SUN education level code, either 1, 2 or 3 digits"}
