@@ -635,6 +635,79 @@ WHERE versionID = 67
 )
 
 
+----------------------------------- SSYK -------------------------------------------------
+
+
+-- 0 new concepts (October 9)
+-- :name get-new-ssyk-level-4 :*
+-- :doc get ssyk level 4 that has been added in version 68 ;
+SELECT db68.localeGroupID AS [ssyk-4-id],
+db68term.term AS [term]
+FROM TaxonomyDB.dbo.LocaleGroup AS db68,
+TaxonomyDB.dbo.LocaleGroupTerm AS db68term
+WHERE db68.localeGroupID = db68term.localeGroupID
+AND db68term.languageID = 502
+AND db68.localeGroupID NOT IN
+(SELECT db67.localeGroupID
+FROM TaxonomyDBVersion.dbo.LocaleGroup AS db67
+WHERE db67.versionID = 67)
+
+
+-- 0 new concepts (October 9)
+-- :name get-updated-ssyk-level-4 :*
+-- :doc get ssyk level 4 that has been changed in version 68 ;
+SELECT  LocaleGroupTerm68.term as term68, LocaleGroupTerm67.term as term67, LocaleGroupTerm68.localeGroupID as id
+FROM TaxonomyDB.dbo.LocaleGroup AS LocaleGroup68,
+TaxonomyDB.dbo.LocaleGroupTerm AS LocaleGroupTerm68,
+TaxonomyDBVersion.dbo.LocaleGroup AS LocaleGroup67 ,
+TaxonomyDBVersion.dbo.LocaleGroupTerm AS LocaleGroupTerm67
+WHERE
+LocaleGroupTerm68.localeGroupID = LocaleGroup68.localeGroupID
+AND LocaleGroupTerm67.localeGroupID = LocaleGroup67.localeGroupID
+AND LocaleGroup68.localeGroupID = LocaleGroup67.localeGroupID
+AND LocaleGroup67.versionID = 67
+AND LocaleGroupTerm68.term != LocaleGroupTerm67.term
+
+-- 0 new concepts (October 9)
+-- :name get-updated-ssyk-level-3 :*
+-- :doc get ssyk level 3 that has been changed in version 68 ;
+SELECT  [term-68].term as term68, [term-67].term as term67, [term-68].localeLevel3ID as id, [term-67].versionID
+FROM
+TaxonomyDB.dbo.LocaleLevel3Term AS [term-68],
+TaxonomyDBVersion.dbo.LocaleLevel3Term AS [term-67]
+WHERE
+[term-68].localeLevel3ID = [term-67].localeLevel3ID
+AND [term-68].term != [term-67].term
+AND [term-67].versionID = 67
+
+
+-- 0 new concepts (October 9)
+-- :name get-updated-ssyk-level-2 :*
+-- :doc get ssyk level 2 that has been changed in version 68 ;
+SELECT  [term-68].term as term68, [term-67].term as term67, [term-68].localeLevel2ID as id, [term-67].versionID
+FROM
+TaxonomyDB.dbo.LocaleLevel2Term AS [term-68],
+TaxonomyDBVersion.dbo.LocaleLevel2Term AS [term-67]
+WHERE
+[term-68].localeLevel2ID = [term-67].localeLevel2ID
+AND [term-68].term != [term-67].term
+AND [term-67].versionID = 67
+
+
+
+-- 0 new concepts (October 9)
+-- :name get-updated-ssyk-level-1 :*
+-- :doc get ssyk level 1 that has been changed in version 68 ;
+SELECT  [term-68].term as term68, [term-67].term as term67, [term-68].localeLevel1ID as id, [term-67].versionID
+FROM
+TaxonomyDB.dbo.LocaleLevel1Term AS [term-68],
+TaxonomyDBVersion.dbo.LocaleLevel1Term AS [term-67]
+WHERE
+[term-68].localeLevel1ID = [term-67].localeLevel1ID
+AND [term-68].term != [term-67].term
+AND [term-67].versionID = 67
+
+
 ----------------------------------- COLLECTIONS! ------------------------------------------
 -- 2 (June 12)
 -- (Obs! There are no collections migrated from 67 - these are the only migration scripts for collections)
