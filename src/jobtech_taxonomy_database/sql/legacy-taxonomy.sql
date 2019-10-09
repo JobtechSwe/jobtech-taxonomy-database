@@ -625,6 +625,40 @@ SELECT occupationNameID AS [replaced-id],
 FROM TaxonomyDB.dbo.OccupationNameReference
 WHERE countryID = 199
 
+----------------------------------- SSYK -------------------------------------------------
+
+
+-- 0 new concepts (October 9)
+-- :name get-new-ssyk-level-4 :*
+-- :doc get ssyk level 4 that has been added in version 68 ;
+SELECT db68.localeGroupID AS [ssyk-4-id],
+db68term.term AS [term]
+FROM TaxonomyDB.dbo.LocaleGroup AS db68,
+TaxonomyDB.dbo.LocaleGroupTerm AS db68term
+WHERE db68.localeGroupID = db68term.localeGroupID
+AND db68term.languageID = 502
+AND db68.localeGroupID NOT IN
+(SELECT db67.localeGroupID
+FROM TaxonomyDBVersion.dbo.LocaleGroup AS db67
+WHERE db67.versionID = 67)
+
+
+-- 0 new concepts (October 9)
+-- :name get-updated-ssyk-level-4 :*
+-- :doc get ssyk level 4 that has been changed in version 68 ;
+SELECT  LocaleGroupTerm68.term, LocaleGroupTerm67.term, LocaleGroupTerm68.localeGroupID
+FROM TaxonomyDB.dbo.LocaleGroup AS LocaleGroup68,
+TaxonomyDB.dbo.LocaleGroupTerm AS LocaleGroupTerm68,
+TaxonomyDBVersion.dbo.LocaleGroup AS LocaleGroup67 ,
+TaxonomyDBVersion.dbo.LocaleGroupTerm AS LocaleGroupTerm67
+WHERE
+LocaleGroupTerm68.localeGroupID = LocaleGroup68.localeGroupID
+AND	LocaleGroupTerm67.localeGroupID = LocaleGroup67.localeGroupID
+AND LocaleGroup68.localeGroupID = LocaleGroup67.localeGroupID
+AND LocaleGroup67.versionID = 67
+AND LocaleGroupTerm68.term != LocaleGroupTerm67.term
+
+
 ----------------------------------- COLLECTIONS! ------------------------------------------
 -- 2 (June 12)
 -- (Obs! There are no collections migrated from 67 - these are the only migration scripts for collections)
@@ -1780,4 +1814,3 @@ WHERE NOT EXISTS
 	WHERE naceLevel2ID = [db-68].naceLevel2ID
 	AND naceLevel1ID = [db-68].naceLevel1ID
 	AND versionID = 67)
-
