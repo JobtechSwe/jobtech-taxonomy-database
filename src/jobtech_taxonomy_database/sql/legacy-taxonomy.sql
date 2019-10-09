@@ -646,17 +646,56 @@ WHERE db67.versionID = 67)
 -- 0 new concepts (October 9)
 -- :name get-updated-ssyk-level-4 :*
 -- :doc get ssyk level 4 that has been changed in version 68 ;
-SELECT  LocaleGroupTerm68.term, LocaleGroupTerm67.term, LocaleGroupTerm68.localeGroupID
+SELECT  LocaleGroupTerm68.term as term68, LocaleGroupTerm67.term as term67, LocaleGroupTerm68.localeGroupID as id
 FROM TaxonomyDB.dbo.LocaleGroup AS LocaleGroup68,
 TaxonomyDB.dbo.LocaleGroupTerm AS LocaleGroupTerm68,
 TaxonomyDBVersion.dbo.LocaleGroup AS LocaleGroup67 ,
 TaxonomyDBVersion.dbo.LocaleGroupTerm AS LocaleGroupTerm67
 WHERE
 LocaleGroupTerm68.localeGroupID = LocaleGroup68.localeGroupID
-AND	LocaleGroupTerm67.localeGroupID = LocaleGroup67.localeGroupID
+AND LocaleGroupTerm67.localeGroupID = LocaleGroup67.localeGroupID
 AND LocaleGroup68.localeGroupID = LocaleGroup67.localeGroupID
 AND LocaleGroup67.versionID = 67
 AND LocaleGroupTerm68.term != LocaleGroupTerm67.term
+
+-- 0 new concepts (October 9)
+-- :name get-updated-ssyk-level-3 :*
+-- :doc get ssyk level 3 that has been changed in version 68 ;
+SELECT  [term-68].term as term68, [term-67].term as term67, [term-68].localeLevel3ID as id, [term-67].versionID
+FROM
+TaxonomyDB.dbo.LocaleLevel3Term AS [term-68],
+TaxonomyDBVersion.dbo.LocaleLevel3Term AS [term-67]
+WHERE
+[term-68].localeLevel3ID = [term-67].localeLevel3ID
+AND [term-68].term != [term-67].term
+AND [term-67].versionID = 67
+
+
+-- 0 new concepts (October 9)
+-- :name get-updated-ssyk-level-2 :*
+-- :doc get ssyk level 2 that has been changed in version 68 ;
+SELECT  [term-68].term as term68, [term-67].term as term67, [term-68].localeLevel2ID as id, [term-67].versionID
+FROM
+TaxonomyDB.dbo.LocaleLevel2Term AS [term-68],
+TaxonomyDBVersion.dbo.LocaleLevel2Term AS [term-67]
+WHERE
+[term-68].localeLevel2ID = [term-67].localeLevel2ID
+AND [term-68].term != [term-67].term
+AND [term-67].versionID = 67
+
+
+
+-- 0 new concepts (October 9)
+-- :name get-updated-ssyk-level-1 :*
+-- :doc get ssyk level 1 that has been changed in version 68 ;
+SELECT  [term-68].term as term68, [term-67].term as term67, [term-68].localeLevel1ID as id, [term-67].versionID
+FROM
+TaxonomyDB.dbo.LocaleLevel1Term AS [term-68],
+TaxonomyDBVersion.dbo.LocaleLevel1Term AS [term-67]
+WHERE
+[term-68].localeLevel1ID = [term-67].localeLevel1ID
+AND [term-68].term != [term-67].term
+AND [term-67].versionID = 67
 
 
 ----------------------------------- COLLECTIONS! ------------------------------------------
