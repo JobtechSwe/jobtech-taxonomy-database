@@ -66,5 +66,5 @@
   (concat
    (mapcat converter-continents (lm/fetch-data lm/get-continents))
    (mapcat converter-countries (lm/fetch-data lm/get-countries))
-   (mapcat converter-regions (lm/fetch-data lm/get-EU-regions))
+   (mapcat converter-regions (lm/fetch-data lm/get-EU-regions)) ;; The data is faulty so Im not importing it yet
    (mapcat converter-municipalities (lm/fetch-data lm/get-municipalities))))

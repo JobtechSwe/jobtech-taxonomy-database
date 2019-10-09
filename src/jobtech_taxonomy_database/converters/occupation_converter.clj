@@ -149,4 +149,6 @@
    (mapcat convert-popular-synonym (lm/fetch-data lm/get-popular-synonym-occupation))
    (map convert-popular-synonym-relation (lm/fetch-data lm/get-popular-synonym-occupation-relation))
    (map convert-ssyk-4-isco-4-relation (remove #(= -1 (:ssyk-4-id %)) (remove #(= -2 (:ssyk-4-id %)) (lm/fetch-data lm/get-ssyk-4-isco-4-relation))))
-   (mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))))
+   ;; (mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))
+
+   ))

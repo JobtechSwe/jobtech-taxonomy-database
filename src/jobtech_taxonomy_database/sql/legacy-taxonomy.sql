@@ -13,6 +13,7 @@ AND Skill.countryID = SkillTerm.countryID
 AND SkillTerm.versionID = 67
 AND SkillTerm.languageID = 502
 
+
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-skill-headlines :*
@@ -97,7 +98,7 @@ AND languageID = 502
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-EU-regions :*
--- :doc Get all EU regions
+-- :doc Get all EU regions except faulty Jura 228
 SELECT EURegion.countryID AS [parent-id],
 	EURegion.EURegionID AS [id],
 	EURegionTerm.term AS [term],
@@ -109,6 +110,7 @@ AND EURegion.EURegionID = EURegionTerm.EURegionID
 AND EURegionTerm.languageID = 502
 AND	EURegionTerm.versionID = 67
 AND EURegion.versionID = 67
+AND EURegion.EURegionID != 228
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -315,12 +317,14 @@ AND [db-occupation-name].versionID = 67
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
 -- :name get-replaced-occupation-names-reference :*
--- :doc get occupation names that have been replaced by a newer occupation  ;
+-- :doc get occupation names that have been replaced by a newer occupation  ; except konsthantverkare
 SELECT occupationNameID AS [deprecated-occupation-name-id],
 	term AS [deprecated-occupation-name-term],
 	occupationNameIDRef AS [replacing-occupation-name-id]
 FROM TaxonomyDBVersion.dbo.OccupationNameReference
-WHERE versionID = 67;
+WHERE versionID = 67
+AND term != 'Konsthantverkare';
+
 
 -- :name get-popular-synonym-occupation :*
 -- :doc ge popular synonyms ;
@@ -624,6 +628,12 @@ SELECT occupationNameID AS [replaced-id],
     occupationNameIDRef AS [replacing-id]
 FROM TaxonomyDB.dbo.OccupationNameReference
 WHERE countryID = 199
+AND modificationDate > (
+SELECT created
+FROM TaxonomyDBVersion.dbo.Version
+WHERE versionID = 67
+)
+
 
 ----------------------------------- COLLECTIONS! ------------------------------------------
 -- 2 (June 12)
@@ -1780,4 +1790,3 @@ WHERE NOT EXISTS
 	WHERE naceLevel2ID = [db-68].naceLevel2ID
 	AND naceLevel1ID = [db-68].naceLevel1ID
 	AND versionID = 67)
-

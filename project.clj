@@ -11,12 +11,12 @@
                  ;;[com.microsoft.sqlserver/mssql-jdbc "7.0.0.jre10"] ;; Ubuntu's openjdk-11-jdk only provides jre10
                  [com.microsoft.sqlserver/mssql-jdbc "7.0.0.jre8"]
                  [com.layerware/hugsql "0.4.9"]
-                 [com.datomic/client-pro "0.8.28"]
-                 [com.datomic/client-cloud "0.8.71"]
+                 [com.datomic/client-cloud "0.8.78"]
                  [cheshire "5.8.1"]
                  [nano-id "0.9.3"]
                  [camel-snake-kebab "0.4.0"]
                  [dk.ative/docjure "1.13.0"]
+                 [javax.xml.bind/jaxb-api "2.3.1"]
                  ]
   :repositories [["snapshots" {:url "https://repo.clojars.org"
                                :username "batfish"

@@ -12,18 +12,18 @@
                    :endpoint    "localhost:8998"}})
 
 
-;; "jobtech-taxonomy-henrik-dev" ;; "jobtech-taxonomy-development"  ;; "jobtech-taxonomy-production"
+;; "jobtech-taxonomy-henrik-dev" ;; "jobtech-taxonomy-development"  ;; "jobtech-taxonomy-production" ;; "jobtech-taxonomy-production-2019-09-12-4"
 
 
 (def datomic-config
-  {:datomic-name "datomic-dev-sara"
+  {:datomic-name "jobtech-taxonomy-developement-2019-10-09-v1"
    :datomic-cfg {:server-type :ion
                  :region "eu-west-1" ;; e.g. us-east-1
                  :system "prod-jobtech-taxonomy-db"
                  ;;:creds-profile "<your_aws_profile_if_not_using_the_default>"
                  :endpoint "http://entry.prod-jobtech-taxonomy-db.eu-west-1.datomic.net:8182/"
                  :proxy-port 8182
-                 :timeout 600000000}})
+                 :timeout 6000000000}})
 
 (def ^:private legacydb-config
   {:subprotocol "mssql"

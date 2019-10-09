@@ -164,3 +164,10 @@
       :in $ ?legacy-id
       :where
       [?r :concept.external-database.ams-taxonomy-67/id ?legacy-id]]))
+
+
+(defn find-duplicate-ids [stuff]
+
+  (filter #(< 1 (second %))  (frequencies (map :concept/id (filter :concept/id stuff))))
+
+  )
