@@ -102,7 +102,8 @@ AND languageID = 502
 SELECT EURegion.countryID AS [parent-id],
 	EURegion.EURegionID AS [id],
 	EURegionTerm.term AS [term],
-	EURegion.NUTSCodeLevel3 AS [code]
+	EURegion.NUTSCodeLevel3 AS [code],
+        EURegion.nationalNUTSLevel3Code AS [national-code]
 FROM TaxonomyDBVersion.dbo.EURegion EURegion,
     TaxonomyDBVersion.dbo.EURegionTerm EURegionTerm
 WHERE EURegion.versionID = EURegionTerm.versionID
@@ -117,10 +118,11 @@ AND EURegion.EURegionID != 228
 -- :name get-municipalities :*
 -- :doc Get all municipalities
 SELECT Municipality.EURegionID AS [parent-id],
-    Municipality.municipalityID AS [id],
-	MunicipalityTerm.term AS [term]
+Municipality.municipalityID AS [id],
+MunicipalityTerm.term AS [term],
+nationalNUTSLAU2Code  AS [national-code]
 FROM TaxonomyDBVersion.dbo.Municipality Municipality,
-    TaxonomyDBVersion.dbo.MunicipalityTerm MunicipalityTerm
+TaxonomyDBVersion.dbo.MunicipalityTerm MunicipalityTerm
 WHERE Municipality.versionID = MunicipalityTerm.versionID
 AND Municipality.municipalityID = MunicipalityTerm.municipalityID
 AND	MunicipalityTerm.versionID = 67
