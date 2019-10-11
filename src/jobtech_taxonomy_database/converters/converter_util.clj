@@ -163,7 +163,20 @@
     '[:find (pull ?r [*])
       :in $ ?legacy-id
       :where
-      [?r :concept.external-database.ams-taxonomy-67/id ?legacy-id]]))
+      [?r :concept.external-database.ams-taxonomy-67/id ?legacy-id]])
+
+
+  (def get-datomic-attribute
+    '[:find (pull ?e [*])
+      :in $ ?entity-id
+      :where
+      [?e :concept.external-database.ams-taxonomy-67/id ?legacy-id]]
+    )
+  )
+
+
+
+
 
 
 (defn find-duplicate-ids [stuff]

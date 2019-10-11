@@ -169,5 +169,5 @@
 
            (map convert-deprecated-occupation-synonyms (lm/fetch-data lm/get-deprecated-synonyms))
            (mapcat retract-synonym-relations-to-occupation-name (lm/fetch-data lm/get-deprecated-synonym-relation-to-occupation))
-           (map update-ssyk-level-4 (lm/fetch-data lm/get-updated-ssyk-level-4))
+           (mapcat update-ssyk-level-4 (lm/fetch-data lm/get-updated-ssyk-level-4))
            )))
