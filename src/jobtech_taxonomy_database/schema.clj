@@ -94,10 +94,21 @@
     :db/cardinality :db.cardinality/many
     :db/doc         "List of 'lower' ranking driving licences included in the licence"}
 
-   {:db/ident       :concept.external-standard/nuts-level-3-code
+   {:db/ident       :concept.external-standard/nuts-level-3-code-2013
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
     :db/doc         "NUTS level 3 code"}
+
+   {:db/ident       :concept.external-standard/national-nuts-level-3-code-2019
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Swedish Län code"}
+
+   {:db/ident       :concept.external-standard/national-nuts-lau-2-code-2015
+    :db/valueType   :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Swedish Municipality code"}
+
 
    {:db/ident       :concept.external-standard/country-code
     :db/valueType   :db.type/string
