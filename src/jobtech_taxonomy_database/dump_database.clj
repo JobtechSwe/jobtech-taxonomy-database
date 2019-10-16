@@ -148,11 +148,21 @@
   (:national-code (first (filter (fn [{:keys [id]}]  (= id legacy-id)  ) (fetch-regions))))
   )
 
+(defn get-right-drivers-license-concept-id-from-legacy-id [[legacy-id concept]]
+  (let [driving-license (:driving-license (old-dump))
+        concept (legacy-id driving-license)
+        id (:conceptId concept)
+        ]
+    id
+    )
+  )
+
 (defn get-code-from-type-and-legacy-db-id [legacy-db-id type]
   (cond
     (= type "ssyk-level-4") (get-ssyk-4-from-legacydb-id (Long/parseLong legacy-db-id))
     (= type "municipality") (get-municipality-code-from-legacy-id (Long/parseLong legacy-db-id))
     (= type "region") (get-region-code-from-legacy-id (Long/parseLong legacy-db-id))
+    (= type "driving-licence")  legacy-db-id
     )
   )
 
@@ -162,6 +172,7 @@
         old-type (cond
                    (= type "ssyk-level-4") "occupation-group"
                    (= type "region") "county"
+                   (= type "driving-licence") "driving-license"
                    :else type
                    )
 
@@ -187,20 +198,26 @@
   (let [ssyk-level-4 (:ssyk-level-4 (newer-dump))
         municipality (:municipality (newer-dump))
         region (:region (newer-dump))
+        driving-licence (:driving-licence (newer-dump))
 
         right-ssyk-level-4 (into {} (map get-right-concept-id-from-new-dump ssyk-level-4))
         right-municipality (into {} (map get-right-concept-id-from-new-dump municipality))
         right-region (into {} (map get-right-concept-id-from-new-dump region))
+        right-driving-licence (into {} (map get-right-concept-id-from-new-dump driving-licence))
 
         newer-dump-with-right-concept-ids (-> (newer-dump)
                                               (assoc :ssyk-level-4 right-ssyk-level-4)
                                               (assoc :municipality right-municipality)
                                               (assoc :region right-region)
+                                              (assoc :driving-licence right-driving-licence)
                                               )
 
         ]
-    (generate-stream newer-dump-with-right-concept-ids (clojure.java.io/writer "right-taxonomy-dump.json")
-                     {:pretty true})
+    newer-dump-with-right-concept-ids
     )
+  )
 
+(defn save-newer-dump-to-disk []
+  (generate-stream (update-new-dump-with-right-concept-ids) (clojure.java.io/writer "right-taxonomy-dump.json")
+                   {:pretty true})
   )
