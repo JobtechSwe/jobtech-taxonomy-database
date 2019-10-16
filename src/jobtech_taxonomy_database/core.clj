@@ -33,6 +33,9 @@
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
   '(
+
+    ;;NOTE THIS SCRIPT HAS RUN IN TWO DIFFERENT STEPS, FIRST from version 0 to 1. Then verion 2!!
+
     ;; {:namespace jobtech-taxonomy-database.converters.version-0}
     ;; {:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
     ;; {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
