@@ -78,7 +78,7 @@
 (def broader "broader")
 (def narrower "narrower")
 (def related "related")
-(def occupation-name-affinity "occupation_name_affinity")
+(def occupation-name-affinity "affinity")
 
 (s/def ::relation-types #{broader narrower occupation-name-affinity related})
 
