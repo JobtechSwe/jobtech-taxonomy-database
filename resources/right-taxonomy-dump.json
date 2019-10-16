@@ -59818,91 +59818,91 @@
   },
   "driving-licence" : {
     "14" : {
-      "conceptId" : "myqJ_iQW_RWx",
+      "conceptId" : "xRum_Wtt_T1e",
       "legacyAmsTaxonomyId" : "14",
       "preferredLabel" : "C1E",
       "type" : "driving-licence"
     },
     "18" : {
-      "conceptId" : "QG5Y_v8z_z9k",
+      "conceptId" : "ftCQ_gFu_L4b",
       "legacyAmsTaxonomyId" : "18",
       "preferredLabel" : "Utökad B",
       "type" : "driving-licence"
     },
     "12" : {
-      "conceptId" : "tRAb_vV9_TFs",
+      "conceptId" : "swP6_psb_FCB",
       "legacyAmsTaxonomyId" : "12",
       "preferredLabel" : "C1",
       "type" : "driving-licence"
     },
     "10" : {
-      "conceptId" : "cK6v_thw_R4C",
+      "conceptId" : "hK8X_cX9_5P4",
       "legacyAmsTaxonomyId" : "10",
       "preferredLabel" : "A",
       "type" : "driving-licence"
     },
     "4" : {
-      "conceptId" : "dQXD_cQy_Zzu",
+      "conceptId" : "BKCx_hST_Pcm",
       "legacyAmsTaxonomyId" : "4",
       "preferredLabel" : "C",
       "type" : "driving-licence"
     },
     "16" : {
-      "conceptId" : "rJkt_qBk_eoK",
+      "conceptId" : "4HpY_e2U_TUH",
       "legacyAmsTaxonomyId" : "16",
       "preferredLabel" : "AM",
       "type" : "driving-licence"
     },
     "7" : {
-      "conceptId" : "fgCC_CsF_4kV",
+      "conceptId" : "zZu8_iZ9_wMH",
       "legacyAmsTaxonomyId" : "7",
       "preferredLabel" : "CE",
       "type" : "driving-licence"
     },
     "8" : {
-      "conceptId" : "hSVk_xih_MzD",
+      "conceptId" : "6se7_AdD_nGw",
       "legacyAmsTaxonomyId" : "8",
       "preferredLabel" : "DE",
       "type" : "driving-licence"
     },
     "17" : {
-      "conceptId" : "Amua_x1e_Ehe",
+      "conceptId" : "Eybh_j3s_SqF",
       "legacyAmsTaxonomyId" : "17",
       "preferredLabel" : "A2",
       "type" : "driving-licence"
     },
     "19" : {
-      "conceptId" : "aXNd_8bV_MH4",
+      "conceptId" : "5L6k_p4w_8Wu",
       "legacyAmsTaxonomyId" : "19",
       "preferredLabel" : "D1",
       "type" : "driving-licence"
     },
     "2" : {
-      "conceptId" : "G7a6_tuN_Gao",
+      "conceptId" : "bneY_V3g_Kog",
       "legacyAmsTaxonomyId" : "2",
       "preferredLabel" : "A1",
       "type" : "driving-licence"
     },
     "5" : {
-      "conceptId" : "3Xqi_XS1_Zg3",
+      "conceptId" : "hK1a_wsQ_4UG",
       "legacyAmsTaxonomyId" : "5",
       "preferredLabel" : "D",
       "type" : "driving-licence"
     },
     "15" : {
-      "conceptId" : "5W7h_fDK_rwo",
+      "conceptId" : "qZ2E_JSL_xAq",
       "legacyAmsTaxonomyId" : "15",
       "preferredLabel" : "D1E",
       "type" : "driving-licence"
     },
     "3" : {
-      "conceptId" : "mnzx_8Dc_8mq",
+      "conceptId" : "VTK8_WRx_GcM",
       "legacyAmsTaxonomyId" : "3",
       "preferredLabel" : "B",
       "type" : "driving-licence"
     },
     "6" : {
-      "conceptId" : "yRu6_WsZ_BHp",
+      "conceptId" : "bcFd_Vkt_KXL",
       "legacyAmsTaxonomyId" : "6",
       "preferredLabel" : "BE",
       "type" : "driving-licence"
