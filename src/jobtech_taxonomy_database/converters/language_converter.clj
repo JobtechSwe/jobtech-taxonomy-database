@@ -6,11 +6,16 @@
 
 (defn converter
   "Immutable language converter."
-  [{:keys [term languageid_2]}]
-  {:pre [term languageid_2]}
+  [{:keys [term languageid_2 languagecodeiso languagecodeiso2]}]
+  {:pre [term languageid_2 languagecodeiso languagecodeiso2]}
   (let
-   [concept (u/create-concept t/language term term languageid_2)]
-    [concept]))
+      [concept (u/create-concept t/language term term languageid_2)
+       concept-with-extras (-> concept
+                               (assoc :iso-639-3-alpha-3-2007 languagecodeiso)
+                               (assoc :iso-639-3-alpha-2-2007 languagecodeiso2)
+                               )
+       ]
+    [concept-with-extras]))
 
 (defn convert
   "Query db for languages, convert each entity"

@@ -33,11 +33,6 @@
     :db/valueType   :db.type/ref
     :db/doc         "All terms referring to this concept"}
 
-   {:db/ident       :concept/category
-    :db/valueType   :db.type/keyword
-    :db/cardinality :db.cardinality/one
-    :db/doc         "JobTech categories"}
-
    {:db/ident       :concept/type
     :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one

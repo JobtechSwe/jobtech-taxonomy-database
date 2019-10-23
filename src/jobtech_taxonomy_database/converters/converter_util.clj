@@ -36,7 +36,6 @@
       :concept/definition                           description
       :concept/preferred-label                      label
       :concept/type                                 instance-type
-      :concept/category                             (csk/->kebab-case-keyword instance-type) ; deprecated this one
       :concept.external-database.ams-taxonomy-67/id (str legacy-id) ;; TODO rename attribute
       })))
 
@@ -65,7 +64,7 @@
   (d/pull (conn/get-db) [:concept/id
                          :concept/description
                          :concept/definition
-                         :concept/category
+                         :concept/type
                          :concept.external-database.ams-taxonomy-67/id]
           entity-id))
 
@@ -93,14 +92,14 @@
                                                           :concept/definition (or (:description attr-map) (:new-term attr-map))))
             (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-2012 (:ssyk attr-map)))
             (cond-> (contains? attr-map :sort) (assoc :concept.category/sort-order (:sort attr-map)))
-            (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code (:eures attr-map)))
+            (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code-2014 (:eures attr-map)))
             (cond-> (contains? attr-map :driving-licence-code)
-              (assoc :concept.external-standard/driving-licence-code (:driving-licence-code attr-map)))
-            (cond-> (contains? attr-map :nuts-3) (assoc :concept.external-standard/nuts-level-3-code (:nuts-3 attr-map)))
-            (cond-> (contains? attr-map :country-code) (assoc :concept.external-standard/country-code (:country-code attr-map)))
+              (assoc :concept.external-standard/driving-licence-code-2013 (:driving-licence-code attr-map)))
+            (cond-> (contains? attr-map :nuts-3) (assoc :concept.external-standard/nuts-level-3-code-2013 (:nuts-3 attr-map)))
+            (cond-> (contains? attr-map :country-code) (assoc :concept.external-standard/iso-639-3-alpha-3-2007 (:country-code attr-map)))
             (cond-> (contains? attr-map :legacy-id) (assoc :concept.external-database.ams-taxonomy-67/id (:legacy-id attr-map)))
             (cond-> (contains? attr-map :isco) (assoc :concept.external-standard/isco-08 (:isco attr-map)))
-            (cond-> (contains? attr-map :sni) (assoc :concept.external-standard/sni-level-code (:sni attr-map))))]
+            (cond-> (contains? attr-map :sni) (assoc :concept.external-standard/sni-level-code-2007 (:sni attr-map))))]
     (concat [concept-with-extras])))
 
 (def get-only-relation-by-legacy-ids-and-types-query

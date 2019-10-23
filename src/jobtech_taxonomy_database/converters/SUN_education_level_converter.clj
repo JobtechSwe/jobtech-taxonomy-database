@@ -29,7 +29,7 @@
    :concept/preferred-term                       temp-id
    :concept/category                             (keyword category)
    :concept.external-database.ams-taxonomy-67/id legacy-id
-   :concept.external-standard/SUN-level-code     code})
+   :concept.external-standard/sun-education-level-code-2020     code})
 
 (defn converter
   "Converter for SUN education levels 1, 2 & 3.

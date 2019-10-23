@@ -14,7 +14,7 @@
              term
              (if (not (empty? explanatorynotes)) explanatorynotes term)
              nacelevel1id)
-    concept-with-extras (assoc concept :concept.external-standard/sni-level-code nacelevel1code)]
+    concept-with-extras (assoc concept :concept.external-standard/sni-level-code-2007 nacelevel1code)]
     [concept-with-extras]))
 
 (defn converter-2
@@ -26,7 +26,7 @@
                  term
                  (if (not (empty? explanatorynotes)) explanatorynotes term)
                  nacelevel2id)
-        concept-with-extras (assoc concept :concept.external-standard/sni-level-code nacelevel2code)
+        concept-with-extras (assoc concept :concept.external-standard/sni-level-code-2007 nacelevel2code)
         temp-id-parent (u/create-temp-id t/sni-level-1 nacelevel1id)
         relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras

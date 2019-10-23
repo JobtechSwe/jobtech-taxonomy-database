@@ -11,7 +11,7 @@
   (let
    [concept (u/create-concept t/employment-duration beteckning beteckning anställningsvaraktighetsid)
     concept-with-extras (assoc concept
-                               :concept.external-standard/eures-code eureskod
+                               :concept.external-standard/eures-code-2014 eureskod
                                :concept.category/sort-order sortering)]
     [concept-with-extras]))
 
