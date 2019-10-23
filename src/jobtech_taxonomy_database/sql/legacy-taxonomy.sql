@@ -48,7 +48,7 @@ AND LanguageTerm.versionID = 67
 SELECT LanguageLevel.*, LanguageLevelTerm.*
 FROM TaxonomyDBVersion.dbo.LanguageLevel LanguageLevel, TaxonomyDBVersion.dbo.LanguageLevelTerm LanguageLevelTerm
 WHERE LanguageLevelTerm.languageLevelID = LanguageLevel.languageLevelID
-AND LanguageID = 502
+AND languageID = 502
 AND LanguageLevel.versionID = 67
 AND LanguageLevelTerm.versionID = 67
 
@@ -138,7 +138,7 @@ SELECT DrivingLicence.*, DrivingLicenceTerm.*
 FROM TaxonomyDBVersion.dbo.DrivingLicence DrivingLicence,
     TaxonomyDBVersion.dbo.DrivingLicenceTerm DrivingLicenceTerm
 WHERE DrivingLicenceTerm.drivingLicenceID = DrivingLicence.drivingLicenceID
-AND LanguageID = 502
+AND languageID = 502
 AND DrivingLicence.versionID = 67
 AND DrivingLicenceTerm.versionID = 67
 
@@ -548,7 +548,7 @@ AND db68term.countryID =199
 AND db67term.countryID =199
 AND db67.versionID = 67
 AND db67term.versionID = 67
-AND db68term.term != db67term.term
+AND db68term.term != db67term.term COLLATE SQL_Latin1_General_CP1_CS_AS
 
 -- 84 relations (June 12)
 -- :name get-deprecated-occupation-name-relation-to-parent-isco :*
@@ -668,7 +668,7 @@ LocaleGroupTerm68.localeGroupID = LocaleGroup68.localeGroupID
 AND LocaleGroupTerm67.localeGroupID = LocaleGroup67.localeGroupID
 AND LocaleGroup68.localeGroupID = LocaleGroup67.localeGroupID
 AND LocaleGroup67.versionID = 67
-AND LocaleGroupTerm68.term != LocaleGroupTerm67.term
+AND LocaleGroupTerm68.term != LocaleGroupTerm67.term COLLATE SQL_Latin1_General_CP1_CS_AS
 
 -- 0 new concepts (October 9)
 -- :name get-updated-ssyk-level-3 :*
@@ -679,7 +679,7 @@ TaxonomyDB.dbo.LocaleLevel3Term AS [term-68],
 TaxonomyDBVersion.dbo.LocaleLevel3Term AS [term-67]
 WHERE
 [term-68].localeLevel3ID = [term-67].localeLevel3ID
-AND [term-68].term != [term-67].term
+AND [term-68].term != [term-67].term COLLATE SQL_Latin1_General_CP1_CS_AS
 AND [term-67].versionID = 67
 
 
@@ -692,7 +692,7 @@ TaxonomyDB.dbo.LocaleLevel2Term AS [term-68],
 TaxonomyDBVersion.dbo.LocaleLevel2Term AS [term-67]
 WHERE
 [term-68].localeLevel2ID = [term-67].localeLevel2ID
-AND [term-68].term != [term-67].term
+AND [term-68].term != [term-67].term COLLATE SQL_Latin1_General_CP1_CS_AS
 AND [term-67].versionID = 67
 
 
@@ -706,7 +706,7 @@ TaxonomyDB.dbo.LocaleLevel1Term AS [term-68],
 TaxonomyDBVersion.dbo.LocaleLevel1Term AS [term-67]
 WHERE
 [term-68].localeLevel1ID = [term-67].localeLevel1ID
-AND [term-68].term != [term-67].term
+AND [term-68].term != [term-67].term COLLATE SQL_Latin1_General_CP1_CS_AS
 AND [term-67].versionID = 67
 
 
@@ -786,7 +786,7 @@ AND [db-term-67].versionID = 67
 AND [db-67].versionID = 67
 AND [db-term-67].languageID = 502
 AND [db-term-68].languageID = 502
-AND ([db-term-68].term != [db-term-67].term
+AND ([db-term-68].term != [db-term-67].term COLLATE SQL_Latin1_General_CP1_CS_AS
 OR [db-term-68].description NOT LIKE [db-term-67].description)
 
 -- 0 deprecated occupation-field-to-ssyk-relations (June 12)
@@ -873,7 +873,7 @@ FROM TaxonomyDB.dbo.PopularSynonym AS db68,
 	TaxonomyDBVersion.dbo.PopularSynonym AS db67
 WHERE db68.popularSynonymID = db67.popularSynonymID
 AND db67.versionID = 67
-AND db68.term != db67.term
+AND db68.term != db67.term COLLATE SQL_Latin1_General_CP1_CS_AS
 
 -- 26 (June 12)
 -- :name get-deprecated-synonym-relation-to-occupation :*
@@ -1056,7 +1056,7 @@ AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
 AND ([db-67-term].term != [db-68-term].term
 OR [db-67].displaySortOrder != [db-68].displaySortOrder
-OR [db-67].drivingLicenceCode != [db-68].drivingLicenceCode
+OR [db-67].drivingLicenceCode != [db-68].drivingLicenceCode COLLATE SQL_Latin1_General_CP1_CS_AS
 OR [db-67-term].description NOT LIKE [db-68-term].description)
 
 ------------------- Driver licence combinations is already from 68. ------------------------------------
@@ -1114,9 +1114,9 @@ AND [db-67].anställningsvaraktighetsID = [db-68].anställningsvaraktighetsID
 AND [db-68].anställningsvaraktighetsID = [db-68-term].anställningsvaraktighetsID
 AND [db-68-term].språkID = 502
 AND [db-67-term].språkID = 502
-AND ([db-67-term].beteckning != [db-68-term].beteckning
+AND ([db-67-term].beteckning != [db-68-term].beteckning COLLATE SQL_Latin1_General_CP1_CS_AS
 OR [db-67].sortering != [db-68].sortering
-OR [db-67].EURESKod != [db-68].EURESKod)
+OR [db-67].EURESKod != [db-68].EURESKod COLLATE SQL_Latin1_General_CP1_CS_AS)
 
 ----------------------------EMPLOYMENT TYPE---(No difference between versions!!!)-----------------------------------
 
@@ -1169,7 +1169,7 @@ AND [db-67].AnstallningTypJobbID = [db-68].AnstallningTypJobbID
 AND [db-68].AnstallningTypJobbID = [db-68-term].AnstallningTypJobbID
 AND [db-68-term].språkID = 502
 AND [db-67-term].språkID = 502
-AND ([db-67-term].beteckning != [db-68-term].beteckning
+AND ([db-67-term].beteckning != [db-68-term].beteckning COLLATE SQL_Latin1_General_CP1_CS_AS
 OR [db-67].iSortering != [db-68].iSortering)
 
 -----------------------------------------GEOGRAPHIC PLACES----------------------------------------------------------
@@ -1212,7 +1212,7 @@ WHERE [db-68].continentID = [db-67].continentID
 AND [db-67].versionID = 67
 AND [db-68].languageID = 502
 AND [db-67].languageID = 502
-AND [db-67].term != [db-68].term
+AND [db-67].term != [db-68].term COLLATE SQL_Latin1_General_CP1_CS_AS
 
 ----------------------------------------- COUNTRIES --------------------------------------------------
 
@@ -1260,8 +1260,8 @@ AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
-AND ([db-67-term].term != [db-68-term].term
-OR [db-67].countryCode != [db-68].countryCode)
+AND ([db-67-term].term != [db-68-term].term COLLATE SQL_Latin1_General_CP1_CS_AS
+OR [db-67].countryCode != [db-68].countryCode COLLATE SQL_Latin1_General_CP1_CS_AS)
 
 -- 1 (June 12)
 -- :name get-deprecated-country-relation-to-continent :*
@@ -1339,8 +1339,8 @@ AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
-AND ([db-67-term].term != [db-68-term].term
-OR [db-67].NUTSCodeLevel3 != [db-68].NUTSCodeLevel3)
+AND ([db-67-term].term != [db-68-term].term COLLATE SQL_Latin1_General_CP1_CS_AS
+OR [db-67].NUTSCodeLevel3 != [db-68].NUTSCodeLevel3 COLLATE SQL_Latin1_General_CP1_CS_AS)
 
 -- 0 (June 12)
 -- :name get-deprecated-region-relation-to-parent :*
@@ -1416,7 +1416,7 @@ AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
 AND [db-68-term].languageID = 502
 AND [db-67-term].languageID = 502
-AND [db-67-term].term != [db-68-term].term
+AND [db-67-term].term != [db-68-term].term COLLATE SQL_Latin1_General_CP1_CS_AS
 
 -- 0 (June 12)
 -- :name get-new-municipality-relation-to-parent :*
@@ -1525,7 +1525,7 @@ WHERE [db-68].languageLevelID = [db-67].languageLevelID
 AND [db-67].versionID = 67
 AND [db-68].languageID = 502
 AND [db-67].languageID = 502
-AND [db-67].term != [db-68].term
+AND [db-67].term != [db-68].term COLLATE SQL_Latin1_General_CP1_CS_AS
 
 
 ------------------------------WAGE TYPE-- (No differences between versions!!!)--------------------------------------
@@ -1563,7 +1563,7 @@ FROM TaxonomiDBSvensk.dbo.LöneformTerm AS [db-68], TaxonomiDBSvenskVersion.dbo.
 WHERE [db-68].löneformsID = [db-67].löneformsID
 AND [db-68].språkID = 502
 AND [db-67].språkID = 502
-AND [db-67].beteckning != [db-68].beteckning
+AND [db-67].beteckning != [db-68].beteckning COLLATE SQL_Latin1_General_CP1_CS_AS
 
 ----------------------------- WORKTIME EXTENT ------------------------------------------------------------
 
@@ -1610,8 +1610,8 @@ AND [db-67].arbetstidsID = [db-68].arbetstidsID
 AND [db-68].arbetstidsID = [db-68-term].arbetstidsID
 AND [db-68-term].språkID = 502
 AND [db-67-term].språkID = 502
-AND ([db-67-term].beteckning != [db-68-term].beteckning
-OR [db-67].sortering != [db-68].sortering)
+AND ([db-67-term].beteckning != [db-68-term].beteckning COLLATE SQL_Latin1_General_CP1_CS_AS
+OR [db-67].sortering != [db-68].sortering COLLATE SQL_Latin1_General_CP1_CS_AS)
 
 ------------------------------------------- SKILLS ----------------------------------------------------------------
 
@@ -1636,7 +1636,7 @@ FROM TaxonomyDBVersion.dbo.SkillTerm AS [db-67]
 WHERE [db-67].versionID = 67
 AND [db-67].languageID = 502
 AND [db-67].skillID NOT IN
-(SELECT [db-68].SkillID
+(SELECT [db-68].skillID
 FROM TaxonomyDB.dbo.SkillTerm AS [db-68]
 WHERE [db-68].languageID = 502)
 
@@ -1659,7 +1659,7 @@ AND   Skill68.skillID = SkillTerm68.skillID
 AND   Skill68.skillID = Skill67.skillID
 AND   SkillTerm68.languageID = 502
 AND   SkillTerm67.languageID = 502
-AND   SkillTerm68.term != SkillTerm67.term
+AND   SkillTerm68.term != SkillTerm67.term COLLATE SQL_Latin1_General_CP1_CS_AS
 
 -- 128 (June 12)
 -- :name get-deprecated-skill-relation-to-headline :*
@@ -1754,7 +1754,7 @@ AND   Skill68.skillHeadlineID = SkillTerm68.skillHeadlineID
 AND   Skill68.skillHeadlineID = Skill67.skillHeadlineID
 AND   SkillTerm68.languageID = 502
 AND   SkillTerm67.languageID = 502
-AND   SkillTerm68.term != SkillTerm67.term
+AND   SkillTerm68.term != SkillTerm67.term COLLATE SQL_Latin1_General_CP1_CS_AS
 
 --------------------------------- NACE/SNI (No differences between versions!!!) ------------------------------------
 
@@ -1796,7 +1796,7 @@ AND [db-67-term].languageID = 502
 AND [db-68-term].languageID = 502
 AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
-AND ([db-67-term].term != [db-68-term].term
+AND ([db-67-term].term != [db-68-term].term COLLATE SQL_Latin1_General_CP1_CS_AS
 OR [db-67].naceLevel1Code != [db-68].naceLevel1Code)
 
 -- 0 (June 12)
@@ -1837,7 +1837,7 @@ AND [db-67-term].languageID = 502
 AND [db-68-term].languageID = 502
 AND [db-67-term].versionID = 67
 AND [db-67].versionID = 67
-AND ([db-67-term].term != [db-68-term].term
+AND ([db-67-term].term != [db-68-term].term COLLATE SQL_Latin1_General_CP1_CS_AS
 OR [db-67].naceLevel2Code != [db-68].naceLevel2Code)
 
 -- 0 (June 12)
