@@ -68,78 +68,94 @@
 
 
 (def concept-schema-extras
-  [{:db/ident       :concept.external-standard/ssyk-2012
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/unique      :db.unique/identity
-    :db/doc         "SSYK-2012 type"}
+  {:db/ident       :concept.external-standard/ssyk-2012
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/unique      :db.unique/identity
+   :db/doc         "SSYK-2012 type"}
 
-   {:db/ident       :concept.category/sort-order
-    :db/valueType   :db.type/long
-    :db/cardinality :db.cardinality/one
-    :db/doc         "Value for display sort order in category"}
+  {:db/ident       :concept.category/sort-order
+   :db/valueType   :db.type/long
+   :db/cardinality :db.cardinality/one
+   :db/doc         "Value for display sort order in category"}
 
-   {:db/ident       :concept.external-standard/eures-code
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "EURES code"}
+  {:db/ident       :concept.external-standard/eures-code-2014
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "EURES code"}
 
-   {:db/ident       :concept.external-standard/driving-licence-code
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "Driving licence code"}
+  {:db/ident       :concept.external-standard/driving-licence-code-2013
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "Driving licence code"}
 
-   {:db/ident       :concept.implicit-driving-licences
-    :db/valueType   :db.type/ref
-    :db/cardinality :db.cardinality/many
-    :db/doc         "List of 'lower' ranking driving licences included in the licence"}
+  {:db/ident       :concept.implicit-driving-licences
+   :db/valueType   :db.type/ref
+   :db/cardinality :db.cardinality/many
+   :db/doc         "List of 'lower' ranking driving licences included in the licence"}
 
-   {:db/ident       :concept.external-standard/nuts-level-3-code-2013
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "NUTS level 3 code"}
+  {:db/ident       :concept.external-standard/nuts-level-3-code-2013
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "NUTS level 3 code"}
 
-   {:db/ident       :concept.external-standard/national-nuts-level-3-code-2019
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "Swedish Län code"}
+  {:db/ident       :concept.external-standard/national-nuts-level-3-code-2019
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "Swedish Län code"}
 
-   {:db/ident       :concept.external-standard/national-nuts-lau-2-code-2015
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "Swedish Municipality code"}
-
-
-   {:db/ident       :concept.external-standard/country-code
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "Country code"}
-
-   {:db/ident       :concept.external-database.ams-taxonomy-67/id
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "ID from legacy Taxonomy version 67"}
-
-   {:db/ident       :concept.external-standard/isco-08
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "ISCO-08 level 4"}
-
-   {:db/ident       :concept.external-standard/sun-education-field-code-2020
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "SUN education field code, either 1, 2 or 3 digits and a letter"}
+  {:db/ident       :concept.external-standard/lau-2-code-2015
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "Swedish Municipality code"}
 
 
-   {:db/ident       :concept.external-standard/sun-education-level-code-2020
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "SUN education level code, either 1, 2 or 3 digits"}
+  {:db/ident       :concept.external-standard/iso-3166-1-alpha-2-2013
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "Country code"}
 
-   {:db/ident       :concept.external-standard/sni-level-code
-    :db/valueType   :db.type/string
-    :db/cardinality :db.cardinality/one
-    :db/doc         "SNI level code"}])
+  {:db/ident       :concept.external-standard/iso-639-3-alpha-2-2007
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "2 letter language code"
+   }
+
+  {:db/ident       :concept.external-standard/iso-639-3-alpha-3-2007
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "3 letter language code"
+   }
+
+  {:db/ident       :concept.external-database.ams-taxonomy-67/id
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "ID from legacy Taxonomy version 67"}
+
+  {:db/ident       :concept.external-standard/isco-08
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "ISCO-08 level 4"}
+
+  {:db/ident       :concept.external-standard/sun-education-field-code-2020
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "SUN education field code, either 1, 2 or 3 digits and a letter"}
+
+
+  {:db/ident       :concept.external-standard/sun-education-level-code-2020
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "SUN education level code, either 1, 2 or 3 digits"}
+
+  {:db/ident       :concept.external-standard/sni-level-code-2007
+   :db/valueType   :db.type/string
+   :db/cardinality :db.cardinality/one
+   :db/doc         "SNI 2007 level code"}
+
+  )
+
+
 
 ; Add see-instead-flag? See https://docs.datomic.com/on-prem/best-practices.html#annotate-schema /Sara
 
