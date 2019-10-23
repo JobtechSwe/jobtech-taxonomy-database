@@ -11,7 +11,7 @@
   (let
    [concept (u/create-concept t/employment-type beteckning beteckning anstallningtypjobbid)
     concept-with-extras (assoc concept
-                               :concept.category/sort-order isortering)]
+                               :concept/sort-order isortering)]
     [concept-with-extras]))
 
 (defn convert

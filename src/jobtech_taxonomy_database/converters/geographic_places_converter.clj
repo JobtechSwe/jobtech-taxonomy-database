@@ -60,7 +60,7 @@
                  term
                  term
                  id)
-        concept-with-extras (conj concept (when national-code [:concept.external-standard/national-nuts-lau-2-code-2015 national-code]))
+        concept-with-extras (conj concept (when national-code [:concept.external-standard/lau-2-code-2015 national-code]))
         temp-id-parent (u/create-temp-id t/region parent-id)
         relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras

@@ -35,7 +35,7 @@
     concept (u/create-concept t/driving-licence term description drivinglicenceid)
     concept-with-extras (assoc concept
                                :concept.external-standard/driving-licence-code-2013 drivinglicencecode
-                               :concept.category/sort-order displaysortorder)
+                               :concept/sort-order displaysortorder)
     concept-with-extra-extras (conj concept-with-extras (when (not-empty implicit-licences)
                                                           [:concept.implicit-driving-licences implicit-licences]))]
     [concept-with-extra-extras]))

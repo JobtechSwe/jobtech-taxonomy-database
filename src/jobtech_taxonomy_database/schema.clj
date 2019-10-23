@@ -70,7 +70,7 @@
    :db/unique      :db.unique/identity
    :db/doc         "SSYK-2012 type"}
 
-  {:db/ident       :concept.category/sort-order
+  {:db/ident       :concept/sort-order
    :db/valueType   :db.type/long
    :db/cardinality :db.cardinality/one
    :db/doc         "Value for display sort order in category"}

@@ -91,7 +91,7 @@
                     (contains? attr-map :new-term) (assoc :concept/description (or (:description attr-map) (:new-term attr-map))
                                                           :concept/definition (or (:description attr-map) (:new-term attr-map))))
             (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-2012 (:ssyk attr-map)))
-            (cond-> (contains? attr-map :sort) (assoc :concept.category/sort-order (:sort attr-map)))
+            (cond-> (contains? attr-map :sort) (assoc :concept/sort-order (:sort attr-map)))
             (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code-2014 (:eures attr-map)))
             (cond-> (contains? attr-map :driving-licence-code)
               (assoc :concept.external-standard/driving-licence-code-2013 (:driving-licence-code attr-map)))

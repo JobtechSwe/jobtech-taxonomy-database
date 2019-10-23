@@ -11,8 +11,8 @@
   (let
       [concept (u/create-concept t/language term term languageid_2)
        concept-with-extras (-> concept
-                               (assoc :iso-639-3-alpha-3-2007 languagecodeiso)
-                               (assoc :iso-639-3-alpha-2-2007 languagecodeiso2)
+                               (assoc :concept.external-standard/iso-639-3-alpha-3-2007 languagecodeiso)
+                               (assoc :concept.external-standard/iso-639-3-alpha-2-2007 languagecodeiso2)
                                )
        ]
     [concept-with-extras]))

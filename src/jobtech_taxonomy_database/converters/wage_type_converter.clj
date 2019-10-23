@@ -11,7 +11,7 @@
   (let
    [concept (u/create-concept t/wage-type beteckning beteckning löneformsid)
     concept-with-extras (assoc concept
-                               :concept.category/sort-order sortering)]
+                               :concept/sort-order sortering)]
     [concept-with-extras]))
 
 (defn convert
