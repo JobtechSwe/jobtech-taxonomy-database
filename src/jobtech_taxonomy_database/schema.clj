@@ -109,7 +109,13 @@
   {:db/ident       :concept.external-standard/iso-3166-1-alpha-2-2013
    :db/valueType   :db.type/string
    :db/cardinality :db.cardinality/one
-   :db/doc         "Country code"}
+   :db/doc         "Country code 2 letter"}
+
+ {:db/ident       :concept.external-standard/iso-3166-1-alpha-3-2013
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc         "Country code 3 letter"}
+
 
   {:db/ident       :concept.external-standard/iso-639-3-alpha-2-2007
    :db/valueType   :db.type/string

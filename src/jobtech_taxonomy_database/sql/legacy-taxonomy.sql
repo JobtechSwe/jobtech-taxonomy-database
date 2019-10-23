@@ -85,15 +85,17 @@ AND Continent.continentID = ContinentTerm.continentID
 -- :name get-countries :*
 -- :doc Get all countries
 SELECT Country.continentID AS [parent-id],
-	Country.countryID AS [id],
-	CountryTerm.term AS [term],
-	Country.countryCode AS [code]
+Country.countryID AS [id],
+CountryTerm.term AS [term],
+Country.countryCode AS [code],
+Country.countryCodeAlpha3 AS [code3]
 FROM TaxonomyDBVersion.dbo.Country Country,
-    TaxonomyDBVersion.dbo.CountryTerm CountryTerm
+TaxonomyDBVersion.dbo.CountryTerm CountryTerm
 WHERE Country.versionID = 67
 AND	CountryTerm.versionID = 67
 AND Country.countryID = CountryTerm.countryID
 AND languageID = 502
+
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned

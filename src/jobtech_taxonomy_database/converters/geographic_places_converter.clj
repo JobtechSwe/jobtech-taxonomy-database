@@ -18,14 +18,16 @@
 
 (defn converter-countries
   "Convert countries"
-  [{:keys [term id code parent-id]}]
-  {:pre [term id code parent-id]}
+  [{:keys [term id code parent-id code3]}]
+  {:pre [term id code parent-id code3]}
   (let [concept (u/create-concept
                  t/country
                  term
                  term
                  id)
-        concept-with-extras (assoc concept :concept.external-standard/country-code code)
+        concept-with-extras (-> concept (assoc :concept.external-standard/iso-3166-1-alpha-2-2013 code)
+                                        (assoc :concept.external-standard/iso-3166-1-alpha-3-2013 code3)
+                                )
         temp-id-parent (u/create-temp-id t/continent parent-id)
         relation (u/create-broader-relation-to-concept concept-with-extras temp-id-parent)]
     [concept-with-extras
