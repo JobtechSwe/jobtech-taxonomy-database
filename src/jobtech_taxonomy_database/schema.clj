@@ -68,6 +68,7 @@
 
 
 (def concept-schema-extras
+[
   {:db/ident       :concept.external-standard/ssyk-2012
    :db/valueType   :db.type/string
    :db/cardinality :db.cardinality/one
@@ -152,7 +153,7 @@
    :db/valueType   :db.type/string
    :db/cardinality :db.cardinality/one
    :db/doc         "SNI 2007 level code"}
-
+]
   )
 
 
