@@ -37,7 +37,7 @@
                                :concept.external-standard/driving-licence-code-2013 drivinglicencecode
                                :concept/sort-order displaysortorder)
     concept-with-extra-extras (conj concept-with-extras (when (not-empty implicit-licences)
-                                                          [:concept.implicit-driving-licences implicit-licences]))]
+                                                          [:concept.external-standard/implicit-driving-licences  implicit-licences]))]
     [concept-with-extra-extras]))
 
 (defn convert

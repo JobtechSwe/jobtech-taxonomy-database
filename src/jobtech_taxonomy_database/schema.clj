@@ -64,7 +64,7 @@
 
 (def concept-schema-extras
 [
-  {:db/ident       :concept.external-standard/ssyk-2012
+  {:db/ident       :concept.external-standard/ssyk-code-2012
    :db/valueType   :db.type/string
    :db/cardinality :db.cardinality/one
    :db/unique      :db.unique/identity
@@ -85,7 +85,7 @@
    :db/cardinality :db.cardinality/one
    :db/doc         "Driving licence code"}
 
-  {:db/ident       :concept.implicit-driving-licences
+  {:db/ident       :concept.external-standard/implicit-driving-licences
    :db/valueType   :db.type/ref
    :db/cardinality :db.cardinality/many
    :db/doc         "List of 'lower' ranking driving licences included in the licence"}
@@ -134,7 +134,7 @@
    :db/cardinality :db.cardinality/one
    :db/doc         "ID from legacy Taxonomy version 67"}
 
-  {:db/ident       :concept.external-standard/isco-08
+  {:db/ident       :concept.external-standard/isco-code-08
    :db/valueType   :db.type/string
    :db/cardinality :db.cardinality/one
    :db/doc         "ISCO-08 level 4"}

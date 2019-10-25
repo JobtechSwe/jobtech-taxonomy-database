@@ -33,11 +33,10 @@ WHERE
 -- :name get-language :*
 -- :doc Get all langages
 SELECT Language.*, LanguageTerm.*
-FROM TaxonomyDBVersion.dbo.[Language] Language, TaxonomyDBVersion.dbo.LanguageTerm LanguageTerm
-WHERE LanguageTerm.translationLanguageID = 502
-AND Language.languageID = 502
-AND Language.versionID = 67
-AND LanguageTerm.versionID = 67
+FROM TaxonomyDB.dbo.[Language] Language, TaxonomyDB.dbo.LanguageTerm LanguageTerm
+WHERE
+LanguageTerm.languageID = Language.languageID
+and LanguageTerm.translationLanguageID = 502
 
 --------------------------------------------------- LANGUAGE LEVELS ------------------------------------------------
 

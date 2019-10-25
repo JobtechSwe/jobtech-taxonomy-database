@@ -90,7 +90,7 @@
                                                              :concept/definition (:description attr-map))
                     (contains? attr-map :new-term) (assoc :concept/description (or (:description attr-map) (:new-term attr-map))
                                                           :concept/definition (or (:description attr-map) (:new-term attr-map))))
-            (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-2012 (:ssyk attr-map)))
+            (cond-> (contains? attr-map :ssyk) (assoc :concept.external-standard/ssyk-code-2012 (:ssyk attr-map)))
             (cond-> (contains? attr-map :sort) (assoc :concept/sort-order (:sort attr-map)))
             (cond-> (contains? attr-map :eures) (assoc :concept.external-standard/eures-code-2014 (:eures attr-map)))
             (cond-> (contains? attr-map :driving-licence-code)
@@ -98,7 +98,7 @@
             (cond-> (contains? attr-map :nuts-3) (assoc :concept.external-standard/nuts-level-3-code-2013 (:nuts-3 attr-map)))
             (cond-> (contains? attr-map :country-code) (assoc :concept.external-standard/iso-639-3-alpha-3-2007 (:country-code attr-map)))
             (cond-> (contains? attr-map :legacy-id) (assoc :concept.external-database.ams-taxonomy-67/id (:legacy-id attr-map)))
-            (cond-> (contains? attr-map :isco) (assoc :concept.external-standard/isco-08 (:isco attr-map)))
+            (cond-> (contains? attr-map :isco) (assoc :concept.external-standard/isco-code-08 (:isco attr-map)))
             (cond-> (contains? attr-map :sni) (assoc :concept.external-standard/sni-level-code-2007 (:sni attr-map))))]
     (concat [concept-with-extras])))
 

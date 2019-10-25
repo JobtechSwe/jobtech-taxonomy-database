@@ -31,7 +31,7 @@
   (let [temp-id-parent-field (u/create-temp-id t/occupation-field parent-id-occupation-field)
         temp-id-parent-ssyk-level-3 (u/create-temp-id t/ssyk-level-3 parent-id-ssyk-3)
         concept (u/create-concept t/ssyk-level-4 ssyk-4-term ssyk-4-description ssyk-4-id)
-        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-4-code)
+        concept-with-extras (assoc concept :concept.external-standard/ssyk-code-2012 ssyk-4-code)
         relation-to-parent-ssyk (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-ssyk-level-3)
         relation-to-parent-field (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-field)]
     [concept-with-extras
@@ -43,7 +43,7 @@
   {:pre [ssyk-3-id ssyk-3-code ssyk-3-term parent-id-ssyk-2]}
   (let [temp-id-parent-ssyk-2 (u/create-temp-id t/ssyk-level-2 parent-id-ssyk-2)
         concept (u/create-concept t/ssyk-level-3 ssyk-3-term ssyk-3-term ssyk-3-id)
-        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-3-code)
+        concept-with-extras (assoc concept :concept.external-standard/ssyk-code-2012 ssyk-3-code)
         relation-to-parent (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-ssyk-2)]
     [concept-with-extras
      relation-to-parent]))
@@ -53,7 +53,7 @@
   {:pre [ssyk-2-id ssyk-2-term ssyk-2-code parent-id-ssyk-1]}
   (let [temp-id-parent-level-1 (u/create-temp-id t/ssyk-level-1 parent-id-ssyk-1)
         concept (u/create-concept t/ssyk-level-2 ssyk-2-term ssyk-2-term ssyk-2-id)
-        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-2-code)
+        concept-with-extras (assoc concept :concept.external-standard/ssyk-code-2012 ssyk-2-code)
         relation-to-parent-ssyk-1 (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-level-1)]
     [concept-with-extras
      relation-to-parent-ssyk-1]))
@@ -62,7 +62,7 @@
   [{:keys [ssyk-1-id ssyk-1-term ssyk-1-code]}]
   {:pre [ssyk-1-id ssyk-1-term ssyk-1-code]}
   (let [concept (u/create-concept t/ssyk-level-1 ssyk-1-term ssyk-1-term ssyk-1-id)
-        concept-with-extras (assoc concept :concept.external-standard/ssyk-2012 ssyk-1-code)]
+        concept-with-extras (assoc concept :concept.external-standard/ssyk-code-2012 ssyk-1-code)]
     [concept-with-extras]))
 
 (defn convert-isco-level-4
@@ -70,7 +70,7 @@
   {:pre [isco-4-id isco-4-term isco-4-description isco-4-isco-code parent-id-isco-1]}
   (let [temp-id-parent-isco-1 (u/create-temp-id t/isco-level-1 parent-id-isco-1)
         concept (u/create-concept t/isco-level-4 isco-4-term isco-4-description isco-4-id)
-        concept-with-extras (assoc concept :concept.external-standard/isco-08 isco-4-isco-code)
+        concept-with-extras (assoc concept :concept.external-standard/isco-code-08 isco-4-isco-code)
         relation-to-parent (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-isco-1)]
     [concept-with-extras
      relation-to-parent]))

@@ -7,11 +7,15 @@
 (defn converter
   "Immutable language converter."
   [{:keys [term languageid_2 languagecodeiso languagecodeiso2]}]
-  {:pre [term languageid_2 languagecodeiso languagecodeiso2]}
+  {:pre [term languageid_2 ]}
   (let
       [concept (u/create-concept t/language term term languageid_2)
-       concept-with-extras (-> concept
+       concept-with-extras (cond-> concept
+
+                               languagecodeiso
                                (assoc :concept.external-standard/iso-639-3-alpha-3-2007 languagecodeiso)
+
+                               languagecodeiso2
                                (assoc :concept.external-standard/iso-639-3-alpha-2-2007 languagecodeiso2)
                                )
        ]
