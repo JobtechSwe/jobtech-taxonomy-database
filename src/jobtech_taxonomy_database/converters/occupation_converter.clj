@@ -68,14 +68,16 @@
 (defn convert-isco-level-4
   [{:keys [isco-4-id isco-4-term isco-4-description isco-4-isco-code parent-id-isco-1]}]
   {:pre [isco-4-id isco-4-term isco-4-description isco-4-isco-code parent-id-isco-1]}
-  (let [temp-id-parent-isco-1 (u/create-temp-id t/isco-level-1 parent-id-isco-1)
+  (let [
+        ;; temp-id-parent-isco-1 (u/create-temp-id t/isco-level-1 parent-id-isco-1)
         concept (u/create-concept t/isco-level-4 isco-4-term isco-4-description isco-4-id)
         concept-with-extras (assoc concept :concept.external-standard/isco-code-08 isco-4-isco-code)
-        relation-to-parent (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-isco-1)]
-    [concept-with-extras
-     relation-to-parent]))
+        ;;relation-to-parent (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-isco-1)
+        ]
+        concept-with-extras
+        ))
 
-(defn convert-isco-level-1
+#_(defn convert-isco-level-1
   [{:keys [isco-1-id isco-1-term isco-1-description]}]
   {:pre [isco-1-id isco-1-term isco-1-description]}
   (let [concept (u/create-concept t/isco-level-1 isco-1-term isco-1-description isco-1-id)]
@@ -143,8 +145,8 @@
    (mapcat convert-ssyk-level-2 (lm/fetch-data lm/get-ssyk-level-2))
    (mapcat convert-ssyk-level-1 (lm/fetch-data lm/get-ssyk-level-1))
    (mapcat convert-occupation-field (lm/fetch-data lm/get-occupation-field))
-   (mapcat convert-isco-level-4 (lm/fetch-data lm/get-isco-level-4))
-   (mapcat convert-isco-level-1 (lm/fetch-data lm/get-isco-level-1))
+   (map convert-isco-level-4 (lm/fetch-data lm/get-isco-level-4))
+;;   (mapcat convert-isco-level-1 (lm/fetch-data lm/get-isco-level-1))
    (map convert-occupation-name-affinity (lm/fetch-data lm/get-occupation-name-affinity))
    (mapcat convert-popular-synonym (lm/fetch-data lm/get-popular-synonym-occupation))
    (map convert-popular-synonym-relation (lm/fetch-data lm/get-popular-synonym-occupation-relation))
