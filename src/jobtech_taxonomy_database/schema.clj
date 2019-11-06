@@ -199,7 +199,7 @@
     :db/doc         "The entity ID of the second concept in a relation"}
 
    {:db/ident       :relation/type
-    :db/valueType   :db.type/string      ;; BREAKING CHANGE!!
+    :db/valueType   :db.type/string
     :db/cardinality :db.cardinality/one
     :db/doc         "the type of relationship"}
 
@@ -208,10 +208,10 @@
     :db/cardinality :db.cardinality/one
     :db/doc         "Text describing the relation."}
 
-   {:db/ident        :relation/affinity-percentage
+   {:db/ident        :relation/substitutability-percentage
     :db/valueType    :db.type/long
     :db/cardinality  :db.cardinality/one
-    :db/doc          "The affinity percentage, how well the demand for an occupation is satisfied by a similar occupation"}])
+    :db/doc          "The substitutability percentage, how well the demand for an occupation is satisfied by a similar occupation"}])
 
 (def version-schema
   [{:db/ident         :taxonomy-version/id
