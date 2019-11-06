@@ -92,8 +92,8 @@
         temp-id-affinity-to-concept (u/create-temp-id
                                      t/occupation-name
                                      affinity-to-occupation-name-id)
-        relation (u/create-relation temp-id-affinity-from-concept temp-id-affinity-to-concept t/occupation-name-affinity)
-        relation-with-affinity-percentage (assoc relation :relation/affinity-percentage percentage)]
+        relation (u/create-relation temp-id-affinity-from-concept temp-id-affinity-to-concept t/substitutability)
+        relation-with-affinity-percentage (assoc relation :relation/substitutability-percentage percentage)]
     relation-with-affinity-percentage))
 
 (defn convert-popular-synonym
