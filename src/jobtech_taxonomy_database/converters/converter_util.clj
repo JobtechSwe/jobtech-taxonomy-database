@@ -32,7 +32,6 @@
    (let [[concept-id temp-id] (get-concept-id-and-temp-id instance-type legacy-id)]
      {:db/id                                        temp-id
       :concept/id                                   concept-id
-      :concept/description                          description
       :concept/definition                           description
       :concept/preferred-label                      label
       :concept/type                                 instance-type

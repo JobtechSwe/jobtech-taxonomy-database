@@ -27,11 +27,10 @@
 
 (defn convert-new
   []
-  (if (not (u/get-entity-id-by-legacy-id 9 t/employment-duration))
-    (og-converter/converter {:beteckning (updates-68-term 9)
-                             :anställningsvaraktighetsid 9
-                             :eureskod (updates-68-eures 9)
-                             :sortering (updates-68-sort 9)})))
+  (og-converter/converter {:beteckning (updates-68-term 9)
+                           :anställningsvaraktighetsid 9
+                           :eureskod (updates-68-eures 9)
+                           :sortering (updates-68-sort 9)}))
 
 (defn convert-deprecated
   []
