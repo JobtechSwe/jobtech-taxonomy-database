@@ -51,6 +51,7 @@
     ;; {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
     ;; {:namespace jobtech-taxonomy-database.converters.version-1}
 
+    {:namespace jobtech-taxonomy-database.converters.employment-type-new-changes}
     {:namespace jobtech-taxonomy-database.converters.employment-duration-new-changes}
     {:namespace jobtech-taxonomy-database.converters.occupation-new-changes-converter}
     {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
