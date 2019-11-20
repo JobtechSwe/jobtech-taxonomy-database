@@ -28,8 +28,10 @@
                                    schema/concept-schema-extras
                                    schema/concept-relation-schema
                                    schema/version-schema
-                                   (version-zero/convert)
-                                   ))}))
+
+                                   ))})
+  (d/transact conn {:tx-data (version-zero/convert)})
+  )
 
 ;;;; Public ;;;;
 
@@ -60,7 +62,7 @@
                        ;(def database-name "jobtech-taxonomy-production")
 
 ;; (def database-name "jobtech-taxonomy-development-2")
-(def database-name "jobtech-taxonomy-development-2019-11-19-1")
+(def database-name "jobtech-taxonomy-henrik-dev-4")
 
 (defn delete-database
   ([] (d/delete-database (get-client) {:db-name database-name}))
