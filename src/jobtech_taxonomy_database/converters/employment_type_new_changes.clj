@@ -10,41 +10,41 @@
 
 (comment
 
-  Tillsvidareanställning, inklusive provanställning
-  Tidsbegränsad anställning/Vikariat
-  Behovsanställning/Timanställning
-  Säsongsanställning
+  ;; Tillsvidareanställning, inklusive provanställning
+  ;; Tidsbegränsad anställning/Vikariat
+  ;; Behovsanställning/Timanställning
+  ;; Säsongsanställning
 
 
-  Och såhär ser hänvisningarna ut:
+  ;; Och såhär ser hänvisningarna ut:
 
-  Vanlig anställning -> Tillsvidareanställning, inklusive provanställning
-  Sommarjobb/feriejobb -> Säsongsanställning
-  Arbete utomlands -> utgår
-  Behovsanställning -> Behovsanställning/Timanställning
-  Tidsbegränsad anställning/Vikariat -> ny (edited)
+  ;; Vanlig anställning -> Tillsvidareanställning, inklusive provanställning
+  ;; Sommarjobb/feriejobb -> Säsongsanställning
+  ;; Arbete utomlands -> utgår
+  ;; Behovsanställning -> Behovsanställning/Timanställning
+  ;; Tidsbegränsad anställning/Vikariat -> ny (edited)
 
-  Och värdeförrådet byter också namn:
-  Anställningstyp -> Anställningsform (edited)
+  ;; Och värdeförrådet byter också namn:
+  ;; Anställningstyp -> Anställningsform (edited)
 
   )
 
 
 (def updated-employmet-types
   [
-   {:new-term "Tillsvidareanställning, inklusive provanställning" :sort 1 :legacy-id 1}
-   {:new-term "Säsongsanställning" :sort 2 :legacy-id 2}
-   {:new-term "Behovsanställning/Timanställning" :sort 3 :legacy-id 4}
+   {:new-term "Tillsvidareanställning, inklusive provanställning" :sort 1 :legacy-id "1"}
+   {:new-term "Säsongsanställning" :sort 2 :legacy-id "2"}
+   {:new-term "Behovsanställning/Timanställning" :sort 3 :legacy-id "4"}
    ]
   )
 
 (defn convert-deprecated []
-  (u/deprecate-concept t/employment-type 3)
+  (u/deprecate-concept t/employment-type "3")
   )
 
 (defn convert-new []
   (etc/converter {:beteckning "Tidsbegränsad anställning/Vikariat"
-                  :anstallningtypjobbid 5
+                  :anstallningtypjobbid "5"
                   :isortering 4 })
   )
 

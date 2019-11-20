@@ -25,6 +25,7 @@
             [jobtech-taxonomy-database.converters.version-0]
             [jobtech-taxonomy-database.converters.version-1]
             [jobtech-taxonomy-database.converters.version-2]
+            [jobtech-taxonomy-database.converters.employment-type-new-changes]
             [jobtech-taxonomy-database.converters.converter-util :as u]))
 
 (def converters
@@ -36,7 +37,7 @@
 
     ;;NOTE THIS SCRIPT HAS RUN IN TWO DIFFERENT STEPS, FIRST from version 0 to 1. Then verion 2!!
 
-    ;; {:namespace jobtech-taxonomy-database.converters.version-0}
+
     ;; {:namespace jobtech-taxonomy-database.converters.driving-licence-converter}
     ;; {:namespace jobtech-taxonomy-database.converters.employment-duration-converter}
     ;; {:namespace jobtech-taxonomy-database.converters.employment-type-converter}
