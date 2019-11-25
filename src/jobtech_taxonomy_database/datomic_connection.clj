@@ -23,6 +23,7 @@
   (d/db (get-conn-with-config config)))
 
 (defn ^:private init-new-db-with-conn [conn]
+  (println "Create database schema")
   (d/transact conn {:tx-data (vec (concat
                                    schema/concept-schema
                                    schema/concept-schema-extras
@@ -30,13 +31,13 @@
                                    schema/version-schema
 
                                    ))})
+  (println "Transact version 0")
   (d/transact conn {:tx-data (version-zero/convert)})
   )
 
 ;;;; Public ;;;;
 
 ;; TODO fix a smoother handling of a default config perhaps with
-;; some type of optional argument if clojure has that? TODO2: learn clojure...
 
 (defn get-db
   ([]       (get-db-with-config (get-datomic-config)))
@@ -62,7 +63,7 @@
                        ;(def database-name "jobtech-taxonomy-production")
 
 ;; (def database-name "jobtech-taxonomy-development-2")
-(def database-name "jobtech-taxonomy-henrik-dev-4")
+(def database-name "jobtech-taxonomy-frontend-2019-11-22-1" )
 
 (defn delete-database
   ([] (d/delete-database (get-client) {:db-name database-name}))
