@@ -23,16 +23,20 @@
   (d/db (get-conn-with-config config)))
 
 (defn ^:private init-new-db-with-conn [conn]
-  (println "Create database schema")
-  (d/transact conn {:tx-data (vec (concat
-                                   schema/concept-schema
-                                   schema/concept-schema-extras
-                                   schema/concept-relation-schema
-                                   schema/version-schema
+  (let [
+        _ (println "Create database schema")
+        transact-schema-result (d/transact conn {:tx-data (vec (concat
+                                         schema/concept-schema
+                                         schema/concept-schema-extras
+                                         schema/concept-relation-schema
+                                         schema/version-schema
 
-                                   ))})
-  (println "Transact version 0")
-  (d/transact conn {:tx-data (version-zero/convert)})
+                                         ))})
+        _ (println transact-schema-result)
+        _ (println "Transact version 0")
+        transact-version-0-result (d/transact conn {:tx-data (version-zero/convert)})
+        _ (println transact-version-0-result)
+        ])
   )
 
 ;;;; Public ;;;;
