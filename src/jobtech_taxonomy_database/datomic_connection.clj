@@ -67,7 +67,7 @@
                        ;(def database-name "jobtech-taxonomy-production")
 
 ;; (def database-name "jobtech-taxonomy-development-2")
-(def database-name "jobtech-taxonomy-frontend-2019-11-22-1" )
+(def database-name "jobtech-taxonomy-developement-2019-11-25-1" )
 
 (defn delete-database
   ([] (d/delete-database (get-client) {:db-name database-name}))

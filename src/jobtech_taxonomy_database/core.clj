@@ -52,15 +52,15 @@
     ;; {:namespace jobtech-taxonomy-database.converters.worktime-extent-converter}
     ;; {:namespace jobtech-taxonomy-database.converters.version-1}
 
-    {:namespace jobtech-taxonomy-database.converters.employment-type-new-changes}
-    {:namespace jobtech-taxonomy-database.converters.employment-duration-new-changes}
-    {:namespace jobtech-taxonomy-database.converters.occupation-new-changes-converter}
-    {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
-    {:namespace jobtech-taxonomy-database.converters.occupation-skill-relation-new-changes}
-    {:namespace jobtech-taxonomy-database.converters.geographic-places-new-changes}
-    {:namespace jobtech-taxonomy-database.converters.worktime-extent-new-changes}
-    {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
-    {:namespace jobtech-taxonomy-database.converters.version-2}
+    ;; {:namespace jobtech-taxonomy-database.converters.employment-type-new-changes}
+    ;; {:namespace jobtech-taxonomy-database.converters.employment-duration-new-changes}
+    ;; {:namespace jobtech-taxonomy-database.converters.occupation-new-changes-converter}
+    ;; {:namespace jobtech-taxonomy-database.converters.skills-converter-new-changes}
+    ;; {:namespace jobtech-taxonomy-database.converters.occupation-skill-relation-new-changes}
+    ;; {:namespace jobtech-taxonomy-database.converters.geographic-places-new-changes}
+    ;; {:namespace jobtech-taxonomy-database.converters.worktime-extent-new-changes}
+    ;; {:namespace jobtech-taxonomy-database.converters.SUN-education-field-converter}
+    ;; {:namespace jobtech-taxonomy-database.converters.version-2}
 
     ))
 
