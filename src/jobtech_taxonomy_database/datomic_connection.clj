@@ -32,10 +32,10 @@
                                          schema/version-schema
 
                                          ))})
-        _ (println transact-schema-result)
+
         _ (println "Transact version 0")
         transact-version-0-result (d/transact conn {:tx-data (version-zero/convert)})
-        _ (println transact-version-0-result)
+
         ])
   )
 
