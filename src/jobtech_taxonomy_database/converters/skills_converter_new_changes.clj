@@ -2,7 +2,14 @@
   (:gen-class)
   (:require [jobtech-taxonomy-database.legacy-migration :as lm]
             [jobtech-taxonomy-database.converters.converter-util :as u]
+            [jobtech-taxonomy-database.converters.skills-converter :as skills-converter]
             [jobtech-taxonomy-database.types :as t]))
+
+
+(defn convvert-new-skill-headline [{:keys [id-68 term-68]}]
+  {:pre [id-68 term-68]}
+  (skills-converter/converter-headline {:term term-68 :skillheadlineid id-68})
+  )
 
 (defn convert-new-skill [{:keys [id-68 term-68 skill-headline]}]
   {:pre [id-68 term-68 skill-headline]}
@@ -56,6 +63,7 @@
 
 (defn convert []
   (remove nil? (concat
+                (mapcat  convvert-new-skill-headline (lm/fetch-data lm/get-new-skill-headline))
                 (mapcat convert-new-skill (lm/fetch-data lm/get-new-skill))
                 (map convert-deprecated-skill (lm/fetch-data lm/get-deprecated-skill))
                 (mapcat convert-updated-skill (lm/fetch-data lm/get-updated-skill))
