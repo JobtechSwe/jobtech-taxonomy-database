@@ -220,6 +220,14 @@
     :db/unique        :db.unique/identity
     :db/doc           "The current version of the database. Is used almost like a tag in Git."}])
 
+(def user-schema
+  [{:db/ident         :taxonomy-user/id
+    :db/valueType     :db.type/string
+    :db/cardinality   :db.cardinality/one
+    :db/unique        :db.unique/identity
+    :db/doc           "The user id. Intendet to be added to the transaction."}])
+
+
 ;; (d/transact (get-conn) {:tx-data [{:db/id "a" :concept/id "a" :concept/preferred-label "clojure" :concept.relation/related "b" }  {:db/id "b" :concept/id "b"  :concept/preferred-label "java"} ]} )
 
 

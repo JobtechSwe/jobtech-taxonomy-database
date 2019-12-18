@@ -30,12 +30,9 @@
                                          schema/concept-schema-extras
                                          schema/concept-relation-schema
                                          schema/version-schema
+                                         schema/user-schema
 
                                          ))})
-
-        _ (println "Transact version 0")
-        transact-version-0-result (d/transact conn {:tx-data (version-zero/convert)})
-
         ])
   )
 
@@ -67,7 +64,7 @@
                        ;(def database-name "jobtech-taxonomy-production")
 
 ;; (def database-name "jobtech-taxonomy-development-2")
-(def database-name "jobtech-taxonomy-developement-2019-11-25-1" )
+(def database-name "jobtech-taxonomy-production-2019-12-03-1" )
 
 (defn delete-database
   ([] (d/delete-database (get-client) {:db-name database-name}))
