@@ -224,7 +224,6 @@
   [{:db/ident         :taxonomy-user/id
     :db/valueType     :db.type/string
     :db/cardinality   :db.cardinality/one
-    :db/unique        :db.unique/identity
     :db/doc           "The user id. Intendet to be added to the transaction."}])
 
 

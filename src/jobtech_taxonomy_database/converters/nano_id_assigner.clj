@@ -7,7 +7,7 @@
 (defn open-json
   "Open json, return map with json keyword formatted as clojure keywords."
   []
-  (parse-string (slurp "resources/right-taxonomy-dump.json") true))
+  (parse-string (slurp "resources/right-taxonomy-dump-2019-12-02.json") true))
 
 (def taxonomy-67 (open-json))
 

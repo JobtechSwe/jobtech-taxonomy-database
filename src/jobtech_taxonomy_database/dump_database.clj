@@ -71,7 +71,7 @@
 (defn dump-taxonomy-to-json []
   (generate-stream (reduce reduce-function {} (parse-find-concept-datomic-result
                                                (fetch-concepts)))
-                   (clojure.java.io/writer "taxonomy-dump.json")
+                   (clojure.java.io/writer "taxonomy-dump-new.json")
                    {:pretty true}))
 
 ;; Convert taxonomy-dump.json municipality and ssyk_level_4 id to concept-to-taxonomy-v1.json concept id
@@ -97,7 +97,8 @@
   )
 
 (defn get-newer-dump []
-  (slurp-json-file "resources/taxonomy-dump.json")
+  ;;(slurp-json-file "resources/taxonomy-dump.json")
+  (slurp-json-file "taxonomy-dump-new.json")
   )
 
 
@@ -218,6 +219,6 @@
   )
 
 (defn save-newer-dump-to-disk []
-  (generate-stream (update-new-dump-with-right-concept-ids) (clojure.java.io/writer "right-taxonomy-dump.json")
+  (generate-stream (update-new-dump-with-right-concept-ids) (clojure.java.io/writer "right-taxonomy-dump-new.json")
                    {:pretty true})
   )
