@@ -4,6 +4,18 @@
             [jobtech-taxonomy-database.converters.converter-util :as u]
             [jobtech-taxonomy-database.types :as t]))
 
+
+(defn converter-regions-unspecified []
+  [ {
+     :concept/id "vrDq_rUY_7PX"
+     :concept/definition "Ospecifierad region"
+     :concept/preferred-label "Ospecifierad"
+     :concept/type "region"
+     ;;  :concept.external-standard/national-nuts-level-3-code-2019 "90"
+     }]
+  )
+
+
 (defn converter-continents
   "Convert continents"
   [{:keys [term id]}]
@@ -73,4 +85,7 @@
    (mapcat converter-continents (lm/fetch-data lm/get-continents))
    (mapcat converter-countries (lm/fetch-data lm/get-countries))
    (mapcat converter-regions (lm/fetch-data lm/get-EU-regions))
-   (mapcat converter-municipalities (lm/fetch-data lm/get-municipalities))))
+   (mapcat converter-municipalities (lm/fetch-data lm/get-municipalities))
+   (converter-regions-unspecified)
+   )
+  )
