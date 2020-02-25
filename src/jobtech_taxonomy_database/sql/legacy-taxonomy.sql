@@ -788,7 +788,7 @@ AND [db-67].versionID = 67
 AND [db-term-67].languageID = 502
 AND [db-term-68].languageID = 502
 AND ([db-term-68].term != [db-term-67].term COLLATE SQL_Latin1_General_CP1_CS_AS
-OR [db-term-68].description NOT LIKE [db-term-67].description)
+OR [db-term-68].description NOT LIKE [db-term-67].description COLLATE SQL_Latin1_General_CP1_CS_AS)
 
 -- 0 deprecated occupation-field-to-ssyk-relations (June 12)
 -- :name get-deprecated-occupation-field-relation-to-ssyk-4 :*
