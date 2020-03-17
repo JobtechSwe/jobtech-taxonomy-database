@@ -39,6 +39,7 @@
 (def sun-education-level-3 "sun-education-level-3")
 (def wage-type "wage-type")
 (def worktime-extent "worktime-extent")
+(def occupation-experience-year "occupation-experience-year")
 
 (s/def ::concept-types #{continent
                          country
@@ -56,22 +57,22 @@
                          sni-level-2
                          wage-type
                          worktime-extent
-                         isco-level-4           ;previously OccupationGroup
-                         isco-level-1           ;previously OccupationField
-                         keyword                ;previously PopularSynonyms
-                         occupation-collection  ;previously OccupationCollection
-                         occupation-field       ;previously LocaleField
-                         occupation-name        ;previously OccupationName
-                         ssyk-level-1           ;previously LocaleLevel1
-                         ssyk-level-2           ;previously LocaleLevel2
-                         ssyk-level-3           ;previously LocaleLevel3
-                         ssyk-level-4           ;previously LocaleGroup
+                         isco-level-4                       ;previously OccupationGroup
+                         isco-level-1                       ;previously OccupationField
+                         keyword                            ;previously PopularSynonyms
+                         occupation-collection              ;previously OccupationCollection
+                         occupation-field                   ;previously LocaleField
+                         occupation-name                    ;previously OccupationName
+                         occupation-experience-year         ;previously OccupationExperienceYear
+                         ssyk-level-1                       ;previously LocaleLevel1
+                         ssyk-level-2                       ;previously LocaleLevel2
+                         ssyk-level-3                       ;previously LocaleLevel3
+                         ssyk-level-4                       ;previously LocaleGroup
 
                          sun-education-field-1
                          sun-education-field-2
                          sun-education-field-3
-                         sun-education-field-4
-                         })
+                         sun-education-field-4})
 
 ;; relation-types
 (def broader "broader")

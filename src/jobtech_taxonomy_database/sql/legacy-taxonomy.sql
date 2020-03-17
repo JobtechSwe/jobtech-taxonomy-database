@@ -1866,3 +1866,8 @@ WHERE NOT EXISTS
 	WHERE naceLevel2ID = [db-68].naceLevel2ID
 	AND naceLevel1ID = [db-68].naceLevel1ID
 	AND versionID = 67)
+
+-- :name get-occupation-experience-years :*
+SELECT *
+FROM TaxonomyDB.dbo.OccupationExperienceYearTerm
+WHERE languageID = 502
