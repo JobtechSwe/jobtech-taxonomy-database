@@ -4,25 +4,31 @@
             [jobtech-taxonomy-database.converters.converter-util :as u]
             [jobtech-taxonomy-database.types :as t]))
 
-(defn convert-ssyk-4-skill
-  [{:keys [skill-id ssyk-4-id]}]
-  {:pre [skill-id ssyk-4-id]}
-  (let [temp-id-ssyk (u/get-entity-if-exists-or-temp-id ssyk-4-id t/ssyk-level-4)
-        temp-id-skill (u/get-entity-if-exists-or-temp-id skill-id t/skill)
-        relation (u/create-relation temp-id-ssyk temp-id-skill t/related)]
-    relation))
+(defn convert-ssyk-4-skills []
+  (let [ssyk-4-skills (lm/fetch-data lm/get-ssyk-4-skill-relation)
+        ssyk-4-ids (u/type+legacy-ids->entity-ids-or-temp-ids t/ssyk-level-4 (map :ssyk-4-id ssyk-4-skills))
+        skill-ids (u/type+legacy-ids->entity-ids-or-temp-ids t/skill (map :skill-id ssyk-4-skills))]
+    ssyk-4-ids
+    skill-ids
+    (map (fn [{:keys [skill-id ssyk-4-id]}]
+           (u/create-relation
+            (get ssyk-4-ids (str ssyk-4-id))
+            (get skill-ids (str skill-id))
+            t/related))
+         ssyk-4-skills)))
 
-(defn convert-isco-4-skill
-  [{:keys [skill-id isco-4-id]}]
-  {:pre [skill-id isco-4-id]}
-  (let [temp-id-isco (u/get-entity-if-exists-or-temp-id isco-4-id t/isco-level-4)
-        temp-id-skill (u/get-entity-if-exists-or-temp-id skill-id t/skill)
-        relation (u/create-relation temp-id-isco temp-id-skill t/related)]
-    relation))
+(defn convert-isco-4-skills []
+  (let [isco-4-skills (lm/fetch-data lm/get-isco-4-skill-relation)
+        isco-4-ids (u/type+legacy-ids->entity-ids-or-temp-ids t/isco-level-4 (map :isco-4-id isco-4-skills))
+        skill-ids (u/type+legacy-ids->entity-ids-or-temp-ids t/skill (map :skill-id isco-4-skills))]
+    (map (fn [{:keys [skill-id isco-4-id]}]
+           (u/create-relation
+            (get isco-4-ids (str isco-4-id))
+            (get skill-ids (str skill-id))
+            t/related))
+         isco-4-skills)))
 
-(defn convert
-  ""
-  []
+(defn convert []
   (concat
-   (map convert-ssyk-4-skill (lm/fetch-data lm/get-ssyk-4-skill-relation))
-   (map convert-isco-4-skill (lm/fetch-data lm/get-isco-4-skill-relation))))
+   (convert-ssyk-4-skills)
+   (convert-isco-4-skills)))
