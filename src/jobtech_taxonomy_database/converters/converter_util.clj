@@ -35,8 +35,7 @@
       :concept/definition                           description
       :concept/preferred-label                      label
       :concept/type                                 instance-type
-      :concept.external-database.ams-taxonomy-67/id (str legacy-id) ;; TODO rename attribute
-      })))
+      :concept.external-database.ams-taxonomy-67/id (str legacy-id)}))) ;; TODO rename attribute
 
 (defn create-relation [concept1-id concept2-id type]
   "Both parameters should be either entity-id or temp-id"
@@ -58,6 +57,24 @@
 
 (defn get-entity-id-by-legacy-id [legacy-id type]
   (ffirst (d/q get-entity-id-by-legacy-id-query (conn/get-db) (str legacy-id) type)))
+
+(defn type+legacy-ids->entity-ids [type legacy-ids]
+  (into {}
+        (d/q '[:find ?legacy-id ?c
+               :in $ ?type [?legacy-id ...]
+               :where
+               [?c :concept.external-database.ams-taxonomy-67/id ?legacy-id]
+               [?c :concept/type ?type]]
+             (conn/get-db)
+             type
+             (map str legacy-ids))))
+
+(defn type+legacy-ids->entity-ids-or-temp-ids [type legacy-ids]
+  (reduce
+   (fn [acc legacy-id]
+     (update acc (str legacy-id) #(or % (create-temp-id type legacy-id))))
+   (type+legacy-ids->entity-ids type legacy-ids)
+   legacy-ids))
 
 (defn get-concept [entity-id]
   (d/pull (conn/get-db) [:concept/id
@@ -168,17 +185,11 @@
     '[:find (pull ?e [*])
       :in $ ?entity-id
       :where
-      [?e :concept.external-database.ams-taxonomy-67/id ?legacy-id]]
-    )
-  )
-
-
-
-
-
+      [?e :concept.external-database.ams-taxonomy-67/id ?legacy-id]]))
 
 (defn find-duplicate-ids [stuff]
-
-  (filter #(< 1 (second %))  (frequencies (map :concept/id (filter :concept/id stuff))))
-
-  )
+  (->> stuff
+       (filter :concept/id)
+       (map :concept/id)
+       frequencies
+       (filter #(< 1 (second %)))))
