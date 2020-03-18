@@ -21,10 +21,6 @@
     jobtech-taxonomy-database.converters.occupation-converter
     jobtech-taxonomy-database.converters.skills-converter
     jobtech-taxonomy-database.converters.occupation-experience-year-converter
-    ;; TODO next converter seems to be unnecessary slow because it first fetches
-    ;; relations and then for every relation it runs a separate query
-    ;; looking up legacy id. Batching those queries might bring a significant
-    ;; speedup
     jobtech-taxonomy-database.converters.occupation-skill-relation-converter
     jobtech-taxonomy-database.converters.SNI-level-converter
     jobtech-taxonomy-database.converters.wage-type-converter
