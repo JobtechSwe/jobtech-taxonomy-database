@@ -29,8 +29,7 @@
 
     jobtech-taxonomy-database.converters.employment-type-new-changes
     jobtech-taxonomy-database.converters.employment-duration-new-changes
-    ; FIXME this is broken: throws "tempid used only as value in transaction"
-    ; jobtech-taxonomy-database.converters.occupation-new-changes-converter
+    jobtech-taxonomy-database.converters.occupation-new-changes-converter
     jobtech-taxonomy-database.converters.skills-converter-new-changes
     jobtech-taxonomy-database.converters.occupation-skill-relation-new-changes
     jobtech-taxonomy-database.converters.geographic-places-new-changes

@@ -133,23 +133,19 @@
     t/keyword
     t/related)))
 
-
 (defn update-ssyk-level-4
   [{:keys [id term68]}]
   {:pre [id term68]}
   (let [entity-id (u/get-entity-id-by-legacy-id id t/ssyk-level-4)]
-    (u/update-concept entity-id {:new-term term68}))
-  )
-
-
+    (u/update-concept entity-id {:new-term term68})))
 
 (defn convert []
-  "Run this function after the database has been loaded"
   (remove empty?
           (concat
            (mapcat create-new-occupation-name (lm/fetch-data lm/get-new-occupation-name))
            (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-isco))
-           (mapcat convert-new-occupation-name-relation-to-parent (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-ssyk))
+           (mapcat convert-new-occupation-name-relation-to-parent (->> (lm/fetch-data lm/get-new-occupation-name-relation-to-parent-ssyk)
+                                                                       (remove #(-> % :parent-id-68 (= -1)))))
 
            (mapcat convert-occupation-collection (lm/fetch-data lm/get-occupation-collections))
 
@@ -169,5 +165,4 @@
 
            (map convert-deprecated-occupation-synonyms (lm/fetch-data lm/get-deprecated-synonyms))
            (mapcat retract-synonym-relations-to-occupation-name (lm/fetch-data lm/get-deprecated-synonym-relation-to-occupation))
-           (mapcat update-ssyk-level-4 (lm/fetch-data lm/get-updated-ssyk-level-4))
-           )))
+           (mapcat update-ssyk-level-4 (lm/fetch-data lm/get-updated-ssyk-level-4)))))
