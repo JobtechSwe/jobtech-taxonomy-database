@@ -4,7 +4,8 @@
             [clojure.pprint :as pp]
             [jobtech-taxonomy-database.datomic-connection :as conn]
             [jobtech-taxonomy-database.config :as config]
-            [jobtech-taxonomy-database.converters.converter-util :as u]))
+            [jobtech-taxonomy-database.converters.converter-util :as u]
+            [clojure.string :as str]))
 
 (def converters
   "Each logic section of the old taxonomy can be handled by a converter
@@ -40,6 +41,12 @@
 (defn- ->converter-var [ns-sym]
   (requiring-resolve (symbol (str ns-sym) "convert")))
 
+(defn- ->txs [ns-sym]
+  (let [converter-id (last (str/split (name ns-sym) #"\."))]
+    (conj ((->converter-var ns-sym))
+          {:db/id "datomic.tx"
+           :daynote/comment (str "Imported by " converter-id)})))
+
 (defn find-dupes []
   (run! #(u/find-duplicate-ids ((->converter-var %))) converters))
 
@@ -59,7 +66,7 @@
             (println "**** Calling" ns-sym)
             (binding [*out* w]
               (println "**** Calling" ns-sym))
-            (let [converted-data ((->converter-var ns-sym))]
+            (let [converted-data (->txs ns-sym)]
               (binding [*out* w]
                 (pp/write converted-data))
               (d/transact (conn/get-conn) {:tx-data converted-data})))

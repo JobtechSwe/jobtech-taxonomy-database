@@ -28,7 +28,8 @@
                                    schema/concept-schema-extras
                                    schema/concept-relation-schema
                                    schema/version-schema
-                                   schema/user-schema))}))
+                                   schema/user-schema
+                                   schema/daynote-schema))}))
 
 ;;;; Public ;;;;
 

@@ -196,7 +196,17 @@
   [{:db/ident :taxonomy-user/id
     :db/valueType :db.type/string
     :db/cardinality :db.cardinality/one
-    :db/doc "The user id. Intendet to be added to the transaction."}])
+    :db/doc "The user id. Intended to be added to the transaction."}])
+
+(def daynote-schema
+  [{:db/ident :daynote/comment
+    :db/valueType :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/doc "Comment entered by the user who modifies a concept or relation. Intended to be added to the transaction."}
+   {:db/ident :daynote/ref
+    :db/valueType :db.type/ref
+    :db/cardinality :db.cardinality/one
+    :db/doc "Optional reference to a concept or relation this tx adds a note about. Intended to be added to the transaction. Needed only when there are no changes to a concept/relation in this transaction"}])
 
 
 ;; (d/transact (get-conn) {:tx-data [{:db/id "a" :concept/id "a" :concept/preferred-label "clojure" :concept.relation/related "b" }  {:db/id "b" :concept/id "b"  :concept/preferred-label "java"} ]} )
