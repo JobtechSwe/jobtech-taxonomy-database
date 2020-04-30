@@ -862,6 +862,18 @@ AND NOT EXISTS
 	WHERE [db-67].localeGroupID = [db-68].localeGroupID
 	AND [db-67].localeFieldID = [db-68].localeFieldID)
 
+
+-- 3426 (april 30 2020)
+-- :name get-occupation-field-occupation-name-relation :*
+SELECT   oft.occupationFieldID as [occupation-field-id], co.occupationNameID as [occupation-name-id]
+FROM [TaxonomyDB].[dbo].[OccupationCollection] as oc,
+     [TaxonomyDB].[dbo].[OccupationFieldTerm] as [oft],
+     [TaxonomyDB].[dbo].[CollectionOccupation] as [co]
+  where oft.languageID = 502
+  and oc.name = oft.term
+  and oc.collectionID = co.collectionID
+  order by occupationNameID
+
 --------------------------------- POPULAR SYNONYMS -------------------------------------------------------
 
 -- 4 deprecated (June 12)

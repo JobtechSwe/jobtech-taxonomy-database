@@ -84,6 +84,23 @@
                          {:description occupation-field-description-68}))]
     (u/update-concept entity-id attribute-map)))
 
+
+
+
+(defn convert-occupation-field-occupation-name-relation [{:keys [occupation-field-id occupation-name-id]}]
+  {:pre [occupation-field-id occupation-name-id]
+   :post [(:relation/concept-1 %) (:relation/concept-2 %) (:relation/type %)]
+   }
+  (let [entity-id-occupation-name (u/get-entity-if-exists-or-temp-id occupation-name-id t/occupation-name)
+        entity-id-occupation-field (u/get-entity-if-exists-or-temp-id occupation-field-id t/occupation-field)
+        relation (u/create-relation entity-id-occupation-name entity-id-occupation-field t/related)]
+    relation)
+  )
+
+
+
+
+
 (defn convert-new-occupation-field-relation-to-ssyk-4
   [{:keys [ssyk-4-id-68
            parent-id-occupation-field-68]}]
