@@ -712,6 +712,28 @@ AND [term-67].versionID = 67
 
 
 ----------------------------------- COLLECTIONS! ------------------------------------------
+
+-- 3 (april 30 2020)
+-- :name get-ais-occupation-collection :*
+-- :doc get ais occupation collection ;
+SELECT
+      [collectionID] AS [collection-id], [name] AS [collection-name]
+      FROM [TaxonomyDBVersion].[dbo].[OccupationCollection]
+      WHERE versionID = 67
+
+
+
+-- 376 (april 30 2020)
+-- :name get-ais-occupation-collection-relations :*
+-- :doc get ais occupation collection ;
+SELECT
+      [collectionID] as [collection-id],
+            [occupationNameID] as [occupation-name-id]
+              FROM [TaxonomyDBVersion].[dbo].[CollectionOccupation]
+                WHERE versionID = 67
+
+
+
 -- 2 (June 12)
 -- (Obs! There are no collections migrated from 67 - these are the only migration scripts for collections)
 -- :name get-occupation-collections :*

@@ -68,20 +68,18 @@
 (defn convert-isco-level-4
   [{:keys [isco-4-id isco-4-term isco-4-description isco-4-isco-code parent-id-isco-1]}]
   {:pre [isco-4-id isco-4-term isco-4-description isco-4-isco-code parent-id-isco-1]}
-  (let [
-        ;; temp-id-parent-isco-1 (u/create-temp-id t/isco-level-1 parent-id-isco-1)
+  (let [;; temp-id-parent-isco-1 (u/create-temp-id t/isco-level-1 parent-id-isco-1)
         concept (u/create-concept t/isco-level-4 isco-4-term isco-4-description isco-4-id)
         concept-with-extras (assoc concept :concept.external-standard/isco-code-08 isco-4-isco-code)
         ;;relation-to-parent (u/create-broader-relation-to-concept concept-with-extras temp-id-parent-isco-1)
         ]
-        concept-with-extras
-        ))
+    concept-with-extras))
 
 #_(defn convert-isco-level-1
-  [{:keys [isco-1-id isco-1-term isco-1-description]}]
-  {:pre [isco-1-id isco-1-term isco-1-description]}
-  (let [concept (u/create-concept t/isco-level-1 isco-1-term isco-1-description isco-1-id)]
-    [concept]))
+    [{:keys [isco-1-id isco-1-term isco-1-description]}]
+    {:pre [isco-1-id isco-1-term isco-1-description]}
+    (let [concept (u/create-concept t/isco-level-1 isco-1-term isco-1-description isco-1-id)]
+      [concept]))
 
 (defn convert-occupation-name-affinity
   [{:keys [affinity-to-occupation-name-id affinity-from-occupation-name-id percentage]}]
@@ -135,6 +133,21 @@
     ;; TODO Utred hur vi hanterar replaced by many different??
     [concept-replaced]))
 
+(defn convert-ais-occupation-collection [{:keys [collection-id collection-name]}]
+  {:pre  [collection-id collection-name]}
+  (let [concept (u/create-concept t/occupation-collection collection-name collection-name collection-id)]
+    [concept]))
+
+(defn convert-ais-occupation-collection-relation
+  [{:keys [collection-id occupation-name-id]}]
+  {:pre [collection-id occupation-name-id]
+   :post [(:relation/concept-1 %) (:relation/concept-2 %) (:relation/type %)]}
+  (let [entity-id-occupation-name (u/get-entity-if-exists-or-temp-id occupation-name-id t/occupation-name)
+        temp-id-collection (u/create-temp-id t/occupation-collection collection-id)
+        relation (u/create-relation entity-id-occupation-name temp-id-collection t/related)]
+    relation))
+
+
 (defn convert
   ""
   []
@@ -152,5 +165,6 @@
    (map convert-popular-synonym-relation (lm/fetch-data lm/get-popular-synonym-occupation-relation))
    (map convert-ssyk-4-isco-4-relation (remove #(= -1 (:ssyk-4-id %)) (remove #(= -2 (:ssyk-4-id %)) (lm/fetch-data lm/get-ssyk-4-isco-4-relation))))
    ;; (mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))
+   (mapcat convert-ais-occupation-collection (lm/fetch-data lm/get-ais-occupation-collection))
 
    ))
