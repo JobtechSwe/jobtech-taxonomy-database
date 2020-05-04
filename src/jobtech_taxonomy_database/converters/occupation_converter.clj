@@ -159,12 +159,11 @@
    (mapcat convert-ssyk-level-1 (lm/fetch-data lm/get-ssyk-level-1))
    (mapcat convert-occupation-field (lm/fetch-data lm/get-occupation-field))
    (map convert-isco-level-4 (lm/fetch-data lm/get-isco-level-4))
-;;   (mapcat convert-isco-level-1 (lm/fetch-data lm/get-isco-level-1))
    (map convert-occupation-name-affinity (lm/fetch-data lm/get-occupation-name-affinity))
    (mapcat convert-popular-synonym (lm/fetch-data lm/get-popular-synonym-occupation))
    (map convert-popular-synonym-relation (lm/fetch-data lm/get-popular-synonym-occupation-relation))
    (map convert-ssyk-4-isco-4-relation (remove #(= -1 (:ssyk-4-id %)) (remove #(= -2 (:ssyk-4-id %)) (lm/fetch-data lm/get-ssyk-4-isco-4-relation))))
    ;; (mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))
    (mapcat convert-ais-occupation-collection (lm/fetch-data lm/get-ais-occupation-collection))
-
+   (map convert-ais-occupation-collection-relation (lm/fetch-data lm/get-ais-occupation-collection-relations))
    ))

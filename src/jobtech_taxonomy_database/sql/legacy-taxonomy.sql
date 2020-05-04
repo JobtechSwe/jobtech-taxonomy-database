@@ -301,9 +301,21 @@ AND [db].versionID = 67
 -- :name get-ssyk-4-skill-relation :*
 -- :doc get ssyk level 4 to skill relation ;
 SELECT [db].skillID AS [skill-id],
-	[db].localeGroupID AS [ssyk-4-id]
-FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill AS [db]
-WHERE [db].versionID = 67
+        [db].localeGroupID AS [ssyk-4-id]
+        FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill AS [db]
+        WHERE [db].versionID = 67
+UNION ALL
+SELECT
+ogs.skillID as [skill-id], il.localeGroupID as [ssyk-4-id]
+From TaxonomyDBVersion.dbo.ISCOLocale as il, TaxonomyDBVersion.dbo.OccupationGroup_Skill as ogs
+WHERE ogs.occupationGroupID = il.occupationGroupID
+AND ogs.versionID = 67
+AND il.versionID = 67
+EXCEPT
+SELECT sr.skillID as [skill-id], sr.localeGroupID as [ssyk-4-id]
+FROM TaxonomyDBVersion.dbo.SkillRestriction as sr
+WHERE sr.versionID = 67
+order by [skill-id]
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -345,12 +357,6 @@ WHERE
 	PopularSynonym.versionID = OccupationNameSynonym.versionID
 AND PopularSynonym.popularSynonymID = OccupationNameSynonym.popularSynonymID
 AND PopularSynonym.versionID = 67
-
--- :name get-ssyk-4-skill-relation :*
--- :doc get occupation group skill relation ;
-SELECT skillID AS [skill-id],
-    localeGroupID AS [ssyk-4-id]
-FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill WHERE versionID = 67;
 
 -- :name get-isco-4-skill-relation :*
 -- :doc ge isco level 4 to skill relation ;
