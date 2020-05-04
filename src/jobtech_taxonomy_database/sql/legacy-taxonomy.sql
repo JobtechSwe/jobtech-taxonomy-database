@@ -298,27 +298,6 @@ AND [db].versionID = 67
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-ssyk-4-skill-relation :*
--- :doc get ssyk level 4 to skill relation ;
-SELECT [db].skillID AS [skill-id],
-        [db].localeGroupID AS [ssyk-4-id]
-        FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill AS [db]
-        WHERE [db].versionID = 67
-UNION ALL
-SELECT
-ogs.skillID as [skill-id], il.localeGroupID as [ssyk-4-id]
-From TaxonomyDBVersion.dbo.ISCOLocale as il, TaxonomyDBVersion.dbo.OccupationGroup_Skill as ogs
-WHERE ogs.occupationGroupID = il.occupationGroupID
-AND ogs.versionID = 67
-AND il.versionID = 67
-EXCEPT
-SELECT sr.skillID as [skill-id], sr.localeGroupID as [ssyk-4-id]
-FROM TaxonomyDBVersion.dbo.SkillRestriction as sr
-WHERE sr.versionID = 67
-order by [skill-id]
-
--- A ":result" value of ":*" specifies a vector of records
--- (as hashmaps) will be returned
 -- :name get-occupation-name-affinity :*
 -- :doc get affinity relations between occupation names ;
 SELECT [db-rate].percentage AS [percentage],
@@ -986,18 +965,46 @@ WHERE NOT EXISTS
 	AND occupationGroupID = db68.occupationGroupID)
 
 
+
+
+
 -- 1 (June 12) --
 -- :name get-deprecated-ssyk-4-skill-relation :*
 -- :doc Get deprecated relations between SSYK level 4 and skills ;
-SELECT skillID AS [skill-id-67],
-	localeGroupID AS [ssyk-4-id-67]
-FROM TaxonomyDBVersion.dbo.LocaleGroup_Skill AS db67
-WHERE versionID = 67
-AND NOT EXISTS
-(SELECT skillID, localeGroupID
-	FROM TaxonomyDB.dbo.LocaleGroup_Skill
-	WHERE skillID = db67.skillID
-	AND localeGroupID = db67.localeGroupID)
+SELECT [db67].skillid       AS [skill-id],
+       [db67].localegroupid AS [ssyk-4-id]
+       FROM   taxonomydbversion.dbo.localegroup_skill AS [db67]
+       WHERE  [db67].versionid = 67
+       AND NOT EXISTS (SELECT [db].skillid       AS [skill-id],
+                       [db].localegroupid AS [ssyk-4-id]
+                       FROM   taxonomydb.dbo.localegroup_skill AS [db]
+                       WHERE  skillid = db67.skillid
+                       AND localegroupid = db67.localegroupid)
+UNION ALL
+       SELECT ogs67.skillid      AS [skill-id],
+       il67.localegroupid AS [ssyk-4-id]
+       FROM   taxonomydbversion.dbo.iscolocale AS il67,
+              taxonomydbversion.dbo.occupationgroup_skill AS ogs67
+       WHERE  ogs67.occupationgroupid = il67.occupationgroupid
+       AND ogs67.versionid = 67
+       AND il67.versionid = 67
+       AND NOT EXISTS (SELECT ogs.skillid      AS [skill-id],
+                       il.localegroupid AS [ssyk-4-id]
+                      FROM   taxonomydb.dbo.iscolocale AS il,
+                             taxonomydb.dbo.occupationgroup_skill AS ogs
+                      WHERE  ogs.occupationgroupid = il.occupationgroupid)
+EXCEPT
+       SELECT sr.skillid       AS [skill-id],
+              sr.localegroupid AS [ssyk-4-id]
+       FROM   taxonomydbversion.dbo.skillrestriction AS sr
+       WHERE  sr.versionid = 67
+       AND NOT EXISTS (SELECT sr.skillid       AS [skill-id],
+                              sr.localegroupid AS [ssyk-4-id]
+                       FROM   taxonomydb.dbo.skillrestriction AS sr)
+
+
+
+
 
 -- 0 (June 12) --
 -- :name get-new-ssyk-4-skill-relation :*
