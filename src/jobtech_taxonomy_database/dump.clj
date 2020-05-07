@@ -1,6 +1,6 @@
 (ns jobtech-taxonomy-database.dump
   (:gen-class)
-  (:require [datomic.client.api :as d]
+  (:require [datahike.api :as d]
             [clojure.set :as set]
             [clojure.java.io :as io]
             [clojure.walk :as walk]

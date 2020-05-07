@@ -1,10 +1,9 @@
 (ns jobtech-taxonomy-database.core
   (:gen-class)
-  (:require [datomic.client.api :as d]
-            [clojure.pprint :as pp]
+  (:require [clojure.pprint :as pp]
             [jobtech-taxonomy-database.datomic-connection :as conn]
-            [jobtech-taxonomy-database.config :as config]
             [jobtech-taxonomy-database.converters.converter-util :as u]
+            [clojure.walk :as walk]
             [clojure.string :as str]))
 
 (def converters
@@ -51,13 +50,7 @@
   (run! #(u/find-duplicate-ids ((->converter-var %))) converters))
 
 (defn -main [& args]
-  (when-not (:datomic-name (config/get-datomic-config))
-    (binding [*out* *err*]
-      (println "Usage: lein run 'my-database-name'"))
-    (System/exit 1))
   (conn/create-database)
-  ;; unfortunately, connections are not immediately available after db creation:
-  (Thread/sleep 5000)
   (conn/init-new-db)
   (println "**** Read from old taxonomy db, convert, and write to datomic...")
   (set! *print-length* 100000)
@@ -69,7 +62,17 @@
             (let [converted-data (->txs ns-sym)]
               (binding [*out* w]
                 (pp/write converted-data))
-              (d/transact (conn/get-conn) {:tx-data converted-data})))
+              (->> converted-data
+                   (walk/postwalk #(cond-> %
+                                     (seq? %) vec
+                                     (int? %) long))
+                   (conn/transact-data))))
           converters)))
-;; (-main)
-;Should we add a source attribute to the transaction? See https://docs.datomic.com/on-prem/best-practices.html#add-facts-about-transaction-entity
+
+(-main)
+
+(clojure.walk/postwalk
+ #(cond-> %
+    (seq? %) vec
+    (int? %) long)
+  txs)

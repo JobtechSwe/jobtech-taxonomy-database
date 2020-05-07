@@ -17,7 +17,7 @@
                  [camel-snake-kebab "0.4.0"]
                  [dk.ative/docjure "1.13.0"]
                  [javax.xml.bind/jaxb-api "2.3.1"]
-                 ]
+                 [io.replikativ/datahike "0.2.1"]]
   :repositories [["snapshots" {:url "https://repo.clojars.org"
                                :username "batfish"
                                :password :env}]]
@@ -28,6 +28,4 @@
   :aliases  {"main"   ["with-profile" "uberjar" "run"]
              "merge"  ["with-profile" "merge-ids" "run"]}
   :java-cmd "/usr/bin/java"
-  :plugins [[lein-cljfmt "0.6.3"]]
-
-  )
+  :plugins [[lein-cljfmt "0.6.3"]])

@@ -2,7 +2,7 @@
       :doc    "Utility functions for the jobtech-taxonomy-database project."}
  jobtech-taxonomy-database.converters.converter-util
   (:gen-class)
-  (:require [datomic.client.api :as d]
+  (:require [datahike.api :as d]
             [jobtech-taxonomy-database.converters.nano-id-assigner :as nano]
             [jobtech-taxonomy-database.datomic-connection :as conn]
             [camel-snake-kebab.core :as csk]

@@ -46,6 +46,8 @@
 
 (def datomic-config
   {:datomic-name (first *command-line-args*)                ;; "jobtech-taxonomy-frontend-2019-11-22-1"
+   :datahike-cfg {:backend :file
+                  :path (str (System/getProperty "user.dir") "/datahike")}
    :datomic-cfg {:server-type :ion
                  :region "eu-west-1"                        ;; e.g. us-east-1
                  :system "prod-jobtech-taxonomy-db"
