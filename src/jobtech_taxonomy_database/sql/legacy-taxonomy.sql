@@ -966,6 +966,47 @@ WHERE NOT EXISTS
 
 
 
+-- :name get-ssyk-4-skill-relation-swedish-v67 :*
+-- :doc get the swedish skills related to ssyk v67
+SELECT lgs.skillID as [skill-id],
+lgs.localeGroupID as [ssyk-4-id]
+FROM [TaxonomyDBVersion].[dbo].[LocaleGroup_Skill] as lgs
+WHERE lgs.versionID = 67
+
+-- :name get-ssyk-4-skill-relation-swedish-current-db :*
+-- :doc get the swedish skills related to ssyk from the current db
+SELECT lgs.skillID as [skill-id],
+lgs.localeGroupID as [ssyk-4-id]
+FROM [TaxonomyDB].[dbo].[LocaleGroup_Skill] as lgs
+
+
+-- :name get-ssyk-4-skill-relation-inherited-v67 :*
+-- :doc get ssyk skill relations inherited from isco v67
+SELECT il.[localeGroupID] as [ssyk-4-id],  ogs.skillID as [skill-id]
+FROM [TaxonomyDBVersion].[dbo].[ISCOLocale] as il,
+[TaxonomyDBVersion].[dbo].OccupationGroup_Skill as ogs
+where il.versionID = 67
+and ogs.versionID = 67
+and il.occupationGroupID = ogs.occupationGroupID
+
+-- :name get-ssyk-4-skill-relation-inherited-current-db
+-- :doc get ssyk skill relations inherited from isco
+SELECT il.[localeGroupID] as [ssyk-4-id], ogs.skillID as [skill-id]
+FROM [TaxonomyDB].[dbo].[ISCOLocale] as il,
+[TaxonomyDB].[dbo].OccupationGroup_Skill as ogs
+where il.occupationGroupID = ogs.occupationGroupID
+
+-- :name get-ssyk-4-relation-restricted-v67
+SELECT [skillID] as [skill-id]
+,[localeGroupID] as [ssyk-4-id]
+FROM [TaxonomyDBVersion].[dbo].[SkillRestriction]
+where versionID = 67
+
+-- :name get-ssyk-4-relation-restricted-current-db
+SELECT [skillID] as [skill-id]
+,[localeGroupID] as [ssyk-4-id]
+FROM [TaxonomyDB].[dbo].[SkillRestriction]
+
 
 
 -- 1 (June 12) --

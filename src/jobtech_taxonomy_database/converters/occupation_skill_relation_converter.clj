@@ -4,8 +4,15 @@
             [jobtech-taxonomy-database.converters.converter-util :as u]
             [jobtech-taxonomy-database.types :as t]))
 
-(defn convert-ssyk-4-skills []
-  (let [ssyk-4-skills (lm/fetch-data lm/get-ssyk-4-skill-relation)
+(defn fetch-ssyk-skill-relations-v67 []
+  (concat (clojure.set/difference
+           (set (lm/fetch-data lm/get-ssyk-4-skill-relation-inherited-v67))
+           (set (lm/fetch-data lm/get-ssyk-4-relation-restricted-v67)))
+          (lm/fetch-data lm/get-ssyk-4-skill-relation-swedish-v67)))
+
+
+(defn convert-ssyk-4-skills [ssyk-4-skills]
+  (let [
         ssyk-4-ids (u/type+legacy-ids->entity-ids-or-temp-ids t/ssyk-level-4 (map :ssyk-4-id ssyk-4-skills))
         skill-ids (u/type+legacy-ids->entity-ids-or-temp-ids t/skill (map :skill-id ssyk-4-skills))]
     ssyk-4-ids
@@ -30,5 +37,8 @@
 
 (defn convert []
   (concat
-   (convert-ssyk-4-skills)
-   (convert-isco-4-skills)))
+   (convert-ssyk-4-skills (fetch-ssyk-skill-relations-v67))
+   ))
+
+
+;; (convert-isco-4-skills)
