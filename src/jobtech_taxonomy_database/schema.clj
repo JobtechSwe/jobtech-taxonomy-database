@@ -37,6 +37,11 @@
     :db/cardinality :db.cardinality/one
     :db/doc "If a concept is deprecated"}
 
+   {:db/ident :concept/quality-level
+    :db/valueType :db.type/long
+    :db/cardinality :db.cardinality/one
+    :db/doc "Quality level"}
+
    {:db/ident :concept/replaced-by
     :db/valueType :db.type/ref
     :db/cardinality :db.cardinality/many
