@@ -17,6 +17,7 @@
                  [camel-snake-kebab "0.4.0"]
                  [dk.ative/docjure "1.13.0"]
                  [javax.xml.bind/jaxb-api "2.3.1"]
+                 [cprop "0.1.17"]
                  ]
   :repositories [["snapshots" {:url "https://repo.clojars.org"
                                :username "batfish"
