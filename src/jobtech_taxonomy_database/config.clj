@@ -7,8 +7,9 @@
 
 (def config
   (if (= "PROD" (System/getenv "jobtech-taxonomy-database-env"))
+    (c/load-config :file "config/prod/config.edn")
     (c/load-config :file "config/dev/config.edn")
-    (c/load-config :file "config/prod/config.edn")))
+    ))
 
 
 (def datomic-config
