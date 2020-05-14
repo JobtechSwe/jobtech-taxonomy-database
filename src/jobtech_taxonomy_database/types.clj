@@ -69,6 +69,10 @@
                          ssyk-level-3                       ;previously LocaleLevel3
                          ssyk-level-4                       ;previously LocaleGroup
 
+                         sun-education-level-1
+                         sun-education-level-2
+                         sun-education-level-3
+
                          sun-education-field-1
                          sun-education-field-2
                          sun-education-field-3

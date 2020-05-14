@@ -446,6 +446,13 @@ FROM TaxonomiDBSvenskVersion.dbo.SUNNivå3 SUNNivå3,
 WHERE SUNNivå3.versionID = SUNNivå3Term.versionID
 AND SUNNivå3.SUNNivå3ID = SUNNivå3Term.SUNNivå3ID
 
+
+-- :name get-sun-2000-guide :*
+-- :doc gets the guide relations between education level and field
+SELECT  SUNNivå1ID as [education-level-1-id], SUNInriktning3ID as [education-field-3-id]
+FROM TaxonomiDBSvenskVersion.dbo.SUNNivå1Inriktning3Guide;
+
+
 ---------------------------------------------------- START NACE/SNI------------------------------------------------
 
 -- :name get-sni-level-1 :*
