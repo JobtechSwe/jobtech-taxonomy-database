@@ -2,6 +2,9 @@
 
 Taxonomy database management utilities for JobTech
 
+## ENV
+    Add an environment variable named "jobtechtaxonomy" to "PROD" if you want to use the prod datomic
+
 ## Installation
 
 Download a copy of the legacy database here:
