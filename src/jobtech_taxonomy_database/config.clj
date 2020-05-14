@@ -6,7 +6,7 @@
 ;;  ... (delay (load-file (.getFile (resource "config.clj"))))
 
 (def config
-  (if (= "PROD" (System/getenv "jobtech-taxonomy-database-env"))
+  (if (= "PROD" (System/getenv "jobtechtaxonomy"))
     (c/load-config :file "config/prod/config.edn")
     (c/load-config :file "config/dev/config.edn")
     ))
