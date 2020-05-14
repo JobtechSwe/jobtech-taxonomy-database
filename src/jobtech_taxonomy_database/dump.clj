@@ -6,7 +6,18 @@
             [clojure.walk :as walk]
             [jobtech-taxonomy-database.datomic-connection :refer :all]
             [cheshire.core :as json]
-            [jobtech-taxonomy-database.config :as config]))
+            [jobtech-taxonomy-database.config :as config]
+            [jobtech-taxonomy-database.converters.SUN-education-field-legacy-converter :as sun-con]
+            ))
+
+
+(defn is-sun-2000 [concept]
+  (or (:concept.external-standard/sun-education-field-code-2000 concept) (:concept.external-standard/sun-education-level-code-2000 concept))
+  )
+
+(defn create-sun-2000-key [legacy-id]
+  (keyword (str sun-con/sun-legacy-key-prefix "-" legacy-id))
+  )
 
 (def find-concept-by-query
   '[:find (pull ?c [:concept/id
@@ -14,7 +25,10 @@
                     :concept/preferred-label
                     :concept.external-database.ams-taxonomy-67/id
                     :concept.external-standard/sun-education-field-code-2020
-                    :concept.external-standard/sun-education-level-code-2020])
+                    :concept.external-standard/sun-education-level-code-2020
+                    :concept.external-standard/sun-education-field-code-2000
+                    :concept.external-standard/sun-education-level-code-2000
+                    ])
     :where [?c :concept/id]])
 
 (defn rename-concept-keys-for-json [concept]
@@ -32,7 +46,14 @@
              (map rename-concept-keys-for-json)
              (reduce (fn [[acc-concept->taxonomy acc-taxonomy->concept] concept]
                        [(assoc acc-concept->taxonomy (:conceptId concept) (dissoc concept :conceptId))
-                        (assoc-in acc-taxonomy->concept [(:type concept) (:legacyAmsTaxonomyId concept)] concept)])
+
+                        (if (is-sun-2000 concept)
+                          (assoc-in acc-taxonomy->concept [(:type concept) (create-sun-2000-key (:legacyAmsTaxonomyId concept))] concept)
+                          (assoc-in acc-taxonomy->concept [(:type concept) (:legacyAmsTaxonomyId concept)] concept)
+                          )
+                        ])
+
+
                      [{} {}])
              (walk/postwalk #(cond->> % (map? %) (into (sorted-map)))))]
     (json/generate-stream concept->taxonomy (io/writer "resources/concept-to-taxonomy.json") {:pretty true})
