@@ -72,10 +72,4 @@
                    (conn/transact-data))))
           converters)))
 
-(-main)
-
-(clojure.walk/postwalk
- #(cond-> %
-    (seq? %) vec
-    (int? %) long)
-  txs)
+#_(-main)
