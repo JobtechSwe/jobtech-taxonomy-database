@@ -375,14 +375,18 @@ AND SUNInriktning1.SUNInriktning1ID = SUNInriktning1Term.SUNInriktning1ID
 -- :name get-sun-field-2 :*
 -- :doc get SUN education field 2 ;
 SELECT SUNInriktning2.SUNInriktning1ID AS [parent-id],
-    SUNInriktning2.SUNInriktning2ID AS [id],
-    SUNInriktning2.SUNKodInriktning2 AS [code],
-    SUNInriktning2.versionID AS [version-id],
-    SUNInriktning2Term.beteckning AS [term]
+SUNInriktning2.SUNInriktning2ID AS [id],
+SUNInriktning2.SUNKodInriktning2 AS [code],
+SUNInriktning2.versionID AS [version-id],
+SUNInriktning2Term.beteckning AS [term],
+eft.description as [definition]
 FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning2 SUNInriktning2,
-    TaxonomiDBSvenskVersion.dbo.SUNInriktning2Term SUNInriktning2Term
+TaxonomiDBSvenskVersion.dbo.SUNInriktning2Term SUNInriktning2Term,
+[TaxonomyDBVersion].[dbo].[EducationFieldTerm] as eft
 WHERE SUNInriktning2.versionID = SUNInriktning2Term.versionID
 AND SUNInriktning2.SUNInriktning2ID = SUNInriktning2Term.SUNInriktning2ID
+AND eft.versionID = 67
+AND eft.term = SUNInriktning2Term.beteckning
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
@@ -397,6 +401,9 @@ FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning3 SUNInriktning3,
     TaxonomiDBSvenskVersion.dbo.SUNInriktning3Term SUNInriktning3Term
 WHERE SUNInriktning3.versionID = SUNInriktning3Term.versionID
 AND SUNInriktning3.SUNInriktning3ID = SUNInriktning3Term.SUNInriktning3ID
+
+
+
 
 ------------------------------------------START SUN LEVEL--------------------------------------------
 

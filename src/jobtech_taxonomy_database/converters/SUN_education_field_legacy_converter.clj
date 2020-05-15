@@ -37,8 +37,8 @@
 
 
 (defn convert-eductaion [rows type parent-type legacy-id-prefix code-field-name]
-  (mapcat (fn [{:keys [id term code parent-id]}]
-            (let [concept (-> (create-sun-2000-concept type term term id legacy-id-prefix)
+  (mapcat (fn [{:keys [id term code parent-id definition]}]
+            (let [concept (-> (create-sun-2000-concept type term (or definition term) id legacy-id-prefix)
                               (assoc code-field-name code))]
               (cond-> []
                 true (conj concept)
