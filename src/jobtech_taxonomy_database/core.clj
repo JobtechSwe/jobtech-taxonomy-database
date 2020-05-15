@@ -12,6 +12,7 @@
   namespace. By making the converter immutable it becomes easier to
   test. Add new converter sets here."
   '[jobtech-taxonomy-database.converters.version-0
+    jobtech-taxonomy-database.converters.SUN-education-field-legacy-converter
     jobtech-taxonomy-database.converters.driving-licence-converter
     jobtech-taxonomy-database.converters.employment-duration-converter
     jobtech-taxonomy-database.converters.employment-type-converter
@@ -25,7 +26,9 @@
     jobtech-taxonomy-database.converters.SNI-level-converter
     jobtech-taxonomy-database.converters.wage-type-converter
     jobtech-taxonomy-database.converters.worktime-extent-converter
+
     jobtech-taxonomy-database.converters.version-1
+    jobtech-taxonomy-database.converters.sun-2000-deprecator
 
     jobtech-taxonomy-database.converters.employment-type-new-changes
     jobtech-taxonomy-database.converters.employment-duration-new-changes

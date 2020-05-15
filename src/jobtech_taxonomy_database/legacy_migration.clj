@@ -10,6 +10,3 @@
 (defn fetch-data [hugsql-function & args]
   "Call database with a hugsql function"
   (hugsql-function (get-legacydb-config) (if args (first args) nil)))
-
-
-                                        ;tip for importing big datasets: https://docs.datomic.com/on-prem/best-practices.html#pipeline-transactions /Sara

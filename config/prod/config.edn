@@ -1,0 +1,13 @@
+{:datomic-cfg {:server-type :ion
+               :region "eu-central-1"
+               :system "datomic-prod-v2"
+               :endpoint "http://datom-loadb-ucpudqb1175l-7e29b7ad396c5feb.elb.eu-central-1.amazonaws.com:8182"
+               :proxy-port 8182
+               :timeout 6000000000}
+
+ :legacydb     {:subprotocol "mssql"
+                :subname "//localhost:44446"
+                :user "SA"
+                :password "Taxonomy123!"
+                :sslmode "require"}
+ }

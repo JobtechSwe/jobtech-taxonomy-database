@@ -19791,7 +19791,7 @@
   },
   "HUvr_x2j_4BK" : {
     "legacyAmsTaxonomyId" : "5270",
-    "preferredLabel" : "Packmästare",
+    "preferredLabel" : "Packmästare, tillverkning",
     "type" : "occupation-name"
   },
   "HUyu_wSa_Fhh" : {
@@ -28266,7 +28266,7 @@
   },
   "QUmN_cfC_zPn" : {
     "legacyAmsTaxonomyId" : "5959",
-    "preferredLabel" : "Utbildningsadministratör/Utbildningssekreterare",
+    "preferredLabel" : "Utbildningsadministratör/Utbildningssekreterare/Kursadministratör",
     "type" : "occupation-name"
   },
   "QUpw_ao6_wsA" : {
@@ -40916,7 +40916,7 @@
   },
   "atr7_a7S_bNT" : {
     "legacyAmsTaxonomyId" : "1392",
-    "preferredLabel" : "Stenborrare",
+    "preferredLabel" : "Stenborrare, gruva",
     "type" : "occupation-name"
   },
   "atyH_hAn_5xr" : {
@@ -41918,6 +41918,11 @@
     "legacyAmsTaxonomyId" : "607491",
     "preferredLabel" : "Butiksekonomikunskap",
     "type" : "skill"
+  },
+  "bf92_EVy_5NP" : {
+    "legacyAmsTaxonomyId" : "7865",
+    "preferredLabel" : "Vältförare",
+    "type" : "occupation-name"
   },
   "bfY3_JHs_BY1" : {
     "legacyAmsTaxonomyId" : "804",
@@ -49654,6 +49659,11 @@
     "preferredLabel" : "Godkänd revisor",
     "type" : "skill"
   },
+  "iGQH_hCg_FqJ" : {
+    "legacyAmsTaxonomyId" : "541",
+    "preferredLabel" : "IT-säkerhetskonsult",
+    "type" : "keyword"
+  },
   "iGRX_n2H_BvE" : {
     "legacyAmsTaxonomyId" : "607772",
     "preferredLabel" : "Skoputsning",
@@ -52648,6 +52658,11 @@
     "legacyAmsTaxonomyId" : "1112",
     "preferredLabel" : "Damfrisering",
     "type" : "skill"
+  },
+  "kofF_Fxz_xpz" : {
+    "legacyAmsTaxonomyId" : "540",
+    "preferredLabel" : "Expressarbetare",
+    "type" : "keyword"
   },
   "kogY_fEm_4y1" : {
     "legacyAmsTaxonomyId" : "3442",

@@ -17,7 +17,7 @@
 (defn create-temp-id [instance-type legacy-id]
   (str (csk/->kebab-case-string instance-type) "-" legacy-id))
 
-(defn- get-concept-id-and-temp-id [instance-type legacy-id]
+(defn get-concept-id-and-temp-id [instance-type legacy-id]
   "Checks if type is valid, returns nano-id as concept ID, and temp ID (only useful in the specific transaction)"
   [(get-concept-id instance-type legacy-id)
    (create-temp-id instance-type legacy-id)])

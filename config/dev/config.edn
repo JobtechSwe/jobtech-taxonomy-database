@@ -1,0 +1,13 @@
+{:datomic-cfg {:server-type :ion
+               :region "eu-west-1"
+               :system "prod-jobtech-taxonomy-db"
+               :endpoint "http://entry.prod-jobtech-taxonomy-db.eu-west-1.datomic.net:8182/"
+               :proxy-port 8182
+               :timeout 6000000000}
+
+ :legacydb     {:subprotocol "mssql"
+                :subname "//localhost:1433"
+                :user "SA"
+                :password "Taxonomy123!"
+                :sslmode "require"}
+ }

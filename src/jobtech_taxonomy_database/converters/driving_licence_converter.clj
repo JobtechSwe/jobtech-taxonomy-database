@@ -4,7 +4,7 @@
             [jobtech-taxonomy-database.converters.converter-util :as u]
             [jobtech-taxonomy-database.types :as t]))
 
-(def combination-mapping ;; key is drivers licence ID, value array contains implicit IDs
+(def driver-licence-id->implicit-ids
   {16 []
    2 [16]
    17 [16 2]
@@ -21,24 +21,20 @@
    4 [16 3 12]
    7 [16 3 12 6 12 14 4]})
 
-(defn format-implicit-licences
-  ""
-  [old-id]
+(defn implicit-licence-ref [old-id]
   {:db/id (u/create-temp-id t/driving-licence old-id)})
 
-(defn driving-licence-converter
-  "Immutable driving licence converter."
-  [{:keys [term description drivinglicenceid drivinglicencecode displaysortorder]}]
+(defn driving-licence-converter [{:keys [term description drivinglicenceid drivinglicencecode displaysortorder]}]
   {:pre [term description drivinglicenceid drivinglicencecode displaysortorder]}
-  (let
-   [implicit-licences (map format-implicit-licences (combination-mapping drivinglicenceid))
-    concept (u/create-concept t/driving-licence term description drivinglicenceid)
-    concept-with-extras (assoc concept
-                               :concept.external-standard/driving-licence-code-2013 drivinglicencecode
-                               :concept/sort-order displaysortorder)
-    concept-with-extra-extras (conj concept-with-extras (when (not-empty implicit-licences)
-                                                          [:concept.external-standard/implicit-driving-licences  implicit-licences]))]
-    [concept-with-extra-extras]))
+  (let [implicit-ids (driver-licence-id->implicit-ids drivinglicenceid)]
+    (->> implicit-ids
+         (map #(u/create-relation (u/create-temp-id t/driving-licence %)
+                                  (u/create-temp-id t/driving-licence drivinglicenceid)
+                                  t/broader))
+         (cons (assoc (u/create-concept t/driving-licence term description drivinglicenceid)
+                 :concept.external-standard/driving-licence-code-2013 drivinglicencecode
+                 :concept/sort-order displaysortorder
+                 :concept.external-standard/implicit-driving-licences (map implicit-licence-ref implicit-ids))))))
 
 (defn convert
   "Query db for driving licences and driving licence combinations, convert each entity"

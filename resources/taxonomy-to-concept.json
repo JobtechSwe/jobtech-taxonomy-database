@@ -7344,6 +7344,18 @@
       "preferredLabel" : "Sjökapten",
       "type" : "keyword"
     },
+    "540" : {
+      "conceptId" : "kofF_Fxz_xpz",
+      "legacyAmsTaxonomyId" : "540",
+      "preferredLabel" : "Expressarbetare",
+      "type" : "keyword"
+    },
+    "541" : {
+      "conceptId" : "iGQH_hCg_FqJ",
+      "legacyAmsTaxonomyId" : "541",
+      "preferredLabel" : "IT-säkerhetskonsult",
+      "type" : "keyword"
+    },
     "55" : {
       "conceptId" : "HnnK_nFE_dRj",
       "legacyAmsTaxonomyId" : "55",
@@ -12977,7 +12989,7 @@
     "1392" : {
       "conceptId" : "atr7_a7S_bNT",
       "legacyAmsTaxonomyId" : "1392",
-      "preferredLabel" : "Stenborrare",
+      "preferredLabel" : "Stenborrare, gruva",
       "type" : "occupation-name"
     },
     "1393" : {
@@ -22169,7 +22181,7 @@
     "5270" : {
       "conceptId" : "HUvr_x2j_4BK",
       "legacyAmsTaxonomyId" : "5270",
-      "preferredLabel" : "Packmästare",
+      "preferredLabel" : "Packmästare, tillverkning",
       "type" : "occupation-name"
     },
     "5277" : {
@@ -24431,7 +24443,7 @@
     "5959" : {
       "conceptId" : "QUmN_cfC_zPn",
       "legacyAmsTaxonomyId" : "5959",
-      "preferredLabel" : "Utbildningsadministratör/Utbildningssekreterare",
+      "preferredLabel" : "Utbildningsadministratör/Utbildningssekreterare/Kursadministratör",
       "type" : "occupation-name"
     },
     "5960" : {
@@ -32220,6 +32232,12 @@
       "conceptId" : "RF7q_DSJ_FbY",
       "legacyAmsTaxonomyId" : "7864",
       "preferredLabel" : "Processoperatör, metallproduktion",
+      "type" : "occupation-name"
+    },
+    "7865" : {
+      "conceptId" : "bf92_EVy_5NP",
+      "legacyAmsTaxonomyId" : "7865",
+      "preferredLabel" : "Vältförare",
       "type" : "occupation-name"
     },
     "795" : {
