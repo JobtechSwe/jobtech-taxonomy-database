@@ -375,33 +375,31 @@ AND SUNInriktning1.SUNInriktning1ID = SUNInriktning1Term.SUNInriktning1ID
 -- :name get-sun-field-2 :*
 -- :doc get SUN education field 2 ;
 SELECT SUNInriktning2.SUNInriktning1ID AS [parent-id],
-SUNInriktning2.SUNInriktning2ID AS [id],
-SUNInriktning2.SUNKodInriktning2 AS [code],
-SUNInriktning2.versionID AS [version-id],
-SUNInriktning2Term.beteckning AS [term]
-, eft.description as [definition]
- FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning2 SUNInriktning2,
- TaxonomiDBSvenskVersion.dbo.SUNInriktning2Term SUNInriktning2Term
- ,[TaxonomyDBVersion].[dbo].[EducationFieldTerm] as eft
-  WHERE SUNInriktning2.versionID = SUNInriktning2Term.versionID
+       SUNInriktning2.SUNInriktning2ID AS [id],
+       SUNInriktning2.SUNKodInriktning2 AS [code],
+       SUNInriktning2.versionID AS [version-id],
+       SUNInriktning2Term.beteckning AS [term],
+       eft.description AS [definition]
+FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning2 SUNInriktning2,
+     TaxonomiDBSvenskVersion.dbo.SUNInriktning2Term SUNInriktning2Term ,
+     [TaxonomyDBVersion].[dbo].[EducationFieldTerm] AS eft
+WHERE SUNInriktning2.versionID = SUNInriktning2Term.versionID
   AND SUNInriktning2.SUNInriktning2ID = SUNInriktning2Term.SUNInriktning2ID
   AND eft.versionID = 67
   AND eft.term = SUNInriktning2Term.beteckning
-  UNION ALL
-  SELECT SUNInriktning2.SUNInriktning1ID AS [parent-id],
-  SUNInriktning2.SUNInriktning2ID AS [id],
-  SUNInriktning2.SUNKodInriktning2 AS [code],
-   SUNInriktning2.versionID AS [version-id],
-                                                                                                                 SUNInriktning2Term.beteckning AS [term],
-                                                                                                                                               null as [definition]
-                                                                                                                                               FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning2 SUNInriktning2,
-                                                                                                                                                   TaxonomiDBSvenskVersion.dbo.SUNInriktning2Term SUNInriktning2Term
-                                                                                                                                                   WHERE SUNInriktning2.versionID = SUNInriktning2Term.versionID
-                                                                                                                                                   AND SUNInriktning2.SUNInriktning2ID = SUNInriktning2Term.SUNInriktning2ID
-                                                                                                                                                   AND (SUNInriktning2.SUNInriktning2ID = 2 OR SUNInriktning2.SUNInriktning2ID = 26)
-
-
-
+UNION ALL
+SELECT SUNInriktning2.SUNInriktning1ID AS [parent-id],
+       SUNInriktning2.SUNInriktning2ID AS [id],
+       SUNInriktning2.SUNKodInriktning2 AS [code],
+       SUNInriktning2.versionID AS [version-id],
+       SUNInriktning2Term.beteckning AS [term],
+       NULL AS [definition]
+FROM TaxonomiDBSvenskVersion.dbo.SUNInriktning2 SUNInriktning2,
+     TaxonomiDBSvenskVersion.dbo.SUNInriktning2Term SUNInriktning2Term
+WHERE SUNInriktning2.versionID = SUNInriktning2Term.versionID
+  AND SUNInriktning2.SUNInriktning2ID = SUNInriktning2Term.SUNInriktning2ID
+  AND (SUNInriktning2.SUNInriktning2ID = 2
+       OR SUNInriktning2.SUNInriktning2ID = 26)
 
 
 
