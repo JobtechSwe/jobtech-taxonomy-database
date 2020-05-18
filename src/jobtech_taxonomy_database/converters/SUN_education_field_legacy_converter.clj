@@ -60,7 +60,7 @@
   (concat
    (convert-eductaion (lm/fetch-data lm/get-sun-field-1) t/sun-education-field-1 nil sun-legacy-key-prefix sun-field-key-2000)
    (convert-eductaion (lm/fetch-data lm/get-sun-field-2) t/sun-education-field-2 t/sun-education-field-1 sun-legacy-key-prefix sun-field-key-2000)
-   (convert-eductaion (lm/fetch-data lm/get-sun-field-3) t/sun-education-field-3 t/sun-education-field-2 sun-legacy-key-prefix  sun-field-key-2000)
+  (convert-eductaion (lm/fetch-data lm/get-sun-field-3) t/sun-education-field-3 t/sun-education-field-2 sun-legacy-key-prefix  sun-field-key-2000)
 
    (convert-eductaion (lm/fetch-data lm/get-sun-level-1) t/sun-education-level-1 nil sun-legacy-key-prefix sun-field-key-2000)
 
@@ -68,6 +68,6 @@
 
    (convert-eductaion (lm/fetch-data lm/get-sun-level-3) t/sun-education-level-3 t/sun-education-level-2 sun-legacy-key-prefix sun-field-key-2000)
 
-   (map convert-guide-tree (lm/fetch-data lm/get-sun-2000-guide))
+ (map convert-guide-tree (lm/fetch-data lm/get-sun-2000-guide))
 
-   ))
+  ))
