@@ -16,7 +16,7 @@
   )
 
 (defn create-sun-2000-key [legacy-id]
-  (keyword (str sun-con/sun-legacy-key-prefix "-" legacy-id))
+   (str sun-con/sun-legacy-key-prefix "-" legacy-id)
   )
 
 (def find-concept-by-query
@@ -31,6 +31,11 @@
                     ])
     :where [?c :concept/id]])
 
+(defn fetch-concepts []
+  (d/q find-concept-by-query (get-db))
+  )
+
+
 (defn rename-concept-keys-for-json [concept]
   (set/rename-keys concept {:concept/id :conceptId
                             :concept.external-database.ams-taxonomy-67/id :legacyAmsTaxonomyId
@@ -39,23 +44,25 @@
                             :concept/preferred-label :preferredLabel
                             :concept/type :type}))
 
+(defn build-concept-mappings-reducer-fun [[acc-concept->taxonomy acc-taxonomy->concept] concept]
+  [(assoc acc-concept->taxonomy  (:conceptId concept) (dissoc concept :conceptId))
+   (if (is-sun-2000 concept)
+     (assoc-in acc-taxonomy->concept [(:type concept) (create-sun-2000-key (:legacyAmsTaxonomyId concept))] concept)
+     (assoc-in acc-taxonomy->concept [(:type concept) (:legacyAmsTaxonomyId concept)] concept)
+     )
+   ])
+
 (defn dump-taxonomy-to-json []
   (let [[concept->taxonomy taxonomy->concept]
-        (->> (d/q find-concept-by-query (get-db))
+        (->> (fetch-concepts)
              (map first)
              (map rename-concept-keys-for-json)
-             (reduce (fn [[acc-concept->taxonomy acc-taxonomy->concept] concept]
-                       [(assoc acc-concept->taxonomy (:conceptId concept) (dissoc concept :conceptId))
-
-                        (if (is-sun-2000 concept)
-                          (assoc-in acc-taxonomy->concept [(:type concept) (create-sun-2000-key (:legacyAmsTaxonomyId concept))] concept)
-                          (assoc-in acc-taxonomy->concept [(:type concept) (:legacyAmsTaxonomyId concept)] concept)
-                          )
-                        ])
+             (reduce build-concept-mappings-reducer-fun [{} {}])
+             (walk/postwalk #(cond->> % (map? %) (into (sorted-map))))
+             )
 
 
-                     [{} {}])
-             (walk/postwalk #(cond->> % (map? %) (into (sorted-map)))))]
+        ]
     (json/generate-stream concept->taxonomy (io/writer "resources/concept-to-taxonomy.json") {:pretty true})
     (json/generate-stream taxonomy->concept (io/writer "resources/taxonomy-to-concept.json") {:pretty true})))
 
