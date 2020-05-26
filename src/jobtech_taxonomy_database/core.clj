@@ -58,7 +58,7 @@
     (binding [*out* *err*]
       (println "Usage: lein run 'my-database-name'"))
     (System/exit 1))
-  (conn/create-database)
+;;  (conn/create-database)
   ;; unfortunately, connections are not immediately available after db creation:
   (Thread/sleep 5000)
   (conn/init-new-db)
