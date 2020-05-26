@@ -6969,7 +6969,7 @@
     "484" : {
       "conceptId" : "b8zu_Rj1_6f5",
       "legacyAmsTaxonomyId" : "484",
-      "preferredLabel" : "Skpeeningskontorist",
+      "preferredLabel" : "Skeppningskontorist",
       "type" : "keyword"
     },
     "485" : {
@@ -7356,10 +7356,70 @@
       "preferredLabel" : "IT-säkerhetskonsult",
       "type" : "keyword"
     },
+    "542" : {
+      "conceptId" : "v5E3_Cga_tsJ",
+      "legacyAmsTaxonomyId" : "542",
+      "preferredLabel" : "Vapenmekaniker",
+      "type" : "keyword"
+    },
+    "543" : {
+      "conceptId" : "SBmN_Lpu_qQY",
+      "legacyAmsTaxonomyId" : "543",
+      "preferredLabel" : "Dispatcher",
+      "type" : "keyword"
+    },
+    "544" : {
+      "conceptId" : "p4Qt_SKT_kBL",
+      "legacyAmsTaxonomyId" : "544",
+      "preferredLabel" : "Assistent, bostadsförmedling",
+      "type" : "keyword"
+    },
+    "545" : {
+      "conceptId" : "cfew_ciR_8AG",
+      "legacyAmsTaxonomyId" : "545",
+      "preferredLabel" : "Kanslist",
+      "type" : "keyword"
+    },
+    "546" : {
+      "conceptId" : "EqEo_gap_iym",
+      "legacyAmsTaxonomyId" : "546",
+      "preferredLabel" : "Planeringskontorist",
+      "type" : "keyword"
+    },
+    "547" : {
+      "conceptId" : "RQbr_SzR_2B6",
+      "legacyAmsTaxonomyId" : "547",
+      "preferredLabel" : "Ställningsmontör",
+      "type" : "keyword"
+    },
+    "548" : {
+      "conceptId" : "aNU9_s67_u35",
+      "legacyAmsTaxonomyId" : "548",
+      "preferredLabel" : "Räckesmontör",
+      "type" : "keyword"
+    },
+    "549" : {
+      "conceptId" : "FHDR_rx7_DMf",
+      "legacyAmsTaxonomyId" : "549",
+      "preferredLabel" : "Takläggare",
+      "type" : "keyword"
+    },
     "55" : {
       "conceptId" : "HnnK_nFE_dRj",
       "legacyAmsTaxonomyId" : "55",
       "preferredLabel" : "Butiksdekoratör",
+      "type" : "keyword"
+    },
+    "550" : {
+      "conceptId" : "qPzb_dxR_83e",
+      "legacyAmsTaxonomyId" : "550",
+      "preferredLabel" : "Stoppmöbelarbetare",
+      "type" : "keyword"
+    },
+    "551" : {
+      "conceptId" : "guhd_NZD_cvm",
+      "legacyAmsTaxonomyId" : "551",
+      "preferredLabel" : "A-kassa",
       "type" : "keyword"
     },
     "56" : {
@@ -12026,6 +12086,24 @@
     }
   },
   "occupation-collection" : {
+    "1" : {
+      "conceptId" : "ja7J_P8X_YC9",
+      "legacyAmsTaxonomyId" : "1",
+      "preferredLabel" : "Bygg",
+      "type" : "occupation-collection"
+    },
+    "2" : {
+      "conceptId" : "8too_bEs_7NU",
+      "legacyAmsTaxonomyId" : "2",
+      "preferredLabel" : "Kultur",
+      "type" : "occupation-collection"
+    },
+    "3" : {
+      "conceptId" : "XouD_cCj_HZN",
+      "legacyAmsTaxonomyId" : "3",
+      "preferredLabel" : "Sjöfart",
+      "type" : "occupation-collection"
+    },
     "5" : {
       "conceptId" : "UdVa_jRr_9DE",
       "legacyAmsTaxonomyId" : "5",
@@ -17291,7 +17369,7 @@
     "3224" : {
       "conceptId" : "RjFD_8oW_Y2B",
       "legacyAmsTaxonomyId" : "3224",
-      "preferredLabel" : "Brodös",
+      "preferredLabel" : "Brodör/Brodös",
       "type" : "occupation-name"
     },
     "3226" : {
@@ -80492,6 +80570,76 @@
       "legacyAmsTaxonomyId" : "9",
       "preferredLabel" : "Okänd",
       "type" : "sun-education-field-1"
+    },
+    "sun-2000-1" : {
+      "conceptId" : "9LjE_eFV_QxW",
+      "legacyAmsTaxonomyId" : "1",
+      "preferredLabel" : "Allmän utbildning",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "0"
+    },
+    "sun-2000-10" : {
+      "conceptId" : "7TUb_TWN_vss",
+      "legacyAmsTaxonomyId" : "10",
+      "preferredLabel" : "Okänd",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "9"
+    },
+    "sun-2000-2" : {
+      "conceptId" : "y1xq_3kZ_e34",
+      "legacyAmsTaxonomyId" : "2",
+      "preferredLabel" : "Pedagogik och lärarutbildning",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "1"
+    },
+    "sun-2000-3" : {
+      "conceptId" : "XPGP_ww2_P6o",
+      "legacyAmsTaxonomyId" : "3",
+      "preferredLabel" : "Humaniora och konst",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "2"
+    },
+    "sun-2000-4" : {
+      "conceptId" : "C8Eu_p9r_8SG",
+      "legacyAmsTaxonomyId" : "4",
+      "preferredLabel" : "Samhällsvetenskap, juridik, handel, administration",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "3"
+    },
+    "sun-2000-5" : {
+      "conceptId" : "W9YL_pFW_jk1",
+      "legacyAmsTaxonomyId" : "5",
+      "preferredLabel" : "Naturvetenskap, matematik och data",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "4"
+    },
+    "sun-2000-6" : {
+      "conceptId" : "ojH5_tq4_2JV",
+      "legacyAmsTaxonomyId" : "6",
+      "preferredLabel" : "Teknik och tillverkning",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "5"
+    },
+    "sun-2000-7" : {
+      "conceptId" : "Re9t_xHP_X5n",
+      "legacyAmsTaxonomyId" : "7",
+      "preferredLabel" : "Lant- och skogsbruk samt djursjukvård",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "6"
+    },
+    "sun-2000-8" : {
+      "conceptId" : "i1fx_Pyj_MUC",
+      "legacyAmsTaxonomyId" : "8",
+      "preferredLabel" : "Hälso- och sjukvård samt social omsorg",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "7"
+    },
+    "sun-2000-9" : {
+      "conceptId" : "d5AX_Z6M_oVt",
+      "legacyAmsTaxonomyId" : "9",
+      "preferredLabel" : "Tjänster",
+      "type" : "sun-education-field-1",
+      "concept.external-standard/sun-education-field-code-2000" : "8"
     }
   },
   "sun-education-field-2" : {
@@ -80650,6 +80798,188 @@
       "legacyAmsTaxonomyId" : "99",
       "preferredLabel" : "Okänd",
       "type" : "sun-education-field-2"
+    },
+    "sun-2000-1" : {
+      "conceptId" : "atFb_xjp_QfB",
+      "legacyAmsTaxonomyId" : "1",
+      "preferredLabel" : "Bred, generell utbildning",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "01"
+    },
+    "sun-2000-10" : {
+      "conceptId" : "2pb4_EMJ_E1D",
+      "legacyAmsTaxonomyId" : "10",
+      "preferredLabel" : "Juridik och rättsvetenskap",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "38"
+    },
+    "sun-2000-11" : {
+      "conceptId" : "zbpu_cNb_kex",
+      "legacyAmsTaxonomyId" : "11",
+      "preferredLabel" : "Biologi och miljövetenskap",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "42"
+    },
+    "sun-2000-12" : {
+      "conceptId" : "3axx_Htw_v3Y",
+      "legacyAmsTaxonomyId" : "12",
+      "preferredLabel" : "Fysik, kemi och geovetenskap",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "44"
+    },
+    "sun-2000-13" : {
+      "conceptId" : "SY6y_KKg_gQ5",
+      "legacyAmsTaxonomyId" : "13",
+      "preferredLabel" : "Matematik och övrig naturvetenskap",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "46"
+    },
+    "sun-2000-14" : {
+      "conceptId" : "FHxz_HhN_3Mk",
+      "legacyAmsTaxonomyId" : "14",
+      "preferredLabel" : "Data",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "48"
+    },
+    "sun-2000-15" : {
+      "conceptId" : "WFCz_teU_KFf",
+      "legacyAmsTaxonomyId" : "15",
+      "preferredLabel" : "Teknik och teknisk industri",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "52"
+    },
+    "sun-2000-16" : {
+      "conceptId" : "qryY_rKa_as3",
+      "legacyAmsTaxonomyId" : "16",
+      "preferredLabel" : "Material och tillverkning",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "54"
+    },
+    "sun-2000-17" : {
+      "conceptId" : "TVjf_K43_Tom",
+      "legacyAmsTaxonomyId" : "17",
+      "preferredLabel" : "Samhällsbyggnad och byggnadsteknik",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "58"
+    },
+    "sun-2000-18" : {
+      "conceptId" : "d2cS_Ajj_6DK",
+      "legacyAmsTaxonomyId" : "18",
+      "preferredLabel" : "Lantbruk, trädgård, skog och fiske",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "62"
+    },
+    "sun-2000-19" : {
+      "conceptId" : "be55_L6H_rYK",
+      "legacyAmsTaxonomyId" : "19",
+      "preferredLabel" : "Djursjukvård",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "64"
+    },
+    "sun-2000-2" : {
+      "conceptId" : "8Fq5_QNy_um4",
+      "legacyAmsTaxonomyId" : "2",
+      "preferredLabel" : "Läs- och skrivinlärning för vuxna",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "08"
+    },
+    "sun-2000-20" : {
+      "conceptId" : "z5Xu_PfE_R8p",
+      "legacyAmsTaxonomyId" : "20",
+      "preferredLabel" : "Hälso- och sjukvård",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "72"
+    },
+    "sun-2000-21" : {
+      "conceptId" : "4Yyd_cXY_81C",
+      "legacyAmsTaxonomyId" : "21",
+      "preferredLabel" : "Socialt arbete och omsorg",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "76"
+    },
+    "sun-2000-22" : {
+      "conceptId" : "BY3r_Qrv_rSm",
+      "legacyAmsTaxonomyId" : "22",
+      "preferredLabel" : "Personliga tjänster",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "81"
+    },
+    "sun-2000-23" : {
+      "conceptId" : "zpng_ije_7Q6",
+      "legacyAmsTaxonomyId" : "23",
+      "preferredLabel" : "Transporttjänster",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "84"
+    },
+    "sun-2000-24" : {
+      "conceptId" : "UNfA_7nX_bET",
+      "legacyAmsTaxonomyId" : "24",
+      "preferredLabel" : "Miljövård och miljöskydd",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "85"
+    },
+    "sun-2000-25" : {
+      "conceptId" : "c5zp_f4X_VMV",
+      "legacyAmsTaxonomyId" : "25",
+      "preferredLabel" : "Säkerhetstjänster",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "86"
+    },
+    "sun-2000-26" : {
+      "conceptId" : "keHJ_1uA_ApY",
+      "legacyAmsTaxonomyId" : "26",
+      "preferredLabel" : "Okänd",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "99"
+    },
+    "sun-2000-3" : {
+      "conceptId" : "SfLL_rj2_QW5",
+      "legacyAmsTaxonomyId" : "3",
+      "preferredLabel" : "Personlig utveckling",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "09"
+    },
+    "sun-2000-4" : {
+      "conceptId" : "tFCz_HSa_jwW",
+      "legacyAmsTaxonomyId" : "4",
+      "preferredLabel" : "Pedagogik och lärarutbildning",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "14"
+    },
+    "sun-2000-5" : {
+      "conceptId" : "u2a1_mAW_vt1",
+      "legacyAmsTaxonomyId" : "5",
+      "preferredLabel" : "Konst och media",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "21"
+    },
+    "sun-2000-6" : {
+      "conceptId" : "y1vj_pmA_MPG",
+      "legacyAmsTaxonomyId" : "6",
+      "preferredLabel" : "Humaniora",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "22"
+    },
+    "sun-2000-7" : {
+      "conceptId" : "cYLE_n6m_XYw",
+      "legacyAmsTaxonomyId" : "7",
+      "preferredLabel" : "Samhälls- och beteendevetenskap",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "31"
+    },
+    "sun-2000-8" : {
+      "conceptId" : "XscF_9UP_jAQ",
+      "legacyAmsTaxonomyId" : "8",
+      "preferredLabel" : "Journalistik och information",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "32"
+    },
+    "sun-2000-9" : {
+      "conceptId" : "CU11_PU7_Yj1",
+      "legacyAmsTaxonomyId" : "9",
+      "preferredLabel" : "Företagsekonomi, handel och administration",
+      "type" : "sun-education-field-2",
+      "concept.external-standard/sun-education-field-code-2000" : "34"
     }
   },
   "sun-education-field-3" : {
@@ -81360,6 +81690,825 @@
       "legacyAmsTaxonomyId" : "999",
       "preferredLabel" : "Okänd",
       "type" : "sun-education-field-3"
+    },
+    "sun-2000-1" : {
+      "conceptId" : "wxwp_YQq_D3E",
+      "legacyAmsTaxonomyId" : "1",
+      "preferredLabel" : "Bred, generell utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "010"
+    },
+    "sun-2000-10" : {
+      "conceptId" : "KtXa_QCS_oqr",
+      "legacyAmsTaxonomyId" : "10",
+      "preferredLabel" : "Pedagogik och lärarutbildning, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "149"
+    },
+    "sun-2000-100" : {
+      "conceptId" : "sSAS_vm7_KGa",
+      "legacyAmsTaxonomyId" : "100",
+      "preferredLabel" : "Hotell, restaurang och storhushåll",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "811"
+    },
+    "sun-2000-101" : {
+      "conceptId" : "Q57D_5Co_RuX",
+      "legacyAmsTaxonomyId" : "101",
+      "preferredLabel" : "Turism, resor och fritid",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "812"
+    },
+    "sun-2000-102" : {
+      "conceptId" : "1nv6_SxZ_mXK",
+      "legacyAmsTaxonomyId" : "102",
+      "preferredLabel" : "Idrott och friskvård",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "813"
+    },
+    "sun-2000-103" : {
+      "conceptId" : "hiz4_muG_o4B",
+      "legacyAmsTaxonomyId" : "103",
+      "preferredLabel" : "Hushållstjänster och lokalvård",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "814"
+    },
+    "sun-2000-104" : {
+      "conceptId" : "sQy1_vDH_e1P",
+      "legacyAmsTaxonomyId" : "104",
+      "preferredLabel" : "Hår- och skönhetsvård",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "815"
+    },
+    "sun-2000-105" : {
+      "conceptId" : "opDR_V6F_Kv6",
+      "legacyAmsTaxonomyId" : "105",
+      "preferredLabel" : "Personliga tjänster, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "819"
+    },
+    "sun-2000-106" : {
+      "conceptId" : "d3AW_5ep_avV",
+      "legacyAmsTaxonomyId" : "106",
+      "preferredLabel" : "Transporttjänster",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "840"
+    },
+    "sun-2000-107" : {
+      "conceptId" : "Nevd_r3u_rHQ",
+      "legacyAmsTaxonomyId" : "107",
+      "preferredLabel" : "Miljövård och miljöskydd, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "850"
+    },
+    "sun-2000-108" : {
+      "conceptId" : "3623_tCJ_bXh",
+      "legacyAmsTaxonomyId" : "108",
+      "preferredLabel" : "Miljövårdsteknik och miljökontroll",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "851"
+    },
+    "sun-2000-109" : {
+      "conceptId" : "v8Ku_a4Z_UsG",
+      "legacyAmsTaxonomyId" : "109",
+      "preferredLabel" : "Naturvård och djurskydd",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "852"
+    },
+    "sun-2000-11" : {
+      "conceptId" : "MSBQ_Ydc_e48",
+      "legacyAmsTaxonomyId" : "11",
+      "preferredLabel" : "Konst och media, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "210"
+    },
+    "sun-2000-110" : {
+      "conceptId" : "yWXa_h2y_9PK",
+      "legacyAmsTaxonomyId" : "110",
+      "preferredLabel" : "Renhållning och avfallshantering",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "853"
+    },
+    "sun-2000-111" : {
+      "conceptId" : "9MaS_smD_9Z1",
+      "legacyAmsTaxonomyId" : "111",
+      "preferredLabel" : "Miljövård och miljöskydd, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "859"
+    },
+    "sun-2000-112" : {
+      "conceptId" : "YAR6_HPG_Wup",
+      "legacyAmsTaxonomyId" : "112",
+      "preferredLabel" : "Säkerhetstjänster, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "860"
+    },
+    "sun-2000-113" : {
+      "conceptId" : "FeaL_ddX_dKS",
+      "legacyAmsTaxonomyId" : "113",
+      "preferredLabel" : "Säkerhet i samhället",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "861"
+    },
+    "sun-2000-114" : {
+      "conceptId" : "uJdc_mGj_gKw",
+      "legacyAmsTaxonomyId" : "114",
+      "preferredLabel" : "Arbetsmiljö och arbetarskydd",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "862"
+    },
+    "sun-2000-115" : {
+      "conceptId" : "UU8r_VKf_oQ9",
+      "legacyAmsTaxonomyId" : "115",
+      "preferredLabel" : "Militär utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "863"
+    },
+    "sun-2000-116" : {
+      "conceptId" : "EWVr_h9r_sqX",
+      "legacyAmsTaxonomyId" : "116",
+      "preferredLabel" : "Säkerhetstjänster, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "869"
+    },
+    "sun-2000-117" : {
+      "conceptId" : "a2Fs_Qsk_Ywm",
+      "legacyAmsTaxonomyId" : "117",
+      "preferredLabel" : "Okänd",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "999"
+    },
+    "sun-2000-12" : {
+      "conceptId" : "hSxF_L6U_zMo",
+      "legacyAmsTaxonomyId" : "12",
+      "preferredLabel" : "Bild- och formkonst",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "211"
+    },
+    "sun-2000-13" : {
+      "conceptId" : "9YBt_hQw_o2L",
+      "legacyAmsTaxonomyId" : "13",
+      "preferredLabel" : "Musik, dans och dramatik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "212"
+    },
+    "sun-2000-14" : {
+      "conceptId" : "9YH9_Lmg_rAS",
+      "legacyAmsTaxonomyId" : "14",
+      "preferredLabel" : "Medieproduktion",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "213"
+    },
+    "sun-2000-15" : {
+      "conceptId" : "qMZD_FHy_Ht2",
+      "legacyAmsTaxonomyId" : "15",
+      "preferredLabel" : "Formgivning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "214"
+    },
+    "sun-2000-16" : {
+      "conceptId" : "zMLq_ME1_8Pr",
+      "legacyAmsTaxonomyId" : "16",
+      "preferredLabel" : "Konsthantverk",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "215"
+    },
+    "sun-2000-17" : {
+      "conceptId" : "8cox_yp3_YjL",
+      "legacyAmsTaxonomyId" : "17",
+      "preferredLabel" : "Konst och media, övrig/ ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "219"
+    },
+    "sun-2000-18" : {
+      "conceptId" : "QWxc_uBm_6xz",
+      "legacyAmsTaxonomyId" : "18",
+      "preferredLabel" : "Humaniora, allmän inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "220"
+    },
+    "sun-2000-19" : {
+      "conceptId" : "NHoR_m8B_C3x",
+      "legacyAmsTaxonomyId" : "19",
+      "preferredLabel" : "Religion",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "221"
+    },
+    "sun-2000-2" : {
+      "conceptId" : "v5wc_UAb_U7a",
+      "legacyAmsTaxonomyId" : "2",
+      "preferredLabel" : "Läs- och skrivinlärning för vuxna",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "080"
+    },
+    "sun-2000-20" : {
+      "conceptId" : "BRYn_VA6_KHJ",
+      "legacyAmsTaxonomyId" : "20",
+      "preferredLabel" : "Främmande språk",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "222"
+    },
+    "sun-2000-21" : {
+      "conceptId" : "vWST_EUs_nbG",
+      "legacyAmsTaxonomyId" : "21",
+      "preferredLabel" : "Svenska och litteraturvetenskap",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "223"
+    },
+    "sun-2000-22" : {
+      "conceptId" : "Cds3_gHS_2kH",
+      "legacyAmsTaxonomyId" : "22",
+      "preferredLabel" : "Historia och arkeologi",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "225"
+    },
+    "sun-2000-23" : {
+      "conceptId" : "zBHZ_xy4_Xrf",
+      "legacyAmsTaxonomyId" : "23",
+      "preferredLabel" : "Filosofi och logik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "226"
+    },
+    "sun-2000-24" : {
+      "conceptId" : "rtzY_WYC_JzY",
+      "legacyAmsTaxonomyId" : "24",
+      "preferredLabel" : "Humaniora, övrig/ospec inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "229"
+    },
+    "sun-2000-25" : {
+      "conceptId" : "gtyY_hAn_j5r",
+      "legacyAmsTaxonomyId" : "25",
+      "preferredLabel" : "Samhälls- och beteendevetenskap, allmän inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "310"
+    },
+    "sun-2000-26" : {
+      "conceptId" : "smP1_JHS_9yu",
+      "legacyAmsTaxonomyId" : "26",
+      "preferredLabel" : "Psykologi",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "311"
+    },
+    "sun-2000-27" : {
+      "conceptId" : "HYF5_1mW_iEg",
+      "legacyAmsTaxonomyId" : "27",
+      "preferredLabel" : "Sociologi, etnologi och kulturgeografi",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "312"
+    },
+    "sun-2000-28" : {
+      "conceptId" : "sDob_Jsm_uEX",
+      "legacyAmsTaxonomyId" : "28",
+      "preferredLabel" : "Statsvetenskap",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "313"
+    },
+    "sun-2000-29" : {
+      "conceptId" : "T2aZ_5dP_myb",
+      "legacyAmsTaxonomyId" : "29",
+      "preferredLabel" : "Nationalekonomi och ekonomisk historia",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "314"
+    },
+    "sun-2000-3" : {
+      "conceptId" : "AQBm_TcY_696",
+      "legacyAmsTaxonomyId" : "3",
+      "preferredLabel" : "Personlig utveckling",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "090"
+    },
+    "sun-2000-30" : {
+      "conceptId" : "1h5D_nVD_u6u",
+      "legacyAmsTaxonomyId" : "30",
+      "preferredLabel" : "Samhälls- och beteende vetenskap, övrig/ospec inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "319"
+    },
+    "sun-2000-31" : {
+      "conceptId" : "ccFW_MJq_ssa",
+      "legacyAmsTaxonomyId" : "31",
+      "preferredLabel" : "Journalistik och information, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "320"
+    },
+    "sun-2000-32" : {
+      "conceptId" : "Q2eo_vhL_HY9",
+      "legacyAmsTaxonomyId" : "32",
+      "preferredLabel" : "Journalistik och medievetenskap",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "321"
+    },
+    "sun-2000-33" : {
+      "conceptId" : "Y4dq_b8L_y7f",
+      "legacyAmsTaxonomyId" : "33",
+      "preferredLabel" : "Biblioteks- och dokumentationsvetenskap",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "322"
+    },
+    "sun-2000-34" : {
+      "conceptId" : "VrJC_fxN_kBt",
+      "legacyAmsTaxonomyId" : "34",
+      "preferredLabel" : "Journalistik och information, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "329"
+    },
+    "sun-2000-35" : {
+      "conceptId" : "UxRr_5s9_VBv",
+      "legacyAmsTaxonomyId" : "35",
+      "preferredLabel" : "Företagsekonomi, handel, administration, allmän utb.",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "340"
+    },
+    "sun-2000-36" : {
+      "conceptId" : "X6vi_pjC_B58",
+      "legacyAmsTaxonomyId" : "36",
+      "preferredLabel" : "Inköp, försäljning och distribution",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "341"
+    },
+    "sun-2000-37" : {
+      "conceptId" : "3tw3_8oY_dxj",
+      "legacyAmsTaxonomyId" : "37",
+      "preferredLabel" : "Marknadsföring",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "342"
+    },
+    "sun-2000-38" : {
+      "conceptId" : "CMuX_9bh_i7v",
+      "legacyAmsTaxonomyId" : "38",
+      "preferredLabel" : "Bank, försäkring och finansiering",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "343"
+    },
+    "sun-2000-39" : {
+      "conceptId" : "5nY3_mLw_py4",
+      "legacyAmsTaxonomyId" : "39",
+      "preferredLabel" : "Redovisning och beskattning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "344"
+    },
+    "sun-2000-4" : {
+      "conceptId" : "Ncs5_r86_7c6",
+      "legacyAmsTaxonomyId" : "4",
+      "preferredLabel" : "Pedagogik och lärarutbildning, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "140"
+    },
+    "sun-2000-40" : {
+      "conceptId" : "ATVY_8WJ_aCi",
+      "legacyAmsTaxonomyId" : "40",
+      "preferredLabel" : "Ledning och administration",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "345"
+    },
+    "sun-2000-41" : {
+      "conceptId" : "oprB_5HW_dQP",
+      "legacyAmsTaxonomyId" : "41",
+      "preferredLabel" : "Kontorsservice och sekreterartjänster",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "346"
+    },
+    "sun-2000-42" : {
+      "conceptId" : "nbmf_UXW_T5q",
+      "legacyAmsTaxonomyId" : "42",
+      "preferredLabel" : "Arbetsplatsrelaterad utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "347"
+    },
+    "sun-2000-43" : {
+      "conceptId" : "8bLX_3eK_bNT",
+      "legacyAmsTaxonomyId" : "43",
+      "preferredLabel" : "Företagsekonomi, handel, administration, övrig/ospec utb.",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "349"
+    },
+    "sun-2000-44" : {
+      "conceptId" : "ohmF_MkK_AYY",
+      "legacyAmsTaxonomyId" : "44",
+      "preferredLabel" : "Juridik och rättsvetenskap",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "380"
+    },
+    "sun-2000-45" : {
+      "conceptId" : "2kbZ_c7f_v2t",
+      "legacyAmsTaxonomyId" : "45",
+      "preferredLabel" : "Biologi och miljövetenskap, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "420"
+    },
+    "sun-2000-46" : {
+      "conceptId" : "7Nbb_SWd_gi2",
+      "legacyAmsTaxonomyId" : "46",
+      "preferredLabel" : "Biologi och biokemi",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "421"
+    },
+    "sun-2000-47" : {
+      "conceptId" : "vTEF_Bpj_FRx",
+      "legacyAmsTaxonomyId" : "47",
+      "preferredLabel" : "Miljövetenskap",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "422"
+    },
+    "sun-2000-48" : {
+      "conceptId" : "mwma_swy_nLL",
+      "legacyAmsTaxonomyId" : "48",
+      "preferredLabel" : "Biologi och miljövetenskap, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "429"
+    },
+    "sun-2000-49" : {
+      "conceptId" : "SCkk_Q22_ads",
+      "legacyAmsTaxonomyId" : "49",
+      "preferredLabel" : "Fysik, kemi och geovetenskap, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "440"
+    },
+    "sun-2000-5" : {
+      "conceptId" : "8agP_Fyi_cZJ",
+      "legacyAmsTaxonomyId" : "5",
+      "preferredLabel" : "Pedagogik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "142"
+    },
+    "sun-2000-50" : {
+      "conceptId" : "merF_1xH_REB",
+      "legacyAmsTaxonomyId" : "50",
+      "preferredLabel" : "Fysik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "441"
+    },
+    "sun-2000-51" : {
+      "conceptId" : "BGZ9_GEe_E6A",
+      "legacyAmsTaxonomyId" : "51",
+      "preferredLabel" : "Kemi",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "442"
+    },
+    "sun-2000-52" : {
+      "conceptId" : "xuUu_4ga_rEH",
+      "legacyAmsTaxonomyId" : "52",
+      "preferredLabel" : "Geovetenskap och naturgeografi",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "443"
+    },
+    "sun-2000-53" : {
+      "conceptId" : "NY3T_U9N_g8P",
+      "legacyAmsTaxonomyId" : "53",
+      "preferredLabel" : "Fysik, kemi och geovetenskap, övrig/ospecificerad utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "449"
+    },
+    "sun-2000-54" : {
+      "conceptId" : "yUM7_uPH_2G4",
+      "legacyAmsTaxonomyId" : "54",
+      "preferredLabel" : "Matematik och naturvetenskap, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "460"
+    },
+    "sun-2000-55" : {
+      "conceptId" : "UXoe_GVp_gui",
+      "legacyAmsTaxonomyId" : "55",
+      "preferredLabel" : "Matematik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "461"
+    },
+    "sun-2000-56" : {
+      "conceptId" : "5jtT_iAj_3az",
+      "legacyAmsTaxonomyId" : "56",
+      "preferredLabel" : "Statistik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "462"
+    },
+    "sun-2000-57" : {
+      "conceptId" : "LCMe_ZaV_6Ky",
+      "legacyAmsTaxonomyId" : "57",
+      "preferredLabel" : "Matematik och naturvetenskap, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "469"
+    },
+    "sun-2000-58" : {
+      "conceptId" : "1Dur_zxJ_YMp",
+      "legacyAmsTaxonomyId" : "58",
+      "preferredLabel" : "Data, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "480"
+    },
+    "sun-2000-59" : {
+      "conceptId" : "j3Jd_2NA_so8",
+      "legacyAmsTaxonomyId" : "59",
+      "preferredLabel" : "Datavetenskap och systemvetenskap",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "481"
+    },
+    "sun-2000-6" : {
+      "conceptId" : "yTrd_Kmh_CrB",
+      "legacyAmsTaxonomyId" : "6",
+      "preferredLabel" : "Lärarutbildning för förskola och fritidsverksamhet",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "143"
+    },
+    "sun-2000-60" : {
+      "conceptId" : "dCCF_fYf_H3d",
+      "legacyAmsTaxonomyId" : "60",
+      "preferredLabel" : "Datoranvändning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "482"
+    },
+    "sun-2000-61" : {
+      "conceptId" : "mGV7_Uze_QDA",
+      "legacyAmsTaxonomyId" : "61",
+      "preferredLabel" : "Data, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "489"
+    },
+    "sun-2000-62" : {
+      "conceptId" : "5sET_rHK_6FL",
+      "legacyAmsTaxonomyId" : "62",
+      "preferredLabel" : "Teknik och teknisk industri, allmän inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "520"
+    },
+    "sun-2000-63" : {
+      "conceptId" : "ySJb_aim_aCs",
+      "legacyAmsTaxonomyId" : "63",
+      "preferredLabel" : "Maskinteknik och verkstadsteknik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "521"
+    },
+    "sun-2000-64" : {
+      "conceptId" : "6WJG_2YW_FVY",
+      "legacyAmsTaxonomyId" : "64",
+      "preferredLabel" : "Energi- och elektroteknik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "522"
+    },
+    "sun-2000-65" : {
+      "conceptId" : "YDc6_WRZ_dxY",
+      "legacyAmsTaxonomyId" : "65",
+      "preferredLabel" : "Elektronik, datateknik och automation",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "523"
+    },
+    "sun-2000-66" : {
+      "conceptId" : "1GF5_f3w_8dR",
+      "legacyAmsTaxonomyId" : "66",
+      "preferredLabel" : "Kemi- och bioteknik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "524"
+    },
+    "sun-2000-67" : {
+      "conceptId" : "38Lg_Fye_z7U",
+      "legacyAmsTaxonomyId" : "67",
+      "preferredLabel" : "Fordons- och farkostteknik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "525"
+    },
+    "sun-2000-68" : {
+      "conceptId" : "H2Hx_4SX_4ZW",
+      "legacyAmsTaxonomyId" : "68",
+      "preferredLabel" : "Industriell ekonomi och organisation",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "526"
+    },
+    "sun-2000-69" : {
+      "conceptId" : "DioQ_TCJ_uNe",
+      "legacyAmsTaxonomyId" : "69",
+      "preferredLabel" : "Teknik och teknisk industri, övrig/ospec inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "529"
+    },
+    "sun-2000-7" : {
+      "conceptId" : "fwW5_Eve_8uk",
+      "legacyAmsTaxonomyId" : "7",
+      "preferredLabel" : "Lärarutbildning för grundskolans lägre åldrar",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "144"
+    },
+    "sun-2000-70" : {
+      "conceptId" : "kBkp_MM3_ovK",
+      "legacyAmsTaxonomyId" : "70",
+      "preferredLabel" : "Material och tillverkning, allmän inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "540"
+    },
+    "sun-2000-71" : {
+      "conceptId" : "Sr6E_n3y_LFY",
+      "legacyAmsTaxonomyId" : "71",
+      "preferredLabel" : "Tillverkning och hantering av livsmedel",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "541"
+    },
+    "sun-2000-72" : {
+      "conceptId" : "9obY_tDa_mTd",
+      "legacyAmsTaxonomyId" : "72",
+      "preferredLabel" : "Tillverkning av textilier, konfektion och lädervaror",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "542"
+    },
+    "sun-2000-73" : {
+      "conceptId" : "MH7v_FRf_Zu5",
+      "legacyAmsTaxonomyId" : "73",
+      "preferredLabel" : "Tillverkning av trä-, pappers-, glas/porslin- och plastprodukter",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "543"
+    },
+    "sun-2000-74" : {
+      "conceptId" : "qivy_9A4_Xz1",
+      "legacyAmsTaxonomyId" : "74",
+      "preferredLabel" : "Berg- och mineralteknik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "544"
+    },
+    "sun-2000-75" : {
+      "conceptId" : "jmwb_QA8_1Rk",
+      "legacyAmsTaxonomyId" : "75",
+      "preferredLabel" : "Tillverkning, övrig/ospec inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "549"
+    },
+    "sun-2000-76" : {
+      "conceptId" : "vBmH_X83_3wC",
+      "legacyAmsTaxonomyId" : "76",
+      "preferredLabel" : "Samhällsbyggnad och byggnadsteknik, allmän inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "580"
+    },
+    "sun-2000-77" : {
+      "conceptId" : "q7W8_atE_w29",
+      "legacyAmsTaxonomyId" : "77",
+      "preferredLabel" : "Samhällsbyggnad och arkitektur",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "581"
+    },
+    "sun-2000-78" : {
+      "conceptId" : "dJpe_kXd_5P2",
+      "legacyAmsTaxonomyId" : "78",
+      "preferredLabel" : "Byggnadsteknik och anläggningsteknik",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "582"
+    },
+    "sun-2000-79" : {
+      "conceptId" : "j16b_fme_WSX",
+      "legacyAmsTaxonomyId" : "79",
+      "preferredLabel" : "Samhällsbyggnad och byggnadsteknik, övrig/ospec inriktning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "589"
+    },
+    "sun-2000-8" : {
+      "conceptId" : "4PW9_gBS_F1S",
+      "legacyAmsTaxonomyId" : "8",
+      "preferredLabel" : "Ämneslärarutbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "145"
+    },
+    "sun-2000-80" : {
+      "conceptId" : "FV3X_haZ_Pnm",
+      "legacyAmsTaxonomyId" : "80",
+      "preferredLabel" : "Lantbruk, trädgård, skog och fiske, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "620"
+    },
+    "sun-2000-81" : {
+      "conceptId" : "MaW6_doG_AHd",
+      "legacyAmsTaxonomyId" : "81",
+      "preferredLabel" : "Lantbruk",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "621"
+    },
+    "sun-2000-82" : {
+      "conceptId" : "dk4d_o3q_1UN",
+      "legacyAmsTaxonomyId" : "82",
+      "preferredLabel" : "Trädgård",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "622"
+    },
+    "sun-2000-83" : {
+      "conceptId" : "bJvh_FX8_mXf",
+      "legacyAmsTaxonomyId" : "83",
+      "preferredLabel" : "Skog",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "623"
+    },
+    "sun-2000-84" : {
+      "conceptId" : "yr9L_pdz_6iM",
+      "legacyAmsTaxonomyId" : "84",
+      "preferredLabel" : "Fiske och vattenbruk",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "624"
+    },
+    "sun-2000-85" : {
+      "conceptId" : "9gGq_Dzs_KHG",
+      "legacyAmsTaxonomyId" : "85",
+      "preferredLabel" : "Lantbruk, trädgård, skog och fiske, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "629"
+    },
+    "sun-2000-86" : {
+      "conceptId" : "PXw4_PVq_XQ7",
+      "legacyAmsTaxonomyId" : "86",
+      "preferredLabel" : "Djursjukvård",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "640"
+    },
+    "sun-2000-87" : {
+      "conceptId" : "7hoV_kEY_bNs",
+      "legacyAmsTaxonomyId" : "87",
+      "preferredLabel" : "Hälso- och sjukvård, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "720"
+    },
+    "sun-2000-88" : {
+      "conceptId" : "hXkR_Gzy_3wa",
+      "legacyAmsTaxonomyId" : "88",
+      "preferredLabel" : "Medicin",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "721"
+    },
+    "sun-2000-89" : {
+      "conceptId" : "gzxX_wxk_GMv",
+      "legacyAmsTaxonomyId" : "89",
+      "preferredLabel" : "Omvårdnad",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "723"
+    },
+    "sun-2000-9" : {
+      "conceptId" : "fuua_Qfz_vW9",
+      "legacyAmsTaxonomyId" : "9",
+      "preferredLabel" : "Lärarutbildning i yrkesämne och praktiskt/estetiskt ämne",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "146"
+    },
+    "sun-2000-90" : {
+      "conceptId" : "LUBK_osH_JKn",
+      "legacyAmsTaxonomyId" : "90",
+      "preferredLabel" : "Tandvård",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "724"
+    },
+    "sun-2000-91" : {
+      "conceptId" : "WWvj_CQ1_Qzu",
+      "legacyAmsTaxonomyId" : "91",
+      "preferredLabel" : "Tekniskt inriktad vårdutbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "725"
+    },
+    "sun-2000-92" : {
+      "conceptId" : "JknA_UPL_Whi",
+      "legacyAmsTaxonomyId" : "92",
+      "preferredLabel" : "Terapi, rehabilitering och kostbehandling",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "726"
+    },
+    "sun-2000-93" : {
+      "conceptId" : "MT8d_afo_hxf",
+      "legacyAmsTaxonomyId" : "93",
+      "preferredLabel" : "Farmaci",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "727"
+    },
+    "sun-2000-94" : {
+      "conceptId" : "DXaZ_zY4_Skb",
+      "legacyAmsTaxonomyId" : "94",
+      "preferredLabel" : "Hälso- och sjukvård, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "729"
+    },
+    "sun-2000-95" : {
+      "conceptId" : "4ukJ_qC7_U4C",
+      "legacyAmsTaxonomyId" : "95",
+      "preferredLabel" : "Socialt arbete och omsorg, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "760"
+    },
+    "sun-2000-96" : {
+      "conceptId" : "KgGa_3B4_rfF",
+      "legacyAmsTaxonomyId" : "96",
+      "preferredLabel" : "Barn och ungdom",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "761"
+    },
+    "sun-2000-97" : {
+      "conceptId" : "g3R7_qSb_ehj",
+      "legacyAmsTaxonomyId" : "97",
+      "preferredLabel" : "Socialt arbete och vägledning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "762"
+    },
+    "sun-2000-98" : {
+      "conceptId" : "HiC5_Vuj_CWE",
+      "legacyAmsTaxonomyId" : "98",
+      "preferredLabel" : "Socialt arbete och omsorg, övrig/ospec utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "769"
+    },
+    "sun-2000-99" : {
+      "conceptId" : "FX9r_G8o_Q7m",
+      "legacyAmsTaxonomyId" : "99",
+      "preferredLabel" : "Personliga tjänster, allmän utbildning",
+      "type" : "sun-education-field-3",
+      "concept.external-standard/sun-education-field-code-2000" : "810"
     }
   },
   "sun-education-field-4" : {
@@ -83668,6 +84817,55 @@
       "legacyAmsTaxonomyId" : "6",
       "preferredLabel" : "Forskarutbildning",
       "type" : "sun-education-level-1"
+    },
+    "sun-2000-1" : {
+      "conceptId" : "4HfD_y1M_8Pw",
+      "legacyAmsTaxonomyId" : "1",
+      "preferredLabel" : "Saknar formell, grundläggande utbildning",
+      "type" : "sun-education-level-1",
+      "concept.external-standard/sun-education-level-code-2000" : "0"
+    },
+    "sun-2000-2" : {
+      "conceptId" : "hxDt_SD3_1qX",
+      "legacyAmsTaxonomyId" : "2",
+      "preferredLabel" : "Förgymnasial utbildning kortare än 9 år",
+      "type" : "sun-education-level-1",
+      "concept.external-standard/sun-education-level-code-2000" : "1"
+    },
+    "sun-2000-3" : {
+      "conceptId" : "NcLy_JUs_APX",
+      "legacyAmsTaxonomyId" : "3",
+      "preferredLabel" : "Förgymnasial utbildning 9 (10) år",
+      "type" : "sun-education-level-1",
+      "concept.external-standard/sun-education-level-code-2000" : "2"
+    },
+    "sun-2000-4" : {
+      "conceptId" : "DeBt_ahh_bkx",
+      "legacyAmsTaxonomyId" : "4",
+      "preferredLabel" : "Gymnasial utbildning",
+      "type" : "sun-education-level-1",
+      "concept.external-standard/sun-education-level-code-2000" : "3"
+    },
+    "sun-2000-5" : {
+      "conceptId" : "3Bof_mmm_XRk",
+      "legacyAmsTaxonomyId" : "5",
+      "preferredLabel" : "Eftergymnasial utbildning kortare än två år",
+      "type" : "sun-education-level-1",
+      "concept.external-standard/sun-education-level-code-2000" : "4"
+    },
+    "sun-2000-6" : {
+      "conceptId" : "asZm_TEQ_Srk",
+      "legacyAmsTaxonomyId" : "6",
+      "preferredLabel" : "Eftergymnasial utbildning två år eller längre",
+      "type" : "sun-education-level-1",
+      "concept.external-standard/sun-education-level-code-2000" : "5"
+    },
+    "sun-2000-7" : {
+      "conceptId" : "SdS6_SLL_mRJ",
+      "legacyAmsTaxonomyId" : "7",
+      "preferredLabel" : "Forskarutbildning",
+      "type" : "sun-education-level-1",
+      "concept.external-standard/sun-education-level-code-2000" : "6"
     }
   },
   "sun-education-level-2" : {
@@ -83754,6 +84952,104 @@
       "legacyAmsTaxonomyId" : "64",
       "preferredLabel" : "Doktorsutbildning",
       "type" : "sun-education-level-2"
+    },
+    "sun-2000-1" : {
+      "conceptId" : "VUYW_QTi_XTt",
+      "legacyAmsTaxonomyId" : "1",
+      "preferredLabel" : "Förskoleutbildning",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "00"
+    },
+    "sun-2000-10" : {
+      "conceptId" : "oiBX_JUa_DPs",
+      "legacyAmsTaxonomyId" : "10",
+      "preferredLabel" : "Eftergymnasial utbildning fyra år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "54"
+    },
+    "sun-2000-11" : {
+      "conceptId" : "rxBZ_5xr_Qs5",
+      "legacyAmsTaxonomyId" : "11",
+      "preferredLabel" : "Eftergymnasial utbildning minst fem år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "55"
+    },
+    "sun-2000-12" : {
+      "conceptId" : "mb2W_MmG_cir",
+      "legacyAmsTaxonomyId" : "12",
+      "preferredLabel" : "Övrig/ospec forskarutbildning",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "60"
+    },
+    "sun-2000-13" : {
+      "conceptId" : "vPiP_8qu_XQ9",
+      "legacyAmsTaxonomyId" : "13",
+      "preferredLabel" : "Licentiatutbildning",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "62"
+    },
+    "sun-2000-14" : {
+      "conceptId" : "vUZ7_JRw_NjW",
+      "legacyAmsTaxonomyId" : "14",
+      "preferredLabel" : "Doktorsutbildning",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "64"
+    },
+    "sun-2000-2" : {
+      "conceptId" : "5ZYs_Goa_eZi",
+      "legacyAmsTaxonomyId" : "2",
+      "preferredLabel" : "Förgymnasial utbildning kortare än 9 år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "10"
+    },
+    "sun-2000-3" : {
+      "conceptId" : "dhBt_1Ck_Qmw",
+      "legacyAmsTaxonomyId" : "3",
+      "preferredLabel" : "Förgymnasial utbildning 9 (10) år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "20"
+    },
+    "sun-2000-4" : {
+      "conceptId" : "hoPN_ZXq_ynP",
+      "legacyAmsTaxonomyId" : "4",
+      "preferredLabel" : "Gymnasial utbildning kortare än två år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "31"
+    },
+    "sun-2000-5" : {
+      "conceptId" : "iVF4_yxv_EBo",
+      "legacyAmsTaxonomyId" : "5",
+      "preferredLabel" : "Gymnasial utbildning två år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "32"
+    },
+    "sun-2000-6" : {
+      "conceptId" : "NUG8_Snr_k2h",
+      "legacyAmsTaxonomyId" : "6",
+      "preferredLabel" : "Gymnasial utbildning tre år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "33"
+    },
+    "sun-2000-7" : {
+      "conceptId" : "ZRLv_MgR_xar",
+      "legacyAmsTaxonomyId" : "7",
+      "preferredLabel" : "Eftergymnasial utbildning kortare än två år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "41"
+    },
+    "sun-2000-8" : {
+      "conceptId" : "ixxn_yS7_zEB",
+      "legacyAmsTaxonomyId" : "8",
+      "preferredLabel" : "Eftergymnasial utbildning två år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "52"
+    },
+    "sun-2000-9" : {
+      "conceptId" : "oYa3_WzP_B2f",
+      "legacyAmsTaxonomyId" : "9",
+      "preferredLabel" : "Eftergymnasial utbildning tre år",
+      "type" : "sun-education-level-2",
+      "concept.external-standard/sun-education-level-code-2000" : "53"
     }
   },
   "sun-education-level-3" : {
@@ -84056,6 +85352,356 @@
       "legacyAmsTaxonomyId" : "640",
       "preferredLabel" : "Doktorsutbildning",
       "type" : "sun-education-level-3"
+    },
+    "sun-2000-1" : {
+      "conceptId" : "fXnz_t1b_VyF",
+      "legacyAmsTaxonomyId" : "1",
+      "preferredLabel" : "Övrig/ospec förskoleutbildning",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "000"
+    },
+    "sun-2000-10" : {
+      "conceptId" : "8zJk_oCd_x1B",
+      "legacyAmsTaxonomyId" : "10",
+      "preferredLabel" : "Ospec gymnasial utbildning, kortare än två år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "310"
+    },
+    "sun-2000-11" : {
+      "conceptId" : "tDdX_i3n_HQb",
+      "legacyAmsTaxonomyId" : "11",
+      "preferredLabel" : "Gymn. utb. kortare än två år, teoretisk/studieförb, ej slutbetyg",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "312"
+    },
+    "sun-2000-12" : {
+      "conceptId" : "sT9H_9qk_aAm",
+      "legacyAmsTaxonomyId" : "12",
+      "preferredLabel" : "Gymnasial utb. kortare än två år, yrkesinriktad, ej slutbetyg",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "313"
+    },
+    "sun-2000-13" : {
+      "conceptId" : "Hs2h_raW_WzS",
+      "legacyAmsTaxonomyId" : "13",
+      "preferredLabel" : "Gymnasial utbildning kortare än två år, teoretisk/studieförb.",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "316"
+    },
+    "sun-2000-14" : {
+      "conceptId" : "wYk8_7hC_BkT",
+      "legacyAmsTaxonomyId" : "14",
+      "preferredLabel" : "Gymnasial utbildning kortare än två år, yrkesinriktad",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "317"
+    },
+    "sun-2000-15" : {
+      "conceptId" : "Lq8b_rUX_aLW",
+      "legacyAmsTaxonomyId" : "15",
+      "preferredLabel" : "Ospec gymnasial utbildning, två år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "320"
+    },
+    "sun-2000-16" : {
+      "conceptId" : "93UM_7fh_Pgf",
+      "legacyAmsTaxonomyId" : "16",
+      "preferredLabel" : "Gymnasial utb. två år, teoretisk/studieförb. - ej slutbetyg",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "322"
+    },
+    "sun-2000-17" : {
+      "conceptId" : "uy7G_f7Y_WwU",
+      "legacyAmsTaxonomyId" : "17",
+      "preferredLabel" : "Gymnasial utbildning två år, yrkesinriktad - ej slutbetyg",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "323"
+    },
+    "sun-2000-18" : {
+      "conceptId" : "nvfX_pWE_rUz",
+      "legacyAmsTaxonomyId" : "18",
+      "preferredLabel" : "Gymnasial utbildning två år, teoretisk/studieförb.",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "326"
+    },
+    "sun-2000-19" : {
+      "conceptId" : "gbNa_BMs_ffz",
+      "legacyAmsTaxonomyId" : "19",
+      "preferredLabel" : "Gymnasial utbildning två år, yrkesinriktad",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "327"
+    },
+    "sun-2000-2" : {
+      "conceptId" : "HBVy_FJQ_kv9",
+      "legacyAmsTaxonomyId" : "2",
+      "preferredLabel" : "Förskola",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "001"
+    },
+    "sun-2000-20" : {
+      "conceptId" : "Ukka_6GP_sQX",
+      "legacyAmsTaxonomyId" : "20",
+      "preferredLabel" : "Ospec gymnasial utbildning, tre år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "330"
+    },
+    "sun-2000-21" : {
+      "conceptId" : "R8Gg_5az_6YY",
+      "legacyAmsTaxonomyId" : "21",
+      "preferredLabel" : "Gymnasial utb. tre år, teoretisk/studieförb, ej slutbetyg",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "332"
+    },
+    "sun-2000-22" : {
+      "conceptId" : "k41C_L8y_PHP",
+      "legacyAmsTaxonomyId" : "22",
+      "preferredLabel" : "Gymnasial utbildning tre år, yrkesinriktad, ej slutbetyg",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "333"
+    },
+    "sun-2000-23" : {
+      "conceptId" : "6UxY_DYw_LsZ",
+      "legacyAmsTaxonomyId" : "23",
+      "preferredLabel" : "Gymnasial utbildning tre år, teoretisk/studieförb.",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "336"
+    },
+    "sun-2000-24" : {
+      "conceptId" : "5P6t_k4T_Cfd",
+      "legacyAmsTaxonomyId" : "24",
+      "preferredLabel" : "Gymnasial utbildning tre år, yrkesinriktad",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "337"
+    },
+    "sun-2000-25" : {
+      "conceptId" : "G1rA_63B_GfY",
+      "legacyAmsTaxonomyId" : "25",
+      "preferredLabel" : "Ospec eftergymnasial utbildning kortare än två år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "410"
+    },
+    "sun-2000-26" : {
+      "conceptId" : "TeFf_8Gt_kUy",
+      "legacyAmsTaxonomyId" : "26",
+      "preferredLabel" : "Högskoleutbildning, 20 högskolepoäng",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "412"
+    },
+    "sun-2000-27" : {
+      "conceptId" : "HtaV_xyR_vGh",
+      "legacyAmsTaxonomyId" : "27",
+      "preferredLabel" : "Gymnasial påbyggnadsutbildning",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "413"
+    },
+    "sun-2000-28" : {
+      "conceptId" : "V1UN_fpn_MSc",
+      "legacyAmsTaxonomyId" : "28",
+      "preferredLabel" : "Eftergymn. utb. kortare än två år - ej universitet/högskola",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "415"
+    },
+    "sun-2000-29" : {
+      "conceptId" : "TNYs_h9A_Wxw",
+      "legacyAmsTaxonomyId" : "29",
+      "preferredLabel" : "Högskoleutbildning kortare än två år, yrkesinriktad",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "417"
+    },
+    "sun-2000-3" : {
+      "conceptId" : "JDjD_4J1_JSf",
+      "legacyAmsTaxonomyId" : "3",
+      "preferredLabel" : "Förskoleklass",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "002"
+    },
+    "sun-2000-30" : {
+      "conceptId" : "PZSN_Uet_whj",
+      "legacyAmsTaxonomyId" : "30",
+      "preferredLabel" : "Ospec eftergymnasial utbildning två år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "520"
+    },
+    "sun-2000-31" : {
+      "conceptId" : "HWAC_N8n_Msg",
+      "legacyAmsTaxonomyId" : "31",
+      "preferredLabel" : "Högskoleutbildning, 80 högskolepoäng - ej examen",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "522"
+    },
+    "sun-2000-32" : {
+      "conceptId" : "KZWE_1cF_3nz",
+      "legacyAmsTaxonomyId" : "32",
+      "preferredLabel" : "Eftergymn. utb. två år - ej universitet/högskola",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "525"
+    },
+    "sun-2000-33" : {
+      "conceptId" : "XUKo_gV7_FH9",
+      "legacyAmsTaxonomyId" : "33",
+      "preferredLabel" : "Högskoleutbildning två år, generell",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "526"
+    },
+    "sun-2000-34" : {
+      "conceptId" : "HPb7_EY8_1y1",
+      "legacyAmsTaxonomyId" : "34",
+      "preferredLabel" : "Högskoleutbildning två år, yrkesinriktad",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "527"
+    },
+    "sun-2000-35" : {
+      "conceptId" : "Pygs_mPG_CmL",
+      "legacyAmsTaxonomyId" : "35",
+      "preferredLabel" : "Ospec eftergymnasial utbildning tre år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "530"
+    },
+    "sun-2000-36" : {
+      "conceptId" : "539X_uW5_eM1",
+      "legacyAmsTaxonomyId" : "36",
+      "preferredLabel" : "Högskoleutbildning, 120 högskolepoäng - ej examen",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "532"
+    },
+    "sun-2000-37" : {
+      "conceptId" : "5zhD_bZq_y27",
+      "legacyAmsTaxonomyId" : "37",
+      "preferredLabel" : "Eftergymn. utb. tre år - ej universitet/högskola",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "535"
+    },
+    "sun-2000-38" : {
+      "conceptId" : "VYJg_tHa_Dsd",
+      "legacyAmsTaxonomyId" : "38",
+      "preferredLabel" : "Högskoleutbildning tre år, generell",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "536"
+    },
+    "sun-2000-39" : {
+      "conceptId" : "uMdj_cKo_msw",
+      "legacyAmsTaxonomyId" : "39",
+      "preferredLabel" : "Högskoleutbildning tre år, yrkesinriktad",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "537"
+    },
+    "sun-2000-4" : {
+      "conceptId" : "gsek_qyk_jjp",
+      "legacyAmsTaxonomyId" : "4",
+      "preferredLabel" : "Övrig/ospec förgymnasial utbildning kortare än 9 år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "100"
+    },
+    "sun-2000-40" : {
+      "conceptId" : "uEJv_uVV_nrY",
+      "legacyAmsTaxonomyId" : "40",
+      "preferredLabel" : "Ospec eftergymnasial utbildning fyra år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "540"
+    },
+    "sun-2000-41" : {
+      "conceptId" : "6eG6_Ptn_S11",
+      "legacyAmsTaxonomyId" : "41",
+      "preferredLabel" : "Eftergymn. utb. fyra år - ej universitet/högskola",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "545"
+    },
+    "sun-2000-42" : {
+      "conceptId" : "AMhn_PjK_EKb",
+      "legacyAmsTaxonomyId" : "42",
+      "preferredLabel" : "Högskoleutbildning fyra år, generell",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "546"
+    },
+    "sun-2000-43" : {
+      "conceptId" : "wzJe_bwj_s3h",
+      "legacyAmsTaxonomyId" : "43",
+      "preferredLabel" : "Högskoleutbildning fyra år, yrkesinriktad",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "547"
+    },
+    "sun-2000-44" : {
+      "conceptId" : "2Wmp_djW_XXu",
+      "legacyAmsTaxonomyId" : "44",
+      "preferredLabel" : "Ospec eftergymnasial utbildning minst fem år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "550"
+    },
+    "sun-2000-45" : {
+      "conceptId" : "vVb4_oke_5a7",
+      "legacyAmsTaxonomyId" : "45",
+      "preferredLabel" : "Eftergymn. utb. minst fem år - ej universitet/högskola",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "555"
+    },
+    "sun-2000-46" : {
+      "conceptId" : "En4A_M8Z_ir5",
+      "legacyAmsTaxonomyId" : "46",
+      "preferredLabel" : "Högskoleutbildning fem år eller längre, generell",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "556"
+    },
+    "sun-2000-47" : {
+      "conceptId" : "hb2i_q9u_n1A",
+      "legacyAmsTaxonomyId" : "47",
+      "preferredLabel" : "Högskoleutbildning fem år eller längre, yrkesinriktad",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "557"
+    },
+    "sun-2000-48" : {
+      "conceptId" : "EDHB_UjC_oj7",
+      "legacyAmsTaxonomyId" : "48",
+      "preferredLabel" : "Övrig/ospec forskarutbildning",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "600"
+    },
+    "sun-2000-49" : {
+      "conceptId" : "xbWJ_Qn1_bcc",
+      "legacyAmsTaxonomyId" : "49",
+      "preferredLabel" : "Licentiatutbildning",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "620"
+    },
+    "sun-2000-5" : {
+      "conceptId" : "mDBe_QNV_bzV",
+      "legacyAmsTaxonomyId" : "5",
+      "preferredLabel" : "Grundskoleutbildning, årskurs 1-6",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "102"
+    },
+    "sun-2000-50" : {
+      "conceptId" : "e2jr_Yrt_Ymn",
+      "legacyAmsTaxonomyId" : "50",
+      "preferredLabel" : "Doktorsutbildning",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "640"
+    },
+    "sun-2000-6" : {
+      "conceptId" : "wTsC_CSC_BDS",
+      "legacyAmsTaxonomyId" : "6",
+      "preferredLabel" : "Folkskoleutbildning",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "106"
+    },
+    "sun-2000-7" : {
+      "conceptId" : "U2tL_eEu_Rwi",
+      "legacyAmsTaxonomyId" : "7",
+      "preferredLabel" : "Övrig/ospec förgymnasial utbildning, 9 (10) år",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "200"
+    },
+    "sun-2000-8" : {
+      "conceptId" : "oKLN_su9_iF1",
+      "legacyAmsTaxonomyId" : "8",
+      "preferredLabel" : "Realskoleutbildning",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "204"
+    },
+    "sun-2000-9" : {
+      "conceptId" : "uFDe_6De_YPe",
+      "legacyAmsTaxonomyId" : "9",
+      "preferredLabel" : "Grundskoleutbildning, årskurs 7-9",
+      "type" : "sun-education-level-3",
+      "concept.external-standard/sun-education-level-code-2000" : "206"
     }
   },
   "wage-type" : {
