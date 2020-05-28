@@ -239,6 +239,12 @@
     "preferredLabel" : "Materialadministration/MA",
     "type" : "skill"
   },
+  "1Dur_zxJ_YMp" : {
+    "legacyAmsTaxonomyId" : "58",
+    "preferredLabel" : "Data, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "480"
+  },
   "1EBv_UzM_ozQ" : {
     "legacyAmsTaxonomyId" : "1136",
     "preferredLabel" : "Bärplockare och plantörer m.fl.",
@@ -293,6 +299,12 @@
     "legacyAmsTaxonomyId" : "1167",
     "preferredLabel" : "Processoperatörer, papper",
     "type" : "ssyk-level-4"
+  },
+  "1GF5_f3w_8dR" : {
+    "legacyAmsTaxonomyId" : "66",
+    "preferredLabel" : "Kemi- och bioteknik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "524"
   },
   "1HaS_S7D_8Kp" : {
     "legacyAmsTaxonomyId" : "266",
@@ -789,6 +801,12 @@
     "preferredLabel" : "Hovrättsråd",
     "type" : "occupation-name"
   },
+  "1h5D_nVD_u6u" : {
+    "legacyAmsTaxonomyId" : "30",
+    "preferredLabel" : "Samhälls- och beteende vetenskap, övrig/ospec inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "319"
+  },
   "1hZc_5BC_K7q" : {
     "legacyAmsTaxonomyId" : "4221",
     "preferredLabel" : "Anläggningsingenjör, elkraft",
@@ -918,6 +936,12 @@
     "legacyAmsTaxonomyId" : "600863",
     "preferredLabel" : "Ornament",
     "type" : "skill"
+  },
+  "1nv6_SxZ_mXK" : {
+    "legacyAmsTaxonomyId" : "102",
+    "preferredLabel" : "Idrott och friskvård",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "813"
   },
   "1oA3_GfA_82Y" : {
     "legacyAmsTaxonomyId" : "608586",
@@ -1679,6 +1703,12 @@
     "preferredLabel" : "Amerikansk fotboll, instruktör/Amerikansk fotboll, tränare",
     "type" : "skill"
   },
+  "2Wmp_djW_XXu" : {
+    "legacyAmsTaxonomyId" : "44",
+    "preferredLabel" : "Ospec eftergymnasial utbildning minst fem år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "550"
+  },
   "2Wq4_Wed_tBz" : {
     "legacyAmsTaxonomyId" : "624",
     "preferredLabel" : "Besiktningstekniker, bilprovning",
@@ -1959,6 +1989,12 @@
     "preferredLabel" : "Medicinska sekreterare, vårdadministratörer m.fl.",
     "type" : "ssyk-level-4"
   },
+  "2kbZ_c7f_v2t" : {
+    "legacyAmsTaxonomyId" : "45",
+    "preferredLabel" : "Biologi och miljövetenskap, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "420"
+  },
   "2ksN_CTt_FXv" : {
     "legacyAmsTaxonomyId" : "608308",
     "preferredLabel" : "Gödslingsmaskin",
@@ -2063,6 +2099,12 @@
     "legacyAmsTaxonomyId" : "5705",
     "preferredLabel" : "Stämledning, inriktning instrumentalist",
     "type" : "skill"
+  },
+  "2pb4_EMJ_E1D" : {
+    "legacyAmsTaxonomyId" : "10",
+    "preferredLabel" : "Juridik och rättsvetenskap",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "38"
   },
   "2pft_3Ry_e4L" : {
     "legacyAmsTaxonomyId" : "603988",
@@ -2374,6 +2416,12 @@
     "preferredLabel" : "Movex, affärssystem",
     "type" : "skill"
   },
+  "3623_tCJ_bXh" : {
+    "legacyAmsTaxonomyId" : "108",
+    "preferredLabel" : "Miljövårdsteknik och miljökontroll",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "851"
+  },
   "36BN_mHY_VQH" : {
     "legacyAmsTaxonomyId" : "609310",
     "preferredLabel" : "Lärarexamen mot fritidshem",
@@ -2418,6 +2466,12 @@
     "legacyAmsTaxonomyId" : "609258",
     "preferredLabel" : "Gesällbrev, konstgjutare",
     "type" : "skill"
+  },
+  "38Lg_Fye_z7U" : {
+    "legacyAmsTaxonomyId" : "67",
+    "preferredLabel" : "Fordons- och farkostteknik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "525"
   },
   "39DD_PjQ_iNb" : {
     "legacyAmsTaxonomyId" : "18",
@@ -2468,6 +2522,12 @@
     "legacyAmsTaxonomyId" : "400040",
     "preferredLabel" : "Tankoperativ kurs, kem",
     "type" : "skill"
+  },
+  "3Bof_mmm_XRk" : {
+    "legacyAmsTaxonomyId" : "5",
+    "preferredLabel" : "Eftergymnasial utbildning kortare än två år",
+    "type" : "sun-education-level-1",
+    "concept.external-standard/sun-education-level-code-2000" : "4"
   },
   "3C6S_Zjh_y5g" : {
     "legacyAmsTaxonomyId" : "22",
@@ -2964,6 +3024,12 @@
     "preferredLabel" : "Borrning, CNC",
     "type" : "skill"
   },
+  "3axx_Htw_v3Y" : {
+    "legacyAmsTaxonomyId" : "12",
+    "preferredLabel" : "Fysik, kemi och geovetenskap",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "44"
+  },
   "3b5s_USP_HkW" : {
     "legacyAmsTaxonomyId" : "4318",
     "preferredLabel" : "Kvalitetsingenjör, textil, trä, glas, förpackningar",
@@ -3308,6 +3374,12 @@
     "legacyAmsTaxonomyId" : "523x",
     "preferredLabel" : "Annan utbildning i elektronik, datateknik och automation",
     "type" : "sun-education-field-4"
+  },
+  "3tw3_8oY_dxj" : {
+    "legacyAmsTaxonomyId" : "37",
+    "preferredLabel" : "Marknadsföring",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "342"
   },
   "3u3w_MCY_kSs" : {
     "legacyAmsTaxonomyId" : "3245",
@@ -3814,6 +3886,12 @@
     "preferredLabel" : "Glasyrberedning",
     "type" : "skill"
   },
+  "4HfD_y1M_8Pw" : {
+    "legacyAmsTaxonomyId" : "1",
+    "preferredLabel" : "Saknar formell, grundläggande utbildning",
+    "type" : "sun-education-level-1",
+    "concept.external-standard/sun-education-level-code-2000" : "0"
+  },
   "4Hi6_7T1_Gvb" : {
     "legacyAmsTaxonomyId" : "604743",
     "preferredLabel" : "Gruppreseförsäljning/Konferensreseförsäljning",
@@ -3938,6 +4016,12 @@
     "legacyAmsTaxonomyId" : "5625",
     "preferredLabel" : "Låssmed/Låstekniker",
     "type" : "occupation-name"
+  },
+  "4PW9_gBS_F1S" : {
+    "legacyAmsTaxonomyId" : "8",
+    "preferredLabel" : "Ämneslärarutbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "145"
   },
   "4Phz_zGz_JKi" : {
     "legacyAmsTaxonomyId" : "7714",
@@ -4083,6 +4167,12 @@
     "legacyAmsTaxonomyId" : "603501",
     "preferredLabel" : "Försäkringar, personaladministration",
     "type" : "skill"
+  },
+  "4Yyd_cXY_81C" : {
+    "legacyAmsTaxonomyId" : "21",
+    "preferredLabel" : "Socialt arbete och omsorg",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "76"
   },
   "4Z7F_oBG_vMG" : {
     "legacyAmsTaxonomyId" : "6581",
@@ -4604,6 +4694,12 @@
     "preferredLabel" : "Optioner",
     "type" : "skill"
   },
+  "4ukJ_qC7_U4C" : {
+    "legacyAmsTaxonomyId" : "95",
+    "preferredLabel" : "Socialt arbete och omsorg, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "760"
+  },
   "4vNR_A8T_wic" : {
     "legacyAmsTaxonomyId" : "609052",
     "preferredLabel" : "Mästarbrev, skyltmålare",
@@ -4748,6 +4844,12 @@
     "legacyAmsTaxonomyId" : "1627",
     "preferredLabel" : "Eilean Siar (Western Isles)",
     "type" : "region"
+  },
+  "539X_uW5_eM1" : {
+    "legacyAmsTaxonomyId" : "36",
+    "preferredLabel" : "Högskoleutbildning, 120 högskolepoäng - ej examen",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "532"
   },
   "53Pb_U1a_RpL" : {
     "legacyAmsTaxonomyId" : "607099",
@@ -5174,6 +5276,12 @@
     "preferredLabel" : "Hotell- och konferenschefer",
     "type" : "ssyk-level-3"
   },
+  "5P6t_k4T_Cfd" : {
+    "legacyAmsTaxonomyId" : "24",
+    "preferredLabel" : "Gymnasial utbildning tre år, yrkesinriktad",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "337"
+  },
   "5PZe_C4A_RPV" : {
     "legacyAmsTaxonomyId" : "604961",
     "preferredLabel" : "Säljledning",
@@ -5348,6 +5456,12 @@
     "legacyAmsTaxonomyId" : "609507",
     "preferredLabel" : "cGXP",
     "type" : "skill"
+  },
+  "5ZYs_Goa_eZi" : {
+    "legacyAmsTaxonomyId" : "2",
+    "preferredLabel" : "Förgymnasial utbildning kortare än 9 år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "10"
   },
   "5a7W_8S1_PCU" : {
     "legacyAmsTaxonomyId" : "151",
@@ -5544,6 +5658,12 @@
     "preferredLabel" : "Bakteriologi",
     "type" : "skill"
   },
+  "5jtT_iAj_3az" : {
+    "legacyAmsTaxonomyId" : "56",
+    "preferredLabel" : "Statistik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "462"
+  },
   "5jxc_THr_u7h" : {
     "legacyAmsTaxonomyId" : "988",
     "preferredLabel" : "CAM-tillverkning",
@@ -5558,6 +5678,12 @@
     "legacyAmsTaxonomyId" : "601572",
     "preferredLabel" : "B-foto",
     "type" : "skill"
+  },
+  "5nY3_mLw_py4" : {
+    "legacyAmsTaxonomyId" : "39",
+    "preferredLabel" : "Redovisning och beskattning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "344"
   },
   "5niU_3i3_Ztj" : {
     "legacyAmsTaxonomyId" : "608745",
@@ -5648,6 +5774,12 @@
     "legacyAmsTaxonomyId" : "608761",
     "preferredLabel" : "Aptana Studio, HTML-editor",
     "type" : "skill"
+  },
+  "5sET_rHK_6FL" : {
+    "legacyAmsTaxonomyId" : "62",
+    "preferredLabel" : "Teknik och teknisk industri, allmän inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "520"
   },
   "5sK2_1HH_TSg" : {
     "legacyAmsTaxonomyId" : "608507",
@@ -5823,6 +5955,12 @@
     "legacyAmsTaxonomyId" : "140",
     "preferredLabel" : "Smedjebacken",
     "type" : "municipality"
+  },
+  "5zhD_bZq_y27" : {
+    "legacyAmsTaxonomyId" : "37",
+    "preferredLabel" : "Eftergymn. utb. tre år - ej universitet/högskola",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "535"
   },
   "5zrc_Su8_X4D" : {
     "legacyAmsTaxonomyId" : "247",
@@ -6489,6 +6627,12 @@
     "preferredLabel" : "Lungsjukdomar",
     "type" : "skill"
   },
+  "6UxY_DYw_LsZ" : {
+    "legacyAmsTaxonomyId" : "23",
+    "preferredLabel" : "Gymnasial utbildning tre år, teoretisk/studieförb.",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "336"
+  },
   "6V78_5GY_XTu" : {
     "legacyAmsTaxonomyId" : "522d",
     "preferredLabel" : "Energi, drift och underhåll",
@@ -6528,6 +6672,12 @@
     "legacyAmsTaxonomyId" : "1840",
     "preferredLabel" : "Organisk kemist",
     "type" : "occupation-name"
+  },
+  "6WJG_2YW_FVY" : {
+    "legacyAmsTaxonomyId" : "64",
+    "preferredLabel" : "Energi- och elektroteknik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "522"
   },
   "6WME_9L5_tLy" : {
     "legacyAmsTaxonomyId" : "419",
@@ -6658,6 +6808,12 @@
     "legacyAmsTaxonomyId" : "221b",
     "preferredLabel" : "Pastors-, missionärs- och diakonutbildning",
     "type" : "sun-education-field-4"
+  },
+  "6eG6_Ptn_S11" : {
+    "legacyAmsTaxonomyId" : "41",
+    "preferredLabel" : "Eftergymn. utb. fyra år - ej universitet/högskola",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "545"
   },
   "6eMv_RdA_6nJ" : {
     "legacyAmsTaxonomyId" : "4687",
@@ -7599,6 +7755,12 @@
     "preferredLabel" : "León",
     "type" : "region"
   },
+  "7Nbb_SWd_gi2" : {
+    "legacyAmsTaxonomyId" : "46",
+    "preferredLabel" : "Biologi och biokemi",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "421"
+  },
   "7NpA_Fob_fUr" : {
     "legacyAmsTaxonomyId" : "607480",
     "preferredLabel" : "Textredigering",
@@ -7703,6 +7865,12 @@
     "legacyAmsTaxonomyId" : "1285",
     "preferredLabel" : "Oost-Zuid-Holland",
     "type" : "region"
+  },
+  "7TUb_TWN_vss" : {
+    "legacyAmsTaxonomyId" : "10",
+    "preferredLabel" : "Okänd",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "9"
   },
   "7TWG_1jQ_ULf" : {
     "legacyAmsTaxonomyId" : "6677",
@@ -8018,6 +8186,12 @@
     "legacyAmsTaxonomyId" : "556",
     "preferredLabel" : "Bayreuth, Kreisfreie Stadt",
     "type" : "region"
+  },
+  "7hoV_kEY_bNs" : {
+    "legacyAmsTaxonomyId" : "87",
+    "preferredLabel" : "Hälso- och sjukvård, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "720"
   },
   "7hqq_SwK_WeQ" : {
     "legacyAmsTaxonomyId" : "601443",
@@ -8724,6 +8898,12 @@
     "preferredLabel" : "Sjukhusmåltider",
     "type" : "skill"
   },
+  "8Fq5_QNy_um4" : {
+    "legacyAmsTaxonomyId" : "2",
+    "preferredLabel" : "Läs- och skrivinlärning för vuxna",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "08"
+  },
   "8G95_iDg_rtV" : {
     "legacyAmsTaxonomyId" : "10374",
     "preferredLabel" : "Medelirisk",
@@ -9134,10 +9314,22 @@
     "preferredLabel" : "Fiskare, jägare och samlare (självhushållning)",
     "type" : "isco-level-4"
   },
+  "8agP_Fyi_cZJ" : {
+    "legacyAmsTaxonomyId" : "5",
+    "preferredLabel" : "Pedagogik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "142"
+  },
   "8apd_uJW_r7B" : {
     "legacyAmsTaxonomyId" : "1348",
     "preferredLabel" : "Formpressare, skiktträ",
     "type" : "occupation-name"
+  },
+  "8bLX_3eK_bNT" : {
+    "legacyAmsTaxonomyId" : "43",
+    "preferredLabel" : "Företagsekonomi, handel, administration, övrig/ospec utb.",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "349"
   },
   "8bXt_tci_RGE" : {
     "legacyAmsTaxonomyId" : "608435",
@@ -9168,6 +9360,12 @@
     "legacyAmsTaxonomyId" : "6359",
     "preferredLabel" : "Apotekstekniker",
     "type" : "occupation-name"
+  },
+  "8cox_yp3_YjL" : {
+    "legacyAmsTaxonomyId" : "17",
+    "preferredLabel" : "Konst och media, övrig/ ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "219"
   },
   "8ddv_P8e_iYz" : {
     "legacyAmsTaxonomyId" : "1155",
@@ -9464,6 +9662,11 @@
     "preferredLabel" : "Övrig eftergymnasial utbildning, 5 år eller längre",
     "type" : "sun-education-level-3"
   },
+  "8too_bEs_7NU" : {
+    "legacyAmsTaxonomyId" : "2",
+    "preferredLabel" : "Kultur",
+    "type" : "occupation-collection"
+  },
   "8u7A_ze1_bvd" : {
     "legacyAmsTaxonomyId" : "608376",
     "preferredLabel" : "MS Power Point",
@@ -9554,6 +9757,12 @@
     "preferredLabel" : "Redaktionsledning, film",
     "type" : "skill"
   },
+  "8zJk_oCd_x1B" : {
+    "legacyAmsTaxonomyId" : "10",
+    "preferredLabel" : "Ospec gymnasial utbildning, kortare än två år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "310"
+  },
   "91Ef_58Y_jX4" : {
     "legacyAmsTaxonomyId" : "608389",
     "preferredLabel" : "Coaching/Coachning",
@@ -9593,6 +9802,12 @@
     "legacyAmsTaxonomyId" : "4271",
     "preferredLabel" : "Optisk kontroll av metallprodukter",
     "type" : "skill"
+  },
+  "93UM_7fh_Pgf" : {
+    "legacyAmsTaxonomyId" : "16",
+    "preferredLabel" : "Gymnasial utb. två år, teoretisk/studieförb. - ej slutbetyg",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "322"
   },
   "93t8_g4b_yeL" : {
     "legacyAmsTaxonomyId" : "878",
@@ -9904,6 +10119,12 @@
     "preferredLabel" : "Gibraltar",
     "type" : "country"
   },
+  "9LjE_eFV_QxW" : {
+    "legacyAmsTaxonomyId" : "1",
+    "preferredLabel" : "Allmän utbildning",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "0"
+  },
   "9M8a_pxP_14h" : {
     "legacyAmsTaxonomyId" : "2577",
     "preferredLabel" : "Fastighetsförmedlare",
@@ -9913,6 +10134,12 @@
     "legacyAmsTaxonomyId" : "438",
     "preferredLabel" : "Formsprutställare",
     "type" : "keyword"
+  },
+  "9MaS_smD_9Z1" : {
+    "legacyAmsTaxonomyId" : "111",
+    "preferredLabel" : "Miljövård och miljöskydd, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "859"
   },
   "9Mn4_PNA_7Yz" : {
     "legacyAmsTaxonomyId" : "1491",
@@ -10189,6 +10416,18 @@
     "preferredLabel" : "West Northamptonshire",
     "type" : "region"
   },
+  "9YBt_hQw_o2L" : {
+    "legacyAmsTaxonomyId" : "13",
+    "preferredLabel" : "Musik, dans och dramatik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "212"
+  },
+  "9YH9_Lmg_rAS" : {
+    "legacyAmsTaxonomyId" : "14",
+    "preferredLabel" : "Medieproduktion",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "213"
+  },
   "9YLn_WYQ_7uA" : {
     "legacyAmsTaxonomyId" : "606582",
     "preferredLabel" : "UML, programmeringsspråk",
@@ -10374,6 +10613,12 @@
     "preferredLabel" : "Processoperatör, betong",
     "type" : "occupation-name"
   },
+  "9gGq_Dzs_KHG" : {
+    "legacyAmsTaxonomyId" : "85",
+    "preferredLabel" : "Lantbruk, trädgård, skog och fiske, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "629"
+  },
   "9hXe_F4g_eTG" : {
     "legacyAmsTaxonomyId" : "192",
     "preferredLabel" : "Norrbottens län",
@@ -10513,6 +10758,12 @@
     "legacyAmsTaxonomyId" : "4111",
     "preferredLabel" : "Rörriktare",
     "type" : "occupation-name"
+  },
+  "9obY_tDa_mTd" : {
+    "legacyAmsTaxonomyId" : "72",
+    "preferredLabel" : "Tillverkning av textilier, konfektion och lädervaror",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "542"
   },
   "9pKg_zXP_9ig" : {
     "legacyAmsTaxonomyId" : "607691",
@@ -11049,6 +11300,12 @@
     "preferredLabel" : "Specialistbehörig inom arbets- och organisationspsykologi",
     "type" : "skill"
   },
+  "AMhn_PjK_EKb" : {
+    "legacyAmsTaxonomyId" : "42",
+    "preferredLabel" : "Högskoleutbildning fyra år, generell",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "546"
+  },
   "AMqv_3wu_bNr" : {
     "legacyAmsTaxonomyId" : "1319",
     "preferredLabel" : "Mühlviertel",
@@ -11108,6 +11365,12 @@
     "legacyAmsTaxonomyId" : "2915",
     "preferredLabel" : "IT-samordnare",
     "type" : "occupation-name"
+  },
+  "AQBm_TcY_696" : {
+    "legacyAmsTaxonomyId" : "3",
+    "preferredLabel" : "Personlig utveckling",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "090"
   },
   "AQMq_KTc_Ntj" : {
     "legacyAmsTaxonomyId" : "4399",
@@ -11198,6 +11461,12 @@
     "legacyAmsTaxonomyId" : "603544",
     "preferredLabel" : "Research, rekrytering",
     "type" : "skill"
+  },
+  "ATVY_8WJ_aCi" : {
+    "legacyAmsTaxonomyId" : "40",
+    "preferredLabel" : "Ledning och administration",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "345"
   },
   "AThj_o5R_e8w" : {
     "legacyAmsTaxonomyId" : "601475",
@@ -12204,6 +12473,12 @@
     "preferredLabel" : "Doktorsexamen, historisk-filosofiska ämnen",
     "type" : "skill"
   },
+  "BGZ9_GEe_E6A" : {
+    "legacyAmsTaxonomyId" : "51",
+    "preferredLabel" : "Kemi",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "442"
+  },
   "BGcQ_542_DWW" : {
     "legacyAmsTaxonomyId" : "010a",
     "preferredLabel" : "Bred, generell utbildning, allmän inriktning",
@@ -12434,6 +12709,12 @@
     "preferredLabel" : "Serviceingenjör, elkraft",
     "type" : "occupation-name"
   },
+  "BRYn_VA6_KHJ" : {
+    "legacyAmsTaxonomyId" : "20",
+    "preferredLabel" : "Främmande språk",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "222"
+  },
   "BRi4_in4_xLc" : {
     "legacyAmsTaxonomyId" : "71",
     "preferredLabel" : "Grekland",
@@ -12568,6 +12849,12 @@
     "legacyAmsTaxonomyId" : "1578",
     "preferredLabel" : "Fritidskonsulent",
     "type" : "occupation-name"
+  },
+  "BY3r_Qrv_rSm" : {
+    "legacyAmsTaxonomyId" : "22",
+    "preferredLabel" : "Personliga tjänster",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "81"
   },
   "BYpJ_4kt_38x" : {
     "legacyAmsTaxonomyId" : "607226",
@@ -13254,6 +13541,12 @@
     "preferredLabel" : "Lärling, murare",
     "type" : "occupation-name"
   },
+  "C8Eu_p9r_8SG" : {
+    "legacyAmsTaxonomyId" : "4",
+    "preferredLabel" : "Samhällsvetenskap, juridik, handel, administration",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "3"
+  },
   "C8Vw_RWy_GLt" : {
     "legacyAmsTaxonomyId" : "604438",
     "preferredLabel" : "Läkarsekreterarutbildning",
@@ -13589,6 +13882,12 @@
     "preferredLabel" : "Tillsyningsman vid växling och spärrfärd",
     "type" : "skill"
   },
+  "CMuX_9bh_i7v" : {
+    "legacyAmsTaxonomyId" : "38",
+    "preferredLabel" : "Bank, försäkring och finansiering",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "343"
+  },
   "CNHD_RxB_thm" : {
     "legacyAmsTaxonomyId" : "2282",
     "preferredLabel" : "Båtförsäljare",
@@ -13758,6 +14057,12 @@
     "legacyAmsTaxonomyId" : "608270",
     "preferredLabel" : "Planeringsarkitektexamen",
     "type" : "skill"
+  },
+  "CU11_PU7_Yj1" : {
+    "legacyAmsTaxonomyId" : "9",
+    "preferredLabel" : "Företagsekonomi, handel och administration",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "34"
   },
   "CU3J_MtX_Z8H" : {
     "legacyAmsTaxonomyId" : "609058",
@@ -14008,6 +14313,12 @@
     "legacyAmsTaxonomyId" : "103",
     "preferredLabel" : "Butikspersonal",
     "type" : "ssyk-level-3"
+  },
+  "Cds3_gHS_2kH" : {
+    "legacyAmsTaxonomyId" : "22",
+    "preferredLabel" : "Historia och arkeologi",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "225"
   },
   "Ce5J_e8j_7oh" : {
     "legacyAmsTaxonomyId" : "6349",
@@ -15089,6 +15400,12 @@
     "preferredLabel" : "Marknadsföring/Marknadskommunikation",
     "type" : "skill"
   },
+  "DXaZ_zY4_Skb" : {
+    "legacyAmsTaxonomyId" : "94",
+    "preferredLabel" : "Hälso- och sjukvård, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "729"
+  },
   "DXgG_q2M_xcA" : {
     "legacyAmsTaxonomyId" : "605932",
     "preferredLabel" : "Altsaxofon",
@@ -15199,6 +15516,12 @@
     "preferredLabel" : "Föredragande i kvalitetsråd",
     "type" : "skill"
   },
+  "DeBt_ahh_bkx" : {
+    "legacyAmsTaxonomyId" : "4",
+    "preferredLabel" : "Gymnasial utbildning",
+    "type" : "sun-education-level-1",
+    "concept.external-standard/sun-education-level-code-2000" : "3"
+  },
   "DeRa_xWC_EH3" : {
     "legacyAmsTaxonomyId" : "608816",
     "preferredLabel" : "Akupressur",
@@ -15263,6 +15586,12 @@
     "legacyAmsTaxonomyId" : "603149",
     "preferredLabel" : "Optik, produktkunskap",
     "type" : "skill"
+  },
+  "DioQ_TCJ_uNe" : {
+    "legacyAmsTaxonomyId" : "69",
+    "preferredLabel" : "Teknik och teknisk industri, övrig/ospec inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "529"
   },
   "Diz9_YkB_THm" : {
     "legacyAmsTaxonomyId" : "600767",
@@ -15829,6 +16158,12 @@
     "preferredLabel" : "Utvecklingsingenjör, metallurgi",
     "type" : "occupation-name"
   },
+  "EDHB_UjC_oj7" : {
+    "legacyAmsTaxonomyId" : "48",
+    "preferredLabel" : "Övrig/ospec forskarutbildning",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "600"
+  },
   "EDUL_5Zh_4bg" : {
     "legacyAmsTaxonomyId" : "43",
     "preferredLabel" : "Cypern",
@@ -16214,6 +16549,12 @@
     "preferredLabel" : "Mästarbrev, gardindekoratör",
     "type" : "skill"
   },
+  "EWVr_h9r_sqX" : {
+    "legacyAmsTaxonomyId" : "116",
+    "preferredLabel" : "Säkerhetstjänster, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "869"
+  },
   "EWXb_FW7_fTJ" : {
     "legacyAmsTaxonomyId" : "4412",
     "preferredLabel" : "Konstsmed",
@@ -16524,6 +16865,12 @@
     "preferredLabel" : "Ljud- och ljussättning",
     "type" : "skill"
   },
+  "En4A_M8Z_ir5" : {
+    "legacyAmsTaxonomyId" : "46",
+    "preferredLabel" : "Högskoleutbildning fem år eller längre, generell",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "556"
+  },
   "En9t_Siu_7yx" : {
     "legacyAmsTaxonomyId" : "10417",
     "preferredLabel" : "Mongo",
@@ -16593,6 +16940,11 @@
     "legacyAmsTaxonomyId" : "606833",
     "preferredLabel" : "Koreografi, jazzdans",
     "type" : "skill"
+  },
+  "EqEo_gap_iym" : {
+    "legacyAmsTaxonomyId" : "546",
+    "preferredLabel" : "Planeringskontorist",
+    "type" : "keyword"
   },
   "EqRh_UqX_wFB" : {
     "legacyAmsTaxonomyId" : "6064",
@@ -17134,6 +17486,11 @@
     "preferredLabel" : "Miljöekonomi",
     "type" : "skill"
   },
+  "FHDR_rx7_DMf" : {
+    "legacyAmsTaxonomyId" : "549",
+    "preferredLabel" : "Takläggare",
+    "type" : "keyword"
+  },
   "FHVr_swq_yGh" : {
     "legacyAmsTaxonomyId" : "608550",
     "preferredLabel" : "Certifierad Heatsettryckare",
@@ -17148,6 +17505,12 @@
     "legacyAmsTaxonomyId" : "2719",
     "preferredLabel" : "Säkerhetsanalytiker, IT",
     "type" : "occupation-name"
+  },
+  "FHxz_HhN_3Mk" : {
+    "legacyAmsTaxonomyId" : "14",
+    "preferredLabel" : "Data",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "48"
   },
   "FHys_kg1_wEZ" : {
     "legacyAmsTaxonomyId" : "431",
@@ -17344,6 +17707,12 @@
     "preferredLabel" : "Verktygsuppsättare, metallarbete",
     "type" : "isco-level-4"
   },
+  "FV3X_haZ_Pnm" : {
+    "legacyAmsTaxonomyId" : "80",
+    "preferredLabel" : "Lantbruk, trädgård, skog och fiske, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "620"
+  },
   "FVGD_Qb5_oxT" : {
     "legacyAmsTaxonomyId" : "1985",
     "preferredLabel" : "Dövkonsulent",
@@ -17388,6 +17757,12 @@
     "legacyAmsTaxonomyId" : "11",
     "preferredLabel" : "Fastighetsverksamhet",
     "type" : "sni-level-1"
+  },
+  "FX9r_G8o_Q7m" : {
+    "legacyAmsTaxonomyId" : "99",
+    "preferredLabel" : "Personliga tjänster, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "810"
   },
   "FXMq_z1V_5MA" : {
     "legacyAmsTaxonomyId" : "2376",
@@ -17508,6 +17883,12 @@
     "legacyAmsTaxonomyId" : "321",
     "preferredLabel" : "Journalistik och medievetenskap",
     "type" : "sun-education-field-3"
+  },
+  "FeaL_ddX_dKS" : {
+    "legacyAmsTaxonomyId" : "113",
+    "preferredLabel" : "Säkerhet i samhället",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "861"
   },
   "FebZ_LFa_Jns" : {
     "legacyAmsTaxonomyId" : "3690",
@@ -17998,6 +18379,12 @@
     "legacyAmsTaxonomyId" : "5127",
     "preferredLabel" : "Arbetsförmedlingschef",
     "type" : "occupation-name"
+  },
+  "G1rA_63B_GfY" : {
+    "legacyAmsTaxonomyId" : "25",
+    "preferredLabel" : "Ospec eftergymnasial utbildning kortare än två år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "410"
   },
   "G2E9_yG4_zBW" : {
     "legacyAmsTaxonomyId" : "602191",
@@ -19304,6 +19691,12 @@
     "preferredLabel" : "Behandlingsassistenter och pastorer",
     "type" : "ssyk-level-3"
   },
+  "H2Hx_4SX_4ZW" : {
+    "legacyAmsTaxonomyId" : "68",
+    "preferredLabel" : "Industriell ekonomi och organisation",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "526"
+  },
   "H2Le_YR5_AnM" : {
     "legacyAmsTaxonomyId" : "10359",
     "preferredLabel" : "Hiligaynon",
@@ -19488,6 +19881,12 @@
     "legacyAmsTaxonomyId" : "1909",
     "preferredLabel" : "Fysikalisk kemi",
     "type" : "skill"
+  },
+  "HBVy_FJQ_kv9" : {
+    "legacyAmsTaxonomyId" : "2",
+    "preferredLabel" : "Förskola",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "001"
   },
   "HCSE_Efi_Lhk" : {
     "legacyAmsTaxonomyId" : "608800",
@@ -19689,6 +20088,12 @@
     "preferredLabel" : "Prakrit",
     "type" : "language"
   },
+  "HPb7_EY8_1y1" : {
+    "legacyAmsTaxonomyId" : "34",
+    "preferredLabel" : "Högskoleutbildning två år, yrkesinriktad",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "527"
+  },
   "HPkE_2f2_MHN" : {
     "legacyAmsTaxonomyId" : "7341",
     "preferredLabel" : "Kärnmakare",
@@ -19824,6 +20229,12 @@
     "preferredLabel" : "Ritningsproduktion",
     "type" : "skill"
   },
+  "HWAC_N8n_Msg" : {
+    "legacyAmsTaxonomyId" : "31",
+    "preferredLabel" : "Högskoleutbildning, 80 högskolepoäng - ej examen",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "522"
+  },
   "HWFA_7cP_Zxz" : {
     "legacyAmsTaxonomyId" : "1307",
     "preferredLabel" : "Varpare",
@@ -19878,6 +20289,12 @@
     "legacyAmsTaxonomyId" : "1156",
     "preferredLabel" : "Övriga montörer",
     "type" : "ssyk-level-4"
+  },
+  "HYF5_1mW_iEg" : {
+    "legacyAmsTaxonomyId" : "27",
+    "preferredLabel" : "Sociologi, etnologi och kulturgeografi",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "312"
   },
   "HYth_uQt_hAk" : {
     "legacyAmsTaxonomyId" : "602618",
@@ -20104,6 +20521,12 @@
     "preferredLabel" : "Barnskötare",
     "type" : "ssyk-level-4"
   },
+  "HiC5_Vuj_CWE" : {
+    "legacyAmsTaxonomyId" : "98",
+    "preferredLabel" : "Socialt arbete och omsorg, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "769"
+  },
   "HiLb_VKp_HN5" : {
     "legacyAmsTaxonomyId" : "167",
     "preferredLabel" : "Oppland",
@@ -20259,6 +20682,12 @@
     "preferredLabel" : "Grupp- och konferensresor, reseproduktion",
     "type" : "skill"
   },
+  "Hs2h_raW_WzS" : {
+    "legacyAmsTaxonomyId" : "13",
+    "preferredLabel" : "Gymnasial utbildning kortare än två år, teoretisk/studieförb.",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "316"
+  },
   "Hs3Q_Zqk_SfZ" : {
     "legacyAmsTaxonomyId" : "606643",
     "preferredLabel" : "Privatbokbindning",
@@ -20288,6 +20717,12 @@
     "legacyAmsTaxonomyId" : "486",
     "preferredLabel" : "Planerare och utredare",
     "type" : "isco-level-4"
+  },
+  "HtaV_xyR_vGh" : {
+    "legacyAmsTaxonomyId" : "27",
+    "preferredLabel" : "Gymnasial påbyggnadsutbildning",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "413"
   },
   "HtgZ_Ukp_YEX" : {
     "legacyAmsTaxonomyId" : "603772",
@@ -20583,6 +21018,12 @@
     "legacyAmsTaxonomyId" : "1334",
     "preferredLabel" : "Piotrkowski",
     "type" : "region"
+  },
+  "JDjD_4J1_JSf" : {
+    "legacyAmsTaxonomyId" : "3",
+    "preferredLabel" : "Förskoleklass",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "002"
   },
   "JDk9_Yia_DPQ" : {
     "legacyAmsTaxonomyId" : "10411",
@@ -21323,6 +21764,12 @@
     "legacyAmsTaxonomyId" : "3574",
     "preferredLabel" : "Låneexpediering",
     "type" : "skill"
+  },
+  "JknA_UPL_Whi" : {
+    "legacyAmsTaxonomyId" : "92",
+    "preferredLabel" : "Terapi, rehabilitering och kostbehandling",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "726"
   },
   "Jkyb_5MQ_7pB" : {
     "legacyAmsTaxonomyId" : "78",
@@ -22259,6 +22706,12 @@
     "preferredLabel" : "Bildredaktör",
     "type" : "occupation-name"
   },
+  "KZWE_1cF_3nz" : {
+    "legacyAmsTaxonomyId" : "32",
+    "preferredLabel" : "Eftergymn. utb. två år - ej universitet/högskola",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "525"
+  },
   "KZb6_UBs_gP9" : {
     "legacyAmsTaxonomyId" : "3889",
     "preferredLabel" : "Miljörätt",
@@ -22383,6 +22836,12 @@
     "legacyAmsTaxonomyId" : "3949",
     "preferredLabel" : "Monterbygge",
     "type" : "skill"
+  },
+  "KgGa_3B4_rfF" : {
+    "legacyAmsTaxonomyId" : "96",
+    "preferredLabel" : "Barn och ungdom",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "761"
   },
   "KgJQ_nBR_eQr" : {
     "legacyAmsTaxonomyId" : "7030",
@@ -22638,6 +23097,12 @@
     "legacyAmsTaxonomyId" : "2135",
     "preferredLabel" : "Gesällbrev, damskräddare",
     "type" : "skill"
+  },
+  "KtXa_QCS_oqr" : {
+    "legacyAmsTaxonomyId" : "10",
+    "preferredLabel" : "Pedagogik och lärarutbildning, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "149"
   },
   "KtYy_uFS_cPk" : {
     "legacyAmsTaxonomyId" : "725b",
@@ -23069,6 +23534,12 @@
     "preferredLabel" : "Taltidningsredaktör",
     "type" : "occupation-name"
   },
+  "LCMe_ZaV_6Ky" : {
+    "legacyAmsTaxonomyId" : "57",
+    "preferredLabel" : "Matematik och naturvetenskap, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "469"
+  },
   "LCgM_VXV_8H1" : {
     "legacyAmsTaxonomyId" : "989",
     "preferredLabel" : "Preveza",
@@ -23398,6 +23869,12 @@
     "legacyAmsTaxonomyId" : "3144",
     "preferredLabel" : "Assistentåklagare",
     "type" : "occupation-name"
+  },
+  "LUBK_osH_JKn" : {
+    "legacyAmsTaxonomyId" : "90",
+    "preferredLabel" : "Tandvård",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "724"
   },
   "LUJL_inh_kVk" : {
     "legacyAmsTaxonomyId" : "6112",
@@ -23858,6 +24335,12 @@
     "legacyAmsTaxonomyId" : "603018",
     "preferredLabel" : "Områdesansvar, kriminalvård",
     "type" : "skill"
+  },
+  "Lq8b_rUX_aLW" : {
+    "legacyAmsTaxonomyId" : "15",
+    "preferredLabel" : "Ospec gymnasial utbildning, två år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "320"
   },
   "Lqeq_PaN_Kuv" : {
     "legacyAmsTaxonomyId" : "606396",
@@ -24424,6 +24907,12 @@
     "preferredLabel" : "Betonghåltagare, utan yrkesbevis",
     "type" : "occupation-name"
   },
+  "MH7v_FRf_Zu5" : {
+    "legacyAmsTaxonomyId" : "73",
+    "preferredLabel" : "Tillverkning av trä-, pappers-, glas/porslin- och plastprodukter",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "543"
+  },
   "MH9b_Wag_RY3" : {
     "legacyAmsTaxonomyId" : "1575",
     "preferredLabel" : "Surrey",
@@ -24584,6 +25073,12 @@
     "preferredLabel" : "Łomżyński",
     "type" : "region"
   },
+  "MSBQ_Ydc_e48" : {
+    "legacyAmsTaxonomyId" : "11",
+    "preferredLabel" : "Konst och media, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "210"
+  },
   "MSJq_Wbm_EN9" : {
     "legacyAmsTaxonomyId" : "609256",
     "preferredLabel" : "Gesällbrev, mur och puts",
@@ -24623,6 +25118,12 @@
     "legacyAmsTaxonomyId" : "352",
     "preferredLabel" : "Automationsteknik",
     "type" : "skill"
+  },
+  "MT8d_afo_hxf" : {
+    "legacyAmsTaxonomyId" : "93",
+    "preferredLabel" : "Farmaci",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "727"
   },
   "MTxB_MsL_yJi" : {
     "legacyAmsTaxonomyId" : "1101",
@@ -24788,6 +25289,12 @@
     "legacyAmsTaxonomyId" : "862",
     "preferredLabel" : "Maskinmekaniker, industri/Maskinmekaniker, varvsindustri",
     "type" : "occupation-name"
+  },
+  "MaW6_doG_AHd" : {
+    "legacyAmsTaxonomyId" : "81",
+    "preferredLabel" : "Lantbruk",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "621"
   },
   "MaYZ_6Wo_1QK" : {
     "legacyAmsTaxonomyId" : "609477",
@@ -25699,6 +26206,12 @@
     "preferredLabel" : "MAG-svetsning",
     "type" : "skill"
   },
+  "NHoR_m8B_C3x" : {
+    "legacyAmsTaxonomyId" : "19",
+    "preferredLabel" : "Religion",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "221"
+  },
   "NJTY_G1b_vc6" : {
     "legacyAmsTaxonomyId" : "114",
     "preferredLabel" : "Kuwait",
@@ -25899,6 +26412,12 @@
     "preferredLabel" : "Maskinmontör",
     "type" : "occupation-name"
   },
+  "NUG8_Snr_k2h" : {
+    "legacyAmsTaxonomyId" : "6",
+    "preferredLabel" : "Gymnasial utbildning tre år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "33"
+  },
   "NUpx_Toz_rKK" : {
     "legacyAmsTaxonomyId" : "296",
     "preferredLabel" : "ST tandläkare",
@@ -25963,6 +26482,12 @@
     "legacyAmsTaxonomyId" : "600256",
     "preferredLabel" : "Driftledning, lantbruk",
     "type" : "skill"
+  },
+  "NY3T_U9N_g8P" : {
+    "legacyAmsTaxonomyId" : "53",
+    "preferredLabel" : "Fysik, kemi och geovetenskap, övrig/ospecificerad utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "449"
   },
   "NYW6_mP6_vwf" : {
     "legacyAmsTaxonomyId" : "8",
@@ -26064,6 +26589,12 @@
     "preferredLabel" : "Mängberedare",
     "type" : "occupation-name"
   },
+  "NcLy_JUs_APX" : {
+    "legacyAmsTaxonomyId" : "3",
+    "preferredLabel" : "Förgymnasial utbildning 9 (10) år",
+    "type" : "sun-education-level-1",
+    "concept.external-standard/sun-education-level-code-2000" : "2"
+  },
   "NcPe_evu_eSP" : {
     "legacyAmsTaxonomyId" : "606294",
     "preferredLabel" : "Onkologisk kirurgi",
@@ -26078,6 +26609,12 @@
     "legacyAmsTaxonomyId" : "1364",
     "preferredLabel" : "Gipstekniker",
     "type" : "occupation-name"
+  },
+  "Ncs5_r86_7c6" : {
+    "legacyAmsTaxonomyId" : "4",
+    "preferredLabel" : "Pedagogik och lärarutbildning, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "140"
   },
   "Ncw3_4mT_QsM" : {
     "legacyAmsTaxonomyId" : "521",
@@ -26118,6 +26655,12 @@
     "legacyAmsTaxonomyId" : "608306",
     "preferredLabel" : "Röjningsmaskin",
     "type" : "skill"
+  },
+  "Nevd_r3u_rHQ" : {
+    "legacyAmsTaxonomyId" : "107",
+    "preferredLabel" : "Miljövård och miljöskydd, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "850"
   },
   "NfDv_1zP_NsD" : {
     "legacyAmsTaxonomyId" : "609335",
@@ -27169,6 +27712,12 @@
     "preferredLabel" : "SYO-konsulent",
     "type" : "keyword"
   },
+  "PXw4_PVq_XQ7" : {
+    "legacyAmsTaxonomyId" : "86",
+    "preferredLabel" : "Djursjukvård",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "640"
+  },
   "PY3M_7bz_cbC" : {
     "legacyAmsTaxonomyId" : "4813",
     "preferredLabel" : "Filmklippare",
@@ -27188,6 +27737,12 @@
     "legacyAmsTaxonomyId" : "218",
     "preferredLabel" : "Sanerare",
     "type" : "keyword"
+  },
+  "PZSN_Uet_whj" : {
+    "legacyAmsTaxonomyId" : "30",
+    "preferredLabel" : "Ospec eftergymnasial utbildning två år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "520"
   },
   "PZVW_mPQ_Dem" : {
     "legacyAmsTaxonomyId" : "608852",
@@ -27664,6 +28219,12 @@
     "preferredLabel" : "Kemister",
     "type" : "isco-level-4"
   },
+  "Pygs_mPG_CmL" : {
+    "legacyAmsTaxonomyId" : "35",
+    "preferredLabel" : "Ospec eftergymnasial utbildning tre år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "530"
+  },
   "PymD_7GM_So3" : {
     "legacyAmsTaxonomyId" : "605672",
     "preferredLabel" : "Klarinett, undervisning musikskola",
@@ -27754,6 +28315,12 @@
     "preferredLabel" : "Rems-Murr-Kreis",
     "type" : "region"
   },
+  "Q2eo_vhL_HY9" : {
+    "legacyAmsTaxonomyId" : "32",
+    "preferredLabel" : "Journalistik och medievetenskap",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "321"
+  },
   "Q2rd_FZb_hHA" : {
     "legacyAmsTaxonomyId" : "469z",
     "preferredLabel" : "Matematik och naturvetenskap, övrig och ospecificerad utbildning",
@@ -27773,6 +28340,12 @@
     "legacyAmsTaxonomyId" : "606827",
     "preferredLabel" : "Produktionsplanering, kultur",
     "type" : "skill"
+  },
+  "Q57D_5Co_RuX" : {
+    "legacyAmsTaxonomyId" : "101",
+    "preferredLabel" : "Turism, resor och fritid",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "812"
   },
   "Q5D4_pTu_3aQ" : {
     "legacyAmsTaxonomyId" : "5406",
@@ -28308,6 +28881,12 @@
     "legacyAmsTaxonomyId" : "223",
     "preferredLabel" : "Ungern",
     "type" : "country"
+  },
+  "QWxc_uBm_6xz" : {
+    "legacyAmsTaxonomyId" : "18",
+    "preferredLabel" : "Humaniora, allmän inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "220"
   },
   "QXFx_W3e_Piy" : {
     "legacyAmsTaxonomyId" : "606131",
@@ -29024,6 +29603,12 @@
     "preferredLabel" : "Posten",
     "type" : "keyword"
   },
+  "R8Gg_5az_6YY" : {
+    "legacyAmsTaxonomyId" : "21",
+    "preferredLabel" : "Gymnasial utb. tre år, teoretisk/studieförb, ej slutbetyg",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "332"
+  },
   "R8HU_9i4_LF3" : {
     "legacyAmsTaxonomyId" : "601777",
     "preferredLabel" : "Parkeringsbevakning",
@@ -29379,6 +29964,11 @@
     "preferredLabel" : "Försäljning, inköp, marknadsföring",
     "type" : "occupation-field"
   },
+  "RQbr_SzR_2B6" : {
+    "legacyAmsTaxonomyId" : "547",
+    "preferredLabel" : "Ställningsmontör",
+    "type" : "keyword"
+  },
   "RQfq_3Yc_hXq" : {
     "legacyAmsTaxonomyId" : "1479",
     "preferredLabel" : "Gorenjska",
@@ -29654,6 +30244,12 @@
     "preferredLabel" : "Databastekniker",
     "type" : "keyword"
   },
+  "Re9t_xHP_X5n" : {
+    "legacyAmsTaxonomyId" : "7",
+    "preferredLabel" : "Lant- och skogsbruk samt djursjukvård",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "6"
+  },
   "ReaM_tTr_eNz" : {
     "legacyAmsTaxonomyId" : "608122",
     "preferredLabel" : "Rörläggning, mark",
@@ -29741,7 +30337,7 @@
   },
   "RjFD_8oW_Y2B" : {
     "legacyAmsTaxonomyId" : "3224",
-    "preferredLabel" : "Brodös",
+    "preferredLabel" : "Brodör/Brodös",
     "type" : "occupation-name"
   },
   "RjeB_w9X_dhM" : {
@@ -30174,10 +30770,21 @@
     "preferredLabel" : "Produktionschef, bygg",
     "type" : "occupation-name"
   },
+  "SBmN_Lpu_qQY" : {
+    "legacyAmsTaxonomyId" : "543",
+    "preferredLabel" : "Dispatcher",
+    "type" : "keyword"
+  },
   "SC3s_eyP_pm5" : {
     "legacyAmsTaxonomyId" : "2546",
     "preferredLabel" : "Inköpsledare",
     "type" : "occupation-name"
+  },
+  "SCkk_Q22_ads" : {
+    "legacyAmsTaxonomyId" : "49",
+    "preferredLabel" : "Fysik, kemi och geovetenskap, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "440"
   },
   "SD5C_2N7_KJs" : {
     "legacyAmsTaxonomyId" : "6439",
@@ -30629,6 +31236,12 @@
     "preferredLabel" : "Metallkonstruktionsmontör",
     "type" : "occupation-name"
   },
+  "SY6y_KKg_gQ5" : {
+    "legacyAmsTaxonomyId" : "13",
+    "preferredLabel" : "Matematik och övrig naturvetenskap",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "46"
+  },
   "SYHY_k5x_Kaa" : {
     "legacyAmsTaxonomyId" : "606412",
     "preferredLabel" : "Genusvetenskap",
@@ -30764,6 +31377,12 @@
     "preferredLabel" : "Landskapsingenjörsutbildning",
     "type" : "sun-education-field-4"
   },
+  "SdS6_SLL_mRJ" : {
+    "legacyAmsTaxonomyId" : "7",
+    "preferredLabel" : "Forskarutbildning",
+    "type" : "sun-education-level-1",
+    "concept.external-standard/sun-education-level-code-2000" : "6"
+  },
   "SdUN_U1M_aqG" : {
     "legacyAmsTaxonomyId" : "609506",
     "preferredLabel" : "Psykologisk traumabehandling",
@@ -30808,6 +31427,12 @@
     "legacyAmsTaxonomyId" : "609279",
     "preferredLabel" : "IWT (International Welding Technician), certifikat",
     "type" : "skill"
+  },
+  "SfLL_rj2_QW5" : {
+    "legacyAmsTaxonomyId" : "3",
+    "preferredLabel" : "Personlig utveckling",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "09"
   },
   "SfoE_zq7_ADN" : {
     "legacyAmsTaxonomyId" : "605471",
@@ -30998,6 +31623,12 @@
     "legacyAmsTaxonomyId" : "606499",
     "preferredLabel" : "Trafikövervakarutbildning",
     "type" : "skill"
+  },
+  "Sr6E_n3y_LFY" : {
+    "legacyAmsTaxonomyId" : "71",
+    "preferredLabel" : "Tillverkning och hantering av livsmedel",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "541"
   },
   "SrDK_dDn_MRr" : {
     "legacyAmsTaxonomyId" : "607884",
@@ -31238,6 +31869,12 @@
     "legacyAmsTaxonomyId" : "4714",
     "preferredLabel" : "Psykodrama",
     "type" : "skill"
+  },
+  "T2aZ_5dP_myb" : {
+    "legacyAmsTaxonomyId" : "29",
+    "preferredLabel" : "Nationalekonomi och ekonomisk historia",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "314"
   },
   "T2nj_Q9h_B6N" : {
     "legacyAmsTaxonomyId" : "4993",
@@ -31749,6 +32386,12 @@
     "preferredLabel" : "Distributionschef, logistik och transporter",
     "type" : "occupation-name"
   },
+  "TNYs_h9A_Wxw" : {
+    "legacyAmsTaxonomyId" : "29",
+    "preferredLabel" : "Högskoleutbildning kortare än två år, yrkesinriktad",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "417"
+  },
   "TNfP_oGb_U7Y" : {
     "legacyAmsTaxonomyId" : "3938",
     "preferredLabel" : "Modeteckning",
@@ -31908,6 +32551,12 @@
     "legacyAmsTaxonomyId" : "600349",
     "preferredLabel" : "Göteborgska",
     "type" : "skill"
+  },
+  "TVjf_K43_Tom" : {
+    "legacyAmsTaxonomyId" : "17",
+    "preferredLabel" : "Samhällsbyggnad och byggnadsteknik",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "58"
   },
   "TVmr_L7y_Pga" : {
     "legacyAmsTaxonomyId" : "1383",
@@ -32093,6 +32742,12 @@
     "legacyAmsTaxonomyId" : "609037",
     "preferredLabel" : "Oförstörande provning: Röntgenprovning (RT)",
     "type" : "skill"
+  },
+  "TeFf_8Gt_kUy" : {
+    "legacyAmsTaxonomyId" : "26",
+    "preferredLabel" : "Högskoleutbildning, 20 högskolepoäng",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "412"
   },
   "Tenf_fGQ_nL3" : {
     "legacyAmsTaxonomyId" : "608513",
@@ -32594,6 +33249,12 @@
     "preferredLabel" : "Rational Application Developer, systemutvecklingsverktyg",
     "type" : "skill"
   },
+  "U2tL_eEu_Rwi" : {
+    "legacyAmsTaxonomyId" : "7",
+    "preferredLabel" : "Övrig/ospec förgymnasial utbildning, 9 (10) år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "200"
+  },
   "U35K_sCP_412" : {
     "legacyAmsTaxonomyId" : "1110",
     "preferredLabel" : "Primorsko-goranska županija",
@@ -32959,6 +33620,12 @@
     "preferredLabel" : "Chaufför",
     "type" : "keyword"
   },
+  "UNfA_7nX_bET" : {
+    "legacyAmsTaxonomyId" : "24",
+    "preferredLabel" : "Miljövård och miljöskydd",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "85"
+  },
   "UNnG_geo_74L" : {
     "legacyAmsTaxonomyId" : "2519",
     "preferredLabel" : "Nätverksoperatör",
@@ -33084,6 +33751,12 @@
     "preferredLabel" : "Mästarbrev, oljeeldningsinstallatör",
     "type" : "skill"
   },
+  "UU8r_VKf_oQ9" : {
+    "legacyAmsTaxonomyId" : "115",
+    "preferredLabel" : "Militär utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "863"
+  },
   "UUE8_GcS_LU1" : {
     "legacyAmsTaxonomyId" : "723g",
     "preferredLabel" : "Specialistsjuksköterskeutbildning, medicinsk vård",
@@ -33173,6 +33846,12 @@
     "legacyAmsTaxonomyId" : "129",
     "preferredLabel" : "Filipstad",
     "type" : "municipality"
+  },
+  "UXoe_GVp_gui" : {
+    "legacyAmsTaxonomyId" : "55",
+    "preferredLabel" : "Matematik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "461"
   },
   "UXrZ_zPo_KPu" : {
     "legacyAmsTaxonomyId" : "2585",
@@ -33504,6 +34183,12 @@
     "preferredLabel" : "Lokförare/Förare av tåg",
     "type" : "occupation-name"
   },
+  "Ukka_6GP_sQX" : {
+    "legacyAmsTaxonomyId" : "20",
+    "preferredLabel" : "Ospec gymnasial utbildning, tre år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "330"
+  },
   "Um6A_F9Z_xZP" : {
     "legacyAmsTaxonomyId" : "400071",
     "preferredLabel" : "Ompipning",
@@ -33719,6 +34404,12 @@
     "preferredLabel" : "Nowosądecki",
     "type" : "region"
   },
+  "UxRr_5s9_VBv" : {
+    "legacyAmsTaxonomyId" : "35",
+    "preferredLabel" : "Företagsekonomi, handel, administration, allmän utb.",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "340"
+  },
   "UxT1_tPF_Kbg" : {
     "legacyAmsTaxonomyId" : "1397",
     "preferredLabel" : "Övriga IT-specialister",
@@ -33783,6 +34474,12 @@
     "legacyAmsTaxonomyId" : "2345",
     "preferredLabel" : "Växtskötare",
     "type" : "occupation-name"
+  },
+  "V1UN_fpn_MSc" : {
+    "legacyAmsTaxonomyId" : "28",
+    "preferredLabel" : "Eftergymn. utb. kortare än två år - ej universitet/högskola",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "415"
   },
   "V1dQ_C58_iEc" : {
     "legacyAmsTaxonomyId" : "470",
@@ -34329,6 +35026,12 @@
     "preferredLabel" : "Medelhavsarkeologi",
     "type" : "skill"
   },
+  "VUYW_QTi_XTt" : {
+    "legacyAmsTaxonomyId" : "1",
+    "preferredLabel" : "Förskoleutbildning",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "00"
+  },
   "VUpS_Usc_Qdu" : {
     "legacyAmsTaxonomyId" : "606601",
     "preferredLabel" : "Köprätt",
@@ -34393,6 +35096,12 @@
     "legacyAmsTaxonomyId" : "607499",
     "preferredLabel" : "Rörelseterapi",
     "type" : "skill"
+  },
+  "VYJg_tHa_Dsd" : {
+    "legacyAmsTaxonomyId" : "38",
+    "preferredLabel" : "Högskoleutbildning tre år, generell",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "536"
   },
   "VYLr_fEP_8Yh" : {
     "legacyAmsTaxonomyId" : "238",
@@ -34784,6 +35493,12 @@
     "preferredLabel" : "Trädgård",
     "type" : "sun-education-field-3"
   },
+  "VrJC_fxN_kBt" : {
+    "legacyAmsTaxonomyId" : "34",
+    "preferredLabel" : "Journalistik och information, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "329"
+  },
   "VrVG_dHs_hN5" : {
     "legacyAmsTaxonomyId" : "7329",
     "preferredLabel" : "Renserioperatör",
@@ -35064,6 +35779,12 @@
     "preferredLabel" : "Tillv. av stenkolsprod. o raffin. petroleumprod.",
     "type" : "sni-level-2"
   },
+  "W9YL_pFW_jk1" : {
+    "legacyAmsTaxonomyId" : "5",
+    "preferredLabel" : "Naturvetenskap, matematik och data",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "4"
+  },
   "W9YM_2g9_ToD" : {
     "legacyAmsTaxonomyId" : "603",
     "preferredLabel" : "Unterallgäu",
@@ -35198,6 +35919,12 @@
     "legacyAmsTaxonomyId" : "607747",
     "preferredLabel" : "Synon/2E, programmeringsspråk",
     "type" : "skill"
+  },
+  "WFCz_teU_KFf" : {
+    "legacyAmsTaxonomyId" : "15",
+    "preferredLabel" : "Teknik och teknisk industri",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "52"
   },
   "WFWb_oXM_pFH" : {
     "legacyAmsTaxonomyId" : "795",
@@ -35548,6 +36275,12 @@
     "legacyAmsTaxonomyId" : "5512",
     "preferredLabel" : "Montör, el- och teleutrustning",
     "type" : "occupation-name"
+  },
+  "WWvj_CQ1_Qzu" : {
+    "legacyAmsTaxonomyId" : "91",
+    "preferredLabel" : "Tekniskt inriktad vårdutbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "725"
   },
   "WX67_Pfb_WMN" : {
     "legacyAmsTaxonomyId" : "1405",
@@ -36289,6 +37022,12 @@
     "preferredLabel" : "Barnsjuksköterska, akutmottagning",
     "type" : "occupation-name"
   },
+  "X6vi_pjC_B58" : {
+    "legacyAmsTaxonomyId" : "36",
+    "preferredLabel" : "Inköp, försäljning och distribution",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "341"
+  },
   "X7HR_rZK_4wj" : {
     "legacyAmsTaxonomyId" : "1127",
     "preferredLabel" : "Renhållnings- och återvinningsarbetare",
@@ -36659,6 +37398,12 @@
     "preferredLabel" : "Verktygsoperatör",
     "type" : "keyword"
   },
+  "XPGP_ww2_P6o" : {
+    "legacyAmsTaxonomyId" : "3",
+    "preferredLabel" : "Humaniora och konst",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "2"
+  },
   "XPL2_squ_8rj" : {
     "legacyAmsTaxonomyId" : "2306",
     "preferredLabel" : "Biluthyrare",
@@ -36763,6 +37508,12 @@
     "legacyAmsTaxonomyId" : "3482",
     "preferredLabel" : "Listpåsättning",
     "type" : "skill"
+  },
+  "XUKo_gV7_FH9" : {
+    "legacyAmsTaxonomyId" : "33",
+    "preferredLabel" : "Högskoleutbildning två år, generell",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "526"
   },
   "XUUx_FMJ_WbX" : {
     "legacyAmsTaxonomyId" : "6160",
@@ -37194,6 +37945,11 @@
     "preferredLabel" : "Avfallssorterare",
     "type" : "isco-level-4"
   },
+  "XouD_cCj_HZN" : {
+    "legacyAmsTaxonomyId" : "3",
+    "preferredLabel" : "Sjöfart",
+    "type" : "occupation-collection"
+  },
   "Xoz2_dQe_9KC" : {
     "legacyAmsTaxonomyId" : "6051",
     "preferredLabel" : "Skådespelare",
@@ -37248,6 +38004,12 @@
     "legacyAmsTaxonomyId" : "601174",
     "preferredLabel" : "Mindre däggdjur, konservering",
     "type" : "skill"
+  },
+  "XscF_9UP_jAQ" : {
+    "legacyAmsTaxonomyId" : "8",
+    "preferredLabel" : "Journalistik och information",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "32"
   },
   "XtDR_rs2_WbM" : {
     "legacyAmsTaxonomyId" : "1746",
@@ -37504,6 +38266,12 @@
     "preferredLabel" : "VVS-artiklar",
     "type" : "skill"
   },
+  "Y4dq_b8L_y7f" : {
+    "legacyAmsTaxonomyId" : "33",
+    "preferredLabel" : "Biblioteks- och dokumentationsvetenskap",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "322"
+  },
   "Y4fa_2ye_bPB" : {
     "legacyAmsTaxonomyId" : "609402",
     "preferredLabel" : "R, programmeringsspråk",
@@ -37629,6 +38397,12 @@
     "preferredLabel" : "Arkitekt-AutoCAD Architecture",
     "type" : "skill"
   },
+  "YAR6_HPG_Wup" : {
+    "legacyAmsTaxonomyId" : "112",
+    "preferredLabel" : "Säkerhetstjänster, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "860"
+  },
   "YAZS_em1_CWM" : {
     "legacyAmsTaxonomyId" : "606028",
     "preferredLabel" : "Diplomerad massageterapeut",
@@ -37718,6 +38492,12 @@
     "legacyAmsTaxonomyId" : "35",
     "preferredLabel" : "Skogsarbetare, fiskodlare och fiskare",
     "type" : "ssyk-level-2"
+  },
+  "YDc6_WRZ_dxY" : {
+    "legacyAmsTaxonomyId" : "65",
+    "preferredLabel" : "Elektronik, datateknik och automation",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "523"
   },
   "YDmL_ZDT_GeN" : {
     "legacyAmsTaxonomyId" : "2864",
@@ -39069,6 +39849,12 @@
     "preferredLabel" : "Shan",
     "type" : "language"
   },
+  "ZRLv_MgR_xar" : {
+    "legacyAmsTaxonomyId" : "7",
+    "preferredLabel" : "Eftergymnasial utbildning kortare än två år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "41"
+  },
   "ZRan_cZZ_rCH" : {
     "legacyAmsTaxonomyId" : "609007",
     "preferredLabel" : "Triggerpunktsbehandling",
@@ -39804,6 +40590,12 @@
     "preferredLabel" : "Byggnadsarbete, allmän utbildning",
     "type" : "sun-education-field-4"
   },
+  "a2Fs_Qsk_Ywm" : {
+    "legacyAmsTaxonomyId" : "117",
+    "preferredLabel" : "Okänd",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "999"
+  },
   "a2Nd_qJ3_S8y" : {
     "legacyAmsTaxonomyId" : "603480",
     "preferredLabel" : "Homesite, HTML-editor",
@@ -40303,6 +41095,11 @@
     "legacyAmsTaxonomyId" : "6607",
     "preferredLabel" : "Xylofon",
     "type" : "skill"
+  },
+  "aNU9_s67_u35" : {
+    "legacyAmsTaxonomyId" : "548",
+    "preferredLabel" : "Räckesmontör",
+    "type" : "keyword"
   },
   "aNcD_UfW_vYN" : {
     "legacyAmsTaxonomyId" : "608480",
@@ -40884,6 +41681,12 @@
     "preferredLabel" : "Geologassistent",
     "type" : "occupation-name"
   },
+  "asZm_TEQ_Srk" : {
+    "legacyAmsTaxonomyId" : "6",
+    "preferredLabel" : "Eftergymnasial utbildning två år eller längre",
+    "type" : "sun-education-level-1",
+    "concept.external-standard/sun-education-level-code-2000" : "5"
+  },
   "asoZ_EG3_FnJ" : {
     "legacyAmsTaxonomyId" : "1391",
     "preferredLabel" : "Elbląski",
@@ -40898,6 +41701,12 @@
     "legacyAmsTaxonomyId" : "607826",
     "preferredLabel" : "Ljud-Steinberg Cubase",
     "type" : "skill"
+  },
+  "atFb_xjp_QfB" : {
+    "legacyAmsTaxonomyId" : "1",
+    "preferredLabel" : "Bred, generell utbildning",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "01"
   },
   "atNo_duQ_gUr" : {
     "legacyAmsTaxonomyId" : "889",
@@ -41241,7 +42050,7 @@
   },
   "b8zu_Rj1_6f5" : {
     "legacyAmsTaxonomyId" : "484",
-    "preferredLabel" : "Skpeeningskontorist",
+    "preferredLabel" : "Skeppningskontorist",
     "type" : "keyword"
   },
   "b9Kr_C83_dG1" : {
@@ -41443,6 +42252,12 @@
     "legacyAmsTaxonomyId" : "10333",
     "preferredLabel" : "Egyptiska",
     "type" : "language"
+  },
+  "bJvh_FX8_mXf" : {
+    "legacyAmsTaxonomyId" : "83",
+    "preferredLabel" : "Skog",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "623"
   },
   "bKM3_9g1_WWC" : {
     "legacyAmsTaxonomyId" : "6501",
@@ -41868,6 +42683,12 @@
     "legacyAmsTaxonomyId" : "609006",
     "preferredLabel" : "Yogamassage",
     "type" : "skill"
+  },
+  "be55_L6H_rYK" : {
+    "legacyAmsTaxonomyId" : "19",
+    "preferredLabel" : "Djursjukvård",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "64"
   },
   "beHF_mum_ANM" : {
     "legacyAmsTaxonomyId" : "604556",
@@ -42469,6 +43290,12 @@
     "preferredLabel" : "Mjuklödning",
     "type" : "skill"
   },
+  "c5zp_f4X_VMV" : {
+    "legacyAmsTaxonomyId" : "25",
+    "preferredLabel" : "Säkerhetstjänster",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "86"
+  },
   "c65z_4Bk_vPx" : {
     "legacyAmsTaxonomyId" : "3218",
     "preferredLabel" : "Kryptoteknik",
@@ -43014,6 +43841,12 @@
     "preferredLabel" : "Universitets- och högskolelektorer",
     "type" : "ssyk-level-4"
   },
+  "cYLE_n6m_XYw" : {
+    "legacyAmsTaxonomyId" : "7",
+    "preferredLabel" : "Samhälls- och beteendevetenskap",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "31"
+  },
   "cYP6_Tur_q6m" : {
     "legacyAmsTaxonomyId" : "444",
     "preferredLabel" : "Arbetsledare, städ/Husfru/Städledare",
@@ -43104,6 +43937,12 @@
     "preferredLabel" : "Belize",
     "type" : "country"
   },
+  "ccFW_MJq_ssa" : {
+    "legacyAmsTaxonomyId" : "31",
+    "preferredLabel" : "Journalistik och information, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "320"
+  },
   "ccNN_eKA_p8Z" : {
     "legacyAmsTaxonomyId" : "926",
     "preferredLabel" : "Alicante / Alacant",
@@ -43128,6 +43967,11 @@
     "legacyAmsTaxonomyId" : "606156",
     "preferredLabel" : "Klinisk farmakologi",
     "type" : "skill"
+  },
+  "cfew_ciR_8AG" : {
+    "legacyAmsTaxonomyId" : "545",
+    "preferredLabel" : "Kanslist",
+    "type" : "keyword"
   },
   "cff9_N6N_c4o" : {
     "legacyAmsTaxonomyId" : "608015",
@@ -43524,6 +44368,12 @@
     "preferredLabel" : "Radioproducent",
     "type" : "keyword"
   },
+  "d2cS_Ajj_6DK" : {
+    "legacyAmsTaxonomyId" : "18",
+    "preferredLabel" : "Lantbruk, trädgård, skog och fiske",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "62"
+  },
   "d2gz_es2_pX5" : {
     "legacyAmsTaxonomyId" : "4728",
     "preferredLabel" : "Kvalitetskoordinator",
@@ -43538,6 +44388,12 @@
     "legacyAmsTaxonomyId" : "607403",
     "preferredLabel" : "Svarvning, CNC",
     "type" : "skill"
+  },
+  "d3AW_5ep_avV" : {
+    "legacyAmsTaxonomyId" : "106",
+    "preferredLabel" : "Transporttjänster",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "840"
   },
   "d3Sd_Hpf_T2x" : {
     "legacyAmsTaxonomyId" : "605651",
@@ -43558,6 +44414,12 @@
     "legacyAmsTaxonomyId" : "608796",
     "preferredLabel" : "Allmänkonstruktion-Bentley MicroStation",
     "type" : "skill"
+  },
+  "d5AX_Z6M_oVt" : {
+    "legacyAmsTaxonomyId" : "9",
+    "preferredLabel" : "Tjänster",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "8"
   },
   "d5iP_YT7_Ztt" : {
     "legacyAmsTaxonomyId" : "601295",
@@ -43719,6 +44581,12 @@
     "preferredLabel" : "Familjerättssekreterare",
     "type" : "occupation-name"
   },
+  "dCCF_fYf_H3d" : {
+    "legacyAmsTaxonomyId" : "60",
+    "preferredLabel" : "Datoranvändning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "482"
+  },
   "dCVP_nzp_jDd" : {
     "legacyAmsTaxonomyId" : "1399",
     "preferredLabel" : "Gravstenhuggare",
@@ -43813,6 +44681,12 @@
     "legacyAmsTaxonomyId" : "604650",
     "preferredLabel" : "Flyttpackningsvana",
     "type" : "skill"
+  },
+  "dJpe_kXd_5P2" : {
+    "legacyAmsTaxonomyId" : "78",
+    "preferredLabel" : "Byggnadsteknik och anläggningsteknik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "582"
   },
   "dJqT_Nde_qio" : {
     "legacyAmsTaxonomyId" : "1419",
@@ -44254,6 +45128,12 @@
     "preferredLabel" : "Företagsledare",
     "type" : "occupation-name"
   },
+  "dhBt_1Ck_Qmw" : {
+    "legacyAmsTaxonomyId" : "3",
+    "preferredLabel" : "Förgymnasial utbildning 9 (10) år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "20"
+  },
   "dhQh_Xhd_NSF" : {
     "legacyAmsTaxonomyId" : "604914",
     "preferredLabel" : "Stålprodukter/Verkstadsprodukter",
@@ -44333,6 +45213,12 @@
     "legacyAmsTaxonomyId" : "344z",
     "preferredLabel" : "Redovisning och beskattning",
     "type" : "sun-education-field-4"
+  },
+  "dk4d_o3q_1UN" : {
+    "legacyAmsTaxonomyId" : "82",
+    "preferredLabel" : "Trädgård",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "622"
   },
   "dk9i_fXp_v4d" : {
     "legacyAmsTaxonomyId" : "6209",
@@ -44633,6 +45519,12 @@
     "legacyAmsTaxonomyId" : "69",
     "preferredLabel" : "Willy's",
     "type" : "keyword"
+  },
+  "e2jr_Yrt_Ymn" : {
+    "legacyAmsTaxonomyId" : "50",
+    "preferredLabel" : "Doktorsutbildning",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "640"
   },
   "e38N_yjU_sZq" : {
     "legacyAmsTaxonomyId" : "3126",
@@ -46399,6 +47291,12 @@
     "preferredLabel" : "Zuidwest-Friesland",
     "type" : "region"
   },
+  "fXnz_t1b_VyF" : {
+    "legacyAmsTaxonomyId" : "1",
+    "preferredLabel" : "Övrig/ospec förskoleutbildning",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "000"
+  },
   "fYiW_4KZ_MHa" : {
     "legacyAmsTaxonomyId" : "503",
     "preferredLabel" : "Teckenspråk",
@@ -46884,6 +47782,12 @@
     "preferredLabel" : "Ostholstein",
     "type" : "region"
   },
+  "fuua_Qfz_vW9" : {
+    "legacyAmsTaxonomyId" : "9",
+    "preferredLabel" : "Lärarutbildning i yrkesämne och praktiskt/estetiskt ämne",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "146"
+  },
   "fvP4_iur_6to" : {
     "legacyAmsTaxonomyId" : "2965",
     "preferredLabel" : "Lånechef",
@@ -46913,6 +47817,12 @@
     "legacyAmsTaxonomyId" : "605148",
     "preferredLabel" : "Gymnastik, professionell utövning",
     "type" : "skill"
+  },
+  "fwW5_Eve_8uk" : {
+    "legacyAmsTaxonomyId" : "7",
+    "preferredLabel" : "Lärarutbildning för grundskolans lägre åldrar",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "144"
   },
   "fwrn_bpj_4vM" : {
     "legacyAmsTaxonomyId" : "10280",
@@ -47048,6 +47958,12 @@
     "legacyAmsTaxonomyId" : "3995",
     "preferredLabel" : "Landstingsjurist",
     "type" : "occupation-name"
+  },
+  "g3R7_qSb_ehj" : {
+    "legacyAmsTaxonomyId" : "97",
+    "preferredLabel" : "Socialt arbete och vägledning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "762"
   },
   "g3uS_ShV_gGx" : {
     "legacyAmsTaxonomyId" : "87",
@@ -47714,6 +48630,12 @@
     "preferredLabel" : "Menzies",
     "type" : "keyword"
   },
+  "gbNa_BMs_ffz" : {
+    "legacyAmsTaxonomyId" : "19",
+    "preferredLabel" : "Gymnasial utbildning två år, yrkesinriktad",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "327"
+  },
   "gbop_RyG_LwL" : {
     "legacyAmsTaxonomyId" : "609397",
     "preferredLabel" : "Mekanisk konstruktion",
@@ -48019,6 +48941,12 @@
     "preferredLabel" : "Porslinsgjutare",
     "type" : "occupation-name"
   },
+  "gsek_qyk_jjp" : {
+    "legacyAmsTaxonomyId" : "4",
+    "preferredLabel" : "Övrig/ospec förgymnasial utbildning kortare än 9 år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "100"
+  },
   "gsoZ_3LM_C79" : {
     "legacyAmsTaxonomyId" : "10390",
     "preferredLabel" : "Kosraeiska",
@@ -48053,6 +48981,17 @@
     "legacyAmsTaxonomyId" : "607918",
     "preferredLabel" : "IR-teknik",
     "type" : "skill"
+  },
+  "gtyY_hAn_j5r" : {
+    "legacyAmsTaxonomyId" : "25",
+    "preferredLabel" : "Samhälls- och beteendevetenskap, allmän inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "310"
+  },
+  "guhd_NZD_cvm" : {
+    "legacyAmsTaxonomyId" : "551",
+    "preferredLabel" : "A-kassa",
+    "type" : "keyword"
   },
   "guie_fEy_nt1" : {
     "legacyAmsTaxonomyId" : "3426",
@@ -48133,6 +49072,12 @@
     "legacyAmsTaxonomyId" : "145h",
     "preferredLabel" : "Ämneslärarutbildning, historia, samhällsvetenskap och företagsekonomi i kombination med praktisk-estetiska ämnen",
     "type" : "sun-education-field-4"
+  },
+  "gzxX_wxk_GMv" : {
+    "legacyAmsTaxonomyId" : "89",
+    "preferredLabel" : "Omvårdnad",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "723"
   },
   "gzxa_drN_Uud" : {
     "legacyAmsTaxonomyId" : "604811",
@@ -48659,6 +49604,12 @@
     "preferredLabel" : "Banktjänstemän",
     "type" : "isco-level-4"
   },
+  "hSxF_L6U_zMo" : {
+    "legacyAmsTaxonomyId" : "12",
+    "preferredLabel" : "Bild- och formkonst",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "211"
+  },
   "hTcc_jPm_dwc" : {
     "legacyAmsTaxonomyId" : "607689",
     "preferredLabel" : "Microsoft Dynamics AX, affärssystem",
@@ -48723,6 +49674,12 @@
     "legacyAmsTaxonomyId" : "602496",
     "preferredLabel" : "Vaktmästeri, sjukhus",
     "type" : "skill"
+  },
+  "hXkR_Gzy_3wa" : {
+    "legacyAmsTaxonomyId" : "88",
+    "preferredLabel" : "Medicin",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "721"
   },
   "hXpe_mGC_Qsi" : {
     "legacyAmsTaxonomyId" : "609165",
@@ -48818,6 +49775,12 @@
     "legacyAmsTaxonomyId" : "606598",
     "preferredLabel" : "Cisco Certified Design Professional/CCDP",
     "type" : "skill"
+  },
+  "hb2i_q9u_n1A" : {
+    "legacyAmsTaxonomyId" : "47",
+    "preferredLabel" : "Högskoleutbildning fem år eller längre, yrkesinriktad",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "557"
   },
   "hb3b_fH2_bvK" : {
     "legacyAmsTaxonomyId" : "2856",
@@ -49019,6 +49982,12 @@
     "preferredLabel" : "Kärnkraftanläggning, underhåll",
     "type" : "skill"
   },
+  "hiz4_muG_o4B" : {
+    "legacyAmsTaxonomyId" : "103",
+    "preferredLabel" : "Hushållstjänster och lokalvård",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "814"
+  },
   "hj5a_i11_pS6" : {
     "legacyAmsTaxonomyId" : "1396",
     "preferredLabel" : "Gdański",
@@ -49113,6 +50082,12 @@
     "legacyAmsTaxonomyId" : "4006",
     "preferredLabel" : "Företagsjurist",
     "type" : "occupation-name"
+  },
+  "hoPN_ZXq_ynP" : {
+    "legacyAmsTaxonomyId" : "4",
+    "preferredLabel" : "Gymnasial utbildning kortare än två år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "31"
   },
   "hoPi_hPE_fWg" : {
     "legacyAmsTaxonomyId" : "604140",
@@ -49349,6 +50324,12 @@
     "preferredLabel" : "2-års montör",
     "type" : "skill"
   },
+  "hxDt_SD3_1qX" : {
+    "legacyAmsTaxonomyId" : "2",
+    "preferredLabel" : "Förgymnasial utbildning kortare än 9 år",
+    "type" : "sun-education-level-1",
+    "concept.external-standard/sun-education-level-code-2000" : "1"
+  },
   "hxSR_p9R_cqk" : {
     "legacyAmsTaxonomyId" : "399",
     "preferredLabel" : "Diskrimineringsombudsman",
@@ -49418,6 +50399,12 @@
     "legacyAmsTaxonomyId" : "170",
     "preferredLabel" : "Övriga administrations- och servicechefer",
     "type" : "ssyk-level-3"
+  },
+  "i1fx_Pyj_MUC" : {
+    "legacyAmsTaxonomyId" : "8",
+    "preferredLabel" : "Hälso- och sjukvård samt social omsorg",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "7"
   },
   "i2A1_KpM_osQ" : {
     "legacyAmsTaxonomyId" : "342",
@@ -49908,6 +50895,12 @@
     "legacyAmsTaxonomyId" : "607489",
     "preferredLabel" : "Badbevakareutbildning",
     "type" : "skill"
+  },
+  "iVF4_yxv_EBo" : {
+    "legacyAmsTaxonomyId" : "5",
+    "preferredLabel" : "Gymnasial utbildning två år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "32"
   },
   "iVQn_SPL_8hc" : {
     "legacyAmsTaxonomyId" : "999",
@@ -50544,6 +51537,12 @@
     "preferredLabel" : "Advokatsekreterare",
     "type" : "occupation-name"
   },
+  "ixxn_yS7_zEB" : {
+    "legacyAmsTaxonomyId" : "8",
+    "preferredLabel" : "Eftergymnasial utbildning två år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "52"
+  },
   "iy5K_qmx_bco" : {
     "legacyAmsTaxonomyId" : "555",
     "preferredLabel" : "Eftergymnasial utbildning, ej vid universitet och högskola, yrkesinriktad, 5 år",
@@ -50604,6 +51603,12 @@
     "preferredLabel" : "Internet, informationssökning/Intranet, informationssökning",
     "type" : "skill"
   },
+  "j16b_fme_WSX" : {
+    "legacyAmsTaxonomyId" : "79",
+    "preferredLabel" : "Samhällsbyggnad och byggnadsteknik, övrig/ospec inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "589"
+  },
   "j1Qr_ueU_y5S" : {
     "legacyAmsTaxonomyId" : "7279",
     "preferredLabel" : "Driftingenjör, el-tele",
@@ -50638,6 +51643,12 @@
     "legacyAmsTaxonomyId" : "2926",
     "preferredLabel" : "Supportsvarvare",
     "type" : "occupation-name"
+  },
+  "j3Jd_2NA_so8" : {
+    "legacyAmsTaxonomyId" : "59",
+    "preferredLabel" : "Datavetenskap och systemvetenskap",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "481"
   },
   "j3ep_8vv_nLH" : {
     "legacyAmsTaxonomyId" : "90",
@@ -51174,6 +52185,11 @@
     "preferredLabel" : "Värmeanläggning, underhåll",
     "type" : "skill"
   },
+  "ja7J_P8X_YC9" : {
+    "legacyAmsTaxonomyId" : "1",
+    "preferredLabel" : "Bygg",
+    "type" : "occupation-collection"
+  },
   "jaKp_UDm_qrC" : {
     "legacyAmsTaxonomyId" : "293",
     "preferredLabel" : "Ångpanneeldare",
@@ -51353,6 +52369,12 @@
     "legacyAmsTaxonomyId" : "605776",
     "preferredLabel" : "Fastighetsekonomisk förvaltning",
     "type" : "skill"
+  },
+  "jmwb_QA8_1Rk" : {
+    "legacyAmsTaxonomyId" : "75",
+    "preferredLabel" : "Tillverkning, övrig/ospec inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "549"
   },
   "jn1T_zsC_HDC" : {
     "legacyAmsTaxonomyId" : "413",
@@ -51714,6 +52736,12 @@
     "preferredLabel" : "Heatsettryckare",
     "type" : "occupation-name"
   },
+  "k41C_L8y_PHP" : {
+    "legacyAmsTaxonomyId" : "22",
+    "preferredLabel" : "Gymnasial utbildning tre år, yrkesinriktad, ej slutbetyg",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "333"
+  },
   "k4De_7U3_wS7" : {
     "legacyAmsTaxonomyId" : "608910",
     "preferredLabel" : "Trading",
@@ -51883,6 +52911,12 @@
     "legacyAmsTaxonomyId" : "5815",
     "preferredLabel" : "Båtbyggare",
     "type" : "occupation-name"
+  },
+  "kBkp_MM3_ovK" : {
+    "legacyAmsTaxonomyId" : "70",
+    "preferredLabel" : "Material och tillverkning, allmän inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "540"
   },
   "kC6C_uFA_WPf" : {
     "legacyAmsTaxonomyId" : "5443",
@@ -52443,6 +53477,12 @@
     "legacyAmsTaxonomyId" : "600953",
     "preferredLabel" : "4-färgstryck (blandade grundfärger)",
     "type" : "skill"
+  },
+  "keHJ_1uA_ApY" : {
+    "legacyAmsTaxonomyId" : "26",
+    "preferredLabel" : "Okänd",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "99"
   },
   "keVJ_c38_DLa" : {
     "legacyAmsTaxonomyId" : "7719",
@@ -53104,6 +54144,12 @@
     "preferredLabel" : "Fjärrtågklarerarutbildning",
     "type" : "skill"
   },
+  "mDBe_QNV_bzV" : {
+    "legacyAmsTaxonomyId" : "5",
+    "preferredLabel" : "Grundskoleutbildning, årskurs 1-6",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "102"
+  },
   "mDBm_pJc_eN6" : {
     "legacyAmsTaxonomyId" : "6474",
     "preferredLabel" : "Miljöchef",
@@ -53163,6 +54209,12 @@
     "legacyAmsTaxonomyId" : "607037",
     "preferredLabel" : "Gråstensmurning",
     "type" : "skill"
+  },
+  "mGV7_Uze_QDA" : {
+    "legacyAmsTaxonomyId" : "61",
+    "preferredLabel" : "Data, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "489"
   },
   "mGvA_FSc_1oR" : {
     "legacyAmsTaxonomyId" : "32",
@@ -53594,6 +54646,12 @@
     "preferredLabel" : "Rock'n'roll dans, undervisning",
     "type" : "skill"
   },
+  "mb2W_MmG_cir" : {
+    "legacyAmsTaxonomyId" : "12",
+    "preferredLabel" : "Övrig/ospec forskarutbildning",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "60"
+  },
   "mb59_QW5_Ho2" : {
     "legacyAmsTaxonomyId" : "607660",
     "preferredLabel" : "Blomsterbindning",
@@ -53673,6 +54731,12 @@
     "legacyAmsTaxonomyId" : "2130",
     "preferredLabel" : "Kaplan",
     "type" : "occupation-name"
+  },
+  "merF_1xH_REB" : {
+    "legacyAmsTaxonomyId" : "50",
+    "preferredLabel" : "Fysik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "441"
   },
   "mfa9_Ymb_xJj" : {
     "legacyAmsTaxonomyId" : "608013",
@@ -54028,6 +55092,12 @@
     "legacyAmsTaxonomyId" : "1192",
     "preferredLabel" : "Skräddare och ateljésömmerskor m.fl.",
     "type" : "ssyk-level-4"
+  },
+  "mwma_swy_nLL" : {
+    "legacyAmsTaxonomyId" : "48",
+    "preferredLabel" : "Biologi och miljövetenskap, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "429"
   },
   "mwmt_9hq_DEH" : {
     "legacyAmsTaxonomyId" : "6650",
@@ -54864,6 +55934,12 @@
     "preferredLabel" : "Hyresintendent",
     "type" : "occupation-name"
   },
+  "nbmf_UXW_T5q" : {
+    "legacyAmsTaxonomyId" : "42",
+    "preferredLabel" : "Arbetsplatsrelaterad utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "347"
+  },
   "nc3s_Hbk_kuS" : {
     "legacyAmsTaxonomyId" : "609239",
     "preferredLabel" : "Mästarbrev, gardinmakare",
@@ -55203,6 +56279,12 @@
     "legacyAmsTaxonomyId" : "7349",
     "preferredLabel" : "Ögonsjuksköterska/Oftalmologassistent",
     "type" : "occupation-name"
+  },
+  "nvfX_pWE_rUz" : {
+    "legacyAmsTaxonomyId" : "18",
+    "preferredLabel" : "Gymnasial utbildning två år, teoretisk/studieförb.",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "326"
   },
   "nw7B_TQV_NvB" : {
     "legacyAmsTaxonomyId" : "191",
@@ -55629,6 +56711,12 @@
     "preferredLabel" : "Särskola",
     "type" : "keyword"
   },
+  "oKLN_su9_iF1" : {
+    "legacyAmsTaxonomyId" : "8",
+    "preferredLabel" : "Realskoleutbildning",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "204"
+  },
   "oKRb_tGE_xJF" : {
     "legacyAmsTaxonomyId" : "608629",
     "preferredLabel" : "C-truckar",
@@ -55924,6 +57012,12 @@
     "preferredLabel" : "Brynförlängning",
     "type" : "skill"
   },
+  "oYa3_WzP_B2f" : {
+    "legacyAmsTaxonomyId" : "9",
+    "preferredLabel" : "Eftergymnasial utbildning tre år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "53"
+  },
   "oYuG_DTW_R2D" : {
     "legacyAmsTaxonomyId" : "1446",
     "preferredLabel" : "Elektronikmontering",
@@ -56139,6 +57233,12 @@
     "preferredLabel" : "Annan omvårdnadsutbildning, psykiskt funktionsnedsatta",
     "type" : "sun-education-field-4"
   },
+  "ohmF_MkK_AYY" : {
+    "legacyAmsTaxonomyId" : "44",
+    "preferredLabel" : "Juridik och rättsvetenskap",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "380"
+  },
   "ohrC_dLP_3ad" : {
     "legacyAmsTaxonomyId" : "6644",
     "preferredLabel" : "Civilförsvarschef",
@@ -56153,6 +57253,12 @@
     "legacyAmsTaxonomyId" : "391",
     "preferredLabel" : "Arr. Charleroi",
     "type" : "region"
+  },
+  "oiBX_JUa_DPs" : {
+    "legacyAmsTaxonomyId" : "10",
+    "preferredLabel" : "Eftergymnasial utbildning fyra år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "54"
   },
   "oiLH_gv4_Q3b" : {
     "legacyAmsTaxonomyId" : "608312",
@@ -56188,6 +57294,12 @@
     "legacyAmsTaxonomyId" : "25",
     "preferredLabel" : "Mikronesien",
     "type" : "continent"
+  },
+  "ojH5_tq4_2JV" : {
+    "legacyAmsTaxonomyId" : "6",
+    "preferredLabel" : "Teknik och tillverkning",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "5"
   },
   "ojPn_R8G_dsv" : {
     "legacyAmsTaxonomyId" : "5284",
@@ -56299,6 +57411,12 @@
     "preferredLabel" : "Trier, Kreisfreie Stadt",
     "type" : "region"
   },
+  "opDR_V6F_Kv6" : {
+    "legacyAmsTaxonomyId" : "105",
+    "preferredLabel" : "Personliga tjänster, övrig/ospec utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "819"
+  },
   "opLa_Pe7_5yg" : {
     "legacyAmsTaxonomyId" : "3155",
     "preferredLabel" : "Kraftsystemberäkningar",
@@ -56313,6 +57431,12 @@
     "legacyAmsTaxonomyId" : "1086",
     "preferredLabel" : "Rhône",
     "type" : "region"
+  },
+  "oprB_5HW_dQP" : {
+    "legacyAmsTaxonomyId" : "41",
+    "preferredLabel" : "Kontorsservice och sekreterartjänster",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "346"
   },
   "opwH_2ct_wRd" : {
     "legacyAmsTaxonomyId" : "543",
@@ -56538,6 +57662,11 @@
     "legacyAmsTaxonomyId" : "1821",
     "preferredLabel" : "Formsprutning",
     "type" : "skill"
+  },
+  "p4Qt_SKT_kBL" : {
+    "legacyAmsTaxonomyId" : "544",
+    "preferredLabel" : "Assistent, bostadsförmedling",
+    "type" : "keyword"
   },
   "p5Fe_yDP_tZs" : {
     "legacyAmsTaxonomyId" : "500030",
@@ -57789,6 +58918,12 @@
     "preferredLabel" : "Förhandlingsvana",
     "type" : "skill"
   },
+  "q7W8_atE_w29" : {
+    "legacyAmsTaxonomyId" : "77",
+    "preferredLabel" : "Samhällsbyggnad och arkitektur",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "581"
+  },
   "q7dw_5WF_tUL" : {
     "legacyAmsTaxonomyId" : "505",
     "preferredLabel" : "Reutlingen",
@@ -58104,6 +59239,12 @@
     "preferredLabel" : "Totalstation (mätinstrument)",
     "type" : "skill"
   },
+  "qMZD_FHy_Ht2" : {
+    "legacyAmsTaxonomyId" : "15",
+    "preferredLabel" : "Formgivning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "214"
+  },
   "qMeC_PR9_rz4" : {
     "legacyAmsTaxonomyId" : "5708",
     "preferredLabel" : "Stämning av orglar",
@@ -58158,6 +59299,11 @@
     "legacyAmsTaxonomyId" : "760",
     "preferredLabel" : "Socialt arbete och socialt omsorgsarbete, allmän utbildning",
     "type" : "sun-education-field-3"
+  },
+  "qPzb_dxR_83e" : {
+    "legacyAmsTaxonomyId" : "550",
+    "preferredLabel" : "Stoppmöbelarbetare",
+    "type" : "keyword"
   },
   "qPzo_fog_Ucg" : {
     "legacyAmsTaxonomyId" : "369",
@@ -58539,6 +59685,12 @@
     "preferredLabel" : "Kvartärgeolog",
     "type" : "occupation-name"
   },
+  "qivy_9A4_Xz1" : {
+    "legacyAmsTaxonomyId" : "74",
+    "preferredLabel" : "Berg- och mineralteknik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "544"
+  },
   "qj3q_oXH_MGR" : {
     "legacyAmsTaxonomyId" : "108",
     "preferredLabel" : "Helsingborg",
@@ -58758,6 +59910,12 @@
     "legacyAmsTaxonomyId" : "413",
     "preferredLabel" : "Gymnasial påbyggnadsutbildning, kortare än 2 år",
     "type" : "sun-education-level-3"
+  },
+  "qryY_rKa_as3" : {
+    "legacyAmsTaxonomyId" : "16",
+    "preferredLabel" : "Material och tillverkning",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "54"
   },
   "qs7C_22K_89a" : {
     "legacyAmsTaxonomyId" : "603436",
@@ -60044,6 +61202,12 @@
     "preferredLabel" : "Thaispråk, andra",
     "type" : "language"
   },
+  "rtzY_WYC_JzY" : {
+    "legacyAmsTaxonomyId" : "24",
+    "preferredLabel" : "Humaniora, övrig/ospec inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "229"
+  },
   "ruVS_dJA_3Kg" : {
     "legacyAmsTaxonomyId" : "608885",
     "preferredLabel" : "ICP-MS teknik",
@@ -60113,6 +61277,12 @@
     "legacyAmsTaxonomyId" : "1464",
     "preferredLabel" : "Olt",
     "type" : "region"
+  },
+  "rxBZ_5xr_Qs5" : {
+    "legacyAmsTaxonomyId" : "11",
+    "preferredLabel" : "Eftergymnasial utbildning minst fem år",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "55"
   },
   "rxKk_ceH_68T" : {
     "legacyAmsTaxonomyId" : "600251",
@@ -60494,6 +61664,12 @@
     "preferredLabel" : "Telefonintervjuare",
     "type" : "occupation-name"
   },
+  "sDob_Jsm_uEX" : {
+    "legacyAmsTaxonomyId" : "28",
+    "preferredLabel" : "Statsvetenskap",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "313"
+  },
   "sDuC_8so_Dhv" : {
     "legacyAmsTaxonomyId" : "608872",
     "preferredLabel" : "Certifikat, brandtätningsteknik",
@@ -60714,10 +61890,22 @@
     "preferredLabel" : "Cuneo",
     "type" : "region"
   },
+  "sQy1_vDH_e1P" : {
+    "legacyAmsTaxonomyId" : "104",
+    "preferredLabel" : "Hår- och skönhetsvård",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "815"
+  },
   "sRsc_cvy_PfX" : {
     "legacyAmsTaxonomyId" : "606622",
     "preferredLabel" : "Textilkemi",
     "type" : "skill"
+  },
+  "sSAS_vm7_KGa" : {
+    "legacyAmsTaxonomyId" : "100",
+    "preferredLabel" : "Hotell, restaurang och storhushåll",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "811"
   },
   "sSNJ_SLb_xyF" : {
     "legacyAmsTaxonomyId" : "607292",
@@ -60753,6 +61941,12 @@
     "legacyAmsTaxonomyId" : "1514",
     "preferredLabel" : "Liverpool",
     "type" : "region"
+  },
+  "sT9H_9qk_aAm" : {
+    "legacyAmsTaxonomyId" : "12",
+    "preferredLabel" : "Gymnasial utb. kortare än två år, yrkesinriktad, ej slutbetyg",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "313"
   },
   "sTMt_rKA_EHs" : {
     "legacyAmsTaxonomyId" : "429",
@@ -61118,6 +62312,12 @@
     "legacyAmsTaxonomyId" : "603841",
     "preferredLabel" : "Reparationsvana, rörsystem",
     "type" : "skill"
+  },
+  "smP1_JHS_9yu" : {
+    "legacyAmsTaxonomyId" : "26",
+    "preferredLabel" : "Psykologi",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "311"
   },
   "smXg_BXp_jTW" : {
     "legacyAmsTaxonomyId" : "204",
@@ -61689,6 +62889,12 @@
     "preferredLabel" : "Teckenspråkstolkning",
     "type" : "skill"
   },
+  "tDdX_i3n_HQb" : {
+    "legacyAmsTaxonomyId" : "11",
+    "preferredLabel" : "Gymn. utb. kortare än två år, teoretisk/studieförb, ej slutbetyg",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "312"
+  },
   "tDxT_7oT_NyU" : {
     "legacyAmsTaxonomyId" : "523f",
     "preferredLabel" : "Automation",
@@ -61728,6 +62934,12 @@
     "legacyAmsTaxonomyId" : "6395",
     "preferredLabel" : "Kontorschef, utbildningsföretag",
     "type" : "occupation-name"
+  },
+  "tFCz_HSa_jwW" : {
+    "legacyAmsTaxonomyId" : "4",
+    "preferredLabel" : "Pedagogik och lärarutbildning",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "14"
   },
   "tFQp_CMY_XaS" : {
     "legacyAmsTaxonomyId" : "608983",
@@ -62674,6 +63886,12 @@
     "preferredLabel" : "Danskunskap",
     "type" : "skill"
   },
+  "u2a1_mAW_vt1" : {
+    "legacyAmsTaxonomyId" : "5",
+    "preferredLabel" : "Konst och media",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "21"
+  },
   "u2iH_Myz_45U" : {
     "legacyAmsTaxonomyId" : "5317",
     "preferredLabel" : "Fondförvaltare/Portföljförvaltare",
@@ -62919,6 +64137,12 @@
     "preferredLabel" : "Kinesiska, cirkelledning",
     "type" : "skill"
   },
+  "uEJv_uVV_nrY" : {
+    "legacyAmsTaxonomyId" : "40",
+    "preferredLabel" : "Ospec eftergymnasial utbildning fyra år",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "540"
+  },
   "uESt_Riy_ZJ3" : {
     "legacyAmsTaxonomyId" : "4536",
     "preferredLabel" : "Bärodlare",
@@ -62933,6 +64157,12 @@
     "legacyAmsTaxonomyId" : "7304",
     "preferredLabel" : "Landstingsdirektör",
     "type" : "occupation-name"
+  },
+  "uFDe_6De_YPe" : {
+    "legacyAmsTaxonomyId" : "9",
+    "preferredLabel" : "Grundskoleutbildning, årskurs 7-9",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "206"
   },
   "uFLG_cFC_Byr" : {
     "legacyAmsTaxonomyId" : "606047",
@@ -62983,6 +64213,12 @@
     "legacyAmsTaxonomyId" : "600347",
     "preferredLabel" : "Dalmål",
     "type" : "skill"
+  },
+  "uJdc_mGj_gKw" : {
+    "legacyAmsTaxonomyId" : "114",
+    "preferredLabel" : "Arbetsmiljö och arbetarskydd",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "862"
   },
   "uJxA_CWL_tKE" : {
     "legacyAmsTaxonomyId" : "314",
@@ -63043,6 +64279,12 @@
     "legacyAmsTaxonomyId" : "802",
     "preferredLabel" : "Maskinelektriker",
     "type" : "occupation-name"
+  },
+  "uMdj_cKo_msw" : {
+    "legacyAmsTaxonomyId" : "39",
+    "preferredLabel" : "Högskoleutbildning tre år, yrkesinriktad",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "537"
   },
   "uNKx_3Q7_TsR" : {
     "legacyAmsTaxonomyId" : "600890",
@@ -63804,6 +65046,12 @@
     "preferredLabel" : "Övriga administrations- och servicechefer",
     "type" : "ssyk-level-4"
   },
+  "uy7G_f7Y_WwU" : {
+    "legacyAmsTaxonomyId" : "17",
+    "preferredLabel" : "Gymnasial utbildning två år, yrkesinriktad - ej slutbetyg",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "323"
+  },
   "uy7n_WnT_M8M" : {
     "legacyAmsTaxonomyId" : "207",
     "preferredLabel" : "Spaterapeut",
@@ -63914,6 +65162,11 @@
     "preferredLabel" : "Verksamhetsledning, camping och stugby",
     "type" : "skill"
   },
+  "v5E3_Cga_tsJ" : {
+    "legacyAmsTaxonomyId" : "542",
+    "preferredLabel" : "Vapenmekaniker",
+    "type" : "keyword"
+  },
   "v5g4_WPx_zE4" : {
     "legacyAmsTaxonomyId" : "26",
     "preferredLabel" : "Bolivia",
@@ -63933,6 +65186,12 @@
     "legacyAmsTaxonomyId" : "7219",
     "preferredLabel" : "Lärling, bandlastarförare",
     "type" : "occupation-name"
+  },
+  "v5wc_UAb_U7a" : {
+    "legacyAmsTaxonomyId" : "2",
+    "preferredLabel" : "Läs- och skrivinlärning för vuxna",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "080"
   },
   "v5y4_YPe_TMZ" : {
     "legacyAmsTaxonomyId" : "163",
@@ -63963,6 +65222,12 @@
     "legacyAmsTaxonomyId" : "176",
     "preferredLabel" : "Produktionschefer inom tillverkning",
     "type" : "ssyk-level-3"
+  },
+  "v8Ku_a4Z_UsG" : {
+    "legacyAmsTaxonomyId" : "109",
+    "preferredLabel" : "Naturvård och djurskydd",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "852"
   },
   "v8cG_CiW_7UH" : {
     "legacyAmsTaxonomyId" : "622a",
@@ -64008,6 +65273,12 @@
     "legacyAmsTaxonomyId" : "602988",
     "preferredLabel" : "Verksamhetsledning, affärsområde",
     "type" : "skill"
+  },
+  "vBmH_X83_3wC" : {
+    "legacyAmsTaxonomyId" : "76",
+    "preferredLabel" : "Samhällsbyggnad och byggnadsteknik, allmän inriktning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "580"
   },
   "vBrV_Kb2_Vkk" : {
     "legacyAmsTaxonomyId" : "2160",
@@ -64234,6 +65505,12 @@
     "preferredLabel" : "Planerare och utredare m.fl.",
     "type" : "ssyk-level-4"
   },
+  "vPiP_8qu_XQ9" : {
+    "legacyAmsTaxonomyId" : "13",
+    "preferredLabel" : "Licentiatutbildning",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "62"
+  },
   "vPyM_A9W_WqV" : {
     "legacyAmsTaxonomyId" : "6804",
     "preferredLabel" : "Civilingenjör, forskning och utveckling, kemi",
@@ -64324,6 +65601,12 @@
     "preferredLabel" : "Textiltryck",
     "type" : "skill"
   },
+  "vTEF_Bpj_FRx" : {
+    "legacyAmsTaxonomyId" : "47",
+    "preferredLabel" : "Miljövetenskap",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "422"
+  },
   "vTXA_KQL_KHk" : {
     "legacyAmsTaxonomyId" : "607877",
     "preferredLabel" : "Gatumusik",
@@ -64348,6 +65631,12 @@
     "legacyAmsTaxonomyId" : "605773",
     "preferredLabel" : "Boplatser, arkeologisk kunskap",
     "type" : "skill"
+  },
+  "vUZ7_JRw_NjW" : {
+    "legacyAmsTaxonomyId" : "14",
+    "preferredLabel" : "Doktorsutbildning",
+    "type" : "sun-education-level-2",
+    "concept.external-standard/sun-education-level-code-2000" : "64"
   },
   "vUZt_BHY_mk2" : {
     "legacyAmsTaxonomyId" : "1920",
@@ -64379,6 +65668,12 @@
     "preferredLabel" : "Läkemedel/Sjukvårdsprodukter",
     "type" : "skill"
   },
+  "vVb4_oke_5a7" : {
+    "legacyAmsTaxonomyId" : "45",
+    "preferredLabel" : "Eftergymn. utb. minst fem år - ej universitet/högskola",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "555"
+  },
   "vVhN_YyP_Xrv" : {
     "legacyAmsTaxonomyId" : "6778",
     "preferredLabel" : "Driftledare, skogsbruk",
@@ -64398,6 +65693,12 @@
     "legacyAmsTaxonomyId" : "8",
     "preferredLabel" : "Rörlig ackords- eller provisionslön",
     "type" : "wage-type"
+  },
+  "vWST_EUs_nbG" : {
+    "legacyAmsTaxonomyId" : "21",
+    "preferredLabel" : "Svenska och litteraturvetenskap",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "223"
   },
   "vWVX_JgA_ykE" : {
     "legacyAmsTaxonomyId" : "1350",
@@ -65593,6 +66894,12 @@
     "preferredLabel" : "Yrkeshygieniker",
     "type" : "occupation-name"
   },
+  "wTsC_CSC_BDS" : {
+    "legacyAmsTaxonomyId" : "6",
+    "preferredLabel" : "Folkskoleutbildning",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "106"
+  },
   "wU9k_zrK_cyd" : {
     "legacyAmsTaxonomyId" : "422",
     "preferredLabel" : "Dobrich",
@@ -65682,6 +66989,12 @@
     "legacyAmsTaxonomyId" : "604587",
     "preferredLabel" : "Båtmotorer, installationsvana",
     "type" : "skill"
+  },
+  "wYk8_7hC_BkT" : {
+    "legacyAmsTaxonomyId" : "14",
+    "preferredLabel" : "Gymnasial utbildning kortare än två år, yrkesinriktad",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "317"
   },
   "wYxH_RXX_ZYx" : {
     "legacyAmsTaxonomyId" : "609292",
@@ -66223,6 +67536,12 @@
     "preferredLabel" : "Keramiker",
     "type" : "occupation-name"
   },
+  "wxwp_YQq_D3E" : {
+    "legacyAmsTaxonomyId" : "1",
+    "preferredLabel" : "Bred, generell utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "010"
+  },
   "wyLL_K3a_HRC" : {
     "legacyAmsTaxonomyId" : "3",
     "preferredLabel" : "Gymnasial utbildning",
@@ -66257,6 +67576,12 @@
     "legacyAmsTaxonomyId" : "991",
     "preferredLabel" : "Hemtextilsömmerska",
     "type" : "occupation-name"
+  },
+  "wzJe_bwj_s3h" : {
+    "legacyAmsTaxonomyId" : "43",
+    "preferredLabel" : "Högskoleutbildning fyra år, yrkesinriktad",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "547"
   },
   "wzeq_No2_LF1" : {
     "legacyAmsTaxonomyId" : "1378",
@@ -66983,6 +68308,12 @@
     "preferredLabel" : "Såg",
     "type" : "skill"
   },
+  "xbWJ_Qn1_bcc" : {
+    "legacyAmsTaxonomyId" : "49",
+    "preferredLabel" : "Licentiatutbildning",
+    "type" : "sun-education-level-3",
+    "concept.external-standard/sun-education-level-code-2000" : "620"
+  },
   "xbWM_f89_Z3Y" : {
     "legacyAmsTaxonomyId" : "130",
     "preferredLabel" : "Förskolelärare m.fl.",
@@ -67388,6 +68719,12 @@
     "preferredLabel" : "Övriga yrken inom kultur och underhållning",
     "type" : "ssyk-level-4"
   },
+  "xuUu_4ga_rEH" : {
+    "legacyAmsTaxonomyId" : "52",
+    "preferredLabel" : "Geovetenskap och naturgeografi",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "443"
+  },
   "xuZD_yBH_aZD" : {
     "legacyAmsTaxonomyId" : "609003",
     "preferredLabel" : "Terapi med eteriska oljor",
@@ -67537,6 +68874,18 @@
     "legacyAmsTaxonomyId" : "608803",
     "preferredLabel" : "Oljedestillering",
     "type" : "skill"
+  },
+  "y1vj_pmA_MPG" : {
+    "legacyAmsTaxonomyId" : "6",
+    "preferredLabel" : "Humaniora",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "22"
+  },
+  "y1xq_3kZ_e34" : {
+    "legacyAmsTaxonomyId" : "2",
+    "preferredLabel" : "Pedagogik och lärarutbildning",
+    "type" : "sun-education-field-1",
+    "concept.external-standard/sun-education-field-code-2000" : "1"
   },
   "y21g_hpM_gqk" : {
     "legacyAmsTaxonomyId" : "607053",
@@ -68083,6 +69432,12 @@
     "preferredLabel" : "Hotsoft, hotellbokningssystem",
     "type" : "skill"
   },
+  "ySJb_aim_aCs" : {
+    "legacyAmsTaxonomyId" : "63",
+    "preferredLabel" : "Maskinteknik och verkstadsteknik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "521"
+  },
   "ySR7_e97_Rbn" : {
     "legacyAmsTaxonomyId" : "1527",
     "preferredLabel" : "Wakefield",
@@ -68112,6 +69467,18 @@
     "legacyAmsTaxonomyId" : "10484",
     "preferredLabel" : "Tiv",
     "type" : "language"
+  },
+  "yTrd_Kmh_CrB" : {
+    "legacyAmsTaxonomyId" : "6",
+    "preferredLabel" : "Lärarutbildning för förskola och fritidsverksamhet",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "143"
+  },
+  "yUM7_uPH_2G4" : {
+    "legacyAmsTaxonomyId" : "54",
+    "preferredLabel" : "Matematik och naturvetenskap, allmän utbildning",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "460"
   },
   "yUZ5_WDk_24i" : {
     "legacyAmsTaxonomyId" : "5614",
@@ -68152,6 +69519,12 @@
     "legacyAmsTaxonomyId" : "2803",
     "preferredLabel" : "Stenograf",
     "type" : "occupation-name"
+  },
+  "yWXa_h2y_9PK" : {
+    "legacyAmsTaxonomyId" : "110",
+    "preferredLabel" : "Renhållning och avfallshantering",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "853"
   },
   "yWYB_8xM_7jk" : {
     "legacyAmsTaxonomyId" : "1170",
@@ -68533,6 +69906,12 @@
     "preferredLabel" : "Oracle Reports, programmeringsverktyg",
     "type" : "skill"
   },
+  "yr9L_pdz_6iM" : {
+    "legacyAmsTaxonomyId" : "84",
+    "preferredLabel" : "Fiske och vattenbruk",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "624"
+  },
   "yrAe_Fzi_E6u" : {
     "legacyAmsTaxonomyId" : "2",
     "preferredLabel" : "Mindre än 1 års erfarenhet",
@@ -68828,6 +70207,12 @@
     "preferredLabel" : "Málaga",
     "type" : "region"
   },
+  "z5Xu_PfE_R8p" : {
+    "legacyAmsTaxonomyId" : "20",
+    "preferredLabel" : "Hälso- och sjukvård",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "72"
+  },
   "z5Yb_Bw9_oGS" : {
     "legacyAmsTaxonomyId" : "94",
     "preferredLabel" : "Hälsoinspiratör",
@@ -68977,6 +70362,12 @@
     "legacyAmsTaxonomyId" : "10423",
     "preferredLabel" : "Ndonga",
     "type" : "language"
+  },
+  "zBHZ_xy4_Xrf" : {
+    "legacyAmsTaxonomyId" : "23",
+    "preferredLabel" : "Filosofi och logik",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "226"
   },
   "zBNU_qqu_TbC" : {
     "legacyAmsTaxonomyId" : "604932",
@@ -69222,6 +70613,12 @@
     "legacyAmsTaxonomyId" : "417",
     "preferredLabel" : "Marknadsundersökare",
     "type" : "occupation-name"
+  },
+  "zMLq_ME1_8Pr" : {
+    "legacyAmsTaxonomyId" : "16",
+    "preferredLabel" : "Konsthantverk",
+    "type" : "sun-education-field-3",
+    "concept.external-standard/sun-education-field-code-2000" : "215"
   },
   "zMmn_1mh_6D5" : {
     "legacyAmsTaxonomyId" : "607293",
@@ -69553,6 +70950,12 @@
     "preferredLabel" : "Ostpressning",
     "type" : "skill"
   },
+  "zbpu_cNb_kex" : {
+    "legacyAmsTaxonomyId" : "11",
+    "preferredLabel" : "Biologi och miljövetenskap",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "42"
+  },
   "zcAk_wkg_EnZ" : {
     "legacyAmsTaxonomyId" : "602917",
     "preferredLabel" : "Maskinunderhåll, skogsmaskiner",
@@ -69832,6 +71235,12 @@
     "legacyAmsTaxonomyId" : "2597",
     "preferredLabel" : "Inbrottsbesiktning, företag",
     "type" : "skill"
+  },
+  "zpng_ije_7Q6" : {
+    "legacyAmsTaxonomyId" : "23",
+    "preferredLabel" : "Transporttjänster",
+    "type" : "sun-education-field-2",
+    "concept.external-standard/sun-education-field-code-2000" : "84"
   },
   "zq65_62s_s2S" : {
     "legacyAmsTaxonomyId" : "602021",

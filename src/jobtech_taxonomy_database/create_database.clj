@@ -8,9 +8,14 @@
 
 
 
+(def date-format
+  (doto (java.text.SimpleDateFormat. "yyyy-MM-dd-HH-mm-ss")
+    (.setTimeZone  (java.util.TimeZone/getTimeZone "Europe/Berlin")))
+  )
+
 
 (defn get-timestamp []
-  (.format (java.text.SimpleDateFormat. "yyyy-MM-dd-mm-ss") (new java.util.Date))
+  (.format date-format  (new java.util.Date) )
   )
 
 (defn create-database-name [type]
