@@ -27,7 +27,9 @@
     (do
       (println "Creating Database")
       (println name)
-      (d/create-database (dc/get-client) {:db-name name })))
+      (d/create-database (dc/get-client) {:db-name name }))
+    name
+    )
   )
 
 
@@ -38,6 +40,9 @@
         (println "Usage: lein run -m jobtech-taxonomy-database.create-database 'dev|frontend|prod'")
         )
       (System/exit 1))
-    (create-database-with-name name)
+    (let [database-name (create-database-with-name name)
+          _ (println)
+          _ (println database-name)]
+      )
     )
   )
