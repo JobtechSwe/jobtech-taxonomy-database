@@ -1,4 +1,4 @@
-(ns jobtech-taxonomy-database.converters.unemployment-funds
+(ns jobtech-taxonomy-database.converters.unemployment-fund
   (:gen-class)
   (:require [jobtech-taxonomy-database.legacy-migration :as lm]
             [jobtech-taxonomy-database.converters.converter-util :as u]
@@ -10,7 +10,7 @@
   {:pre [beteckning akasseid akassekod]}
   (let
     [concept (u/create-concept
-       t/unemployment-funds beteckning beteckning akasseid)
+       t/unemployment-fund beteckning beteckning akasseid)
      concept-with-extras (assoc
        concept :concept.external-standard/unemployment-fund-code-2017 akassekod)
     ]
@@ -20,4 +20,4 @@
   "Query db for Swedish unemployment funds"
   []
   (concat (map convert-unemployment-fund
-    (lm/fetch-data lm/get-unemployment-funds))))
+    (lm/fetch-data lm/get-unemployment-fund))))

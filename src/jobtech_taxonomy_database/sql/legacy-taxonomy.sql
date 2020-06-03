@@ -2,7 +2,7 @@
 
 -- A ":result" value of ":*" specifies a vector of records
 -- (as hashmaps) will be returned
--- :name get-unemployment-funds :*
+-- :name get-unemployment-fund :*
 -- :doc Get all unemployment funds
 SELECT AKassa.AKassekod, AKassaTerm.*
 FROM TaxonomiDBSvensk.dbo.AKassa AKassa,
