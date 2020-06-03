@@ -30,7 +30,7 @@
   )
 
 
-(def updated-employmet-types
+(def updated-employment-types
   [
    {:new-term "Tillsvidareanställning, inklusive provanställning" :sort 1 :legacy-id "1"}
    {:new-term "Säsongsanställning" :sort 2 :legacy-id "2"}
@@ -58,14 +58,14 @@
    :concept/sort-order 4}
   )
 
-(defn update [data]
+(defn update-type [data]
   (let [entity-id (u/get-entity-id-by-legacy-id (:legacy-id data) t/employment-type )]
     (u/update-concept entity-id data)
     )
   )
 
 (defn convert-updated []
-  (mapcat update updated-employmet-types )
+  (mapcat update-type updated-employment-types)
   )
 
 (defn convert []
