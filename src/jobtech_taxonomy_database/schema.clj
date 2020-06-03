@@ -68,6 +68,12 @@
     :db/unique :db.unique/identity
     :db/doc "SSYK-2012 type"}
 
+   {:db/ident :concept.external-standard/unemployment-fund-code-2017
+    :db/valueType :db.type/string
+    :db/cardinality :db.cardinality/one
+    :db/unique :db.unique/identity
+    :db/doc "Swedish unemployment fund code"}
+
    {:db/ident :concept/sort-order
     :db/valueType :db.type/long
     :db/cardinality :db.cardinality/one
