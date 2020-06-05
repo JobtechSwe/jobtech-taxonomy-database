@@ -147,6 +147,15 @@
         relation (u/create-relation entity-id-occupation-name temp-id-collection t/related)]
     relation))
 
+(defn add-occupation-name-dependencies
+  "Add extra occupation-names to occupation-collection Kultur"
+  []
+  (let [conceptIds
+         '["VyvY_zLm_72D" "ytrP_JCv_bwH" "jg79_1KF_Hvq" "CmFu_Dkt_fkX"
+           "kG4e_dXA_XQf" "io6z_ZVg_ZwT" "TTF3_T1t_58U" "6n5q_5Dz_JuW"
+           ]]
+   (map #(u/create-relation % "8too_bEs_7NU" t/broader) conceptIds)
+  ))
 
 (defn convert
   ""
@@ -166,4 +175,5 @@
    ;; (mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))
    (mapcat convert-ais-occupation-collection (lm/fetch-data lm/get-ais-occupation-collection))
    (map convert-ais-occupation-collection-relation (lm/fetch-data lm/get-ais-occupation-collection-relations))
+   (add-occupation-name-dependencies)
    ))
