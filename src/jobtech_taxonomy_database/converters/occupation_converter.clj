@@ -147,6 +147,15 @@
         relation (u/create-relation entity-id-occupation-name temp-id-collection t/related)]
     relation))
 
+(defn add-occupation-name-dependencies
+  "Add extra occupation-names to occupation-collection Kultur"
+  []
+  (let [legacyIds ["7431" "7432" "7433" "7435" "7437" "7438" "7440" "7570"]]
+   (map #(u/create-relation
+           (u/create-temp-id t/occupation-name %)
+           (u/create-temp-id t/occupation-collection "2")
+           t/broader) legacyIds)
+  ))
 
 (defn convert
   ""
@@ -166,4 +175,5 @@
    ;; (mapcat convert-replaced-occupation-name (lm/fetch-data lm/get-replaced-occupation-names-reference))
    (mapcat convert-ais-occupation-collection (lm/fetch-data lm/get-ais-occupation-collection))
    (map convert-ais-occupation-collection-relation (lm/fetch-data lm/get-ais-occupation-collection-relations))
+   (add-occupation-name-dependencies)
    ))
