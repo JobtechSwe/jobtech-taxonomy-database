@@ -150,11 +150,11 @@
 (defn add-occupation-name-dependencies
   "Add extra occupation-names to occupation-collection Kultur"
   []
-  (let [conceptIds
-         '["VyvY_zLm_72D" "ytrP_JCv_bwH" "jg79_1KF_Hvq" "CmFu_Dkt_fkX"
-           "kG4e_dXA_XQf" "io6z_ZVg_ZwT" "TTF3_T1t_58U" "6n5q_5Dz_JuW"
-           ]]
-   (map #(u/create-relation % "8too_bEs_7NU" t/broader) conceptIds)
+  (let [legacyIds ["7431" "7432" "7433" "7435" "7437" "7438" "7440" "7570"]]
+   (map #(u/create-relation
+           (u/create-temp-id t/occupation-name %)
+           (u/create-temp-id t/occupation-collection "2")
+           t/broader) legacyIds)
   ))
 
 (defn convert
