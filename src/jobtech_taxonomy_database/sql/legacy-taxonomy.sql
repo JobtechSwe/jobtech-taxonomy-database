@@ -1,3 +1,13 @@
+---------------------------------------------------- SKAT CODES ---------------------------------------------------
+
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-skat-code :*
+-- :doc Get all codes for the categories a job applicant can be in, e.g.
+-- unemployed, partly unemployed, trainee, etc.
+SELECT sökandekategoriID, beteckning
+FROM TaxonomiDBSvensk.dbo.SökandekategoriTerm;
+
 ---------------------------------------------------- UNEMPLOYMENT FUNDS -------------------------------------------
 
 -- A ":result" value of ":*" specifies a vector of records
