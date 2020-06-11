@@ -157,6 +157,15 @@
            t/broader) legacyIds)
   ))
 
+(defn convert-name-field-relation
+  "Migrate relation between occupation-field and occupaton-name"
+  [{:keys [occupation-name-id occupation-field-id]}]
+  {:pre [occupation-name-id occupation-field-id]}
+  (u/create-relation
+            (u/create-temp-id t/occupation-name occupation-name-id)
+            (u/create-temp-id t/occupation-field occupation-field-id)
+            t/broader))
+
 (defn convert
   ""
   []
@@ -176,4 +185,5 @@
    (mapcat convert-ais-occupation-collection (lm/fetch-data lm/get-ais-occupation-collection))
    (map convert-ais-occupation-collection-relation (lm/fetch-data lm/get-ais-occupation-collection-relations))
    (add-occupation-name-dependencies)
+   (map convert-name-field-relation (lm/fetch-data lm/get-name-field-relation))
    ))

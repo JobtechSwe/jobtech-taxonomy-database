@@ -284,6 +284,17 @@ WHERE
 AND [db].localeFieldID = [db-term].localeFieldID
 AND [db].versionID = 67
 
+-- A ":result" value of ":*" specifies a vector of records
+-- (as hashmaps) will be returned
+-- :name get-name-field-relation :*
+-- :doc Get relations between occupation-name and occupation-field
+SELECT on2.occupationNameID as [occupation-name-id]
+     , og.occupationFieldID as [occupation-field-id]
+FROM TaxonomyDB.dbo.OccupationName on2
+   , TaxonomyDB.dbo.OccupationGroup og
+WHERE
+     on2.occupationGroupID = og.occupationGroupID
+
 -- :name get-isco-level-4 :*
 -- :doc Get isco level 4 ;
 SELECT [db].occupationGroupID AS [isco-4-id],
