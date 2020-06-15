@@ -26,6 +26,7 @@
     jobtech-taxonomy-database.converters.occupation-skill-relation-converter
     jobtech-taxonomy-database.converters.SNI-level-converter
     jobtech-taxonomy-database.converters.unemployment-fund
+    jobtech-taxonomy-database.converters.unemployment-type
     jobtech-taxonomy-database.converters.wage-type-converter
     jobtech-taxonomy-database.converters.worktime-extent-converter
 

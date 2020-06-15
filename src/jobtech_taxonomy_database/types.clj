@@ -38,6 +38,7 @@
 (def sun-education-level-2 "sun-education-level-2")
 (def sun-education-level-3 "sun-education-level-3")
 (def unemployment-fund "unemployment-fund")
+(def unemployment-type "unemployment-type")
 (def wage-type "wage-type")
 (def worktime-extent "worktime-extent")
 (def occupation-experience-year "occupation-experience-year")
@@ -57,6 +58,7 @@
                          sni-level-1
                          sni-level-2
                          unemployment-fund
+                         unemployment-type
                          wage-type
                          worktime-extent
                          isco-level-4                       ;previously OccupationGroup
@@ -121,6 +123,7 @@
              ["sun-education-level-2"],
              ["sun-education-level-3"],
              ["unemployment-fund"],
+             ["unemployment-type"],
              ["wage-type"],
              ["worktime-extent"]])
 
