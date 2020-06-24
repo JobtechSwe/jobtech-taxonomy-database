@@ -7422,6 +7422,18 @@
       "preferredLabel" : "A-kassa",
       "type" : "keyword"
     },
+    "552" : {
+      "conceptId" : "Cxwp_XNS_XnS",
+      "legacyAmsTaxonomyId" : "552",
+      "preferredLabel" : "Däcktekniker",
+      "type" : "keyword"
+    },
+    "553" : {
+      "conceptId" : "iaiu_mN7_WeB",
+      "legacyAmsTaxonomyId" : "553",
+      "preferredLabel" : "Däckspecialist",
+      "type" : "keyword"
+    },
     "56" : {
       "conceptId" : "7XaC_HTi_Suc",
       "legacyAmsTaxonomyId" : "56",
@@ -32316,6 +32328,18 @@
       "conceptId" : "bf92_EVy_5NP",
       "legacyAmsTaxonomyId" : "7865",
       "preferredLabel" : "Vältförare",
+      "type" : "occupation-name"
+    },
+    "7866" : {
+      "conceptId" : "TgpF_4Nq_eTw",
+      "legacyAmsTaxonomyId" : "7866",
+      "preferredLabel" : "Handläggare, intresseorganisation/Utredare, intresseorganisation",
+      "type" : "occupation-name"
+    },
+    "7867" : {
+      "conceptId" : "cB4Q_Cx9_2Lw",
+      "legacyAmsTaxonomyId" : "7867",
+      "preferredLabel" : "Beredskapsdirektör",
       "type" : "occupation-name"
     },
     "795" : {
@@ -72344,7 +72368,7 @@
     "609128" : {
       "conceptId" : "ZxKX_dN4_8DJ",
       "legacyAmsTaxonomyId" : "609128",
-      "preferredLabel" : "Revenue Management",
+      "preferredLabel" : "Revenue Management/Yield management",
       "type" : "skill"
     },
     "609129" : {
@@ -85702,6 +85726,502 @@
       "preferredLabel" : "Grundskoleutbildning, årskurs 7-9",
       "type" : "sun-education-level-3",
       "concept.external-standard/sun-education-level-code-2000" : "206"
+    }
+  },
+  "unemployment-fund" : {
+    "11" : {
+      "conceptId" : "d9vB_pqU_eMP",
+      "legacyAmsTaxonomyId" : "11",
+      "preferredLabel" : "Hotell- och restauranganställdas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "12" : {
+      "conceptId" : "PV5a_MDG_tSS",
+      "legacyAmsTaxonomyId" : "12",
+      "preferredLabel" : "Säljarnas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "14" : {
+      "conceptId" : "yN7a_5N4_PNh",
+      "legacyAmsTaxonomyId" : "14",
+      "preferredLabel" : "Elektrikernas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "15" : {
+      "conceptId" : "uWPK_2aD_gJn",
+      "legacyAmsTaxonomyId" : "15",
+      "preferredLabel" : "Ledarnas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "19" : {
+      "conceptId" : "b1jW_2vV_nMe",
+      "legacyAmsTaxonomyId" : "19",
+      "preferredLabel" : "Byggnadsarbetarnas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "21" : {
+      "conceptId" : "mQNn_ZiR_VMJ",
+      "legacyAmsTaxonomyId" : "21",
+      "preferredLabel" : "Sveriges arbetares a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "22" : {
+      "conceptId" : "EPNE_kcT_xDd",
+      "legacyAmsTaxonomyId" : "22",
+      "preferredLabel" : "Pappersindustriarbetarnas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "23" : {
+      "conceptId" : "K1sA_aqg_pW1",
+      "legacyAmsTaxonomyId" : "23",
+      "preferredLabel" : "Fastighets a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "26" : {
+      "conceptId" : "Qo4K_J3R_mw1",
+      "legacyAmsTaxonomyId" : "26",
+      "preferredLabel" : "Kommunalarbetarnas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "27" : {
+      "conceptId" : "Ws1W_3X3_nfB",
+      "legacyAmsTaxonomyId" : "27",
+      "preferredLabel" : "Journalisternas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "28" : {
+      "conceptId" : "z4P8_ems_t6k",
+      "legacyAmsTaxonomyId" : "28",
+      "preferredLabel" : "A-kassan Vision",
+      "type" : "unemployment-fund"
+    },
+    "3" : {
+      "conceptId" : "LYWt_LbD_YvZ",
+      "legacyAmsTaxonomyId" : "3",
+      "preferredLabel" : "Ej medlem i a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "30" : {
+      "conceptId" : "aX4t_ipy_4Ms",
+      "legacyAmsTaxonomyId" : "30",
+      "preferredLabel" : "Akademikernas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "31" : {
+      "conceptId" : "RwaL_DFF_2pJ",
+      "legacyAmsTaxonomyId" : "31",
+      "preferredLabel" : "Småföretagarnas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "35" : {
+      "conceptId" : "5Pwg_pYT_Nuc",
+      "legacyAmsTaxonomyId" : "35",
+      "preferredLabel" : "A-kassan för service och kommunikation (SEKO)",
+      "type" : "unemployment-fund"
+    },
+    "37" : {
+      "conceptId" : "Du1P_Mx4_dDS",
+      "legacyAmsTaxonomyId" : "37",
+      "preferredLabel" : "STs a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "38" : {
+      "conceptId" : "hLes_Xb7_K4V",
+      "legacyAmsTaxonomyId" : "38",
+      "preferredLabel" : "Hamnarbetarnas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "39" : {
+      "conceptId" : "KnqJ_8T1_U5h",
+      "legacyAmsTaxonomyId" : "39",
+      "preferredLabel" : "IF Metalls a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "4" : {
+      "conceptId" : "3r9J_HFs_2cu",
+      "legacyAmsTaxonomyId" : "4",
+      "preferredLabel" : "Handelsanställdas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "40" : {
+      "conceptId" : "xs1Q_ceT_SVD",
+      "legacyAmsTaxonomyId" : "40",
+      "preferredLabel" : "Lärarnas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "41" : {
+      "conceptId" : "zJE9_REY_TsF",
+      "legacyAmsTaxonomyId" : "41",
+      "preferredLabel" : "A-kassan Alfa",
+      "type" : "unemployment-fund"
+    },
+    "42" : {
+      "conceptId" : "YnFW_t4B_aeY",
+      "legacyAmsTaxonomyId" : "42",
+      "preferredLabel" : "Finans- och Försäkringsbranschens a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "5" : {
+      "conceptId" : "ZNfq_sBM_CCC",
+      "legacyAmsTaxonomyId" : "5",
+      "preferredLabel" : "GS a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "7" : {
+      "conceptId" : "RxLJ_iT1_RZx",
+      "legacyAmsTaxonomyId" : "7",
+      "preferredLabel" : "Livsmedelsarbetarnas a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "8" : {
+      "conceptId" : "XHG8_voY_cCt",
+      "legacyAmsTaxonomyId" : "8",
+      "preferredLabel" : "Unionens a-kassa",
+      "type" : "unemployment-fund"
+    },
+    "9" : {
+      "conceptId" : "5rg2_MmX_3LS",
+      "legacyAmsTaxonomyId" : "9",
+      "preferredLabel" : "Transportarbetarnas a-kassa",
+      "type" : "unemployment-fund"
+    }
+  },
+  "unemployment-type" : {
+    "1" : {
+      "conceptId" : "jN1G_MQy_3hn",
+      "legacyAmsTaxonomyId" : "1",
+      "preferredLabel" : "Öppet arbetslös",
+      "type" : "unemployment-type"
+    },
+    "10" : {
+      "conceptId" : "uMNj_3p7_kuR",
+      "legacyAmsTaxonomyId" : "10",
+      "preferredLabel" : "Utvecklingsanställning",
+      "type" : "unemployment-type"
+    },
+    "100" : {
+      "conceptId" : "BSzS_xYF_JZa",
+      "legacyAmsTaxonomyId" : "100",
+      "preferredLabel" : "Förberedande insatser",
+      "type" : "unemployment-type"
+    },
+    "101" : {
+      "conceptId" : "e1yH_RJo_5WQ",
+      "legacyAmsTaxonomyId" : "101",
+      "preferredLabel" : "Lärlingsplats",
+      "type" : "unemployment-type"
+    },
+    "102" : {
+      "conceptId" : "Wy98_Z2h_a1p",
+      "legacyAmsTaxonomyId" : "102",
+      "preferredLabel" : "Validering",
+      "type" : "unemployment-type"
+    },
+    "11" : {
+      "conceptId" : "uuC1_Yi6_wGk",
+      "legacyAmsTaxonomyId" : "11",
+      "preferredLabel" : "Trygghetsanställning",
+      "type" : "unemployment-type"
+    },
+    "12" : {
+      "conceptId" : "VRVa_t47_5oS",
+      "legacyAmsTaxonomyId" : "12",
+      "preferredLabel" : "Anställd i önskad omfattning längre än 3 månader",
+      "type" : "unemployment-type"
+    },
+    "13" : {
+      "conceptId" : "zPrd_C98_SYZ",
+      "legacyAmsTaxonomyId" : "13",
+      "preferredLabel" : "Lönebidrag",
+      "type" : "unemployment-type"
+    },
+    "14" : {
+      "conceptId" : "ehLZ_Gd3_3rD",
+      "legacyAmsTaxonomyId" : "14",
+      "preferredLabel" : "Skyddat arbete, offentlig arbetsgivare",
+      "type" : "unemployment-type"
+    },
+    "16" : {
+      "conceptId" : "33oi_evU_xqK",
+      "legacyAmsTaxonomyId" : "16",
+      "preferredLabel" : "Start av näringsverksamhet",
+      "type" : "unemployment-type"
+    },
+    "19" : {
+      "conceptId" : "LTea_F7W_SZd",
+      "legacyAmsTaxonomyId" : "19",
+      "preferredLabel" : "Särskilt anställningsstöd inom jobb- och utvecklingsgarantin",
+      "type" : "unemployment-type"
+    },
+    "2" : {
+      "conceptId" : "ZvxF_TvW_Gpo",
+      "legacyAmsTaxonomyId" : "2",
+      "preferredLabel" : "Arbetssökande med förhinder",
+      "type" : "unemployment-type"
+    },
+    "23" : {
+      "conceptId" : "CFBR_LNL_VGD",
+      "legacyAmsTaxonomyId" : "23",
+      "preferredLabel" : "Arbetspraktik",
+      "type" : "unemployment-type"
+    },
+    "24" : {
+      "conceptId" : "DUb4_Woz_9gT",
+      "legacyAmsTaxonomyId" : "24",
+      "preferredLabel" : "Prova-på-plats",
+      "type" : "unemployment-type"
+    },
+    "29" : {
+      "conceptId" : "5thv_9Gf_7Jh",
+      "legacyAmsTaxonomyId" : "29",
+      "preferredLabel" : "Arbetslivsinriktad rehabilitering",
+      "type" : "unemployment-type"
+    },
+    "3" : {
+      "conceptId" : "4ShF_gEM_P5N",
+      "legacyAmsTaxonomyId" : "3",
+      "preferredLabel" : "Deltidsarbetslös",
+      "type" : "unemployment-type"
+    },
+    "30" : {
+      "conceptId" : "Ur6u_NHS_wtm",
+      "legacyAmsTaxonomyId" : "30",
+      "preferredLabel" : "Aktiviteter inom vägledning eller platsförmedling",
+      "type" : "unemployment-type"
+    },
+    "31" : {
+      "conceptId" : "JjAo_LZT_txP",
+      "legacyAmsTaxonomyId" : "31",
+      "preferredLabel" : "Projekt med arbetsmarknadspolitisk inriktning",
+      "type" : "unemployment-type"
+    },
+    "32" : {
+      "conceptId" : "UxYh_iBV_pwF",
+      "legacyAmsTaxonomyId" : "32",
+      "preferredLabel" : "Fördjupad kartläggning och vägledning",
+      "type" : "unemployment-type"
+    },
+    "33" : {
+      "conceptId" : "N5BN_6Hj_ust",
+      "legacyAmsTaxonomyId" : "33",
+      "preferredLabel" : "Arbetsmarknadsutbildning",
+      "type" : "unemployment-type"
+    },
+    "34" : {
+      "conceptId" : "Kfmr_ayx_fGQ",
+      "legacyAmsTaxonomyId" : "34",
+      "preferredLabel" : "Förberedande utbildning",
+      "type" : "unemployment-type"
+    },
+    "39" : {
+      "conceptId" : "ELd5_HNG_Rfs",
+      "legacyAmsTaxonomyId" : "39",
+      "preferredLabel" : "Felregistrering av beslut",
+      "type" : "unemployment-type"
+    },
+    "4" : {
+      "conceptId" : "azhn_3bD_WGd",
+      "legacyAmsTaxonomyId" : "4",
+      "preferredLabel" : "Tillfälligt timanställd",
+      "type" : "unemployment-type"
+    },
+    "40" : {
+      "conceptId" : "RaeJ_ot9_sq8",
+      "legacyAmsTaxonomyId" : "40",
+      "preferredLabel" : "Avbrott/återkallande av beslut",
+      "type" : "unemployment-type"
+    },
+    "41" : {
+      "conceptId" : "SaHT_v2a_RfX",
+      "legacyAmsTaxonomyId" : "41",
+      "preferredLabel" : "Slutförd beslutsperiod",
+      "type" : "unemployment-type"
+    },
+    "42" : {
+      "conceptId" : "hxoy_bXr_y5p",
+      "legacyAmsTaxonomyId" : "42",
+      "preferredLabel" : "Jobbgaranti för ungdomar",
+      "type" : "unemployment-type"
+    },
+    "43" : {
+      "conceptId" : "J4z2_7Lk_ipZ",
+      "legacyAmsTaxonomyId" : "43",
+      "preferredLabel" : "Särskilt nystartsjobb",
+      "type" : "unemployment-type"
+    },
+    "45" : {
+      "conceptId" : "6nzo_TwK_483",
+      "legacyAmsTaxonomyId" : "45",
+      "preferredLabel" : "Jobb- och utvecklingsgarantin",
+      "type" : "unemployment-type"
+    },
+    "47" : {
+      "conceptId" : "Uo3H_DaV_hfi",
+      "legacyAmsTaxonomyId" : "47",
+      "preferredLabel" : "Instegsjobb",
+      "type" : "unemployment-type"
+    },
+    "5" : {
+      "conceptId" : "cCj9_Yhb_wZS",
+      "legacyAmsTaxonomyId" : "5",
+      "preferredLabel" : "Yrkesfiskare",
+      "type" : "unemployment-type"
+    },
+    "6" : {
+      "conceptId" : "e825_F2y_AcV",
+      "legacyAmsTaxonomyId" : "6",
+      "preferredLabel" : "Anställd i önskad omfattning upp till 3 månader",
+      "type" : "unemployment-type"
+    },
+    "67" : {
+      "conceptId" : "BvDB_dNM_o6e",
+      "legacyAmsTaxonomyId" : "67",
+      "preferredLabel" : "Praktisk kompetensutveckling",
+      "type" : "unemployment-type"
+    },
+    "7" : {
+      "conceptId" : "gXTZ_8H8_iXA",
+      "legacyAmsTaxonomyId" : "7",
+      "preferredLabel" : "Nystartsjobb",
+      "type" : "unemployment-type"
+    },
+    "72" : {
+      "conceptId" : "CRMR_Pvn_4qn",
+      "legacyAmsTaxonomyId" : "72",
+      "preferredLabel" : "Arbetslivsintroduktion",
+      "type" : "unemployment-type"
+    },
+    "79" : {
+      "conceptId" : "yA94_P8e_1hP",
+      "legacyAmsTaxonomyId" : "79",
+      "preferredLabel" : "Jobb- och utvecklingsgarantin, sysselsättningsfasen",
+      "type" : "unemployment-type"
+    },
+    "8" : {
+      "conceptId" : "pnZQ_FQy_QgC",
+      "legacyAmsTaxonomyId" : "8",
+      "preferredLabel" : "Utresande EES/EU-sökande",
+      "type" : "unemployment-type"
+    },
+    "80" : {
+      "conceptId" : "hacE_rGN_vkw",
+      "legacyAmsTaxonomyId" : "80",
+      "preferredLabel" : "Förstärkt särskilt anställningsstöd",
+      "type" : "unemployment-type"
+    },
+    "81" : {
+      "conceptId" : "Jnx8_d7F_Q5B",
+      "legacyAmsTaxonomyId" : "81",
+      "preferredLabel" : "Kulturarvslyftet",
+      "type" : "unemployment-type"
+    },
+    "82" : {
+      "conceptId" : "Jn63_f8e_qF8",
+      "legacyAmsTaxonomyId" : "82",
+      "preferredLabel" : "Utvecklingsanställning hos Samhall",
+      "type" : "unemployment-type"
+    },
+    "83" : {
+      "conceptId" : "Yofo_1DD_9DY",
+      "legacyAmsTaxonomyId" : "83",
+      "preferredLabel" : "Yrkesintroduktionsanställning",
+      "type" : "unemployment-type"
+    },
+    "84" : {
+      "conceptId" : "8PSW_xjD_E6B",
+      "legacyAmsTaxonomyId" : "84",
+      "preferredLabel" : "Arbetsträning med handledare",
+      "type" : "unemployment-type"
+    },
+    "85" : {
+      "conceptId" : "VxCz_Xcs_24u",
+      "legacyAmsTaxonomyId" : "85",
+      "preferredLabel" : "Arbetsträning inom praktiskt basår",
+      "type" : "unemployment-type"
+    },
+    "86" : {
+      "conceptId" : "u9AZ_BfS_f8X",
+      "legacyAmsTaxonomyId" : "86",
+      "preferredLabel" : "Upphävande av beslut",
+      "type" : "unemployment-type"
+    },
+    "87" : {
+      "conceptId" : "SnJQ_vMh_ZxK",
+      "legacyAmsTaxonomyId" : "87",
+      "preferredLabel" : "Trainee brist",
+      "type" : "unemployment-type"
+    },
+    "88" : {
+      "conceptId" : "4DCP_6HU_S3w",
+      "legacyAmsTaxonomyId" : "88",
+      "preferredLabel" : "Trainee välfärd",
+      "type" : "unemployment-type"
+    },
+    "89" : {
+      "conceptId" : "NWTs_pUt_NEg",
+      "legacyAmsTaxonomyId" : "89",
+      "preferredLabel" : "Extratjänst",
+      "type" : "unemployment-type"
+    },
+    "9" : {
+      "conceptId" : "hq1j_EkL_cBL",
+      "legacyAmsTaxonomyId" : "9",
+      "preferredLabel" : "Ombytessökande, Samhall",
+      "type" : "unemployment-type"
+    },
+    "91" : {
+      "conceptId" : "Miqd_Di1_hCF",
+      "legacyAmsTaxonomyId" : "91",
+      "preferredLabel" : "Kommuninsats",
+      "type" : "unemployment-type"
+    },
+    "92" : {
+      "conceptId" : "xh4y_a6s_Ec6",
+      "legacyAmsTaxonomyId" : "92",
+      "preferredLabel" : "Förberedande insatser",
+      "type" : "unemployment-type"
+    },
+    "93" : {
+      "conceptId" : "qJ98_BmC_dQd",
+      "legacyAmsTaxonomyId" : "93",
+      "preferredLabel" : "Etableringsprogrammet",
+      "type" : "unemployment-type"
+    },
+    "94" : {
+      "conceptId" : "8CqD_Afa_uty",
+      "legacyAmsTaxonomyId" : "94",
+      "preferredLabel" : "Kartläggning inom etableringsprogrammet",
+      "type" : "unemployment-type"
+    },
+    "95" : {
+      "conceptId" : "2uAR_v6D_6gY",
+      "legacyAmsTaxonomyId" : "95",
+      "preferredLabel" : "Kommuninsats",
+      "type" : "unemployment-type"
+    },
+    "96" : {
+      "conceptId" : "Up3r_EwF_HiP",
+      "legacyAmsTaxonomyId" : "96",
+      "preferredLabel" : "Trainee brist",
+      "type" : "unemployment-type"
+    },
+    "97" : {
+      "conceptId" : "vhYW_1d2_cuC",
+      "legacyAmsTaxonomyId" : "97",
+      "preferredLabel" : "Trainee välfärd",
+      "type" : "unemployment-type"
+    },
+    "98" : {
+      "conceptId" : "ZKXc_hSW_Tod",
+      "legacyAmsTaxonomyId" : "98",
+      "preferredLabel" : "Modernt beredskapsjobb",
+      "type" : "unemployment-type"
+    },
+    "99" : {
+      "conceptId" : "jQvB_Bez_8xc",
+      "legacyAmsTaxonomyId" : "99",
+      "preferredLabel" : "Extratjänst",
+      "type" : "unemployment-type"
     }
   },
   "wage-type" : {

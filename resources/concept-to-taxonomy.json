@@ -2221,6 +2221,11 @@
     "preferredLabel" : "Tsonga",
     "type" : "language"
   },
+  "2uAR_v6D_6gY" : {
+    "legacyAmsTaxonomyId" : "95",
+    "preferredLabel" : "Kommuninsats",
+    "type" : "unemployment-type"
+  },
   "2uEM_tm8_J96" : {
     "legacyAmsTaxonomyId" : "404",
     "preferredLabel" : "Arr. Marche-en-Famenne",
@@ -2390,6 +2395,11 @@
     "legacyAmsTaxonomyId" : "606835",
     "preferredLabel" : "Koreografi, klassisk balett",
     "type" : "skill"
+  },
+  "33oi_evU_xqK" : {
+    "legacyAmsTaxonomyId" : "16",
+    "preferredLabel" : "Start av näringsverksamhet",
+    "type" : "unemployment-type"
   },
   "34Tn_BQQ_tfo" : {
     "legacyAmsTaxonomyId" : "1384",
@@ -3310,6 +3320,11 @@
     "preferredLabel" : "Moderna språk, undervisning grundskolenivå",
     "type" : "skill"
   },
+  "3r9J_HFs_2cu" : {
+    "legacyAmsTaxonomyId" : "4",
+    "preferredLabel" : "Handelsanställdas a-kassa",
+    "type" : "unemployment-fund"
+  },
   "3rPm_Muj_kJT" : {
     "legacyAmsTaxonomyId" : "400",
     "preferredLabel" : "Ndebele Nord",
@@ -3826,6 +3841,11 @@
     "preferredLabel" : "ASP.NET, programmeringsspråk",
     "type" : "skill"
   },
+  "4DCP_6HU_S3w" : {
+    "legacyAmsTaxonomyId" : "88",
+    "preferredLabel" : "Trainee välfärd",
+    "type" : "unemployment-type"
+  },
   "4DET_dLf_iB9" : {
     "legacyAmsTaxonomyId" : "1173",
     "preferredLabel" : "Maskinoperatörer, blekning, färgning och tvättning",
@@ -4082,6 +4102,11 @@
     "legacyAmsTaxonomyId" : "7043",
     "preferredLabel" : "Efterbearbetningsredaktör",
     "type" : "occupation-name"
+  },
+  "4ShF_gEM_P5N" : {
+    "legacyAmsTaxonomyId" : "3",
+    "preferredLabel" : "Deltidsarbetslös",
+    "type" : "unemployment-type"
   },
   "4Snx_oj5_DhX" : {
     "legacyAmsTaxonomyId" : "1451",
@@ -5297,6 +5322,11 @@
     "preferredLabel" : "Pedagogiskt ledarskap",
     "type" : "skill"
   },
+  "5Pwg_pYT_Nuc" : {
+    "legacyAmsTaxonomyId" : "35",
+    "preferredLabel" : "A-kassan för service och kommunikation (SEKO)",
+    "type" : "unemployment-fund"
+  },
   "5Q7S_Ezy_xhi" : {
     "legacyAmsTaxonomyId" : "604647",
     "preferredLabel" : "Paketeringsvana, livsmedel",
@@ -5750,6 +5780,11 @@
     "preferredLabel" : "Soltau-Fallingbostel",
     "type" : "region"
   },
+  "5rg2_MmX_3LS" : {
+    "legacyAmsTaxonomyId" : "9",
+    "preferredLabel" : "Transportarbetarnas a-kassa",
+    "type" : "unemployment-fund"
+  },
   "5rhr_9cg_v5o" : {
     "legacyAmsTaxonomyId" : "601403",
     "preferredLabel" : "Stamdragning",
@@ -5820,6 +5855,11 @@
     "legacyAmsTaxonomyId" : "5477",
     "preferredLabel" : "Geodet",
     "type" : "occupation-name"
+  },
+  "5thv_9Gf_7Jh" : {
+    "legacyAmsTaxonomyId" : "29",
+    "preferredLabel" : "Arbetslivsinriktad rehabilitering",
+    "type" : "unemployment-type"
   },
   "5tsY_znz_Ssg" : {
     "legacyAmsTaxonomyId" : "4946",
@@ -7019,6 +7059,11 @@
     "legacyAmsTaxonomyId" : "295",
     "preferredLabel" : "Skomakare m.fl.",
     "type" : "isco-level-4"
+  },
+  "6nzo_TwK_483" : {
+    "legacyAmsTaxonomyId" : "45",
+    "preferredLabel" : "Jobb- och utvecklingsgarantin",
+    "type" : "unemployment-type"
   },
   "6o2S_cvR_GwA" : {
     "legacyAmsTaxonomyId" : "101",
@@ -8853,6 +8898,11 @@
     "preferredLabel" : "Pumpteknik",
     "type" : "skill"
   },
+  "8CqD_Afa_uty" : {
+    "legacyAmsTaxonomyId" : "94",
+    "preferredLabel" : "Kartläggning inom etableringsprogrammet",
+    "type" : "unemployment-type"
+  },
   "8DGZ_LmQ_NcS" : {
     "legacyAmsTaxonomyId" : "830",
     "preferredLabel" : "Anhalt-Bitterfeld",
@@ -9053,6 +9103,11 @@
     "legacyAmsTaxonomyId" : "1343",
     "preferredLabel" : "Fanerarbetare, fanertillverkning",
     "type" : "occupation-name"
+  },
+  "8PSW_xjD_E6B" : {
+    "legacyAmsTaxonomyId" : "84",
+    "preferredLabel" : "Arbetsträning med handledare",
+    "type" : "unemployment-type"
   },
   "8PbH_ED5_C9s" : {
     "legacyAmsTaxonomyId" : "603432",
@@ -12750,6 +12805,11 @@
     "preferredLabel" : "Kronofogde",
     "type" : "occupation-name"
   },
+  "BSzS_xYF_JZa" : {
+    "legacyAmsTaxonomyId" : "100",
+    "preferredLabel" : "Förberedande insatser",
+    "type" : "unemployment-type"
+  },
   "BT8G_RDJ_ofc" : {
     "legacyAmsTaxonomyId" : "6863",
     "preferredLabel" : "Maskinmekaniker/Skogsmaskinmekaniker",
@@ -13281,6 +13341,11 @@
     "preferredLabel" : "Livsmedelsmikrobiologi",
     "type" : "skill"
   },
+  "BvDB_dNM_o6e" : {
+    "legacyAmsTaxonomyId" : "67",
+    "preferredLabel" : "Praktisk kompetensutveckling",
+    "type" : "unemployment-type"
+  },
   "Bvea_phY_tQo" : {
     "legacyAmsTaxonomyId" : "94",
     "preferredLabel" : "Stödtjänster till finansiella tjänster o försäkr",
@@ -13682,6 +13747,11 @@
     "preferredLabel" : "Wysiwug",
     "type" : "skill"
   },
+  "CFBR_LNL_VGD" : {
+    "legacyAmsTaxonomyId" : "23",
+    "preferredLabel" : "Arbetspraktik",
+    "type" : "unemployment-type"
+  },
   "CFGL_C5S_eLA" : {
     "legacyAmsTaxonomyId" : "564",
     "preferredLabel" : "Interventionell röntgen/Radiologi",
@@ -13972,6 +14042,11 @@
     "legacyAmsTaxonomyId" : "606708",
     "preferredLabel" : "Ljudteknik, scenproduktion",
     "type" : "skill"
+  },
+  "CRMR_Pvn_4qn" : {
+    "legacyAmsTaxonomyId" : "72",
+    "preferredLabel" : "Arbetslivsintroduktion",
+    "type" : "unemployment-type"
   },
   "CRha_VsG_oSr" : {
     "legacyAmsTaxonomyId" : "225x",
@@ -14660,6 +14735,11 @@
     "preferredLabel" : "Datainstruktör",
     "type" : "occupation-name"
   },
+  "Cxwp_XNS_XnS" : {
+    "legacyAmsTaxonomyId" : "552",
+    "preferredLabel" : "Däcktekniker",
+    "type" : "keyword"
+  },
   "Cy2v_Pnm_97P" : {
     "legacyAmsTaxonomyId" : "604778",
     "preferredLabel" : "Verksamhetsledning, tvätteri",
@@ -15325,6 +15405,11 @@
     "preferredLabel" : "Annan omvårdnadsutbildning, psykiatrisk vård",
     "type" : "sun-education-field-4"
   },
+  "DUb4_Woz_9gT" : {
+    "legacyAmsTaxonomyId" : "24",
+    "preferredLabel" : "Prova-på-plats",
+    "type" : "unemployment-type"
+  },
   "DUf8_6aG_gJr" : {
     "legacyAmsTaxonomyId" : "314",
     "preferredLabel" : "Drifttekniker, värmekraftverk m.m.",
@@ -15747,6 +15832,11 @@
     "legacyAmsTaxonomyId" : "31",
     "preferredLabel" : "Brittiska Indiska Oceanöarna",
     "type" : "country"
+  },
+  "Du1P_Mx4_dDS" : {
+    "legacyAmsTaxonomyId" : "37",
+    "preferredLabel" : "STs a-kassa",
+    "type" : "unemployment-fund"
   },
   "DuPf_Z28_3Jv" : {
     "legacyAmsTaxonomyId" : "10383",
@@ -16339,6 +16429,11 @@
     "preferredLabel" : "Creative director/CD",
     "type" : "occupation-name"
   },
+  "ELd5_HNG_Rfs" : {
+    "legacyAmsTaxonomyId" : "39",
+    "preferredLabel" : "Felregistrering av beslut",
+    "type" : "unemployment-type"
+  },
   "ELkQ_6o5_XSi" : {
     "legacyAmsTaxonomyId" : "2280",
     "preferredLabel" : "Reservdelsspecialist/Bildelsspecialist",
@@ -16378,6 +16473,11 @@
     "legacyAmsTaxonomyId" : "82",
     "preferredLabel" : "ADR, tank",
     "type" : "skill"
+  },
+  "EPNE_kcT_xDd" : {
+    "legacyAmsTaxonomyId" : "22",
+    "preferredLabel" : "Pappersindustriarbetarnas a-kassa",
+    "type" : "unemployment-fund"
   },
   "EPc1_cdD_2fP" : {
     "legacyAmsTaxonomyId" : "608874",
@@ -20874,6 +20974,11 @@
     "preferredLabel" : "Gruvgeolog",
     "type" : "occupation-name"
   },
+  "J4z2_7Lk_ipZ" : {
+    "legacyAmsTaxonomyId" : "43",
+    "preferredLabel" : "Särskilt nystartsjobb",
+    "type" : "unemployment-type"
+  },
   "J5Hz_isE_mb1" : {
     "legacyAmsTaxonomyId" : "6688",
     "preferredLabel" : "Kranbilsförare",
@@ -21710,6 +21815,11 @@
     "preferredLabel" : "Rhein-Erft-Kreis",
     "type" : "region"
   },
+  "JjAo_LZT_txP" : {
+    "legacyAmsTaxonomyId" : "31",
+    "preferredLabel" : "Projekt med arbetsmarknadspolitisk inriktning",
+    "type" : "unemployment-type"
+  },
   "JjFi_LiK_yR1" : {
     "legacyAmsTaxonomyId" : "3470",
     "preferredLabel" : "Cykelbud",
@@ -21801,6 +21911,11 @@
     "preferredLabel" : "Kornett",
     "type" : "skill"
   },
+  "Jn63_f8e_qF8" : {
+    "legacyAmsTaxonomyId" : "82",
+    "preferredLabel" : "Utvecklingsanställning hos Samhall",
+    "type" : "unemployment-type"
+  },
   "JnDA_uam_JKC" : {
     "legacyAmsTaxonomyId" : "3874",
     "preferredLabel" : "Dramaturg",
@@ -21815,6 +21930,11 @@
     "legacyAmsTaxonomyId" : "7364",
     "preferredLabel" : "Arkoffsettryckare",
     "type" : "occupation-name"
+  },
+  "Jnx8_d7F_Q5B" : {
+    "legacyAmsTaxonomyId" : "81",
+    "preferredLabel" : "Kulturarvslyftet",
+    "type" : "unemployment-type"
   },
   "JoSX_p8r_E2i" : {
     "legacyAmsTaxonomyId" : "7197",
@@ -22070,6 +22190,11 @@
     "legacyAmsTaxonomyId" : "6313",
     "preferredLabel" : "Redigerare, rörlig bild",
     "type" : "occupation-name"
+  },
+  "K1sA_aqg_pW1" : {
+    "legacyAmsTaxonomyId" : "23",
+    "preferredLabel" : "Fastighets a-kassa",
+    "type" : "unemployment-fund"
   },
   "K2AW_YQS_rtW" : {
     "legacyAmsTaxonomyId" : "552",
@@ -22822,6 +22947,11 @@
     "preferredLabel" : "Nässjö",
     "type" : "municipality"
   },
+  "Kfmr_ayx_fGQ" : {
+    "legacyAmsTaxonomyId" : "34",
+    "preferredLabel" : "Förberedande utbildning",
+    "type" : "unemployment-type"
+  },
   "KfwC_b45_cmZ" : {
     "legacyAmsTaxonomyId" : "17",
     "preferredLabel" : "Förvaltnings- och planeringschefer",
@@ -22987,6 +23117,11 @@
     "legacyAmsTaxonomyId" : "608014",
     "preferredLabel" : "EN 13133, Hårdlödning/ISO 13585",
     "type" : "skill"
+  },
+  "KnqJ_8T1_U5h" : {
+    "legacyAmsTaxonomyId" : "39",
+    "preferredLabel" : "IF Metalls a-kassa",
+    "type" : "unemployment-fund"
   },
   "Ko1E_12Q_L4g" : {
     "legacyAmsTaxonomyId" : "655",
@@ -23855,6 +23990,11 @@
     "preferredLabel" : "Webbdesign-Adobe Fireworks",
     "type" : "skill"
   },
+  "LTea_F7W_SZd" : {
+    "legacyAmsTaxonomyId" : "19",
+    "preferredLabel" : "Särskilt anställningsstöd inom jobb- och utvecklingsgarantin",
+    "type" : "unemployment-type"
+  },
   "LTsh_Har_9gE" : {
     "legacyAmsTaxonomyId" : "964",
     "preferredLabel" : "Avsynare, musikinstrument",
@@ -23945,6 +24085,11 @@
     "legacyAmsTaxonomyId" : "234",
     "preferredLabel" : "Borgholm",
     "type" : "municipality"
+  },
+  "LYWt_LbD_YvZ" : {
+    "legacyAmsTaxonomyId" : "3",
+    "preferredLabel" : "Ej medlem i a-kassa",
+    "type" : "unemployment-fund"
   },
   "LYbK_zEc_rkT" : {
     "legacyAmsTaxonomyId" : "266",
@@ -25531,6 +25676,11 @@
     "preferredLabel" : "Make-up artist",
     "type" : "occupation-name"
   },
+  "Miqd_Di1_hCF" : {
+    "legacyAmsTaxonomyId" : "91",
+    "preferredLabel" : "Kommuninsats",
+    "type" : "unemployment-type"
+  },
   "Miuh_whd_fBh" : {
     "legacyAmsTaxonomyId" : "600216",
     "preferredLabel" : "Möbelrengöring",
@@ -25925,6 +26075,11 @@
     "legacyAmsTaxonomyId" : "602222",
     "preferredLabel" : "Life Cycle Cost/LCC",
     "type" : "skill"
+  },
+  "N5BN_6Hj_ust" : {
+    "legacyAmsTaxonomyId" : "33",
+    "preferredLabel" : "Arbetsmarknadsutbildning",
+    "type" : "unemployment-type"
   },
   "N5HQ_hfp_7Rm" : {
     "legacyAmsTaxonomyId" : "118",
@@ -26457,6 +26612,11 @@
     "legacyAmsTaxonomyId" : "542",
     "preferredLabel" : "Rottal-Inn",
     "type" : "region"
+  },
+  "NWTs_pUt_NEg" : {
+    "legacyAmsTaxonomyId" : "89",
+    "preferredLabel" : "Extratjänst",
+    "type" : "unemployment-type"
   },
   "NX1z_MuM_sh1" : {
     "legacyAmsTaxonomyId" : "200158",
@@ -27611,6 +27771,11 @@
     "legacyAmsTaxonomyId" : "608840",
     "preferredLabel" : "DP-advanced",
     "type" : "skill"
+  },
+  "PV5a_MDG_tSS" : {
+    "legacyAmsTaxonomyId" : "12",
+    "preferredLabel" : "Säljarnas a-kassa",
+    "type" : "unemployment-fund"
   },
   "PVHG_Bmz_WmZ" : {
     "legacyAmsTaxonomyId" : "1349",
@@ -29218,6 +29383,11 @@
     "preferredLabel" : "Legitimation som röntgensjuksköterska",
     "type" : "skill"
   },
+  "Qo4K_J3R_mw1" : {
+    "legacyAmsTaxonomyId" : "26",
+    "preferredLabel" : "Kommunalarbetarnas a-kassa",
+    "type" : "unemployment-fund"
+  },
   "Qo7p_wjf_gtv" : {
     "legacyAmsTaxonomyId" : "1410",
     "preferredLabel" : "Lednings- och organisationsutvecklare",
@@ -30204,6 +30374,11 @@
     "preferredLabel" : "Lådtillverkning",
     "type" : "skill"
   },
+  "RaeJ_ot9_sq8" : {
+    "legacyAmsTaxonomyId" : "40",
+    "preferredLabel" : "Avbrott/återkallande av beslut",
+    "type" : "unemployment-type"
+  },
   "RamJ_SC5_pWm" : {
     "legacyAmsTaxonomyId" : "1241",
     "preferredLabel" : "Kurzeme",
@@ -30529,6 +30704,16 @@
     "legacyAmsTaxonomyId" : "4546",
     "preferredLabel" : "Plattläggning",
     "type" : "skill"
+  },
+  "RwaL_DFF_2pJ" : {
+    "legacyAmsTaxonomyId" : "31",
+    "preferredLabel" : "Småföretagarnas a-kassa",
+    "type" : "unemployment-fund"
+  },
+  "RxLJ_iT1_RZx" : {
+    "legacyAmsTaxonomyId" : "7",
+    "preferredLabel" : "Livsmedelsarbetarnas a-kassa",
+    "type" : "unemployment-fund"
   },
   "RxXh_WPg_cwF" : {
     "legacyAmsTaxonomyId" : "1831",
@@ -31297,6 +31482,11 @@
     "preferredLabel" : "Boktryck",
     "type" : "skill"
   },
+  "SaHT_v2a_RfX" : {
+    "legacyAmsTaxonomyId" : "41",
+    "preferredLabel" : "Slutförd beslutsperiod",
+    "type" : "unemployment-type"
+  },
   "SaQE_LYh_7Ds" : {
     "legacyAmsTaxonomyId" : "600999",
     "preferredLabel" : "Flygklarering",
@@ -31543,6 +31733,11 @@
     "legacyAmsTaxonomyId" : "6248",
     "preferredLabel" : "Upphandlingsbestämmelser",
     "type" : "skill"
+  },
+  "SnJQ_vMh_ZxK" : {
+    "legacyAmsTaxonomyId" : "87",
+    "preferredLabel" : "Trainee brist",
+    "type" : "unemployment-type"
   },
   "SnKF_v7d_qUH" : {
     "legacyAmsTaxonomyId" : "609417",
@@ -32767,6 +32962,11 @@
   "TgZD_Mvj_nQh" : {
     "legacyAmsTaxonomyId" : "2855",
     "preferredLabel" : "Anläggningsdykare",
+    "type" : "occupation-name"
+  },
+  "TgpF_4Nq_eTw" : {
+    "legacyAmsTaxonomyId" : "7866",
+    "preferredLabel" : "Handläggare, intresseorganisation/Utredare, intresseorganisation",
     "type" : "occupation-name"
   },
   "Tgsx_o7B_Tpo" : {
@@ -34219,6 +34419,11 @@
     "preferredLabel" : "Stunt",
     "type" : "skill"
   },
+  "Uo3H_DaV_hfi" : {
+    "legacyAmsTaxonomyId" : "47",
+    "preferredLabel" : "Instegsjobb",
+    "type" : "unemployment-type"
+  },
   "UoS3_9yg_PF2" : {
     "legacyAmsTaxonomyId" : "4367",
     "preferredLabel" : "Paleontologi (djur- och växtlämningar)",
@@ -34233,6 +34438,11 @@
     "legacyAmsTaxonomyId" : "1222",
     "preferredLabel" : "Depressionsbehandling",
     "type" : "skill"
+  },
+  "Up3r_EwF_HiP" : {
+    "legacyAmsTaxonomyId" : "96",
+    "preferredLabel" : "Trainee brist",
+    "type" : "unemployment-type"
   },
   "UpCK_eh9_BBu" : {
     "legacyAmsTaxonomyId" : "322",
@@ -34273,6 +34483,11 @@
     "legacyAmsTaxonomyId" : "2488",
     "preferredLabel" : "Håruppsättningar",
     "type" : "skill"
+  },
+  "Ur6u_NHS_wtm" : {
+    "legacyAmsTaxonomyId" : "30",
+    "preferredLabel" : "Aktiviteter inom vägledning eller platsförmedling",
+    "type" : "unemployment-type"
   },
   "Ur91_w7s_dP1" : {
     "legacyAmsTaxonomyId" : "262",
@@ -34414,6 +34629,11 @@
     "legacyAmsTaxonomyId" : "1397",
     "preferredLabel" : "Övriga IT-specialister",
     "type" : "ssyk-level-4"
+  },
+  "UxYh_iBV_pwF" : {
+    "legacyAmsTaxonomyId" : "32",
+    "preferredLabel" : "Fördjupad kartläggning och vägledning",
+    "type" : "unemployment-type"
   },
   "UxZz_53F_fcb" : {
     "legacyAmsTaxonomyId" : "75",
@@ -34975,6 +35195,11 @@
     "legacyAmsTaxonomyId" : "1584",
     "preferredLabel" : "Friskvårdsledare",
     "type" : "occupation-name"
+  },
+  "VRVa_t47_5oS" : {
+    "legacyAmsTaxonomyId" : "12",
+    "preferredLabel" : "Anställd i önskad omfattning längre än 3 månader",
+    "type" : "unemployment-type"
   },
   "VRWZ_qrH_LyB" : {
     "legacyAmsTaxonomyId" : "602592",
@@ -35593,6 +35818,11 @@
     "legacyAmsTaxonomyId" : "7519",
     "preferredLabel" : "Kyrkokamrer",
     "type" : "occupation-name"
+  },
+  "VxCz_Xcs_24u" : {
+    "legacyAmsTaxonomyId" : "85",
+    "preferredLabel" : "Arbetsträning inom praktiskt basår",
+    "type" : "unemployment-type"
   },
   "VxEw_uEy_RqY" : {
     "legacyAmsTaxonomyId" : "4354",
@@ -36702,6 +36932,11 @@
     "preferredLabel" : "Maskinoperatör, ytbehandling, metall",
     "type" : "occupation-name"
   },
+  "Ws1W_3X3_nfB" : {
+    "legacyAmsTaxonomyId" : "27",
+    "preferredLabel" : "Journalisternas a-kassa",
+    "type" : "unemployment-fund"
+  },
   "WsF2_1YU_i5R" : {
     "legacyAmsTaxonomyId" : "543",
     "preferredLabel" : "Tillverkning av produkter av trä, papper, glas, porslin och plast",
@@ -36846,6 +37081,11 @@
     "legacyAmsTaxonomyId" : "90",
     "preferredLabel" : "Finmekaniker och konsthantverkare m.fl.",
     "type" : "ssyk-level-3"
+  },
+  "Wy98_Z2h_a1p" : {
+    "legacyAmsTaxonomyId" : "102",
+    "preferredLabel" : "Validering",
+    "type" : "unemployment-type"
   },
   "WyA4_g1g_jS4" : {
     "legacyAmsTaxonomyId" : "342",
@@ -37277,6 +37517,11 @@
     "legacyAmsTaxonomyId" : "1014",
     "preferredLabel" : "Irakleio",
     "type" : "region"
+  },
+  "XHG8_voY_cCt" : {
+    "legacyAmsTaxonomyId" : "8",
+    "preferredLabel" : "Unionens a-kassa",
+    "type" : "unemployment-fund"
   },
   "XHMe_b6A_dxf" : {
     "legacyAmsTaxonomyId" : "7409",
@@ -39169,6 +39414,11 @@
     "preferredLabel" : "Påbyggnadsutbildning i räddningstjänst för brandingenjörer",
     "type" : "skill"
   },
+  "YnFW_t4B_aeY" : {
+    "legacyAmsTaxonomyId" : "42",
+    "preferredLabel" : "Finans- och Försäkringsbranschens a-kassa",
+    "type" : "unemployment-fund"
+  },
   "Yncj_qPB_7HP" : {
     "legacyAmsTaxonomyId" : "3569",
     "preferredLabel" : "Luta",
@@ -39218,6 +39468,11 @@
     "legacyAmsTaxonomyId" : "141",
     "preferredLabel" : "Lagerpersonal och transportledare m.fl.",
     "type" : "ssyk-level-3"
+  },
+  "Yofo_1DD_9DY" : {
+    "legacyAmsTaxonomyId" : "83",
+    "preferredLabel" : "Yrkesintroduktionsanställning",
+    "type" : "unemployment-type"
   },
   "Yor6_rWe_Mos" : {
     "legacyAmsTaxonomyId" : "3903",
@@ -39749,6 +40004,11 @@
     "preferredLabel" : "Odontologisk radiologi/Tandröntgen",
     "type" : "skill"
   },
+  "ZKXc_hSW_Tod" : {
+    "legacyAmsTaxonomyId" : "98",
+    "preferredLabel" : "Modernt beredskapsjobb",
+    "type" : "unemployment-type"
+  },
   "ZKYL_jsh_QbD" : {
     "legacyAmsTaxonomyId" : "690",
     "preferredLabel" : "Celle",
@@ -39813,6 +40073,11 @@
     "legacyAmsTaxonomyId" : "257",
     "preferredLabel" : "Grästorp",
     "type" : "municipality"
+  },
+  "ZNfq_sBM_CCC" : {
+    "legacyAmsTaxonomyId" : "5",
+    "preferredLabel" : "GS a-kassa",
+    "type" : "unemployment-fund"
   },
   "ZNyx_1tG_w4E" : {
     "legacyAmsTaxonomyId" : "6305",
@@ -40400,6 +40665,11 @@
     "preferredLabel" : "Laboratorieingenjörer",
     "type" : "isco-level-4"
   },
+  "ZvxF_TvW_Gpo" : {
+    "legacyAmsTaxonomyId" : "2",
+    "preferredLabel" : "Arbetssökande med förhinder",
+    "type" : "unemployment-type"
+  },
   "Zw7m_h9Q_DMd" : {
     "legacyAmsTaxonomyId" : "1373",
     "preferredLabel" : "Leszczyński",
@@ -40472,7 +40742,7 @@
   },
   "ZxKX_dN4_8DJ" : {
     "legacyAmsTaxonomyId" : "609128",
-    "preferredLabel" : "Revenue Management",
+    "preferredLabel" : "Revenue Management/Yield management",
     "type" : "skill"
   },
   "ZxXw_jP7_SGx" : {
@@ -41271,6 +41541,11 @@
     "preferredLabel" : "Enna",
     "type" : "region"
   },
+  "aX4t_ipy_4Ms" : {
+    "legacyAmsTaxonomyId" : "30",
+    "preferredLabel" : "Akademikernas a-kassa",
+    "type" : "unemployment-fund"
+  },
   "aX6S_RaG_oZ3" : {
     "legacyAmsTaxonomyId" : "366",
     "preferredLabel" : "Källarmästare",
@@ -41863,6 +42138,11 @@
     "preferredLabel" : "Akutsjukvård",
     "type" : "skill"
   },
+  "azhn_3bD_WGd" : {
+    "legacyAmsTaxonomyId" : "4",
+    "preferredLabel" : "Tillfälligt timanställd",
+    "type" : "unemployment-type"
+  },
   "azkV_of2_7GG" : {
     "legacyAmsTaxonomyId" : "5115",
     "preferredLabel" : "Verkstadschef",
@@ -41877,6 +42157,11 @@
     "legacyAmsTaxonomyId" : "605922",
     "preferredLabel" : "Arkeologisk guidning",
     "type" : "skill"
+  },
+  "b1jW_2vV_nMe" : {
+    "legacyAmsTaxonomyId" : "19",
+    "preferredLabel" : "Byggnadsarbetarnas a-kassa",
+    "type" : "unemployment-fund"
   },
   "b279_2K1_3iQ" : {
     "legacyAmsTaxonomyId" : "200082",
@@ -43466,6 +43751,11 @@
     "preferredLabel" : "Kostymformgivning",
     "type" : "skill"
   },
+  "cB4Q_Cx9_2Lw" : {
+    "legacyAmsTaxonomyId" : "7867",
+    "preferredLabel" : "Beredskapsdirektör",
+    "type" : "occupation-name"
+  },
   "cBBa_ngH_fCx" : {
     "legacyAmsTaxonomyId" : "1399",
     "preferredLabel" : "Systemförvaltare m.fl.",
@@ -43500,6 +43790,11 @@
     "legacyAmsTaxonomyId" : "4497",
     "preferredLabel" : "Jordbruksforskare",
     "type" : "occupation-name"
+  },
+  "cCj9_Yhb_wZS" : {
+    "legacyAmsTaxonomyId" : "5",
+    "preferredLabel" : "Yrkesfiskare",
+    "type" : "unemployment-type"
   },
   "cDU5_op5_Tuk" : {
     "legacyAmsTaxonomyId" : "4842",
@@ -44521,6 +44816,11 @@
     "preferredLabel" : "Socialt omsorgsarbete, allmän utbildning",
     "type" : "sun-education-field-4"
   },
+  "d9vB_pqU_eMP" : {
+    "legacyAmsTaxonomyId" : "11",
+    "preferredLabel" : "Hotell- och restauranganställdas a-kassa",
+    "type" : "unemployment-fund"
+  },
   "dASq_9GH_jbS" : {
     "legacyAmsTaxonomyId" : "7345",
     "preferredLabel" : "Uroterapeut",
@@ -45500,6 +45800,11 @@
     "preferredLabel" : "Teleområdeschef",
     "type" : "occupation-name"
   },
+  "e1yH_RJo_5WQ" : {
+    "legacyAmsTaxonomyId" : "101",
+    "preferredLabel" : "Lärlingsplats",
+    "type" : "unemployment-type"
+  },
   "e2Bn_ric_CQZ" : {
     "legacyAmsTaxonomyId" : "105",
     "preferredLabel" : "Aktuariekompetens",
@@ -45620,6 +45925,11 @@
     "legacyAmsTaxonomyId" : "296",
     "preferredLabel" : "Gruv- och stenbrottsarbete",
     "type" : "isco-level-4"
+  },
+  "e825_F2y_AcV" : {
+    "legacyAmsTaxonomyId" : "6",
+    "preferredLabel" : "Anställd i önskad omfattning upp till 3 månader",
+    "type" : "unemployment-type"
   },
   "e84R_V8f_fXS" : {
     "legacyAmsTaxonomyId" : "10384",
@@ -46260,6 +46570,11 @@
     "legacyAmsTaxonomyId" : "123",
     "preferredLabel" : "Luxemburg",
     "type" : "country"
+  },
+  "ehLZ_Gd3_3rD" : {
+    "legacyAmsTaxonomyId" : "14",
+    "preferredLabel" : "Skyddat arbete, offentlig arbetsgivare",
+    "type" : "unemployment-type"
   },
   "ehMP_onv_Chk" : {
     "legacyAmsTaxonomyId" : "193",
@@ -48545,6 +48860,11 @@
     "preferredLabel" : "Darmstadt-Dieburg",
     "type" : "region"
   },
+  "gXTZ_8H8_iXA" : {
+    "legacyAmsTaxonomyId" : "7",
+    "preferredLabel" : "Nystartsjobb",
+    "type" : "unemployment-type"
+  },
   "gXVC_bNa_VdA" : {
     "legacyAmsTaxonomyId" : "10372",
     "preferredLabel" : "Inupiak",
@@ -49489,6 +49809,11 @@
     "preferredLabel" : "Resejournalistik",
     "type" : "skill"
   },
+  "hLes_Xb7_K4V" : {
+    "legacyAmsTaxonomyId" : "38",
+    "preferredLabel" : "Hamnarbetarnas a-kassa",
+    "type" : "unemployment-fund"
+  },
   "hLfP_61p_DQc" : {
     "legacyAmsTaxonomyId" : "609184",
     "preferredLabel" : "Laminatgolv",
@@ -49770,6 +50095,11 @@
     "legacyAmsTaxonomyId" : "4344",
     "preferredLabel" : "Pälssömmerska",
     "type" : "occupation-name"
+  },
+  "hacE_rGN_vkw" : {
+    "legacyAmsTaxonomyId" : "80",
+    "preferredLabel" : "Förstärkt särskilt anställningsstöd",
+    "type" : "unemployment-type"
   },
   "hb1q_7u6_bqH" : {
     "legacyAmsTaxonomyId" : "606598",
@@ -50144,6 +50474,11 @@
     "preferredLabel" : "Karen",
     "type" : "language"
   },
+  "hq1j_EkL_cBL" : {
+    "legacyAmsTaxonomyId" : "9",
+    "preferredLabel" : "Ombytessökande, Samhall",
+    "type" : "unemployment-type"
+  },
   "hq47_c3e_nxg" : {
     "legacyAmsTaxonomyId" : "607866",
     "preferredLabel" : "Symfonirock",
@@ -50349,6 +50684,11 @@
     "legacyAmsTaxonomyId" : "1162",
     "preferredLabel" : "Övriga process- och maskinoperatörer",
     "type" : "ssyk-level-4"
+  },
+  "hxoy_bXr_y5p" : {
+    "legacyAmsTaxonomyId" : "42",
+    "preferredLabel" : "Jobbgaranti för ungdomar",
+    "type" : "unemployment-type"
   },
   "hxtF_bgd_zoD" : {
     "legacyAmsTaxonomyId" : "7545",
@@ -51036,6 +51376,11 @@
     "legacyAmsTaxonomyId" : "57",
     "preferredLabel" : "Tandläkare",
     "type" : "isco-level-4"
+  },
+  "iaiu_mN7_WeB" : {
+    "legacyAmsTaxonomyId" : "553",
+    "preferredLabel" : "Däckspecialist",
+    "type" : "keyword"
   },
   "iath_RaZ_vus" : {
     "legacyAmsTaxonomyId" : "605950",
@@ -51965,6 +52310,11 @@
     "preferredLabel" : "Renhållning och avfallshantering",
     "type" : "sun-education-field-4"
   },
+  "jN1G_MQy_3hn" : {
+    "legacyAmsTaxonomyId" : "1",
+    "preferredLabel" : "Öppet arbetslös",
+    "type" : "unemployment-type"
+  },
   "jNEE_s3B_24H" : {
     "legacyAmsTaxonomyId" : "200163",
     "preferredLabel" : "Stålriktning",
@@ -52024,6 +52374,11 @@
     "legacyAmsTaxonomyId" : "853",
     "preferredLabel" : "Broteknik",
     "type" : "skill"
+  },
+  "jQvB_Bez_8xc" : {
+    "legacyAmsTaxonomyId" : "99",
+    "preferredLabel" : "Extratjänst",
+    "type" : "unemployment-type"
   },
   "jQwP_ds3_Toe" : {
     "legacyAmsTaxonomyId" : "5981",
@@ -54410,6 +54765,11 @@
     "legacyAmsTaxonomyId" : "5378",
     "preferredLabel" : "Slitagebestämning, flyg",
     "type" : "skill"
+  },
+  "mQNn_ZiR_VMJ" : {
+    "legacyAmsTaxonomyId" : "21",
+    "preferredLabel" : "Sveriges arbetares a-kassa",
+    "type" : "unemployment-fund"
   },
   "mQPZ_sUE_tRX" : {
     "legacyAmsTaxonomyId" : "109",
@@ -58533,6 +58893,11 @@
     "preferredLabel" : "Windows Server, operativsystem",
     "type" : "skill"
   },
+  "pnZQ_FQy_QgC" : {
+    "legacyAmsTaxonomyId" : "8",
+    "preferredLabel" : "Utresande EES/EU-sökande",
+    "type" : "unemployment-type"
+  },
   "pnc1_ipM_Xvv" : {
     "legacyAmsTaxonomyId" : "607810",
     "preferredLabel" : "Feature",
@@ -59123,6 +59488,11 @@
     "legacyAmsTaxonomyId" : "4143",
     "preferredLabel" : "Betongstationskötare",
     "type" : "occupation-name"
+  },
+  "qJ98_BmC_dQd" : {
+    "legacyAmsTaxonomyId" : "93",
+    "preferredLabel" : "Etableringsprogrammet",
+    "type" : "unemployment-type"
   },
   "qJBV_KxR_Zga" : {
     "legacyAmsTaxonomyId" : "1443",
@@ -64017,6 +64387,11 @@
     "preferredLabel" : "Malta",
     "type" : "country"
   },
+  "u9AZ_BfS_f8X" : {
+    "legacyAmsTaxonomyId" : "86",
+    "preferredLabel" : "Upphävande av beslut",
+    "type" : "unemployment-type"
+  },
   "u9Qr_2wJ_nVu" : {
     "legacyAmsTaxonomyId" : "536",
     "preferredLabel" : "Högskoleutbildning, generell, 3 år",
@@ -64280,6 +64655,11 @@
     "preferredLabel" : "Maskinelektriker",
     "type" : "occupation-name"
   },
+  "uMNj_3p7_kuR" : {
+    "legacyAmsTaxonomyId" : "10",
+    "preferredLabel" : "Utvecklingsanställning",
+    "type" : "unemployment-type"
+  },
   "uMdj_cKo_msw" : {
     "legacyAmsTaxonomyId" : "39",
     "preferredLabel" : "Högskoleutbildning tre år, yrkesinriktad",
@@ -64405,6 +64785,11 @@
     "legacyAmsTaxonomyId" : "4282",
     "preferredLabel" : "Oral kirurgi",
     "type" : "skill"
+  },
+  "uWPK_2aD_gJn" : {
+    "legacyAmsTaxonomyId" : "15",
+    "preferredLabel" : "Ledarnas a-kassa",
+    "type" : "unemployment-fund"
   },
   "uWaM_WHp_tV4" : {
     "legacyAmsTaxonomyId" : "601",
@@ -64985,6 +65370,11 @@
     "legacyAmsTaxonomyId" : "7252",
     "preferredLabel" : "Ventilationsingenjör",
     "type" : "occupation-name"
+  },
+  "uuC1_Yi6_wGk" : {
+    "legacyAmsTaxonomyId" : "11",
+    "preferredLabel" : "Trygghetsanställning",
+    "type" : "unemployment-type"
   },
   "uuEt_sWX_ryP" : {
     "legacyAmsTaxonomyId" : "602409",
@@ -65924,6 +66314,11 @@
     "legacyAmsTaxonomyId" : "1194",
     "preferredLabel" : "Tapetserare",
     "type" : "ssyk-level-4"
+  },
+  "vhYW_1d2_cuC" : {
+    "legacyAmsTaxonomyId" : "97",
+    "preferredLabel" : "Trainee välfärd",
+    "type" : "unemployment-type"
   },
   "vi5t_1Ty_Saz" : {
     "legacyAmsTaxonomyId" : "605990",
@@ -68424,6 +68819,11 @@
     "preferredLabel" : "Kräftodling",
     "type" : "skill"
   },
+  "xh4y_a6s_Ec6" : {
+    "legacyAmsTaxonomyId" : "92",
+    "preferredLabel" : "Förberedande insatser",
+    "type" : "unemployment-type"
+  },
   "xhPp_qTB_poK" : {
     "legacyAmsTaxonomyId" : "5626",
     "preferredLabel" : "Processoperatör, kemisk industri",
@@ -68673,6 +69073,11 @@
     "legacyAmsTaxonomyId" : "522",
     "preferredLabel" : "Högskoleutbildning, 120 högskolepoäng, ej examen, 2 år",
     "type" : "sun-education-level-3"
+  },
+  "xs1Q_ceT_SVD" : {
+    "legacyAmsTaxonomyId" : "40",
+    "preferredLabel" : "Lärarnas a-kassa",
+    "type" : "unemployment-fund"
   },
   "xsQC_69i_d1X" : {
     "legacyAmsTaxonomyId" : "5",
@@ -69072,6 +69477,11 @@
     "preferredLabel" : "Luba-Lulua",
     "type" : "language"
   },
+  "yA94_P8e_1hP" : {
+    "legacyAmsTaxonomyId" : "79",
+    "preferredLabel" : "Jobb- och utvecklingsgarantin, sysselsättningsfasen",
+    "type" : "unemployment-type"
+  },
   "yAPY_ci6_aUW" : {
     "legacyAmsTaxonomyId" : "1612",
     "preferredLabel" : "Falkirk",
@@ -69326,6 +69736,11 @@
     "legacyAmsTaxonomyId" : "2113",
     "preferredLabel" : "Gesällbrev, gitarrbyggare",
     "type" : "skill"
+  },
+  "yN7a_5N4_PNh" : {
+    "legacyAmsTaxonomyId" : "14",
+    "preferredLabel" : "Elektrikernas a-kassa",
+    "type" : "unemployment-fund"
   },
   "yNFR_Pqb_KJz" : {
     "legacyAmsTaxonomyId" : "4003",
@@ -70167,6 +70582,11 @@
     "preferredLabel" : "Reklamdistributör/Reklamutdelare",
     "type" : "occupation-name"
   },
+  "z4P8_ems_t6k" : {
+    "legacyAmsTaxonomyId" : "28",
+    "preferredLabel" : "A-kassan Vision",
+    "type" : "unemployment-fund"
+  },
   "z4Sp_yTw_XTK" : {
     "legacyAmsTaxonomyId" : "1202",
     "preferredLabel" : "Treviso",
@@ -70534,6 +70954,11 @@
     "preferredLabel" : "Jamaica",
     "type" : "country"
   },
+  "zJE9_REY_TsF" : {
+    "legacyAmsTaxonomyId" : "41",
+    "preferredLabel" : "A-kassan Alfa",
+    "type" : "unemployment-fund"
+  },
   "zJFj_sZ8_z4E" : {
     "legacyAmsTaxonomyId" : "5978",
     "preferredLabel" : "Thailändskt kök",
@@ -70664,6 +71089,11 @@
     "legacyAmsTaxonomyId" : "7142",
     "preferredLabel" : "Arbetsledare, VVS",
     "type" : "occupation-name"
+  },
+  "zPrd_C98_SYZ" : {
+    "legacyAmsTaxonomyId" : "13",
+    "preferredLabel" : "Lönebidrag",
+    "type" : "unemployment-type"
   },
   "zQmk_9fk_rud" : {
     "legacyAmsTaxonomyId" : "567",
