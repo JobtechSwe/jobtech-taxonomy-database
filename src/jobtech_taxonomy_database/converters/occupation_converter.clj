@@ -154,7 +154,7 @@
    (map #(u/create-relation
            (u/create-temp-id t/occupation-name %)
            (u/create-temp-id t/occupation-collection "2")
-           t/broader) legacyIds)
+           t/related) legacyIds)
   ))
 
 (defn convert
