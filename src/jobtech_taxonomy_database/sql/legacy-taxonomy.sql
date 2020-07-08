@@ -899,16 +899,20 @@ AND NOT EXISTS
 	AND [db-67].localeFieldID = [db-68].localeFieldID)
 
 
--- 3426 (april 30 2020)
 -- :name get-occupation-field-occupation-name-relation :*
-SELECT   oft.occupationFieldID as [occupation-field-id], co.occupationNameID as [occupation-name-id]
-FROM [TaxonomyDB].[dbo].[OccupationCollection] as oc,
-     [TaxonomyDB].[dbo].[OccupationFieldTerm] as [oft],
-     [TaxonomyDB].[dbo].[CollectionOccupation] as [co]
-  where oft.languageID = 502
-  and oc.name = oft.term
-  and oc.collectionID = co.collectionID
-  order by occupationNameID
+SELECT occfield.localeFieldID AS [occupation-field-id],
+       occname.occupationNameID AS [occupation-name-id]
+FROM [TaxonomyDB].[dbo].[OccupationCollection] AS [collfields],
+     [TaxonomyDB].[dbo].[CollectionOccupation] AS [fieldnamemap],
+     [TaxonomyDB].[dbo].[LocaleFieldTerm] AS [occfield],
+     [TaxonomyDB].[dbo].[OccupationNameTerm] AS [occname]
+WHERE fieldnamemap.countryID = 199
+AND occfield.languageID = 502
+AND occname.languageID = 502
+AND collfields.collectionID = fieldnamemap.collectionID
+AND occfield.term = collfields.name
+AND occname.occupationNameID = fieldnamemap.occupationNameID;
+ORDER BY occname.occupationNameID
 
 --------------------------------- POPULAR SYNONYMS -------------------------------------------------------
 
