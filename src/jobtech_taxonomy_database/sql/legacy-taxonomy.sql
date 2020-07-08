@@ -911,7 +911,7 @@ AND occfield.languageID = 502
 AND occname.languageID = 502
 AND collfields.collectionID = fieldnamemap.collectionID
 AND occfield.term = collfields.name
-AND occname.occupationNameID = fieldnamemap.occupationNameID;
+AND occname.occupationNameID = fieldnamemap.occupationNameID
 ORDER BY occname.occupationNameID
 
 --------------------------------- POPULAR SYNONYMS -------------------------------------------------------
