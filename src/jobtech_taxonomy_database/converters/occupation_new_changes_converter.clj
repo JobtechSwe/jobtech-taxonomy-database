@@ -86,7 +86,6 @@
 
 
 
-
 (defn convert-occupation-field-occupation-name-relation [{:keys [occupation-field-id occupation-name-id]}]
   {:pre [occupation-field-id occupation-name-id]
    :post [(:relation/concept-1 %) (:relation/concept-2 %) (:relation/type %)]
@@ -94,11 +93,7 @@
   (let [entity-id-occupation-name (u/get-entity-if-exists-or-temp-id occupation-name-id t/occupation-name)
         entity-id-occupation-field (u/get-entity-if-exists-or-temp-id occupation-field-id t/occupation-field)
         relation (u/create-relation entity-id-occupation-name entity-id-occupation-field t/related)]
-    relation)
-  )
-
-
-
+    relation))
 
 
 (defn convert-new-occupation-field-relation-to-ssyk-4
@@ -173,6 +168,7 @@
            (mapcat update-occupation-synonym-term (lm/fetch-data lm/get-updated-synonym-terms))
 
            (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
+           (map convert-occupation-field-occupation-name-relation (lm/fetch-data lm/get-occupation-field-occupation-name-relation))
            (mapcat convert-new-occupation-field-relation-to-ssyk-4 (lm/fetch-data lm/get-new-occupation-field-relation-to-ssyk-4))
            (mapcat convert-new-synonym-relation-to-occupation-name (lm/fetch-data lm/get-new-synonym-relation-to-occupation))
 
