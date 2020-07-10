@@ -168,7 +168,7 @@
            (mapcat update-occupation-synonym-term (lm/fetch-data lm/get-updated-synonym-terms))
 
            (map convert-occupation-collection-relation (lm/fetch-data lm/get-occupation-collection-relations))
-           (mapcat convert-occupation-field-occupation-name-relation (lm/fetch-data lm/get-occupation-field-occupation-name-relation))
+           (map convert-occupation-field-occupation-name-relation (lm/fetch-data lm/get-occupation-field-occupation-name-relation))
            (mapcat convert-new-occupation-field-relation-to-ssyk-4 (lm/fetch-data lm/get-new-occupation-field-relation-to-ssyk-4))
            (mapcat convert-new-synonym-relation-to-occupation-name (lm/fetch-data lm/get-new-synonym-relation-to-occupation))
 
