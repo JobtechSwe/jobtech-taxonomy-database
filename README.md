@@ -1,4 +1,6 @@
-# jobtech-taxonomy-database
+# jobtech-taxonomy-database (no longer maintained)
+
+The code has been moved to https://gitlab.com/JonasClaessson/jobtech-taxonomy-database
 
 Taxonomy database management utilities for JobTech
 
